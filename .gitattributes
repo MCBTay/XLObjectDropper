@@ -23,6 +23,7 @@
 *.terrainlayer -text merge=unityyamlmerge diff
 *.mixer -text merge=unityyamlmerge diff
 *.shadervariants -text merge=unityyamlmerge diff
+*.spp -text merge=unityyamlmerge diff
 
 # Image formats
 *.psd filter=lfs diff=lfs merge=lfs -text
