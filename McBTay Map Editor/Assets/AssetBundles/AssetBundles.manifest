@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 1209169890
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: spawnables_1
+      Dependencies: {}
+    Info_1:
+      Name: spawnables_2
+      Dependencies: {}
