@@ -10,6 +10,10 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+
+# AssetBundles Directory
+GitHub_Repo_Tut_Unity/Assets/AssetBundles
+
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
 
