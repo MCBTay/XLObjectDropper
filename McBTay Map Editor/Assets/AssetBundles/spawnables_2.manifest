@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2253076371
+CRC: 1846767495
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bfe26ee510585e0ea19ced2870b3549f
+    Hash: 58df623ccf41b189d1154619c0517fba
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 68d54829272bb349d59248f6a1570294
+    Hash: bae0ea112186f8f751ef27e541d2c9a6
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -27,42 +27,10 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 64
   Script: {instanceID: 0}
-- Class: 65
-  Script: {instanceID: 0}
-- Class: 89
-  Script: {instanceID: 0}
-- Class: 104
-  Script: {instanceID: 0}
-- Class: 108
-  Script: {instanceID: 0}
-- Class: 114
-  Script: {fileID: 11500000, guid: 2150ee00179b2f4418ea8b21a7e98eea, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 0d7593b3a9277ac4696b20006c21dde2, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 7ddcec8a8eb2d684d833ac8f5d26aebd, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 3df29e7cc05fbec4aa43e06ea875565d, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: c6c2871f720b2af4e9210febdac74517, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
 - Class: 115
   Script: {instanceID: 0}
-- Class: 157
-  Script: {instanceID: 0}
-- Class: 205
-  Script: {instanceID: 0}
-- Class: 258
-  Script: {instanceID: 0}
 Assets:
-- Assets/Scenes/Spawnables_2.unity
+- Assets/Spawnables_2/FlatRail_Short.prefab
 Dependencies: []
