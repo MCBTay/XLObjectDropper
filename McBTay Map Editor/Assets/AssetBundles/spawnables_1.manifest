@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1675444052
+CRC: 2987372665
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 57fa98721d07b398af17ee2c84a26ba5
+    Hash: 6c91f9aba7bafbc0caba626c7c83e651
   TypeTreeHash:
     serializedVersion: 2
     Hash: fec5c77326f2ebc198ba92313d90ffec
@@ -36,5 +36,6 @@ ClassTypes:
 - Class: 134
   Script: {instanceID: 0}
 Assets:
+- Assets/Spawnables_1/Bench_Rounded.prefab
 - Assets/Spawnables_1/FlatLedge.prefab
 Dependencies: []

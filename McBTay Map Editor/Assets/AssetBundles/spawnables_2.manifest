@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1846767495
+CRC: 1578893890
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 58df623ccf41b189d1154619c0517fba
+    Hash: 11be0ec133a39af3940fbb4e727192db
   TypeTreeHash:
     serializedVersion: 2
     Hash: bae0ea112186f8f751ef27e541d2c9a6
@@ -32,5 +32,6 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 Assets:
+- Assets/Spawnables_2/Hydrant.prefab
 - Assets/Spawnables_2/FlatRail_Short.prefab
 Dependencies: []
