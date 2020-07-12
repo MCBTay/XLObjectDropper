@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3091732576
+CRC: 1581096607
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 848e90b27c374a44d66a74af8e42868a
+    Hash: 42b35eedac5ab0d0851115bc0bb0fcb2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: bae0ea112186f8f751ef27e541d2c9a6
+    Hash: 0b113bb3a7a7e1bd84eb5f77e03fe47a
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -27,11 +27,22 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 64
   Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c6c2871f720b2af4e9210febdac74517, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
 - Class: 115
   Script: {instanceID: 0}
+- Class: 205
+  Script: {instanceID: 0}
 Assets:
-- Assets/Spawnables_2/Hydrant.prefab
-- Assets/Spawnables_2/FlatRail_Short.prefab
+- Assets/Spawnables_2/BenchFloating.prefab
+- Assets/Spawnables_2/WorklightSmall.prefab
+- Assets/Spawnables_2/PlasticBarrier.prefab
 Dependencies: []

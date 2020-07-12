@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 228376734
+CRC: 3153155309
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 13d18bca1e0dc35ee568504c728d0a8b
+    Hash: 2b1d51dfa97ed2308682c811a3149b5f
   TypeTreeHash:
     serializedVersion: 2
-    Hash: fec5c77326f2ebc198ba92313d90ffec
+    Hash: 5f366c39a8a9c26aa269b70bb909e551
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,9 +33,9 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
 - Class: 115
   Script: {instanceID: 0}
-- Class: 134
+- Class: 205
   Script: {instanceID: 0}
 Assets:
-- Assets/Spawnables_1/Bench_Rounded.prefab
-- Assets/Spawnables_1/FlatLedge.prefab
+- Assets/Spawnables_1/KickerPlastic.prefab
+- Assets/Spawnables_1/Barrier.prefab
 Dependencies: []
