@@ -63,7 +63,21 @@ MonoBehaviour:
   billboardThickness: 1
   is2D: 0
   spline:
-    points: []
+    points:
+    - _type: 0
+      position: {x: 0.26438195, y: 0.03504038, z: 0.0009576082}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: 0.26438195, y: 0.03504038, z: 0.0009576082}
+      tangent2: {x: 0.26438195, y: 0.03504038, z: 0.0009576082}
+    - _type: 0
+      position: {x: -0.28871864, y: 0.03504038, z: 0.004475355}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: -0.28871864, y: 0.03504038, z: 0.004475355}
+      tangent2: {x: -0.28871864, y: 0.03504038, z: 0.004475355}
     closed: 0
     type: 0
     customValueInterpolation:
@@ -542,7 +556,21 @@ MonoBehaviour:
   billboardThickness: 1
   is2D: 0
   spline:
-    points: []
+    points:
+    - _type: 0
+      position: {x: 0.20939511, y: 0.54227227, z: -1.2708724}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: 0.20939511, y: 0.54227227, z: -1.2708724}
+      tangent2: {x: 0.20939511, y: 0.54227227, z: -1.2708724}
+    - _type: 0
+      position: {x: 0.205651, y: 0.54227227, z: 1.2988564}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: 0.205651, y: 0.54227227, z: 1.2988564}
+      tangent2: {x: 0.205651, y: 0.54227227, z: 1.2988564}
     closed: 0
     type: 0
     customValueInterpolation:
@@ -628,7 +656,21 @@ MonoBehaviour:
   billboardThickness: 1
   is2D: 0
   spline:
-    points: []
+    points:
+    - _type: 0
+      position: {x: 0.2953496, y: 0.03504038, z: 0.0044819117}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: 0.2953496, y: 0.03504038, z: 0.0044819117}
+      tangent2: {x: 0.2953496, y: 0.03504038, z: 0.0044819117}
+    - _type: 0
+      position: {x: -0.2872935, y: 0.03504038, z: 0.0031061172}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: -0.2872935, y: 0.03504038, z: 0.0031061172}
+      tangent2: {x: -0.2872935, y: 0.03504038, z: 0.0031061172}
     closed: 0
     type: 0
     customValueInterpolation:
@@ -714,7 +756,21 @@ MonoBehaviour:
   billboardThickness: 1
   is2D: 0
   spline:
-    points: []
+    points:
+    - _type: 0
+      position: {x: -0.23784792, y: 0.5422723, z: -1.3396792}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: -0.23784792, y: 0.5422723, z: -1.3396792}
+      tangent2: {x: -0.23784792, y: 0.5422723, z: -1.3396792}
+    - _type: 0
+      position: {x: -0.2348646, y: 0.54227227, z: 1.3099678}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: -0.2348646, y: 0.54227227, z: 1.3099678}
+      tangent2: {x: -0.2348646, y: 0.54227227, z: 1.3099678}
     closed: 0
     type: 0
     customValueInterpolation:

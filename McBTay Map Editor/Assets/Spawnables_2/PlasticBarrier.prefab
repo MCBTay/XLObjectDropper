@@ -63,7 +63,21 @@ MonoBehaviour:
   billboardThickness: 1
   is2D: 0
   spline:
-    points: []
+    points:
+    - _type: 0
+      position: {x: -0.7457516, y: 0.04750693, z: 0.015008271}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: -0.7457516, y: 0.04750693, z: 0.015008271}
+      tangent2: {x: -0.7457516, y: 0.04750693, z: 0.015008271}
+    - _type: 0
+      position: {x: 0.70776564, y: 0.04750693, z: -0.0027504563}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: 0.70776564, y: 0.04750693, z: -0.0027504563}
+      tangent2: {x: 0.70776564, y: 0.04750693, z: -0.0027504563}
     closed: 0
     type: 0
     customValueInterpolation:
