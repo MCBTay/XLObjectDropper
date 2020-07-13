@@ -40,5 +40,5 @@ Material:
     m_Floats:
     - Vector1_25F7EFC9: 0
     m_Colors:
-    - Color_A891DE15: {r: 7.4642644, g: 1.9319273, b: 0, a: 0.56078434}
+    - Color_A891DE15: {r: 7.4642644, g: 1.9319273, b: 0, a: 0.37254903}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
