@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2217124972
+CRC: 299580158
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 75594eba9a1290953d75550349959068
+    Hash: 2b944c4bf51a2250272bfbc140a422b5
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5f366c39a8a9c26aa269b70bb909e551
@@ -36,6 +36,8 @@ ClassTypes:
 - Class: 205
   Script: {instanceID: 0}
 Assets:
+- Assets/Spawnables_1/KickerWood.prefab
 - Assets/Spawnables_1/KickerPlastic.prefab
 - Assets/Spawnables_1/Barrier.prefab
+- Assets/Spawnables_1/Cube_Testing.prefab
 Dependencies: []

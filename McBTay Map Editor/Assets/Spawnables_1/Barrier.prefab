@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4226628933994469629}
   - component: {fileID: 4226628933994469619}
   - component: {fileID: 4226628933994469628}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Grind
   m_TagString: Grind_Concrete
   m_Icon: {fileID: 0}
