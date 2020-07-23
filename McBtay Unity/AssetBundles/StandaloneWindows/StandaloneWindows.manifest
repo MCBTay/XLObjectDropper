@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 1048108649
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: spritesheets
+      Dependencies: {}

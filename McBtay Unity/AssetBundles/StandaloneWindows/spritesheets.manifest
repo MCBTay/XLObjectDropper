@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 2821880152
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0e016f6d08cbc5573751bf4642f52776
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ce80e3989e8b04d45aa4f4441a89e231
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/UI/TMP SpriteSheets/UISpriteSheet_Black.asset
+- Assets/UI/TMP SpriteSheets/UISpriteSheet_Blue.asset
+- Assets/UI/TMP SpriteSheets/UISpriteSheet_White.asset
+Dependencies: []
