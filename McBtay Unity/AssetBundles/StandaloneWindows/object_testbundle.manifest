@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 977289130
+CRC: 1685584795
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 7a33fb459e3be110d8b3a746f7aa0882
+    Hash: 653daa1a278d41eae7c90597ecd25a4e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 70cff45a74bf9671b31e2fa41f4734a0
+    Hash: cc676d07ac37b0ac64afc6dd1dd03c9d
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,16 +25,24 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
 - Class: 108
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 136
   Script: {instanceID: 0}
 - Class: 205
   Script: {instanceID: 0}
 Assets:
-- Assets/Bundles/Object_TestBundle/Construction Light.prefab
-- Assets/Bundles/Object_TestBundle/Workbench.prefab
-- Assets/Bundles/Object_TestBundle/Paint Supplies.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Construction Light.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Workbench.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Paint Supplies.prefab
 Dependencies: []
