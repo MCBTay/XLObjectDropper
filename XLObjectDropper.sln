@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLObjectDropper", "XLObjectDropper\XLObjectDropper.csproj", "{77FC4B52-3744-486B-9FBD-E7F5CADA0E87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77FC4B52-3744-486B-9FBD-E7F5CADA0E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77FC4B52-3744-486B-9FBD-E7F5CADA0E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77FC4B52-3744-486B-9FBD-E7F5CADA0E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77FC4B52-3744-486B-9FBD-E7F5CADA0E87}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DFFE0D35-B6A1-4539-BCE2-7183BD2AA43D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/XLObjectDropper/obj/Debug
+/XLObjectDropper/bin/Debug
+/XLObjectDropper/References
+/XLObjectDropper/bin/Release
+/XLObjectDropper/obj/Release
