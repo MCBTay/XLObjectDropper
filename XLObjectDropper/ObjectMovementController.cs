@@ -10,7 +10,6 @@ namespace XLObjectDropper
 {
 	public class ObjectMovementController : MonoBehaviour
 	{
-		public PinMovementController PinMovementController { get; set; }
 		public GameObject PreviewObject { get; set; }
         public List<GameObject> SpawnedObjects { get; set; }
 
@@ -32,22 +31,13 @@ namespace XLObjectDropper
 			if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectMovementState)))
 				return;
 
-			if (PinMovementController != null)
-			{
-				PinMovementController.enabled = false;
-			}
-
 			enabled = false;
         }
 
         private void OnEnable()
         {
-	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
-
 	        enabled = true;
 	        GameStateMachine.Instance.PinObject.SetActive(true);
-			//PinMovementController.enabled = true;
-			//PinMovementController.decalProjector.enabled = false;
 
 			ControlLegendGameObject.SetActive(true);
 			ControlLegend.enabled = true;
@@ -57,14 +47,10 @@ namespace XLObjectDropper
 
         private void OnDisable()
         {
-	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
-
 			enabled = false;
 			GameStateMachine.Instance.PinObject.SetActive(false);
-			//PinMovementController.enabled = false;
-	        //PinMovementController.decalProjector.enabled = true;
 
-	        ControlLegendGameObject.SetActive(false);
+			ControlLegendGameObject.SetActive(false);
 	        ControlLegend.enabled = false;
 
 	        PreviewObject.SetActive(false);
