@@ -1,0 +1,1316 @@
+fileFormatVersion: 2
+guid: 19533ca3f17ce0145827c947a5c0b081
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5455499104948105843
+    second: ControllerIcons_ReversedOut_0
+  - first:
+      213: -7361143022583496035
+    second: ControllerIcons_ReversedOut_1
+  - first:
+      213: 8338464866344303799
+    second: ControllerIcons_ReversedOut_2
+  - first:
+      213: 8891295458635337642
+    second: ControllerIcons_ReversedOut_3
+  - first:
+      213: 6246973970560349637
+    second: ControllerIcons_ReversedOut_4
+  - first:
+      213: -6605669490835715094
+    second: ControllerIcons_ReversedOut_5
+  - first:
+      213: -4795206082768596472
+    second: ControllerIcons_ReversedOut_6
+  - first:
+      213: -5322142101811208754
+    second: ControllerIcons_ReversedOut_7
+  - first:
+      213: 4392423021839011351
+    second: ControllerIcons_ReversedOut_8
+  - first:
+      213: 8099819812943651760
+    second: ControllerIcons_ReversedOut_9
+  - first:
+      213: 3764782076814582503
+    second: ControllerIcons_ReversedOut_10
+  - first:
+      213: -7744224968177176620
+    second: ControllerIcons_ReversedOut_11
+  - first:
+      213: 4995499134634347552
+    second: ControllerIcons_ReversedOut_12
+  - first:
+      213: -3351896017593636695
+    second: ControllerIcons_ReversedOut_13
+  - first:
+      213: 6930534114401881875
+    second: ControllerIcons_ReversedOut_14
+  - first:
+      213: 271434593081825943
+    second: ControllerIcons_ReversedOut_15
+  - first:
+      213: 4211360371710579698
+    second: ControllerIcons_ReversedOut_16
+  - first:
+      213: -560240332837315142
+    second: ControllerIcons_ReversedOut_17
+  - first:
+      213: 519314959620534108
+    second: ControllerIcons_ReversedOut_18
+  - first:
+      213: -2350499871150734343
+    second: ControllerIcons_ReversedOut_19
+  - first:
+      213: -4598422290921694364
+    second: ControllerIcons_ReversedOut_20
+  - first:
+      213: 890660825472013163
+    second: ControllerIcons_ReversedOut_21
+  - first:
+      213: 7701312038599582640
+    second: ControllerIcons_ReversedOut_22
+  - first:
+      213: 3646185781017953221
+    second: ControllerIcons_ReversedOut_23
+  - first:
+      213: 5970601614280135821
+    second: ControllerIcons_ReversedOut_24
+  - first:
+      213: -613216956551412034
+    second: ControllerIcons_ReversedOut_25
+  - first:
+      213: -2080250959738996883
+    second: ControllerIcons_ReversedOut_26
+  - first:
+      213: 6624892912865860906
+    second: ControllerIcons_ReversedOut_27
+  - first:
+      213: -7000406870951478814
+    second: ControllerIcons_ReversedOut_28
+  - first:
+      213: 2915534601054753098
+    second: ControllerIcons_ReversedOut_29
+  - first:
+      213: 2034202085256717240
+    second: ControllerIcons_ReversedOut_30
+  - first:
+      213: 2600078585932559906
+    second: ControllerIcons_ReversedOut_31
+  - first:
+      213: -2791936665724773846
+    second: ControllerIcons_ReversedOut_32
+  - first:
+      213: 7613844235013270624
+    second: ControllerIcons_ReversedOut_33
+  - first:
+      213: 3015285644681207709
+    second: ControllerIcons_ReversedOut_34
+  - first:
+      213: -2446757580677579262
+    second: ControllerIcons_ReversedOut_35
+  - first:
+      213: 4932758927961260346
+    second: ControllerIcons_ReversedOut_36
+  - first:
+      213: 8898217644595288274
+    second: ControllerIcons_ReversedOut_37
+  - first:
+      213: 2856025741339306445
+    second: ControllerIcons_ReversedOut_38
+  - first:
+      213: -7928392828093930227
+    second: ControllerIcons_ReversedOut_39
+  - first:
+      213: 8264512414932645804
+    second: ControllerIcons_ReversedOut_40
+  - first:
+      213: 8034592787231192473
+    second: ControllerIcons_ReversedOut_41
+  - first:
+      213: 1115994440278336708
+    second: ControllerIcons_ReversedOut_42
+  - first:
+      213: -4731842811890655390
+    second: ControllerIcons_ReversedOut_43
+  - first:
+      213: -7487401073476607217
+    second: ControllerIcons_ReversedOut_44
+  - first:
+      213: 5872842511503608542
+    second: ControllerIcons_ReversedOut_45
+  - first:
+      213: 7123890412893464960
+    second: ControllerIcons_ReversedOut_46
+  - first:
+      213: 2981542675632646441
+    second: ControllerIcons_ReversedOut_47
+  - first:
+      213: -8368730357634322722
+    second: ControllerIcons_ReversedOut_48
+  - first:
+      213: -1741461890141805444
+    second: ControllerIcons_ReversedOut_49
+  - first:
+      213: 757138034938242927
+    second: ControllerIcons_ReversedOut_50
+  - first:
+      213: -7834381510894654846
+    second: ControllerIcons_ReversedOut_51
+  - first:
+      213: 211060800488907724
+    second: ControllerIcons_ReversedOut_52
+  - first:
+      213: -75722438762741041
+    second: ControllerIcons_ReversedOut_53
+  - first:
+      213: -9015119399779082026
+    second: ControllerIcons_ReversedOut_54
+  - first:
+      213: 1123053153089801888
+    second: ControllerIcons_ReversedOut_55
+  - first:
+      213: -1803034335166945184
+    second: ControllerIcons_ReversedOut_56
+  - first:
+      213: 668087368930304990
+    second: ControllerIcons_ReversedOut_57
+  - first:
+      213: -8158504643738834570
+    second: ControllerIcons_ReversedOut_58
+  - first:
+      213: -6796902032626278190
+    second: ControllerIcons_ReversedOut_59
+  - first:
+      213: -3840936151455164280
+    second: ControllerIcons_ReversedOut_60
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 530
+        width: 886
+        height: 494
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8d4b11f77c2a44b0800000000000000
+      internalID: -5455499104948105843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_1
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 905
+        width: 116
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d92c0160c67f7d990800000000000000
+      internalID: -7361143022583496035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_2
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 818
+        width: 124
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bcf68aed9d28b370800000000000000
+      internalID: 8338464866344303799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_3
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 738
+        width: 124
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aafc00d8c1a346b70800000000000000
+      internalID: 8891295458635337642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_4
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 658
+        width: 124
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c57c547ab5b1b650800000000000000
+      internalID: 6246973970560349637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_5
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 578
+        width: 124
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeb0a1fa892f354a0800000000000000
+      internalID: -6605669490835715094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_6
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 554
+        width: 123
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80219cb4971047db0800000000000000
+      internalID: -4795206082768596472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 417
+        width: 92
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a8e843c45cab71d0800000000000000
+      internalID: -3351896017593636695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 417
+        width: 92
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31f86a8be043e2060800000000000000
+      internalID: 6930534114401881875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 422
+        width: 103
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79a1564035454c300800000000000000
+      internalID: 271434593081825943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_16
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 422
+        width: 103
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f357f002f1c17a30800000000000000
+      internalID: 4211360371710579698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_17
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 424
+        width: 102
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abd9264b260a938f0800000000000000
+      internalID: -560240332837315142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_18
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 438
+        width: 88
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5f6abe443af43700800000000000000
+      internalID: 519314959620534108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_19
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 438
+        width: 88
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f3857712d8516fd0800000000000000
+      internalID: -2350499871150734343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_20
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 452
+        width: 171
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46bdf563a4f1f20c0800000000000000
+      internalID: -4598422290921694364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_21
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 414
+        width: 63
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b639d954d434c5c00800000000000000
+      internalID: 890660825472013163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 289
+        width: 121
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b3ea2dee7e80ea60800000000000000
+      internalID: 7701312038599582640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_23
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 306
+        width: 103
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c3c7a646aad99230800000000000000
+      internalID: 3646185781017953221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_24
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 306
+        width: 103
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d849a8ad886dbd250800000000000000
+      internalID: 5970601614280135821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_25
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 307
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb6c18e4d6a6d77f0800000000000000
+      internalID: -613216956551412034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_26
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 316
+        width: 112
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67771516c67123e0800000000000000
+      internalID: -2080250959738996883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_27
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 322
+        width: 88
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2d5f5a010950fb50800000000000000
+      internalID: 6624892912865860906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_28
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 374
+        width: 171
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e9bbb56a0f89de90800000000000000
+      internalID: -7000406870951478814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_29
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 346
+        width: 152
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a419a32c54f067820800000000000000
+      internalID: 2915534601054753098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_30
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 336
+        width: 168
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b3e515d400fa3c10800000000000000
+      internalID: 2034202085256717240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_31
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 282
+        width: 148
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2263c96b2b5551420800000000000000
+      internalID: 2600078585932559906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 165
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2a1614156c0149d0800000000000000
+      internalID: -2791936665724773846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_33
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 165
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06c2f1bedfec9a960800000000000000
+      internalID: 7613844235013270624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_34
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 199
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9fde83715278d920800000000000000
+      internalID: 3015285644681207709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_35
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 201
+        width: 102
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ef730a1fe5b0ed0800000000000000
+      internalID: -2446757580677579262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_36
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 222
+        width: 88
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3184cf2c1ea47440800000000000000
+      internalID: 4932758927961260346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_37
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 223
+        width: 88
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d817309dc1dc7b70800000000000000
+      internalID: 8898217644595288274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_38
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 254
+        width: 152
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc9a6e5a744a2a720800000000000000
+      internalID: 2856025741339306445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_39
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 168
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d05e4b1bab0b8f190800000000000000
+      internalID: -7928392828093930227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_40
+      rect:
+        serializedVersion: 2
+        x: 913
+        y: 169
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca7bddd014271b270800000000000000
+      internalID: 8264512414932645804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_41
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 41
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 995b4d5229b908f60800000000000000
+      internalID: 8034592787231192473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_42
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 41
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c4e918d70fcc7f00800000000000000
+      internalID: 1115994440278336708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_43
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 93
+        width: 102
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26f9540780e155eb0800000000000000
+      internalID: -4731842811890655390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_44
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 93
+        width: 102
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f036c84c468671890800000000000000
+      internalID: -7487401073476607217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_45
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 104
+        width: 93
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eda4cf70627808150800000000000000
+      internalID: 5872842511503608542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_46
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 132
+        width: 86
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 089635726942dd260800000000000000
+      internalID: 7123890412893464960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_47
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 0
+        width: 89
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92960cf3441906920800000000000000
+      internalID: 2981542675632646441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_48
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 0
+        width: 89
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edead24441c4cdb80800000000000000
+      internalID: -8368730357634322722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_49
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 10
+        width: 88
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c74a73833a515d7e0800000000000000
+      internalID: -1741461890141805444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_50
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 68
+        width: 148
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f676e620805e18a00800000000000000
+      internalID: 757138034938242927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_51
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 34
+        width: 213
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28a6c30368fa64390800000000000000
+      internalID: -7834381510894654846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_58
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 4
+        width: 51
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 679629b804b27ce80800000000000000
+      internalID: -8158504643738834570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_59
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 121
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d02e24ec9d8ca1a0800000000000000
+      internalID: -6796902032626278190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_ReversedOut_60
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 3
+        width: 168
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8881f8f9be042bac0800000000000000
+      internalID: -3840936151455164280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 93168b5408790a44a85e4132198bf91b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

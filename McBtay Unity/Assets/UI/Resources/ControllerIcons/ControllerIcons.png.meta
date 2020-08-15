@@ -1,0 +1,1433 @@
+fileFormatVersion: 2
+guid: 15f26e860faa27a4c9b1415f827df5e1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3354577762874648383
+    second: ControllerIcons_0
+  - first:
+      213: -778641301543543881
+    second: ControllerIcons_1
+  - first:
+      213: 7475578875763064728
+    second: ControllerIcons_2
+  - first:
+      213: -5604718665168017188
+    second: ControllerIcons_3
+  - first:
+      213: 1515382190666927914
+    second: ControllerIcons_4
+  - first:
+      213: -5610395353672028149
+    second: ControllerIcons_5
+  - first:
+      213: 4450674306555065330
+    second: ControllerIcons_6
+  - first:
+      213: 6330075593674543840
+    second: ControllerIcons_7
+  - first:
+      213: -2884708126725253358
+    second: ControllerIcons_8
+  - first:
+      213: -3117422379945689961
+    second: ControllerIcons_9
+  - first:
+      213: 2368901363655476514
+    second: ControllerIcons_10
+  - first:
+      213: -3052054236660480438
+    second: ControllerIcons_11
+  - first:
+      213: -1740396406389220023
+    second: ControllerIcons_12
+  - first:
+      213: 2408332968177133696
+    second: ControllerIcons_13
+  - first:
+      213: -4219806501303662727
+    second: ControllerIcons_14
+  - first:
+      213: -6865226976708837803
+    second: ControllerIcons_15
+  - first:
+      213: -7037670268974837378
+    second: ControllerIcons_16
+  - first:
+      213: 770877073130052059
+    second: ControllerIcons_17
+  - first:
+      213: 788179008988410771
+    second: ControllerIcons_18
+  - first:
+      213: 5686063522095680267
+    second: ControllerIcons_19
+  - first:
+      213: 7215272699597443350
+    second: ControllerIcons_20
+  - first:
+      213: 8122925901228726107
+    second: ControllerIcons_21
+  - first:
+      213: -5680655796261459602
+    second: ControllerIcons_22
+  - first:
+      213: 5062057149655700957
+    second: ControllerIcons_23
+  - first:
+      213: -1098637082658996985
+    second: ControllerIcons_24
+  - first:
+      213: -3392185521994969444
+    second: ControllerIcons_25
+  - first:
+      213: 4075843459717672316
+    second: ControllerIcons_26
+  - first:
+      213: 632280793814800787
+    second: ControllerIcons_27
+  - first:
+      213: 1394595158862949166
+    second: ControllerIcons_28
+  - first:
+      213: -3654608782559675194
+    second: ControllerIcons_29
+  - first:
+      213: -6082457025959578749
+    second: ControllerIcons_30
+  - first:
+      213: 1179391602998847271
+    second: ControllerIcons_31
+  - first:
+      213: -5134360369960951604
+    second: ControllerIcons_32
+  - first:
+      213: 4148297089171923821
+    second: ControllerIcons_33
+  - first:
+      213: 2555678600747563561
+    second: ControllerIcons_34
+  - first:
+      213: -2327508155424014135
+    second: ControllerIcons_35
+  - first:
+      213: 6066799003675233214
+    second: ControllerIcons_36
+  - first:
+      213: -1551828169335232619
+    second: ControllerIcons_37
+  - first:
+      213: -758497314108651334
+    second: ControllerIcons_38
+  - first:
+      213: 4495700353371699378
+    second: ControllerIcons_39
+  - first:
+      213: -8772275210156082317
+    second: ControllerIcons_40
+  - first:
+      213: -5236719120626439225
+    second: ControllerIcons_41
+  - first:
+      213: -157709234232290905
+    second: ControllerIcons_42
+  - first:
+      213: -2654047458616716842
+    second: ControllerIcons_43
+  - first:
+      213: -1334667112042601106
+    second: ControllerIcons_44
+  - first:
+      213: 4761293739997704986
+    second: ControllerIcons_45
+  - first:
+      213: -4101960271310658671
+    second: ControllerIcons_46
+  - first:
+      213: -7537267144067222609
+    second: ControllerIcons_47
+  - first:
+      213: 8560211978440196278
+    second: ControllerIcons_48
+  - first:
+      213: -8768764137212573580
+    second: ControllerIcons_49
+  - first:
+      213: -1044764718714068160
+    second: ControllerIcons_50
+  - first:
+      213: 1272241107956558081
+    second: ControllerIcons_51
+  - first:
+      213: -6659481400101852725
+    second: ControllerIcons_52
+  - first:
+      213: -1221989252938094800
+    second: ControllerIcons_53
+  - first:
+      213: 4840963215681459477
+    second: ControllerIcons_54
+  - first:
+      213: -6579373443561743095
+    second: ControllerIcons_55
+  - first:
+      213: 6599682039095905330
+    second: ControllerIcons_56
+  - first:
+      213: 8498612372797787407
+    second: ControllerIcons_57
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ControllerIcons_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1542
+        width: 898
+        height: 506
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c89e684c452271d0800000000000000
+      internalID: -3354577762874648383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_1
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1929
+        width: 591
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bb9c069cd5b135f0800000000000000
+      internalID: -778641301543543881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_2
+      rect:
+        serializedVersion: 2
+        x: 1497
+        y: 1815
+        width: 542
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f754451679eb760800000000000000
+      internalID: 7475578875763064728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_3
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1806
+        width: 591
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd8a8a0b11a0832b0800000000000000
+      internalID: -5604718665168017188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_4
+      rect:
+        serializedVersion: 2
+        x: 1497
+        y: 1578
+        width: 542
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2fc7a5d218b70510800000000000000
+      internalID: 1515382190666927914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_5
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1582
+        width: 531
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0070e6a62fd322b0800000000000000
+      internalID: -5610395353672028149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1377
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f33c2d73b8f3cd30800000000000000
+      internalID: 4450674306555065330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_7
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 1377
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e2575ad632f8d750800000000000000
+      internalID: 6330075593674543840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_8
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1377
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 217dbd91e3577f7d0800000000000000
+      internalID: -2884708126725253358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_9
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1377
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79cfb7cbcd0bcb4d0800000000000000
+      internalID: -3117422379945689961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_10
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1353
+        width: 186
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2258f904d3700e020800000000000000
+      internalID: 2368901363655476514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_11
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1358
+        width: 531
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4640ac97dce4a5d0800000000000000
+      internalID: -3052054236660480438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_12
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 1381
+        width: 316
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94dddcc70bed8d7e0800000000000000
+      internalID: -1740396406389220023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_13
+      rect:
+        serializedVersion: 2
+        x: 1757
+        y: 1232
+        width: 290
+        height: 342
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0886f0d131e1c6120800000000000000
+      internalID: 2408332968177133696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1193
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97749e4385c3075c0800000000000000
+      internalID: -4219806501303662727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_15
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 1193
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e37de2070d9b0a0800000000000000
+      internalID: -6865226976708837803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_16
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 1193
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e715d637d2c255e90800000000000000
+      internalID: -7037670268974837378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_17
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 1193
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd9d86d1d94b2ba00800000000000000
+      internalID: 770877073130052059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_18
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 1164
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3937c2af1ac20fa00800000000000000
+      internalID: 788179008988410771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_19
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1161
+        width: 315
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0bc1d4b5a4f8ee40800000000000000
+      internalID: 5686063522095680267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_20
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 1249
+        width: 261
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6115419ca4cc12460800000000000000
+      internalID: 7215272699597443350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_21
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 1185
+        width: 316
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b57de8fe11e6ab070800000000000000
+      internalID: 8122925901228726107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_23
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 1150
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd554fd582a004640800000000000000
+      internalID: 5062057149655700957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_24
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 1151
+        width: 29
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70df907e46bd0c0f0800000000000000
+      internalID: -1098637082658996985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_25
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 1151
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e44458d398ce0d0800000000000000
+      internalID: -3392185521994969444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_26
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 1151
+        width: 8
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7d2298280e409830800000000000000
+      internalID: 4075843459717672316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_27
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 1150
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39912a1380056c800800000000000000
+      internalID: 632280793814800787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_28
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 1151
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2b618978e89a5310800000000000000
+      internalID: 1394595158862949166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_29
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 1150
+        width: 31
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ccf18adca8384dc0800000000000000
+      internalID: -3654608782559675194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_30
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 1045
+        width: 143
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 383b916af85c69ba0800000000000000
+      internalID: -6082457025959578749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_31
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 975
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72723db0a6a0e5010800000000000000
+      internalID: 1179391602998847271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_32
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 965
+        width: 315
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc062af42761fb8b0800000000000000
+      internalID: -5134360369960951604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_33
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 1140
+        width: 261
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6321e65936b19930800000000000000
+      internalID: 4148297089171923821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_34
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 877
+        width: 305
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92a30a59528977320800000000000000
+      internalID: 2555678600747563561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_35
+      rect:
+        serializedVersion: 2
+        x: 1757
+        y: 886
+        width: 289
+        height: 342
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c080201aa703bfd0800000000000000
+      internalID: -2327508155424014135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_37
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 902
+        width: 279
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 597245e708cc67ae0800000000000000
+      internalID: -1551828169335232619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_39
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 893
+        width: 115
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b87153f6afe36e30800000000000000
+      internalID: 4495700353371699378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_40
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 975
+        width: 161
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37b7ea28c2e924680800000000000000
+      internalID: -8772275210156082317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_41
+      rect:
+        serializedVersion: 2
+        x: 1334
+        y: 1043
+        width: 93
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cba09284bf6357b0800000000000000
+      internalID: -5236719120626439225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_42
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 922
+        width: 116
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a119cb7944bfcdf0800000000000000
+      internalID: -157709234232290905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_43
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 786
+        width: 185
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d15f1ce5edea2bd0800000000000000
+      internalID: -2654047458616716842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_44
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 801
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e65ed4d355f4a7de0800000000000000
+      internalID: -1334667112042601106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_45
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 817
+        width: 144
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a13badb1e63831240800000000000000
+      internalID: 4761293739997704986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_46
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 811
+        width: 161
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19363c9cdd8e217c0800000000000000
+      internalID: -4101960271310658671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_47
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 951
+        width: 86
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa376a4777f366790800000000000000
+      internalID: -7537267144067222609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_48
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 728
+        width: 161
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b0c8f0c07bfbc670800000000000000
+      internalID: 8560211978440196278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_49
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 782
+        width: 129
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4788242e9771f4680800000000000000
+      internalID: -8768764137212573580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_50
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 887
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 043ef2316004081f0800000000000000
+      internalID: -1044764718714068160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_51
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 577
+        width: 304
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 109666c0c88e7a110800000000000000
+      internalID: 1272241107956558081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_52
+      rect:
+        serializedVersion: 2
+        x: 1333
+        y: 823
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc9ab9633f4c493a0800000000000000
+      internalID: -6659481400101852725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_53
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 578
+        width: 304
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 037a743bf3f9a0fe0800000000000000
+      internalID: -1221989252938094800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_54
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 722
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5151d69656e8e2340800000000000000
+      internalID: 4840963215681459477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_55
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 722
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90d1ddb46be51b4a0800000000000000
+      internalID: -6579373443561743095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_56
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 702
+        width: 112
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23c46d219d7c69b50800000000000000
+      internalID: 6599682039095905330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ControllerIcons_57
+      rect:
+        serializedVersion: 2
+        x: 1003
+        y: 770
+        width: 129
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0d0a5cece221f570800000000000000
+      internalID: 8498612372797787407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
