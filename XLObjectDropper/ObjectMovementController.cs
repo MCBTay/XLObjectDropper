@@ -45,10 +45,11 @@ namespace XLObjectDropper
 	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
 
 	        enabled = true;
-	        PinMovementController.enabled = true;
-	        //PinMovementController.decalProjector.enabled = false;
+	        GameStateMachine.Instance.PinObject.SetActive(true);
+			//PinMovementController.enabled = true;
+			//PinMovementController.decalProjector.enabled = false;
 
-	        ControlLegendGameObject.SetActive(true);
+			ControlLegendGameObject.SetActive(true);
 			ControlLegend.enabled = true;
 
 			PreviewObject.SetActive(true);
@@ -59,7 +60,8 @@ namespace XLObjectDropper
 	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
 
 			enabled = false;
-			PinMovementController.enabled = false;
+			GameStateMachine.Instance.PinObject.SetActive(false);
+			//PinMovementController.enabled = false;
 	        //PinMovementController.decalProjector.enabled = true;
 
 	        ControlLegendGameObject.SetActive(false);
