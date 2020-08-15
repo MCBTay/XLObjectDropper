@@ -106,8 +106,7 @@
     <Compile Include="UserInterface\UserInterfaceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Assets\spawnables_1" />
-    <EmbeddedResource Include="Assets\spawnables_2" />
+    <EmbeddedResource Include="Assets\object_testbundle" />
     <None Include="Info.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

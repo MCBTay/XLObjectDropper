@@ -14,8 +14,7 @@ namespace XLObjectDropper
 		{
 			LoadedAssets = new List<GameObject>();
 
-			LoadBundle("XLObjectDropper.Assets.spawnables_1", true);
-			LoadBundle("XLObjectDropper.Assets.spawnables_2", true);
+			LoadBundle("XLObjectDropper.Assets.object_testbundle", true);
 		}
 
 		private static void LoadBundle(string name, bool isEmbedded = false)
