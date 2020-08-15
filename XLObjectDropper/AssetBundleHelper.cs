@@ -28,6 +28,8 @@ namespace XLObjectDropper
 			Debug.Log("Loaded " + assets.Length + " assets from " + name + ".");
 
 			LoadedAssets.AddRange(assets);
+
+			bundle.Unload(false);
 		}
 
 		//private static IEnumerator LoadBundle(string name, bool isEmbedded = false)
