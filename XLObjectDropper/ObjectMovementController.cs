@@ -14,9 +14,8 @@ namespace XLObjectDropper
         public List<GameObject> SpawnedObjects { get; set; }
 
 		public GameObject ControlLegendGameObject { get; set; }
-		public ControlLegend ControlLegend { get; set; }
 
-        private void Awake()
+		private void Awake()
         {
 	        SpawnedObjects = new List<GameObject>();
 
@@ -25,10 +24,9 @@ namespace XLObjectDropper
 	        PreviewObject.SetActive(false);
 	        DontDestroyOnLoad(PreviewObject);
 
-			ControlLegendGameObject = new GameObject();
-			ControlLegend = ControlLegendGameObject.AddComponent<ControlLegend>();
+	        ControlLegendGameObject = AssetBundleHelper.LoadUIBundle();
 
-			if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectMovementState)))
+	        if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectMovementState)))
 				return;
 
 			enabled = false;
@@ -39,8 +37,7 @@ namespace XLObjectDropper
 	        enabled = true;
 	        GameStateMachine.Instance.PinObject.SetActive(true);
 
-			ControlLegendGameObject.SetActive(true);
-			ControlLegend.enabled = true;
+			ControlLegendGameObject?.SetActive(true);
 
 			PreviewObject.SetActive(true);
         }
@@ -50,10 +47,9 @@ namespace XLObjectDropper
 			enabled = false;
 			GameStateMachine.Instance.PinObject.SetActive(false);
 
-			ControlLegendGameObject.SetActive(false);
-	        ControlLegend.enabled = false;
+			ControlLegendGameObject?.SetActive(false);
 
-	        PreviewObject.SetActive(false);
+			PreviewObject.SetActive(false);
 		}
 
         private bool showMenu;

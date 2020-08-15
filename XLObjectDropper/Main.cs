@@ -18,8 +18,6 @@ namespace XLObjectDropper
 			return true;
 		}
 
-		public static GameObject ObjectMovementController;
-
 		private static bool OnToggle(UnityModManager.ModEntry modEntry, bool value)
 		{
 			if (Enabled == value) return true;
@@ -32,10 +30,6 @@ namespace XLObjectDropper
 
 				UserInterfaceHelper.CreateObjectDropperButton();
 				AssetBundleHelper.LoadDefaultBundles();
-
-				ObjectMovementController = new GameObject();
-				ObjectMovementController.AddComponent<ObjectMovementController>();
-				Object.DontDestroyOnLoad(ObjectMovementController);
 			}
 			else
 			{

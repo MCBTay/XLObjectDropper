@@ -94,7 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssetBundleHelper.cs" />
-    <Compile Include="UserInterface\ControlLegend.cs" />
     <Compile Include="UserInterface\ControllerButtonHelper.cs" />
     <Compile Include="GameManagement\ObjectSelectionState.cs" />
     <Compile Include="Main.cs" />
@@ -107,7 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\object_testbundle" />
-    <None Include="Assets\ui_bundle" />
+    <EmbeddedResource Include="Assets\ui_bundle" />
     <None Include="Info.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

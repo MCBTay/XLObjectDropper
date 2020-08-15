@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace XLObjectDropper
 {
@@ -30,6 +28,16 @@ namespace XLObjectDropper
 			LoadedAssets.AddRange(assets);
 
 			bundle.Unload(false);
+		}
+
+		public static GameObject LoadUIBundle()
+		{
+			AssetBundle bundle = AssetBundle.LoadFromMemory(ExtractResource("XLObjectDropper.Assets.ui_bundle"));
+			
+			GameObject newMenuObject = GameObject.Instantiate(bundle.LoadAsset<GameObject>("ObjDrop_UI"));
+			GameObject.DontDestroyOnLoad(newMenuObject);
+
+			return newMenuObject;
 		}
 
 		//private static IEnumerator LoadBundle(string name, bool isEmbedded = false)
