@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\object_testbundle" />
+    <None Include="Assets\ui_bundle" />
     <None Include="Info.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
