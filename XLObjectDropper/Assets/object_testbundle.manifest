@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3655238215
+CRC: 3890001537
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f870a1ea4c6ee9d8c8c71f040d87b39f
+    Hash: 8f52aad0eb1cf3c2d0b3643ecc62df78
   TypeTreeHash:
     serializedVersion: 2
     Hash: a471a6ff4effd1f8535092bd1c8556da
@@ -42,6 +42,7 @@ ClassTypes:
 - Class: 205
   Script: {instanceID: 0}
 Assets:
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Cube.prefab
 - Assets/OBJ_Dropper_Bundles/Object_TestBundle/Construction Light.prefab
 - Assets/OBJ_Dropper_Bundles/Object_TestBundle/Workbench.prefab
 - Assets/OBJ_Dropper_Bundles/Object_TestBundle/Paint Supplies.prefab
