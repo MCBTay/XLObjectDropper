@@ -1441,6 +1441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1751118475060692190}
+  - component: {fileID: 2763440144624021817}
   m_Layer: 0
   m_Name: ObjDrop_UI
   m_TagString: Untagged
@@ -1464,6 +1465,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2763440144624021817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751118475060692191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 223891900, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainScreenUI: {fileID: 1751118476494304404}
+  RightBumperUI: {fileID: 1751118476377660057}
 --- !u!1 &1751118475196428398
 GameObject:
   m_ObjectHideFlags: 0
