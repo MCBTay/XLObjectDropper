@@ -1,16 +1,10 @@
 ManifestFileVersion: 0
-CRC: 2185847226
+CRC: 801474632
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: spritesheets_brands
+      Name: ui_bundle
       Dependencies: {}
     Info_1:
-      Name: spritesheets
-      Dependencies: {}
-    Info_2:
       Name: object_testbundle
-      Dependencies: {}
-    Info_3:
-      Name: ui_bundle
       Dependencies: {}
