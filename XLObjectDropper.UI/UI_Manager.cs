@@ -5,10 +5,16 @@ namespace XLObjectDropper.UI
 {
     public class UI_Manager : MonoBehaviour
     {
-        public GameObject MainScreenUI;
+        [Header("Master Elements")]
+        // Master Elements
+        public GameObject ObjectPlacement_Master;
+        public GameObject ObjectSelection_Master;
+        public GameObject OptionsMenu_Master;
+        [Header("Object Placement Elements")]
+        // Object Placement
+        public GameObject MainScreen_UI;
         public GameObject RB_UI;
-        public Sprite RB_Active;
-        private Sprite RB_Inactive;
+        public GameObject LB_UI;
 
         public static UI_Manager Instance { get; private set; }
 
@@ -17,21 +23,36 @@ namespace XLObjectDropper.UI
             Instance = this;
         }
 
+        private void Start()
+        {
+            RB_UI.SetActive(false);
+            LB_UI.SetActive(false);
+            ObjectSelection_Master.SetActive(false);
+            OptionsMenu_Master.SetActive(false);
+        }
+
         // Update is called once per frame
         private void Update()
         {
             if (Input.GetKey(KeyCode.Joystick1Button5))
             {
-                var trigger = RB_UI.GetComponent<Image>();
-                RB_Inactive = trigger.sprite;
-                trigger.sprite = RB_Active;
-
-                Debug.Log("Right Bumper Held");
+                MainScreen_UI.SetActive(false);
+                RB_UI.SetActive(true);
             }
             if (Input.GetKeyUp(KeyCode.Joystick1Button5))
             {
-                RB_UI.GetComponent<Image>().sprite = RB_Inactive;
-                Debug.Log("Right Bumper Released");
+                MainScreen_UI.SetActive(true);
+                RB_UI.SetActive(false);
+            }
+            if (Input.GetKey(KeyCode.Joystick1Button4))
+            {
+                MainScreen_UI.SetActive(false);
+                LB_UI.SetActive(true);
+            }
+            if (Input.GetKeyUp(KeyCode.Joystick1Button4))
+            {
+                MainScreen_UI.SetActive(true);
+                LB_UI.SetActive(false);
             }
         }
     }
