@@ -15,16 +15,20 @@ namespace XLObjectDropper
         public List<GameObject> SpawnedObjects { get; set; }
 
 		public static GameObject ControlLegendGameObject { get; set; }
-
+		
 		private TMP_Text ZoomInOutText { get; set; }
+
+		private static PinMovementController PinMovementController { get; set; }
+		
+		private static GameObject OriginalPinObject { get; set; }
 
 		private void Awake()
         {
 	        SpawnedObjects = new List<GameObject>();
 
-
 	        var position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
-	        PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), position, GameStateMachine.Instance.PinObject.transform.rotation);
+			//PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), position, GameStateMachine.Instance.PinObject.transform.rotation);
+			PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), GameStateMachine.Instance.PinObject.transform);
 	        PreviewObject.SetActive(false);
 	        DontDestroyOnLoad(PreviewObject);
 
@@ -32,6 +36,9 @@ namespace XLObjectDropper
 	        {
 		        ControlLegendGameObject = AssetBundleHelper.LoadUIBundle();
 			}
+	        
+	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
+	        OriginalPinObject = GameStateMachine.Instance.PinObject;
 
 	        if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectMovementState)))
 				return;
@@ -45,24 +52,35 @@ namespace XLObjectDropper
 	        GameStateMachine.Instance.PinObject.SetActive(true);
 
 			ControlLegendGameObject?.SetActive(true);
+			PreviewObject.SetActive(true);
+
+			PinMovementController.PinRenderer.enabled = false;
+			PinMovementController.GroundIndicator.SetActive(false);
+
+			var components = PinMovementController.PinRenderer.GetComponentsInChildren<Component>();
+
+			
 
 			ZoomInOutText = GameStateMachine.Instance.PinObject.GetComponentInChildren<TMP_Text>();
 			ZoomInOutText?.gameObject?.SetActive(false);
-
-			PreviewObject.SetActive(true);
         }
 
         private void OnDisable()
         {
 			enabled = false;
+
 			GameStateMachine.Instance.PinObject.SetActive(false);
 
 			ControlLegendGameObject?.SetActive(false);
-
 			ZoomInOutText?.gameObject?.SetActive(true);
 
+			PinMovementController.PinRenderer.enabled = true;
+			PinMovementController.GroundIndicator.SetActive(true);
+
 			PreviewObject.SetActive(false);
-		}
+
+			//PinMovementController.PinRenderer.GetComponent<MeshFilter>().mesh = OriginalPinObject;
+        }
 
         private bool showMenu;
 
@@ -72,8 +90,8 @@ namespace XLObjectDropper
 
 	        UpdateGroundLevel();
 
-	        var position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
-	        PreviewObject.transform.position = position;
+	        //var position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
+	        //PreviewObject.transform.position = position;
 			//PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
 
 			Player player = PlayerController.Instance.inputController.player;
