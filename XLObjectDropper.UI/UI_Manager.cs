@@ -111,14 +111,26 @@ namespace XLObjectDropper.UI
             {
                 Dpad_Left.SetActive(true);
             }
+            else
+            {
+                Dpad_Left.SetActive(false);
+            }
             if (axisTest_DPadX > 0)
             {
-                Dpad_Up.SetActive(true);
+                Dpad_Right.SetActive(true);
+            }
+            else
+            {
+                Dpad_Right.SetActive(false);
             }
             var axisTest_DPadY = PlayerController.Instance.inputController.player.GetAxis("DPadY");
             if (axisTest_DPadY < 0)
             {
                 Dpad_Down.SetActive(true);
+            }
+            else
+            {
+                Dpad_Down.SetActive(false);
             }
             if (axisTest_DPadY > 0)
             {
@@ -126,10 +138,7 @@ namespace XLObjectDropper.UI
             }
             else
             {
-                Dpad_Down.SetActive(false);
                 Dpad_Up.SetActive(false);
-                Dpad_Left.SetActive(false);
-                Dpad_Right.SetActive(false);
             }
         }
     }
