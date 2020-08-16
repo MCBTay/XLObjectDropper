@@ -78,7 +78,7 @@ namespace XLObjectDropper.UI
                 Debug.Log(axisTest);
             }
             */
-            var axisTest2 = Input.GetAxis("Horizontal");
+            var axisTest2 = Input.GetAxis("RT");
             if (axisTest2 != 0)
             {
                 MainScreen_UI.SetActive(false);
