@@ -26,10 +26,21 @@ namespace XLObjectDropper
         {
 	        SpawnedObjects = new List<GameObject>();
 
-	        var position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
+	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
+
+			//var position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
 			//PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), position, GameStateMachine.Instance.PinObject.transform.rotation);
-			PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), GameStateMachine.Instance.PinObject.transform);
-	        PreviewObject.SetActive(false);
+			
+
+			PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), PinMovementController.GroundIndicator.transform);
+			PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
+			PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
+			PreviewObject.transform.position = GameStateMachine.Instance.PinObject.transform.position;
+			
+			PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
+
+			PreviewObject.SetActive(false);
+			
 	        DontDestroyOnLoad(PreviewObject);
 
 	        if (UI_Manager.Instance == null)
@@ -37,7 +48,7 @@ namespace XLObjectDropper
 		        ControlLegendGameObject = AssetBundleHelper.LoadUIBundle();
 			}
 	        
-	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
+	        
 	        OriginalPinObject = GameStateMachine.Instance.PinObject;
 
 	        if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectMovementState)))
@@ -46,20 +57,18 @@ namespace XLObjectDropper
 			enabled = false;
         }
 
-        private void OnEnable()
+		private void OnEnable()
         {
 	        enabled = true;
 	        GameStateMachine.Instance.PinObject.SetActive(true);
 
 			ControlLegendGameObject?.SetActive(true);
-			PreviewObject.SetActive(true);
 
 			PinMovementController.PinRenderer.enabled = false;
-			PinMovementController.GroundIndicator.SetActive(false);
+			//PinMovementController.GroundIndicator.SetActive(false);
 
-			var components = PinMovementController.PinRenderer.GetComponentsInChildren<Component>();
+			PreviewObject.SetActive(true);
 
-			
 
 			ZoomInOutText = GameStateMachine.Instance.PinObject.GetComponentInChildren<TMP_Text>();
 			ZoomInOutText?.gameObject?.SetActive(false);
@@ -75,7 +84,7 @@ namespace XLObjectDropper
 			ZoomInOutText?.gameObject?.SetActive(true);
 
 			PinMovementController.PinRenderer.enabled = true;
-			PinMovementController.GroundIndicator.SetActive(true);
+			//PinMovementController.GroundIndicator.SetActive(true);
 
 			PreviewObject.SetActive(false);
 
@@ -140,7 +149,7 @@ namespace XLObjectDropper
 				//Camera.main.fieldOfView = fov;
 
 
-		        if (player.GetButtonDown("A"))
+		        if (player.GetButtonDown("A") && PreviewObject.activeSelf)
 				{
 					// If a, place object and delete preview
 					Debug.Log("XLObjectDropper: Pressed A");
@@ -148,6 +157,9 @@ namespace XLObjectDropper
 
 					var newObject = Instantiate(PreviewObject, PreviewObject.transform.position, PreviewObject.transform.rotation);
 					newObject.SetActive(true);
+
+					newObject.transform.ChangeLayersRecursively("Default");
+
 					SpawnedObjects.Add(newObject);
 
 					PreviewObject.SetActive(false);
@@ -187,4 +199,18 @@ namespace XLObjectDropper
 	        return true;
         }
 	}
+
+	public static class Extensions
+	{
+		public static void ChangeLayersRecursively(this Transform trans, string name)
+		{
+			trans.gameObject.layer = LayerMask.NameToLayer(name);
+			foreach (Transform child in trans)
+			{
+				child.ChangeLayersRecursively(name);
+			}
+		}
+	}
 }
+
+
