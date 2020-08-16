@@ -1,34 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class UI_Manager : MonoBehaviour
+namespace XLObjectDropper.UI
 {
-    public GameObject MainScreenUI;
-    public GameObject RightBumperUI;
-    public GameObject DpadUI;
-
-    private void Start()
+    public class UI_Manager : MonoBehaviour
     {
-        RightBumperUI.SetActive(false);
-    }
+        public GameObject MainScreenUI;
+        public GameObject RB_UI;
+        public Sprite RB_Active;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if  (Input.GetKey(KeyCode.Joystick1Button5))
+        public static UI_Manager Instance { get; private set; }
+
+        private void Awake()
         {
-            MainScreenUI.SetActive(false);
-            RightBumperUI.SetActive(true);
-
-            Debug.Log("Right Bumper Pressed");
+            Instance = this;
         }
-        if (Input.GetKeyUp(KeyCode.Joystick1Button5))
-        {
-            MainScreenUI.SetActive(true);
-            RightBumperUI.SetActive(false);
 
-            Debug.Log("Right Bumper Released");
+        private void Start()
+        {
+            RB_UI.GetComponent<Image>();
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.Joystick1Button5))
+            {
+                MainScreenUI.SetActive(false);
+                RB_UI.GetComponent<Image>().sprite = RB_Active;
+
+                Debug.Log("Right Bumper Held");
+            }
+            if (Input.GetKeyUp(KeyCode.Joystick1Button5))
+            {
+                MainScreenUI.SetActive(true);
+
+                Debug.Log("Right Bumper Released");
+            }
         }
     }
 }
