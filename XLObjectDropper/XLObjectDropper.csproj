@@ -185,7 +185,7 @@
     <ProjectReference Include="..\XLObjectDropper.UI\XLObjectDropper.UI.csproj">
       <Project>{10a41930-f094-4c3c-b278-8fc9b95256b4}</Project>
       <Name>XLObjectDropper.UI</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
