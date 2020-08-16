@@ -6,6 +6,7 @@ public class UI_Manager : MonoBehaviour
 {
     public GameObject MainScreenUI;
     public GameObject RightBumperUI;
+    public GameObject DpadUI;
 
     private void Start()
     {
