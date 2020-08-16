@@ -29,16 +29,24 @@ namespace XLObjectDropper.UI
 
         private void Start()
         {
-            RB_UI.SetActive(false);
-            LB_UI.SetActive(false);
+            Debug.Log("UI_Manager.dll Initialized");
+            Debug.Log("UI_Manager version 0.1.3");
+            // Hide UI at start
+            // Master UIs
             ObjectSelection_Master.SetActive(false);
             OptionsMenu_Master.SetActive(false);
+            // Object Placement
+            RB_UI.SetActive(false);
+            LB_UI.SetActive(false);
+            RT_UI.SetActive(false);
+            LT_UI.SetActive(false);
         }
 
         // Update is called once per frame
         private void Update()
         {
-            if (Input.GetKey(KeyCode.Joystick1Button5))
+            // Right Bumper
+            if (Input.GetKeyDown(KeyCode.Joystick1Button5))
             {
                 MainScreen_UI.SetActive(false);
                 RB_UI.SetActive(true);
@@ -48,7 +56,8 @@ namespace XLObjectDropper.UI
                 MainScreen_UI.SetActive(true);
                 RB_UI.SetActive(false);
             }
-            if (Input.GetKey(KeyCode.Joystick1Button4))
+            // Left Bumper
+            if (Input.GetKeyDown(KeyCode.Joystick1Button4))
             {
                 MainScreen_UI.SetActive(false);
                 LB_UI.SetActive(true);
@@ -56,17 +65,25 @@ namespace XLObjectDropper.UI
             if (Input.GetKeyUp(KeyCode.Joystick1Button4))
             {
                 MainScreen_UI.SetActive(true);
-                RT_UI.SetActive(false);
+                LB_UI.SetActive(false);
             }
-            if (Input.GetKey(KeyCode.Joystick1Button4))
+            // Right Trigger
+            /// Rewired Code
+            /*
+            var axisTest = PlayerController.Instance.inputController.player.GetAxis("RT");
+            if (axisTest > 0)
             {
                 MainScreen_UI.SetActive(false);
                 RT_UI.SetActive(true);
+                Debug.Log(axisTest);
             }
-            if (Input.GetKeyUp(KeyCode.Joystick1Button4))
+            */
+            var axisTest2 = Input.GetAxis("Horizontal");
+            if (axisTest2 != 0)
             {
-                MainScreen_UI.SetActive(true);
-                RT_UI.SetActive(false);
+                MainScreen_UI.SetActive(false);
+                RT_UI.SetActive(true);
+                Debug.Log(axisTest2);
             }
         }
     }
