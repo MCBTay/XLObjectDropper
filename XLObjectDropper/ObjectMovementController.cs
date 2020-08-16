@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using XLObjectDropper.GameManagement;
-using XLObjectDropper.UserInterface;
+using XLObjectDropper.UI;
 
 namespace XLObjectDropper
 {
@@ -13,19 +13,22 @@ namespace XLObjectDropper
 		public GameObject PreviewObject { get; set; }
         public List<GameObject> SpawnedObjects { get; set; }
 
-		public GameObject ControlLegendGameObject { get; set; }
+		public static GameObject ControlLegendGameObject { get; set; }
 
 		private void Awake()
         {
 	        SpawnedObjects = new List<GameObject>();
+
 
 	        var position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
 	        PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), position, GameStateMachine.Instance.PinObject.transform.rotation);
 	        PreviewObject.SetActive(false);
 	        DontDestroyOnLoad(PreviewObject);
 
-			if (ControlLegendGameObject == null)
-				ControlLegendGameObject = AssetBundleHelper.LoadUIBundle();
+	        if (UI_Manager.Instance == null)
+	        {
+		        ControlLegendGameObject = AssetBundleHelper.LoadUIBundle();
+			}
 
 	        if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectMovementState)))
 				return;
@@ -153,7 +156,7 @@ namespace XLObjectDropper
 		        return false;
 	        this.groundLevel = raycastHit.point.y;
 
-			Debug.Log("XLObjectDropper: groundLevel : " + groundLevel);
+			//Debug.Log("XLObjectDropper: groundLevel : " + groundLevel);
 
 	        return true;
         }
