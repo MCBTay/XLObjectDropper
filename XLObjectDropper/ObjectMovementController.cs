@@ -2,6 +2,7 @@
 using Rewired;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
@@ -14,6 +15,8 @@ namespace XLObjectDropper
         public List<GameObject> SpawnedObjects { get; set; }
 
 		public static GameObject ControlLegendGameObject { get; set; }
+
+		private TMP_Text ZoomInOutText { get; set; }
 
 		private void Awake()
         {
@@ -43,6 +46,9 @@ namespace XLObjectDropper
 
 			ControlLegendGameObject?.SetActive(true);
 
+			ZoomInOutText = GameStateMachine.Instance.PinObject.GetComponentInChildren<TMP_Text>();
+			ZoomInOutText?.gameObject?.SetActive(false);
+
 			PreviewObject.SetActive(true);
         }
 
@@ -52,6 +58,8 @@ namespace XLObjectDropper
 			GameStateMachine.Instance.PinObject.SetActive(false);
 
 			ControlLegendGameObject?.SetActive(false);
+
+			ZoomInOutText?.gameObject?.SetActive(true);
 
 			PreviewObject.SetActive(false);
 		}
