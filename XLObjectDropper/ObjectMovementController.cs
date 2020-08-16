@@ -131,6 +131,8 @@ namespace XLObjectDropper
 					var newObject = Instantiate(PreviewObject, PreviewObject.transform.position, PreviewObject.transform.rotation);
 					newObject.SetActive(true);
 					SpawnedObjects.Add(newObject);
+
+					newObject.transform.ChangeLayersRecursively("Default");
 				}
 			}
 			else
