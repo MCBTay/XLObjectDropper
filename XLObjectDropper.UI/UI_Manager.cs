@@ -13,8 +13,12 @@ namespace XLObjectDropper.UI
         [Header("Object Placement Elements")]
         // Object Placement
         public GameObject MainScreen_UI;
+        [Space(10)]
         public GameObject RB_UI;
         public GameObject LB_UI;
+        [Space(10)]
+        public GameObject RT_UI;
+        public GameObject LT_UI;
 
         public static UI_Manager Instance { get; private set; }
 
@@ -52,7 +56,17 @@ namespace XLObjectDropper.UI
             if (Input.GetKeyUp(KeyCode.Joystick1Button4))
             {
                 MainScreen_UI.SetActive(true);
-                LB_UI.SetActive(false);
+                RT_UI.SetActive(false);
+            }
+            if (Input.GetKey(KeyCode.Joystick1Button4))
+            {
+                MainScreen_UI.SetActive(false);
+                RT_UI.SetActive(true);
+            }
+            if (Input.GetKeyUp(KeyCode.Joystick1Button4))
+            {
+                MainScreen_UI.SetActive(true);
+                RT_UI.SetActive(false);
             }
         }
     }
