@@ -111,19 +111,26 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\XLObjectDropper.UI\XLObjectDropper.UI.csproj">
+      <Project>{10a41930-f094-4c3c-b278-8fc9b95256b4}</Project>
+      <Name>XLObjectDropper.UI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)"=="Debug" ( 
 del /Q /F "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\"
 copy /Y "$(TargetDir)XLObjectDropper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.dll"
 copy /Y "$(TargetDir)XLObjectDropper.pdb" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.pdb"
+copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.dll"
 copy /Y "$(TargetDir)Info.json" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\Info.json"
 )
 
 if "$(ConfigurationName)"=="Release" (
 mkdir $(TargetDir)XLObjectDropper
 copy /Y "$(TargetDir)XLObjectDropper.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.dll"
+copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.UI.dll"
 copy /Y "$(TargetDir)Info.json" "$(TargetDir)XLObjectDropper\Info.json"
 
 powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-0-0-1.zip' -Force
