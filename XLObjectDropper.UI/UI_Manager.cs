@@ -19,6 +19,11 @@ namespace XLObjectDropper.UI
         [Space(10)]
         public GameObject RT_UI;
         public GameObject LT_UI;
+        [Space(10)]
+        public GameObject Dpad_Up;
+        public GameObject Dpad_Down;
+        public GameObject Dpad_Left;
+        public GameObject Dpad_Right;
 
         public static UI_Manager Instance { get; private set; }
 
@@ -29,8 +34,8 @@ namespace XLObjectDropper.UI
 
         private void Start()
         {
-            Debug.Log("UI_Manager.dll Initialized");
-            Debug.Log("UI_Manager version 0.1.3");
+            Debug.Log("[XLObjectDropper.UI] UI_Manager.dll Initialized");
+            Debug.Log("[XLObjectDropper.UI] UI_Manager version 0.1.6");
             // Hide UI at start
             // Master UIs
             ObjectSelection_Master.SetActive(false);
@@ -40,6 +45,10 @@ namespace XLObjectDropper.UI
             LB_UI.SetActive(false);
             RT_UI.SetActive(false);
             LT_UI.SetActive(false);
+            Dpad_Down.SetActive(false);
+            Dpad_Up.SetActive(false);
+            Dpad_Left.SetActive(false);
+            Dpad_Right.SetActive(false);
         }
 
         // Update is called once per frame
@@ -68,22 +77,59 @@ namespace XLObjectDropper.UI
                 LB_UI.SetActive(false);
             }
             // Right Trigger
-            /// Rewired Code
-            /*
-            var axisTest = PlayerController.Instance.inputController.player.GetAxis("RT");
-            if (axisTest > 0)
+            /// Rewired
+            var axisTest_RT = PlayerController.Instance.inputController.player.GetAxis("RT");
+            if (axisTest_RT > .1)
             {
-                MainScreen_UI.SetActive(false);
-                RT_UI.SetActive(true);
-                Debug.Log(axisTest);
+                if (LB_UI.activeInHierarchy == false)
+                {
+                    RT_UI.SetActive(true);
+                }
             }
-            */
-            var axisTest2 = Input.GetAxis("RT");
-            if (axisTest2 != 0)
+            else
             {
-                MainScreen_UI.SetActive(false);
-                RT_UI.SetActive(true);
-                Debug.Log(axisTest2);
+                RT_UI.SetActive(false);
+            }
+            // Left Trigger
+            /// Rewired
+            var axisTest_LT = PlayerController.Instance.inputController.player.GetAxis("LT");
+            if (axisTest_LT > .1)
+            {
+                if (LB_UI.activeInHierarchy == false)
+                {
+                    LT_UI.SetActive(true);
+                }
+            }
+            else
+            {
+                LT_UI.SetActive(false);
+            }
+            //DPad
+            ///Rewired
+            var axisTest_DPadX = PlayerController.Instance.inputController.player.GetAxis("DPadX");
+            if (axisTest_DPadX < 0)
+            {
+                Dpad_Left.SetActive(true);
+            }
+            if (axisTest_DPadX > 0)
+            {
+                Dpad_Up.SetActive(true);
+            }
+            var axisTest_DPadY = PlayerController.Instance.inputController.player.GetAxis("DPadY");
+            if (axisTest_DPadY < 0)
+            {
+                Dpad_Down.SetActive(true);
+            }
+            if (axisTest_DPadY > 0)
+            {
+                Dpad_Up.SetActive(true);
+            }
+            else
+            {
+                Dpad_Down.SetActive(false);
+                Dpad_Up.SetActive(false);
+                Dpad_Left.SetActive(false);
+                Dpad_Right.SetActive(false);
             }
         }
     }

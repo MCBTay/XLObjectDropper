@@ -35,6 +35,10 @@
       <HintPath>..\XLObjectDropper\References\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\XLObjectDropper\References\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Rewired_Core">
       <HintPath>..\XLObjectDropper\References\Rewired_Core.dll</HintPath>
       <Private>False</Private>
