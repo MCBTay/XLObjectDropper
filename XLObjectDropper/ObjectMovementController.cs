@@ -24,7 +24,8 @@ namespace XLObjectDropper
 	        PreviewObject.SetActive(false);
 	        DontDestroyOnLoad(PreviewObject);
 
-	        ControlLegendGameObject = AssetBundleHelper.LoadUIBundle();
+			if (ControlLegendGameObject == null)
+				ControlLegendGameObject = AssetBundleHelper.LoadUIBundle();
 
 	        if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectMovementState)))
 				return;
