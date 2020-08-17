@@ -35,7 +35,7 @@ namespace XLObjectDropper.UI
         private void Start()
         {
             Debug.Log("[XLObjectDropper.UI] UI_Manager.dll Initialized");
-            Debug.Log("[XLObjectDropper.UI] UI_Manager version 0.1.6");
+            Debug.Log("[XLObjectDropper.UI] UI_Manager version 0.1.7");
             // Hide UI at start
             // Master UIs
             ObjectSelection_Master.SetActive(false);
@@ -56,6 +56,8 @@ namespace XLObjectDropper.UI
         {
 	        var player = PlayerController.Instance.inputController.player;
 
+
+            #region ObjectSelectionMenu
             #region Right bumper
             if (player.GetButtonDown("RB"))
             {
@@ -152,6 +154,23 @@ namespace XLObjectDropper.UI
                 Dpad_Up.SetActive(false);
             }
             #endregion
+            #endregion
+            #endregion
+
+            #region OptionsMenu
+            if (player.GetButtonDown("Select"))
+            {
+                if (OptionsMenu_Master.activeInHierarchy == false)
+                {
+                    MainScreen_UI.SetActive(false);
+                    OptionsMenu_Master.SetActive(true);
+                }
+                else
+                {
+                    OptionsMenu_Master.SetActive(false);
+                    MainScreen_UI.SetActive(true);
+                }
+            }
             #endregion
         }
     }
