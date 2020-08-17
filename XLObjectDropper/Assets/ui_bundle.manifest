@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 909334170
+CRC: 3346106003
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a63a3534defe06ae8b014d7a03c67784
+    Hash: 87cf21cbd974470dbcec25936cc50642
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9dad201825fd88aced174b318ffc837b
@@ -57,6 +57,4 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab
-- Assets/TextMesh Pro/Resources/Fonts & Materials/FuturaStd-CondensedOblique SDF.asset
-- Assets/TextMesh Pro/Fonts/FuturaStd-CondensedOblique.otf
 Dependencies: []

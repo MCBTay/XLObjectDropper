@@ -425,6 +425,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -1470814966106991453, guid: b790aeed1648a764ab67163dd5704955,
         type: 2}
+    - target: {fileID: 1751118474900437315, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 28.600014
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751118474900437315, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 1751118475060692190, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -509,6 +519,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -1470814966106991453, guid: b790aeed1648a764ab67163dd5704955,
         type: 2}
+    - target: {fileID: 1751118476027492819, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35.60004
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751118476027492819, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.34
+      objectReference: {fileID: 0}
     - target: {fileID: 1751118476160070476, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_fontAsset
@@ -695,6 +715,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6575554458068513776, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 28.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6575554458068513776, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7069075875411177233, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -739,6 +769,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102100369421703007, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -35.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102100369421703007, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.34
       objectReference: {fileID: 0}
     - target: {fileID: 8200409494536036850, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
