@@ -54,31 +54,36 @@ namespace XLObjectDropper.UI
         // Update is called once per frame
         private void Update()
         {
-            // Right Bumper
-            if (Input.GetKeyDown(KeyCode.Joystick1Button5))
+	        var player = PlayerController.Instance.inputController.player;
+
+            #region Right bumper
+            if (player.GetButtonDown("RB"))
             {
                 MainScreen_UI.SetActive(false);
                 RB_UI.SetActive(true);
             }
-            if (Input.GetKeyUp(KeyCode.Joystick1Button5))
+            if (player.GetButtonUp("RB"))
             {
                 MainScreen_UI.SetActive(true);
                 RB_UI.SetActive(false);
             }
-            // Left Bumper
-            if (Input.GetKeyDown(KeyCode.Joystick1Button4))
+            #endregion
+
+            #region Left Bumper
+            if (player.GetButtonDown("LB"))
             {
                 MainScreen_UI.SetActive(false);
                 LB_UI.SetActive(true);
             }
-            if (Input.GetKeyUp(KeyCode.Joystick1Button4))
+            if (player.GetButtonUp("LB"))
             {
                 MainScreen_UI.SetActive(true);
                 LB_UI.SetActive(false);
             }
-            // Right Trigger
-            /// Rewired
-            var axisTest_RT = PlayerController.Instance.inputController.player.GetAxis("RT");
+            #endregion
+
+            #region Right Trigger
+            var axisTest_RT = player.GetAxis("RT");
             if (axisTest_RT > .1)
             {
                 if (LB_UI.activeInHierarchy == false)
@@ -90,9 +95,10 @@ namespace XLObjectDropper.UI
             {
                 RT_UI.SetActive(false);
             }
-            // Left Trigger
-            /// Rewired
-            var axisTest_LT = PlayerController.Instance.inputController.player.GetAxis("LT");
+            #endregion
+
+            #region Left Trigger
+            var axisTest_LT = player.GetAxis("LT");
             if (axisTest_LT > .1)
             {
                 if (LB_UI.activeInHierarchy == false)
@@ -104,9 +110,11 @@ namespace XLObjectDropper.UI
             {
                 LT_UI.SetActive(false);
             }
-            //DPad
-            ///Rewired
-            var axisTest_DPadX = PlayerController.Instance.inputController.player.GetAxis("DPadX");
+            #endregion
+
+            #region Directional Pad
+            #region Directional Pad X
+            var axisTest_DPadX = player.GetAxis("DPadX");
             if (axisTest_DPadX < 0)
             {
                 Dpad_Left.SetActive(true);
@@ -123,7 +131,10 @@ namespace XLObjectDropper.UI
             {
                 Dpad_Right.SetActive(false);
             }
-            var axisTest_DPadY = PlayerController.Instance.inputController.player.GetAxis("DPadY");
+            #endregion
+
+            #region Directional Pad Y
+            var axisTest_DPadY = player.GetAxis("DPadY");
             if (axisTest_DPadY < 0)
             {
                 Dpad_Down.SetActive(true);
@@ -140,6 +151,8 @@ namespace XLObjectDropper.UI
             {
                 Dpad_Up.SetActive(false);
             }
+            #endregion
+            #endregion
         }
     }
 }
