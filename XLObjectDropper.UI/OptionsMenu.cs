@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityModManagerNet;
 
 public class OptionsMenu : MonoBehaviour
 {
@@ -12,6 +13,18 @@ public class OptionsMenu : MonoBehaviour
 	public GameObject UndoButton;
 	public GameObject RedoButton;
 	public GameObject LoadButton;
+
+	void OnSaveButtonClick()
+	{
+
+	}
+
+	void Awake()
+	{
+		var button = SaveButton.GetComponent<Button>();
+
+		button.onClick.AddListener(delegate { UnityModManager.Logger.Log("XLMenuMod: You clicked save!"); });
+	}
 
 	// Update is called once per frame
 	void Update()
