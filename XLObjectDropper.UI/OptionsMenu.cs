@@ -23,7 +23,7 @@ public class OptionsMenu : MonoBehaviour
 	{
 		var button = SaveButton.GetComponent<Button>();
 
-		button.onClick.AddListener(delegate { UnityModManager.Logger.Log("XLMenuMod: You clicked save!"); });
+		button.onClick.AddListener(delegate { UnityModManager.Logger.Log("XLObjectDropper: You clicked save!"); });
 	}
 
 	// Update is called once per frame
