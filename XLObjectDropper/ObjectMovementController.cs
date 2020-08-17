@@ -13,13 +13,9 @@ namespace XLObjectDropper
 	{
 		public GameObject PreviewObject { get; set; }
         public List<GameObject> SpawnedObjects { get; set; }
-
-		public static GameObject ControlLegendGameObject { get; set; }
-		
+        public static GameObject ControlLegendGameObject { get; set; }
 		private TMP_Text ZoomInOutText { get; set; }
-
 		private static PinMovementController PinMovementController { get; set; }
-		
 		private static GameObject OriginalPinObject { get; set; }
 
 		private void Awake()
@@ -27,10 +23,6 @@ namespace XLObjectDropper
 	        SpawnedObjects = new List<GameObject>();
 
 	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
-
-			//var position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
-			//PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), position, GameStateMachine.Instance.PinObject.transform.rotation);
-			
 
 			PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), PinMovementController.GroundIndicator.transform);
 			PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
@@ -65,7 +57,6 @@ namespace XLObjectDropper
 			ControlLegendGameObject?.SetActive(true);
 
 			PinMovementController.PinRenderer.enabled = false;
-			//PinMovementController.GroundIndicator.SetActive(false);
 
 			PreviewObject.SetActive(true);
 
@@ -84,11 +75,8 @@ namespace XLObjectDropper
 			ZoomInOutText?.gameObject?.SetActive(true);
 
 			PinMovementController.PinRenderer.enabled = true;
-			//PinMovementController.GroundIndicator.SetActive(true);
 
 			PreviewObject.SetActive(false);
-
-			//PinMovementController.PinRenderer.GetComponent<MeshFilter>().mesh = OriginalPinObject;
         }
 
         private bool showMenu;
@@ -99,26 +87,20 @@ namespace XLObjectDropper
 
 	        UpdateGroundLevel();
 
-	        //var position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
-	        //PreviewObject.transform.position = position;
-			//PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
-
-			Player player = PlayerController.Instance.inputController.player;
+	        Player player = PlayerController.Instance.inputController.player;
 
 			if (player.GetButtonSinglePressHold("LB"))
 			{
 				Time.timeScale = 0.0f;
 
-				Debug.Log("XLObjectDropper: Holding LB");
-
 				// If left stick movement, rotate the object on X/z axis
 				Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
-				//PreviewObject.transform.eulerAngles = new Vector3(0, Mathf.Atan2(leftStick.y, leftStick.x) * 180 / Mathf.PI, 0);
 				PreviewObject.transform.Rotate(leftStick.y, leftStick.x, 0);
 
 				// If right stick Y movement, scale object
+				var scaleFactor = 10f;
 				Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
-				PreviewObject.transform.localScale += new Vector3(rightStick.y / 10, rightStick.y / 10, rightStick.y / 10);
+				PreviewObject.transform.localScale += new Vector3(rightStick.y / scaleFactor, rightStick.y / scaleFactor, rightStick.y / scaleFactor);
 
 
 				// If a, place the object, but keep the preview object
@@ -134,22 +116,21 @@ namespace XLObjectDropper
 
 					newObject.transform.ChangeLayersRecursively("Default");
 				}
+				else if (player.GetButtonDown("Left Stick Button"))
+				{
+					PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
+				}
+				else if (player.GetButtonDown("Right Stick Button"))
+				{
+					PreviewObject.transform.localScale = Vector3.one;
+				}
 			}
 			else
 	        {
 		        // If dpad up/down, move object up/down
-				// If dpad left/right, zoom cam in/out
+		        var scaleFactor = 10f;
 		        Vector2 dpad = player.GetAxis2D("DPadX", "DPadY");
-		        PreviewObject.transform.position = new Vector3(PreviewObject.transform.position.x, PreviewObject.transform.position.y + dpad.y, PreviewObject.transform.position.z);
-
-		  //      var minFov = 15f;
-		  //      var maxFov = 15f;
-		  //      var sensitivity = 10f;
-		  //      var fov = Camera.main.fieldOfView;
-		  //      fov += dpad.y * sensitivity;
-		  //      fov = Mathf.Clamp(fov, minFov, maxFov);
-				//Camera.main.fieldOfView = fov;
-
+		        PreviewObject.transform.position = new Vector3(PreviewObject.transform.position.x, PreviewObject.transform.position.y + dpad.y / scaleFactor, PreviewObject.transform.position.z);
 
 		        if (player.GetButtonDown("A") && PreviewObject.activeSelf)
 				{
@@ -180,6 +161,11 @@ namespace XLObjectDropper
 				{
 					// if y, delete highlighted object (if any)
 					Debug.Log("XLObjectDropper: Pressed Y");
+				}
+				else if (player.GetButtonDown("Left Stick Button"))
+		        {
+					PreviewObject.transform.localScale = Vector3.one;
+					PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
 				}
 	        }
         }
