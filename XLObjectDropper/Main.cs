@@ -6,6 +6,9 @@ using XLObjectDropper.UserInterface;
 
 namespace XLObjectDropper
 {
+#if DEBUG
+	[EnableReloading]
+#endif
 	static class Main
 	{
 		public static bool Enabled { get; private set; }
@@ -14,6 +17,9 @@ namespace XLObjectDropper
 		static bool Load(UnityModManager.ModEntry modEntry)
 		{
 			modEntry.OnToggle = OnToggle;
+#if DEBUG
+			modEntry.OnUnload = Unload;
+#endif
 
 			return true;
 		}
@@ -39,6 +45,13 @@ namespace XLObjectDropper
 			return true;
 		}
 
-		
+#if DEBUG
+		static bool Unload(UnityModManager.ModEntry modEntry)
+		{
+			Harmony?.UnpatchAll();
+			return true;
+		}
+#endif
+
 	}
 }
