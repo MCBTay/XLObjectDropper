@@ -10,20 +10,7 @@ namespace XLObjectDropper.UI
         public GameObject ObjectPlacement_Master;
         public GameObject ObjectSelection_Master;
         public GameObject OptionsMenu_Master;
-        [Header("Object Placement Elements")]
-        // Object Placement
-        public GameObject MainScreen_UI;
-        [Space(10)]
-        public GameObject RB_UI;
-        public GameObject LB_UI;
-        [Space(10)]
-        public GameObject RT_UI;
-        public GameObject LT_UI;
-        [Space(10)]
-        public GameObject Dpad_Up;
-        public GameObject Dpad_Down;
-        public GameObject Dpad_Left;
-        public GameObject Dpad_Right;
+
 
         public static UI_Manager Instance { get; private set; }
 
@@ -40,15 +27,7 @@ namespace XLObjectDropper.UI
             // Master UIs
             ObjectSelection_Master.SetActive(false);
             OptionsMenu_Master.SetActive(false);
-            // Object Placement
-            RB_UI.SetActive(false);
-            LB_UI.SetActive(false);
-            RT_UI.SetActive(false);
-            LT_UI.SetActive(false);
-            Dpad_Down.SetActive(false);
-            Dpad_Up.SetActive(false);
-            Dpad_Left.SetActive(false);
-            Dpad_Right.SetActive(false);
+
         }
 
         // Update is called once per frame

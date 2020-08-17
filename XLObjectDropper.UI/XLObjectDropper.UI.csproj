@@ -132,6 +132,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjectPlacement_Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI_Manager.cs" />
   </ItemGroup>
