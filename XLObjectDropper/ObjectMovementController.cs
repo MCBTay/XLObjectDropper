@@ -134,6 +134,14 @@ namespace XLObjectDropper
 
 					newObject.transform.ChangeLayersRecursively("Default");
 				}
+				else if (player.GetButtonDown("Left Stick Button"))
+				{
+					PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
+				}
+				else if (player.GetButtonDown("Right Stick Button"))
+				{
+					PreviewObject.transform.localScale = Vector3.one;
+				}
 			}
 			else
 	        {
@@ -180,6 +188,11 @@ namespace XLObjectDropper
 				{
 					// if y, delete highlighted object (if any)
 					Debug.Log("XLObjectDropper: Pressed Y");
+				}
+				else if (player.GetButtonDown("Left Stick Button"))
+		        {
+					PreviewObject.transform.localScale = Vector3.one;
+					PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
 				}
 	        }
         }
