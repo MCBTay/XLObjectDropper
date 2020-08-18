@@ -80,8 +80,6 @@ namespace XLObjectDropper
 
         private void Update()
         {
-	        Time.timeScale = 1.0f;
-
 	        UpdateGroundLevel();
 
 	        Player player = PlayerController.Instance.inputController.player;
@@ -164,6 +162,14 @@ namespace XLObjectDropper
 					PreviewObject.transform.localScale = Vector3.one;
 					PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
 				}
+				else if (player.GetButtonDown("Select"))
+		        {
+			        // stop obj movement here
+		        }
+				else if (player.GetButtonDown("Start"))
+		        {
+					// stop obj movement here
+		        }
 	        }
         }
 

@@ -62,6 +62,9 @@ namespace XLObjectDropper.UserInterface
 			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Load clicked.");
 		}
 
+		#region Object Dropper Button
+		private static MenuButton ObjectDropperButton { get; set; }
+
 		public static void CreateObjectDropperButton()
 		{
 			var menuButtons = GameStateMachine.Instance.PauseObject.GetComponentsInChildren<MenuButton>();
@@ -70,20 +73,29 @@ namespace XLObjectDropper.UserInterface
 			{
 				var buttonToClone = menuButtons.ElementAt(6);
 
-				var newButton = Object.Instantiate(buttonToClone, buttonToClone.gameObject.transform);
+				ObjectDropperButton = Object.Instantiate(buttonToClone, buttonToClone.gameObject.transform);
 
-				if (newButton == null) return;
+				if (ObjectDropperButton == null) return;
 
-				newButton.Label.SetText("Object Dropper, yo");
-				newButton.gameObject.SetActive(true);
+				ObjectDropperButton.Label.SetText("Object Dropper");
+				ObjectDropperButton.gameObject.SetActive(true);
 
-				newButton.onClick.SetPersistentListenerState(0, UnityEventCallState.Off);
-				newButton.onClick.AddListener(() =>
+				ObjectDropperButton.onClick.SetPersistentListenerState(0, UnityEventCallState.Off);
+				ObjectDropperButton.onClick.AddListener(() =>
 				{
 					GameStateMachine.Instance.RequestTransitionTo(typeof(ObjectMovementState));
 				});
 			}
-
 		}
+
+		public static void DestroyObjectDropperButton()
+		{
+			if (ObjectDropperButton != null)
+			{
+				ObjectDropperButton.gameObject.SetActive(false);
+				Object.Destroy(ObjectDropperButton);
+			}
+		}
+		#endregion
 	}
 }

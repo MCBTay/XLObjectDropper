@@ -15,6 +15,11 @@ namespace XLObjectDropper
 			LoadBundle("XLObjectDropper.Assets.object_testbundle", true);
 		}
 
+		public static void DisposeDefaultBundles()
+		{
+			LoadedAssets.Clear();
+		}
+
 		private static void LoadBundle(string name, bool isEmbedded = false)
 		{
 			AssetBundle bundle = null;
