@@ -40,7 +40,7 @@ namespace XLObjectDropper.UI
             #region OptionsMenu
             if (player.GetButtonDown("Select"))
             {
-	            if (OptionsMenuUI.activeInHierarchy == false)
+	            if (!OptionsMenuUI.activeInHierarchy)
 	            {
 		            ObjectPlacementUI.SetActive(false);
 		            OptionsMenuUI.SetActive(true);
@@ -52,6 +52,20 @@ namespace XLObjectDropper.UI
 	            }
             }
             #endregion
+
+            if (player.GetButtonDown("Start"))
+            {
+	            if (!ObjectSelectionUI.activeInHierarchy)
+	            {
+		            ObjectPlacementUI.SetActive(false);
+		            ObjectSelectionUI.SetActive(true);
+	            }
+	            else
+	            {
+		            ObjectSelectionUI.SetActive(false);
+		            ObjectPlacementUI.SetActive(true);
+	            }
+            }
         }
     }
 }

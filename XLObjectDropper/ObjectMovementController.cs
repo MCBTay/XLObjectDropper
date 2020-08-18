@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityModManagerNet;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
+using XLObjectDropper.UserInterface;
 
 namespace XLObjectDropper
 {
@@ -13,7 +15,7 @@ namespace XLObjectDropper
 	{
 		public GameObject PreviewObject { get; set; }
         public List<GameObject> SpawnedObjects { get; set; }
-        public static GameObject ControlLegendGameObject { get; set; }
+        
 		private TMP_Text ZoomInOutText { get; set; }
 		private static PinMovementController PinMovementController { get; set; }
 		private static GameObject OriginalPinObject { get; set; }
@@ -35,11 +37,7 @@ namespace XLObjectDropper
 			
 	        //DontDestroyOnLoad(PreviewObject);
 
-	        if (UIManager.Instance == null)
-	        {
-		        ControlLegendGameObject = AssetBundleHelper.LoadUIBundle();
-			}
-	        
+	        UserInterfaceHelper.LoadUserInterface();
 	        
 	        OriginalPinObject = GameStateMachine.Instance.PinObject;
 
@@ -54,12 +52,11 @@ namespace XLObjectDropper
 	        enabled = true;
 	        GameStateMachine.Instance.PinObject.SetActive(true);
 
-			ControlLegendGameObject?.SetActive(true);
+	        UserInterfaceHelper.UserInterface?.SetActive(true);
 
 			PinMovementController.PinRenderer.enabled = false;
 
 			PreviewObject.SetActive(true);
-
 
 			ZoomInOutText = GameStateMachine.Instance.PinObject.GetComponentInChildren<TMP_Text>();
 			ZoomInOutText?.gameObject?.SetActive(false);
@@ -71,7 +68,7 @@ namespace XLObjectDropper
 
 			GameStateMachine.Instance.PinObject.SetActive(false);
 
-			ControlLegendGameObject?.SetActive(false);
+			UserInterfaceHelper.UserInterface?.SetActive(false);
 			ZoomInOutText?.gameObject?.SetActive(true);
 
 			PinMovementController.PinRenderer.enabled = true;
@@ -200,5 +197,3 @@ namespace XLObjectDropper
 		}
 	}
 }
-
-
