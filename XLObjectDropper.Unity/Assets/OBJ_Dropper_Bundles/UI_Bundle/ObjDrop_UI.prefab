@@ -821,6 +821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6902729125869222929}
+  - component: {fileID: 1550978617677569311}
   m_Layer: 5
   m_Name: ObjectPlacement_Master
   m_TagString: Untagged
@@ -854,6 +855,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1550978617677569311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340680728499805806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 470394671, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainScreen_UI: {fileID: 1243543718339845683}
+  RB_UI: {fileID: 1751118476377660057}
+  LB_UI: {fileID: 2923237881443714159}
+  RT_UI: {fileID: 982630836083504726}
+  LT_UI: {fileID: 1946125992}
+  Dpad_Up: {fileID: 7181431197655735958}
+  Dpad_Down: {fileID: 8063590487732892875}
+  Dpad_Left: {fileID: 1718545431560580035}
+  Dpad_Right: {fileID: 2629248334413095319}
 --- !u!1 &982630836083504726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2992,7 +3014,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1751118475060692190}
-  - component: {fileID: 2763440144624021817}
+  - component: {fileID: 4428880533919021358}
   m_Layer: 0
   m_Name: ObjDrop_UI
   m_TagString: Untagged
@@ -3016,7 +3038,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2763440144624021817
+--- !u!114 &4428880533919021358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3025,21 +3047,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1751118475060692191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 223891900, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: 2040033396, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectPlacement_Master: {fileID: 340680728499805806}
-  ObjectSelection_Master: {fileID: 8985870798134668066}
-  OptionsMenu_Master: {fileID: 5116232537531008389}
-  MainScreen_UI: {fileID: 1243543718339845683}
-  RB_UI: {fileID: 1751118476377660057}
-  LB_UI: {fileID: 2923237881443714159}
-  RT_UI: {fileID: 982630836083504726}
-  LT_UI: {fileID: 1946125992}
-  Dpad_Up: {fileID: 7181431197655735958}
-  Dpad_Down: {fileID: 8063590487732892875}
-  Dpad_Left: {fileID: 1718545431560580035}
-  Dpad_Right: {fileID: 2629248334413095319}
+  ObjectPlacementUI: {fileID: 340680728499805806}
+  ObjectSelectionUI: {fileID: 8985870798134668066}
+  OptionsMenuUI: {fileID: 5116232537531008389}
 --- !u!1 &1751118475196428398
 GameObject:
   m_ObjectHideFlags: 0
@@ -6997,6 +7010,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4645133226643227874}
+  - component: {fileID: 5143572156074159231}
   m_Layer: 5
   m_Name: Options_Master
   m_TagString: Untagged
@@ -7024,6 +7038,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5143572156074159231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5116232537531008389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1655278826, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainUI: {fileID: 5967399782981047154}
+  Snapping: {fileID: 9058106825782045280}
+  Sensitivity: {fileID: 2977971448857450726}
+  UndoButton: {fileID: 2188239286991241918}
+  RedoButton: {fileID: 8545717710833375052}
+  SaveButton: {fileID: 5736723509841356107}
+  LoadButton: {fileID: 5316238726706956698}
 --- !u!1 &5277889538912422929
 GameObject:
   m_ObjectHideFlags: 0
@@ -8993,6 +9026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3050764356168261894}
+  - component: {fileID: 8833272984954652238}
   m_Layer: 5
   m_Name: ObjectSelection_Master
   m_TagString: Untagged
@@ -9019,6 +9053,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8833272984954652238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8985870798134668066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1060342008, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9058106825782045280
 GameObject:
   m_ObjectHideFlags: 0

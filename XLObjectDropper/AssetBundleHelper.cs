@@ -35,7 +35,7 @@ namespace XLObjectDropper
 			AssetBundle bundle = AssetBundle.LoadFromMemory(ExtractResource("XLObjectDropper.Assets.ui_bundle"));
 			
 			GameObject newMenuObject = GameObject.Instantiate(bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab"));
-			GameObject.DontDestroyOnLoad(newMenuObject);
+			//GameObject.DontDestroyOnLoad(newMenuObject);
 
 			return newMenuObject;
 		}

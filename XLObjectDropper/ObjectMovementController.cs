@@ -33,9 +33,9 @@ namespace XLObjectDropper
 
 			PreviewObject.SetActive(false);
 			
-	        DontDestroyOnLoad(PreviewObject);
+	        //DontDestroyOnLoad(PreviewObject);
 
-	        if (UI_Manager.Instance == null)
+	        if (UIManager.Instance == null)
 	        {
 		        ControlLegendGameObject = AssetBundleHelper.LoadUIBundle();
 			}

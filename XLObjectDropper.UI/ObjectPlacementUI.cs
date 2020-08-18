@@ -1,42 +1,42 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 namespace XLObjectDropper.UI
 {
-    public class UI_Manager : MonoBehaviour
-    {
-        [Header("Master Elements")]
-        // Master Elements
-        public GameObject ObjectPlacement_Master;
-        public GameObject ObjectSelection_Master;
-        public GameObject OptionsMenu_Master;
+	public class ObjectPlacementUI : MonoBehaviour
+	{
+		[Header("Object Placement Elements")]
+		// Object Placement
+		public GameObject MainScreen_UI;
 
+		[Space(10)]
+		public GameObject RB_UI;
+		public GameObject LB_UI;
+		[Space(10)]
+		public GameObject RT_UI;
+		public GameObject LT_UI;
+		[Space(10)]
+		public GameObject Dpad_Up;
+		public GameObject Dpad_Down;
+		public GameObject Dpad_Left;
+		public GameObject Dpad_Right;
 
-        public static UI_Manager Instance { get; private set; }
+		private void Start()
+		{
+			// Object Placement
+			RB_UI.SetActive(false);
+			LB_UI.SetActive(false);
+			RT_UI.SetActive(false);
+			LT_UI.SetActive(false);
+			Dpad_Down.SetActive(false);
+			Dpad_Up.SetActive(false);
+			Dpad_Left.SetActive(false);
+			Dpad_Right.SetActive(false);
+		}
 
-        private void Awake()
-        {
-            Instance = this;
-        }
+		private void Update()
+		{
+			var player = PlayerController.Instance.inputController.player;
 
-        private void Start()
-        {
-            Debug.Log("[XLObjectDropper.UI] UI_Manager.dll Initialized");
-            Debug.Log("[XLObjectDropper.UI] UI_Manager version 0.1.7");
-            // Hide UI at start
-            // Master UIs
-            ObjectSelection_Master.SetActive(false);
-            OptionsMenu_Master.SetActive(false);
-
-        }
-
-        // Update is called once per frame
-        private void Update()
-        {
-	        var player = PlayerController.Instance.inputController.player;
-
-
-            #region ObjectSelectionMenu
             #region Right bumper
             if (player.GetButtonDown("RB"))
             {
@@ -134,23 +134,7 @@ namespace XLObjectDropper.UI
             }
             #endregion
             #endregion
-            #endregion
 
-            #region OptionsMenu
-            if (player.GetButtonDown("Select"))
-            {
-                if (OptionsMenu_Master.activeInHierarchy == false)
-                {
-                    MainScreen_UI.SetActive(false);
-                    OptionsMenu_Master.SetActive(true);
-                }
-                else
-                {
-                    OptionsMenu_Master.SetActive(false);
-                    MainScreen_UI.SetActive(true);
-                }
-            }
-            #endregion
         }
     }
 }
