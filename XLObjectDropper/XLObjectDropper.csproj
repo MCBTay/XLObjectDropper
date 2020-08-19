@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssetBundleHelper.cs" />
+    <Compile Include="OptionsMenuController.cs" />
     <Compile Include="UserInterface\ControllerButtonHelper.cs" />
     <Compile Include="GameManagement\ObjectSelectionState.cs" />
     <Compile Include="Main.cs" />

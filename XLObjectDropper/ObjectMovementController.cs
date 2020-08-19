@@ -20,11 +20,17 @@ namespace XLObjectDropper
 		private static PinMovementController PinMovementController { get; set; }
 		private static GameObject OriginalPinObject { get; set; }
 
+		private static GameObject OptionsMenuGameObject;
+		private static OptionsMenuController OptionsMenuController { get; set; }
+
 		private void Awake()
         {
 	        SpawnedObjects = new List<GameObject>();
 
 	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
+
+			OptionsMenuGameObject = new GameObject();
+			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
 
 			PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), PinMovementController.GroundIndicator.transform);
 			PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
@@ -78,8 +84,13 @@ namespace XLObjectDropper
 
         private bool showMenu;
 
+		private static bool OptionsMenuShown { get; set; }
+
         private void Update()
         {
+			if (!OptionsMenuShown)
+				Time.timeScale = 1.0f;
+
 	        UpdateGroundLevel();
 
 	        Player player = PlayerController.Instance.inputController.player;
@@ -164,11 +175,23 @@ namespace XLObjectDropper
 				}
 				else if (player.GetButtonDown("Select"))
 		        {
-			        // stop obj movement here
+			        OptionsMenuShown = !OptionsMenuShown;
+
+					if (OptionsMenuShown)
+			        {
+				        Time.timeScale = 0.0f;
+				        OptionsMenuGameObject.SetActive(true);
+					}
+			        else
+			        {
+						Time.timeScale = 1.0f;
+						OptionsMenuGameObject.SetActive(false);
+					}
 		        }
 				else if (player.GetButtonDown("Start"))
 		        {
-					// stop obj movement here
+			        Time.timeScale = 0.0f;
+			        // stop obj movement here
 		        }
 	        }
         }

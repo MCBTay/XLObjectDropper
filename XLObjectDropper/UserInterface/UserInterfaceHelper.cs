@@ -11,55 +11,15 @@ namespace XLObjectDropper.UserInterface
 	public static class UserInterfaceHelper
 	{
 		public static GameObject UserInterface { get; set; }
-
+		
 		public static void LoadUserInterface()
 		{
 			if (UIManager.Instance == null)
 			{
 				UserInterface = AssetBundleHelper.LoadUIBundle();
 
-				var uiManager = UserInterface.GetComponentInChildren<OptionsMenuUI>();
-
-				if (uiManager != null)
-				{
-					uiManager.SnappingValueChanged += SnappingValueChanged;
-					uiManager.SensitivityValueChanged += SensitivityValueChanged;
-					uiManager.UndoClicked += UndoClicked;
-					uiManager.RedoClicked += RedoClicked;
-					uiManager.SaveClicked += SaveClicked;
-					uiManager.LoadClicked += LoadClicked;
-				}
+				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>();
 			}
-		}
-
-		private static void SnappingValueChanged(bool value)
-		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Snapping Value Changed - " + value);
-		}
-
-		private static void SensitivityValueChanged(float value)
-		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Sensitivity Value Changed - " + value);
-		}
-
-		private static void UndoClicked()
-		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Undo clicked.");
-		}
-
-		private static void RedoClicked()
-		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Redo clicked.");
-		}
-
-		private static void SaveClicked()
-		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Save clicked.");
-		}
-
-		private static void LoadClicked()
-		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Load clicked.");
 		}
 
 		#region Object Dropper Button

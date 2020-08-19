@@ -13,7 +13,11 @@ namespace XLObjectDropper.GameManagement
 		{
 			Instance = this;
 
-			availableTransitions = new[] { typeof(PauseState), typeof(ObjectSelectionState) };
+			availableTransitions = new[]
+			{
+				typeof(PauseState), 
+				typeof(ObjectSelectionState)
+			};
 		}
 
 		public override void OnEnter()
