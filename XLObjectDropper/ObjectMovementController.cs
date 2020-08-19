@@ -23,11 +23,17 @@ namespace XLObjectDropper
 		private static GameObject OptionsMenuGameObject;
 		private static OptionsMenuController OptionsMenuController { get; set; }
 
+		public static ObjectMovementController Instance { get; set; }
+
 		private void Awake()
-        {
+		{
+			Instance = this;
+
 	        SpawnedObjects = new List<GameObject>();
 
 	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
+
+	        UserInterfaceHelper.LoadUserInterface();
 
 			OptionsMenuGameObject = new GameObject();
 			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
@@ -43,7 +49,6 @@ namespace XLObjectDropper
 			
 	        //DontDestroyOnLoad(PreviewObject);
 
-	        UserInterfaceHelper.LoadUserInterface();
 	        
 	        OriginalPinObject = GameStateMachine.Instance.PinObject;
 
@@ -79,7 +84,7 @@ namespace XLObjectDropper
 
 			PinMovementController.PinRenderer.enabled = true;
 
-			PreviewObject.SetActive(false);
+			PreviewObject?.SetActive(false);
         }
 
         private bool showMenu;
@@ -88,8 +93,9 @@ namespace XLObjectDropper
 
         private void Update()
         {
-			if (!OptionsMenuShown)
-				Time.timeScale = 1.0f;
+	        Time.timeScale = OptionsMenuShown ? 0.0f : 1.0f;
+
+	        if (OptionsMenuShown) return;
 
 	        UpdateGroundLevel();
 

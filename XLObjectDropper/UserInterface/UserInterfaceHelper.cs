@@ -18,7 +18,7 @@ namespace XLObjectDropper.UserInterface
 			{
 				UserInterface = AssetBundleHelper.LoadUIBundle();
 
-				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>();
+				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>(true);
 			}
 		}
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
@@ -21,7 +22,7 @@ namespace XLObjectDropper
 
 		private void OnEnable()
 		{
-			Time.timeScale = 0.0f;
+			//ObjectMovementController.Instance.enabled = false;
 
 			if (OptionsMenu != null)
 			{
@@ -33,11 +34,15 @@ namespace XLObjectDropper
 				OptionsMenu.LoadClicked += LoadClicked;
 
 				OptionsMenu.gameObject.SetActive(true);
+
+				EventSystem.current.SetSelectedGameObject(OptionsMenu.Snapping);
 			}
 		}
 
 		private void OnDisable()
 		{
+			//ObjectMovementController.Instance.enabled = true;
+
 			Time.timeScale = 1.0f;
 
 			if (OptionsMenu != null)
