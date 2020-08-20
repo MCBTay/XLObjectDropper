@@ -13,9 +13,12 @@ namespace XLObjectDropper
 	{
 		public static bool Enabled { get; private set; }
 		private static Harmony Harmony { get; set; }
+		public static string ModPath { get; set; }
 
 		static bool Load(UnityModManager.ModEntry modEntry)
 		{
+			ModPath = modEntry.Path;
+
 			modEntry.OnToggle = OnToggle;
 #if DEBUG
 			modEntry.OnUnload = Unload;

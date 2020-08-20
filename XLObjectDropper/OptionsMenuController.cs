@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
 
@@ -24,8 +23,6 @@ namespace XLObjectDropper
 			OptionsMenu.LoadClicked += LoadClicked;
 
 			OptionsMenu.gameObject.SetActive(true);
-
-			EventSystem.current.SetSelectedGameObject(OptionsMenu.Snapping);
 		}
 
 		private void OnDisable()
@@ -68,11 +65,13 @@ namespace XLObjectDropper
 		private static void SaveClicked()
 		{
 			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Save clicked.");
+			SaveManager.Instance.SaveCurrentSpawnables();
 		}
 
 		private static void LoadClicked()
 		{
 			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Load clicked.");
+			SaveManager.Instance.LoadSpawnables();
 		}
 	}
 }
