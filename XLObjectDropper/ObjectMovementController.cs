@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityModManagerNet;
 using XLObjectDropper.GameManagement;
-using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
 
 namespace XLObjectDropper
@@ -20,6 +18,7 @@ namespace XLObjectDropper
 		private static PinMovementController PinMovementController { get; set; }
 		private static GameObject OriginalPinObject { get; set; }
 
+		private static bool OptionsMenuShown { get; set; }
 		private static GameObject OptionsMenuGameObject;
 		private static OptionsMenuController OptionsMenuController { get; set; }
 
@@ -87,19 +86,26 @@ namespace XLObjectDropper
 			PreviewObject?.SetActive(false);
         }
 
-        private bool showMenu;
-
-		private static bool OptionsMenuShown { get; set; }
 
         private void Update()
         {
 	        Time.timeScale = OptionsMenuShown ? 0.0f : 1.0f;
 
-	        if (OptionsMenuShown) return;
-
 	        UpdateGroundLevel();
 
 	        Player player = PlayerController.Instance.inputController.player;
+
+
+	        if (OptionsMenuShown)
+	        {
+		        if (player.GetButtonDown("Select"))
+		        {
+			        OptionsMenuGameObject.SetActive(true);
+			        OptionsMenuShown = !OptionsMenuShown;
+		        }
+
+		        return;
+	        }
 
 			if (player.GetButtonSinglePressHold("LB"))
 			{
@@ -164,8 +170,6 @@ namespace XLObjectDropper
 					// if x, open new object selection menu
 					Debug.Log("XLObjectDropper: Pressed X");
 					UISounds.Instance?.PlayOneShotSelectMinor();
-					
-					showMenu = !showMenu;
 
 					GameStateMachine.Instance.RequestTransitionTo(typeof(ObjectSelectionState));
 				}
@@ -182,17 +186,7 @@ namespace XLObjectDropper
 				else if (player.GetButtonDown("Select"))
 		        {
 			        OptionsMenuShown = !OptionsMenuShown;
-
-					if (OptionsMenuShown)
-			        {
-				        Time.timeScale = 0.0f;
-				        OptionsMenuGameObject.SetActive(true);
-					}
-			        else
-			        {
-						Time.timeScale = 1.0f;
-						OptionsMenuGameObject.SetActive(false);
-					}
+					OptionsMenuGameObject.SetActive(OptionsMenuShown);
 		        }
 				else if (player.GetButtonDown("Start"))
 		        {
@@ -201,6 +195,8 @@ namespace XLObjectDropper
 		        }
 	        }
         }
+
+		
 
         private float groundLevel;
 

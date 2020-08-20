@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
-using XLObjectDropper.UserInterface;
 
 namespace XLObjectDropper
 {
@@ -22,40 +16,28 @@ namespace XLObjectDropper
 
 		private void OnEnable()
 		{
-			//ObjectMovementController.Instance.enabled = false;
+			OptionsMenu.SnappingValueChanged += SnappingValueChanged;
+			OptionsMenu.SensitivityValueChanged += SensitivityValueChanged;
+			OptionsMenu.UndoClicked += UndoClicked;
+			OptionsMenu.RedoClicked += RedoClicked;
+			OptionsMenu.SaveClicked += SaveClicked;
+			OptionsMenu.LoadClicked += LoadClicked;
 
-			if (OptionsMenu != null)
-			{
-				OptionsMenu.SnappingValueChanged += SnappingValueChanged;
-				OptionsMenu.SensitivityValueChanged += SensitivityValueChanged;
-				OptionsMenu.UndoClicked += UndoClicked;
-				OptionsMenu.RedoClicked += RedoClicked;
-				OptionsMenu.SaveClicked += SaveClicked;
-				OptionsMenu.LoadClicked += LoadClicked;
+			OptionsMenu.gameObject.SetActive(true);
 
-				OptionsMenu.gameObject.SetActive(true);
-
-				EventSystem.current.SetSelectedGameObject(OptionsMenu.Snapping);
-			}
+			EventSystem.current.SetSelectedGameObject(OptionsMenu.Snapping);
 		}
 
 		private void OnDisable()
 		{
-			//ObjectMovementController.Instance.enabled = true;
+			OptionsMenu.SnappingValueChanged -= SnappingValueChanged;
+			OptionsMenu.SensitivityValueChanged -= SensitivityValueChanged;
+			OptionsMenu.UndoClicked -= UndoClicked;
+			OptionsMenu.RedoClicked -= RedoClicked;
+			OptionsMenu.SaveClicked -= SaveClicked;
+			OptionsMenu.LoadClicked -= LoadClicked;
 
-			Time.timeScale = 1.0f;
-
-			if (OptionsMenu != null)
-			{
-				OptionsMenu.SnappingValueChanged -= SnappingValueChanged;
-				OptionsMenu.SensitivityValueChanged -= SensitivityValueChanged;
-				OptionsMenu.UndoClicked -= UndoClicked;
-				OptionsMenu.RedoClicked -= RedoClicked;
-				OptionsMenu.SaveClicked -= SaveClicked;
-				OptionsMenu.LoadClicked -= LoadClicked;
-
-				OptionsMenu.gameObject.SetActive(false);
-			}
+			OptionsMenu.gameObject.SetActive(false);
 		}
 
 		private void Update()
