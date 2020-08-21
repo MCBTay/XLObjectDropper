@@ -22,6 +22,10 @@ namespace XLObjectDropper
 		private static GameObject OptionsMenuGameObject;
 		private static OptionsMenuController OptionsMenuController { get; set; }
 
+		private static bool ObjectSelectionShown { get; set; }
+		private static GameObject ObjectSelectionGameObject;
+		private static ObjectSelectionController ObjectSelectionController { get; set; }
+
 		public static ObjectMovementController Instance { get; set; }
 
 		private int counter = 0;
@@ -38,6 +42,9 @@ namespace XLObjectDropper
 
 			OptionsMenuGameObject = new GameObject();
 			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
+
+			ObjectSelectionGameObject = new GameObject();
+			ObjectSelectionController = OptionsMenuGameObject.AddComponent<ObjectSelectionController>();
 
 			InstantiatePreviewObject();
 
@@ -103,6 +110,16 @@ namespace XLObjectDropper
 
 		        return;
 	        }
+			else if (ObjectSelectionShown)
+	        {
+		        if (player.GetButtonDown("Start"))
+		        {
+			        ObjectSelectionGameObject.SetActive(true);
+			        ObjectSelectionShown = !ObjectSelectionShown;
+		        }
+
+		        return;
+			}
 
 			if (player.GetButtonSinglePressHold("LB"))
 			{
@@ -198,9 +215,9 @@ namespace XLObjectDropper
 		        }
 				else if (player.GetButtonDown("Start"))
 		        {
-			        Time.timeScale = 0.0f;
-			        // stop obj movement here
-		        }
+					ObjectSelectionShown = !ObjectSelectionShown;
+					ObjectSelectionGameObject.SetActive(ObjectSelectionShown);
+				}
 	        }
         }
 

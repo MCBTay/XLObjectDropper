@@ -132,6 +132,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjectSelectionListItem.cs" />
     <Compile Include="ObjectPlacementUI.cs" />
     <Compile Include="ObjectSelectionUI.cs" />
     <Compile Include="OptionsMenuUI.cs" />
