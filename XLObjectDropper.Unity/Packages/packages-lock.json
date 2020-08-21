@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.billowper.sxl-map-tools": {
+      "version": "https://github.com/billowper/SXL-Map-Tools.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.editorcoroutines": "1.0.0"
+      },
+      "hash": "98f3a62bbad0356ff724e3f19ce433724d706462"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -16,6 +25,13 @@
     "com.unity.collab-proxy": {
       "version": "1.2.16",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.editorcoroutines": {
+      "version": "1.0.0",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -41,6 +57,15 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.probuilder": {
+      "version": "4.2.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.settings-manager": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
@@ -71,6 +96,13 @@
       "dependencies": {
         "com.unity.render-pipelines.core": "7.3.1"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.settings-manager": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
