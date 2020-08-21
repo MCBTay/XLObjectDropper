@@ -24,6 +24,8 @@ namespace XLObjectDropper
 
 		public static ObjectMovementController Instance { get; set; }
 
+		private int counter = 0;
+
 		private void Awake()
 		{
 			Instance = this;
@@ -37,12 +39,7 @@ namespace XLObjectDropper
 			OptionsMenuGameObject = new GameObject();
 			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
 
-			PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(0), PinMovementController.GroundIndicator.transform);
-			PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
-			PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
-			PreviewObject.transform.position = GameStateMachine.Instance.PinObject.transform.position;
-			
-			PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
+			InstantiatePreviewObject();
 
 			PreviewObject.SetActive(false);
 			
@@ -174,7 +171,18 @@ namespace XLObjectDropper
 					GameStateMachine.Instance.RequestTransitionTo(typeof(ObjectSelectionState));
 				}
 				else if (player.GetButtonDown("Y"))
-				{
+		        {
+			        counter++;
+
+			        if (counter >= AssetBundleHelper.LoadedAssets.Count) counter = 0;
+
+					PreviewObject.SetActive(false);
+					Object.Destroy(PreviewObject);
+
+					InstantiatePreviewObject();
+
+					PreviewObject.SetActive(true);
+
 					// if y, delete highlighted object (if any)
 					Debug.Log("XLObjectDropper: Pressed Y");
 				}
@@ -196,7 +204,15 @@ namespace XLObjectDropper
 	        }
         }
 
-		
+        private void InstantiatePreviewObject()
+        {
+	        PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(counter), PinMovementController.GroundIndicator.transform);
+	        PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
+	        PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
+	        PreviewObject.transform.position = GameStateMachine.Instance.PinObject.transform.position;
+	        PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
+	        
+		}
 
         private float groundLevel;
 
