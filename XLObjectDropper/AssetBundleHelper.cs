@@ -35,14 +35,17 @@ namespace XLObjectDropper
 			bundle.Unload(false);
 		}
 
-		public static GameObject LoadUIBundle()
+		public static GameObject UIPrefab { get; set; }
+		public static GameObject ListItemPrefab { get; set; }
+
+		public static void LoadUIBundle()
 		{
 			AssetBundle bundle = AssetBundle.LoadFromMemory(ExtractResource("XLObjectDropper.Assets.ui_bundle"));
-			
-			GameObject newMenuObject = GameObject.Instantiate(bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab"));
-			//GameObject.DontDestroyOnLoad(newMenuObject);
 
-			return newMenuObject;
+			UIPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab");
+			ListItemPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ListItem.prefab");
+
+			bundle.Unload(false);
 		}
 
 		//private static IEnumerator LoadBundle(string name, bool isEmbedded = false)
