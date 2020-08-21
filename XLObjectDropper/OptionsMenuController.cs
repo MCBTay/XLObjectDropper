@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
 
@@ -15,6 +16,9 @@ namespace XLObjectDropper
 
 		private void OnEnable()
 		{
+			OptionsMenu.Snapping.GetComponent<Toggle>().isOn = Settings.Instance.Snapping;
+			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
+			
 			OptionsMenu.SnappingValueChanged += SnappingValueChanged;
 			OptionsMenu.SensitivityValueChanged += SensitivityValueChanged;
 			OptionsMenu.UndoClicked += UndoClicked;
@@ -44,12 +48,14 @@ namespace XLObjectDropper
 
 		private static void SnappingValueChanged(bool value)
 		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Snapping Value Changed - " + value);
+			Settings.Instance.Snapping = value;
+			SaveManager.Instance.SaveSettings();
 		}
 
 		private static void SensitivityValueChanged(float value)
 		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Sensitivity Value Changed - " + value);
+			Settings.Instance.Sensitivity = value;
+			SaveManager.Instance.SaveSettings();
 		}
 
 		private static void UndoClicked()
@@ -64,13 +70,11 @@ namespace XLObjectDropper
 
 		private static void SaveClicked()
 		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Save clicked.");
 			SaveManager.Instance.SaveCurrentSpawnables();
 		}
 
 		private static void LoadClicked()
 		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Load clicked.");
 			SaveManager.Instance.LoadSpawnables();
 		}
 	}

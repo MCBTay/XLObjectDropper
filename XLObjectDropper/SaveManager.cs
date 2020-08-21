@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.Cryptography;
-using Newtonsoft.Json;
 using UnityEngine;
+using UnityModManagerNet;
 using Object = UnityEngine.Object;
 
 namespace XLObjectDropper
@@ -14,6 +12,8 @@ namespace XLObjectDropper
 	{
 		private static SaveManager __instance;
 		public static SaveManager Instance => __instance ?? (__instance = new SaveManager());
+
+		public UnityModManager.ModEntry ModEntry { get; set; }
 
 		public void SaveCurrentSpawnables()
 		{
@@ -67,6 +67,11 @@ namespace XLObjectDropper
 
 				ObjectMovementController.Instance.SpawnedObjects.Add(newObject);
 			}
+		}
+
+		public void SaveSettings()
+		{
+			Settings.Instance.Save(ModEntry);
 		}
 	}
 

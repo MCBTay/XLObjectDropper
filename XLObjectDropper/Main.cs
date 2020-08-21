@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using System.Reflection;
-using UnityEngine;
 using UnityModManagerNet;
 using XLObjectDropper.UserInterface;
 
@@ -17,7 +16,10 @@ namespace XLObjectDropper
 
 		static bool Load(UnityModManager.ModEntry modEntry)
 		{
+			Settings.Instance = UnityModManager.ModSettings.Load<Settings>(modEntry);
+
 			ModPath = modEntry.Path;
+			SaveManager.Instance.ModEntry = modEntry;
 
 			modEntry.OnToggle = OnToggle;
 #if DEBUG
@@ -58,6 +60,5 @@ namespace XLObjectDropper
 			return true;
 		}
 #endif
-
 	}
 }
