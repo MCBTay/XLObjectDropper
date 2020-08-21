@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 using Newtonsoft.Json;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace XLObjectDropper
 {
@@ -13,16 +17,18 @@ namespace XLObjectDropper
 
 		public void SaveCurrentSpawnables()
 		{
-			var itemsToSave = new List<GameObjectSaveData>();
+			var levelConfigToSave = new LevelSaveData { levelHash = LevelManager.Instance.currentLevel.hash };
+			levelConfigToSave.gameObjects = new List<GameObjectSaveData>();
+			
 			var spawnedItems = ObjectMovementController.Instance.SpawnedObjects;
 
 			if (spawnedItems == null || !spawnedItems.Any()) return;
 
 			foreach (var spawnable in spawnedItems)
 			{
-				itemsToSave.Add(new GameObjectSaveData
+				levelConfigToSave.gameObjects.Add(new GameObjectSaveData
 				{
-					Id = 1,
+					Id = spawnable.name,
 					positionX = spawnable.transform.position.x,
 					positionY = spawnable.transform.position.y,
 					positionZ = spawnable.transform.position.z,
@@ -36,7 +42,7 @@ namespace XLObjectDropper
 				});
 			}
 
-			string json = JsonConvert.SerializeObject(itemsToSave);
+			string json = JsonConvert.SerializeObject(levelConfigToSave);
 			File.WriteAllText(Path.Combine(Main.ModPath, "test.json"), json);
 		}
 
@@ -46,15 +52,15 @@ namespace XLObjectDropper
 
 			if (!File.Exists(filePath)) return;
 
-			var spawnables = JsonConvert.DeserializeObject<List<GameObjectSaveData>>(File.ReadAllText(filePath));
-			if (spawnables == null || !spawnables.Any()) return;
+			var levelSaveData = JsonConvert.DeserializeObject<LevelSaveData>(File.ReadAllText(filePath));
+			if (levelSaveData.gameObjects == null || !levelSaveData.gameObjects.Any()) return;
 
-			foreach (var spawnable in spawnables)
+			foreach (var spawnable in levelSaveData.gameObjects)
 			{
 				var position = new Vector3(spawnable.positionX, spawnable.positionY, spawnable.positionZ);
 				var rotation = new Quaternion(spawnable.rotationX, spawnable.rotationY, spawnable.rotationZ, spawnable.rotationW);
 
-				var newObject = Object.Instantiate(ObjectMovementController.Instance.PreviewObject, position, rotation);
+				var newObject = Object.Instantiate(AssetBundleHelper.LoadedAssets.FirstOrDefault(x => spawnable.Id.StartsWith(x.name)), position, rotation);
 				newObject.SetActive(true);
 
 				newObject.transform.ChangeLayersRecursively("Default");
@@ -65,9 +71,16 @@ namespace XLObjectDropper
 	}
 
 	[System.Serializable]
+	public class LevelSaveData
+	{
+		public string levelHash;
+		public List<GameObjectSaveData> gameObjects;
+	}
+
+	[System.Serializable]
 	public class GameObjectSaveData
 	{
-		public int Id;
+		public string Id;
 		public float positionX;
 		public float positionY;
 		public float positionZ;
