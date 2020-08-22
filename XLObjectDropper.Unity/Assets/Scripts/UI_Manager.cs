@@ -21,12 +21,6 @@ namespace XLObjectDropper.UI
             RB_UI.GetComponent<Image>();
         }
 
-        public void ButtonHelper()
-        {
-            MainScreenUI.SetActive(false);
-            RB_UI.SetActive(true);
-        }
-
         // Update is called once per frame
         private void Update()
         {
