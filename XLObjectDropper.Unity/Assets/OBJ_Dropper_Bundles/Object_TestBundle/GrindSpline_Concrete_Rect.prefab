@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3628792900129383575}
   - component: {fileID: 2943354885769504733}
   - component: {fileID: 6648098849096008429}
-  - component: {fileID: 8329250578631310757}
   - component: {fileID: 3050235062373775725}
   - component: {fileID: 7346247677632310686}
   m_Layer: 12
@@ -74,7 +73,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 2
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -82,72 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8329250578631310757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3742656874052983536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MeshFormatVersion: 1
-  m_Faces:
-  - m_Indexes: 000000000100000002000000010000000300000002000000
-    m_SmoothingGroup: 0
-    m_Uv:
-      m_UseWorldSpace: 0
-      m_FlipU: 0
-      m_FlipV: 0
-      m_SwapUV: 0
-      m_Fill: 1
-      m_Scale: {x: 1, y: 1}
-      m_Offset: {x: 0, y: 0}
-      m_Rotation: 0
-      m_Anchor: 9
-    m_Material: {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
-    m_SubmeshIndex: 0
-    m_ManualUV: 0
-    elementGroup: 0
-    m_TextureGroup: -1
-  m_SharedVertices:
-  - m_Vertices: 00000000
-  - m_Vertices: 01000000
-  - m_Vertices: 02000000
-  - m_Vertices: 03000000
-  m_SharedTextures: []
-  m_Positions:
-  - {x: -0.125, y: 0, z: -2}
-  - {x: -0.125, y: 0, z: 2}
-  - {x: 0.125, y: 0, z: -2}
-  - {x: 0.125, y: 0, z: 2}
-  m_Textures0:
-  - {x: -0.125, y: -2}
-  - {x: -0.125, y: 2}
-  - {x: 0.125, y: -2}
-  - {x: 0.125, y: 2}
-  m_Textures2: []
-  m_Textures3: []
-  m_Tangents:
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  - {x: 1, y: 0, z: 0, w: -1}
-  m_Colors: []
-  m_UnwrapParameters:
-    m_HardAngle: 88
-    m_PackMargin: 20
-    m_AngleError: 8
-    m_AreaError: 15
-  m_PreserveMeshAssetOnDestroy: 0
-  assetGuid: 
-  m_IsSelectable: 1
-  m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
 --- !u!64 &3050235062373775725
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -229,13 +162,13 @@ MonoBehaviour:
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: 0.029989839, y: 0, z: -1.9241266}
+  - position: {x: -1.7200102, y: 0.5, z: 4.0758734}
     up: {x: 0, y: 1, z: 0}
     forward: {x: 0.004527853, y: 0, z: 0.99998975}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 0.047477365, y: 0, z: 1.9380455}
+  - position: {x: -1.7025226, y: 0.5, z: 7.9380455}
     up: {x: 0, y: 1, z: 0}
     forward: {x: 0.004527853, y: 0, z: 0.99998975}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -243,13 +176,13 @@ MonoBehaviour:
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: 0.029989839, y: 0, z: -1.9241266}
+    - position: {x: -1.7200102, y: 0.5, z: 4.0758734}
       up: {x: 0, y: 1, z: 0}
       forward: {x: 0.004527853, y: 0, z: 0.99998975}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: 0.047477365, y: 0, z: 1.9380455}
+    - position: {x: -1.7025226, y: 0.5, z: 7.9380455}
       up: {x: 0, y: 1, z: 0}
       forward: {x: 0.004527853, y: 0, z: 0.99998975}
       color: {r: 1, g: 1, b: 1, a: 1}
