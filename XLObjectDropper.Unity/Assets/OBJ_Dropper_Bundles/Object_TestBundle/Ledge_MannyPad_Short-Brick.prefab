@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &378469443543694359
+--- !u!1 &333010777711134752
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7308770392301211972}
-  - component: {fileID: 4863678447423991803}
+  - component: {fileID: 6617690355728806091}
+  - component: {fileID: 7991507530624948776}
   m_Layer: 12
   m_Name: Grind Cols
   m_TagString: Grind_Concrete
@@ -17,34 +17,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7308770392301211972
+--- !u!4 &6617690355728806091
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378469443543694359}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: -0.025, z: -2}
+  m_GameObject: {fileID: 333010777711134752}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -1.5, y: -0.025, z: 0.05000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7992740442332708883}
+  m_Father: {fileID: 7881994585498718621}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4863678447423991803
+--- !u!65 &7991507530624948776
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378469443543694359}
+  m_GameObject: {fileID: 333010777711134752}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.05, z: 4}
+  m_Size: {x: 0.1, y: 0.05, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &847030119954285800
+--- !u!1 &3955101908482781261
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,8 +52,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 559547899203613265}
-  - component: {fileID: 8991727133394956527}
+  - component: {fileID: 309194337677157343}
+  - component: {fileID: 3548880748445824680}
   m_Layer: 0
   m_Name: GrindSpline_Grind_Concrete
   m_TagString: Untagged
@@ -61,28 +61,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &559547899203613265
+--- !u!4 &309194337677157343
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847030119954285800}
+  m_GameObject: {fileID: 3955101908482781261}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.25, z: -2}
+  m_LocalPosition: {x: 1.5, y: 0.25, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3564409817773806343}
-  m_Father: {fileID: 4606610693558584288}
-  m_RootOrder: 1
+  - {fileID: 1138397487957897864}
+  m_Father: {fileID: 6146403649003167788}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8991727133394956527
+--- !u!114 &3548880748445824680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847030119954285800}
+  m_GameObject: {fileID: 3955101908482781261}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
@@ -100,159 +100,19 @@ MonoBehaviour:
   spline:
     points:
     - _type: 0
-      position: {x: -0.04253769, y: 0, z: 0.05199623}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0, y: 1.0000002, z: 0}
-      size: 1
-      tangent: {x: -0.04253769, y: 0, z: 0.05199623}
-      tangent2: {x: -0.04253769, y: 0, z: 0.05199623}
-    - _type: 0
-      position: {x: -2.9497948, y: 0, z: 0.04909134}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0, y: 1.0000002, z: 0}
-      size: 1
-      tangent: {x: -2.9497948, y: 0, z: 0.04909134}
-      tangent2: {x: -2.9497948, y: 0, z: 0.04909134}
-    closed: 0
-    type: 3
-    linearAverageDirection: 1
-    customValueInterpolation:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    customNormalInterpolation:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    sampleRate: 10
-  _rawSamples:
-  - position: {x: -0.04253769, y: 0, z: 0.05199623}
-    up: {x: 0, y: 1.0000002, z: 0}
-    forward: {x: -0.9999995, y: 0, z: -0.000999186}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0
-  - position: {x: -2.9497948, y: 0, z: 0.04909134}
-    up: {x: 0, y: 1.0000002, z: 0}
-    forward: {x: -0.9999995, y: 0, z: -0.000999186}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 1
-  _transformedSamples:
-  - position: {x: 10.957462, y: 0.5, z: 4.051996}
-    up: {x: 0, y: 1.0000002, z: 0}
-    forward: {x: -0.9999995, y: 0, z: -0.000999186}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 0
-  - position: {x: 8.050205, y: 0.5, z: 4.0490913}
-    up: {x: 0, y: 1.0000002, z: 0}
-    forward: {x: -0.9999995, y: 0, z: -0.000999186}
-    color: {r: 1, g: 1, b: 1, a: 1}
-    size: 1
-    percent: 1
-  sampleCollection:
-    samples:
-    - position: {x: 10.957462, y: 0.5, z: 4.051996}
-      up: {x: 0, y: 1.0000002, z: 0}
-      forward: {x: -0.9999995, y: 0, z: -0.000999186}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      size: 1
-      percent: 0
-    - position: {x: 8.050205, y: 0.5, z: 4.0490913}
-      up: {x: 0, y: 1.0000002, z: 0}
-      forward: {x: -0.9999995, y: 0, z: -0.000999186}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      size: 1
-      percent: 1
-    optimizedIndices: 
-    sampleMode: 0
-    clipFrom: 0
-    clipTo: 1
-    loopSamples: 0
-  originalSamplePercents: []
-  _sampleCount: 2
-  _is2D: 0
-  hasSamples: 1
-  pointsDirty: 0000
-  _optimizeAngleThreshold: 0.5
-  _space: 1
-  _sampleMode: 0
-  subscribers: []
-  nodes: []
---- !u!1 &958355680875295599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3727986005747042703}
-  - component: {fileID: 2632884894210207488}
-  m_Layer: 0
-  m_Name: GrindSpline_Grind_Concrete
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3727986005747042703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958355680875295599}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.25, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1468520416880795396}
-  m_Father: {fileID: 4606610693558584288}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2632884894210207488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958355680875295599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  editorPathColor: {r: 1, g: 1, b: 1, a: 1}
-  alwaysDraw: 0
-  drawThinckness: 0
-  billboardThickness: 1
-  isNewlyCreated: 0
-  multithreaded: 0
-  rebuildOnAwake: 0
-  updateMode: 0
-  triggerGroups: []
-  spline:
-    points:
-    - _type: 0
-      position: {x: 0.030950546, y: 0, z: -0.041568756}
+      position: {x: -0.0432806, y: 0, z: -3.9661489}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 1, z: 0}
       size: 1
-      tangent: {x: 0.030950546, y: 0, z: -0.041568756}
-      tangent2: {x: 0.030950546, y: 0, z: -0.041568756}
+      tangent: {x: -0.0432806, y: 0, z: -3.9661489}
+      tangent2: {x: -0.0432806, y: 0, z: -3.9661489}
     - _type: 0
-      position: {x: 0.057580948, y: 0, z: -3.9525867}
+      position: {x: -0.036206484, y: 0, z: -0.027751923}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 1.0000002, z: 0}
       size: 1
-      tangent: {x: 0.057580948, y: 0, z: -3.9525867}
-      tangent2: {x: 0.057580948, y: 0, z: -3.9525867}
+      tangent: {x: -0.036206484, y: 0, z: -0.027751923}
+      tangent2: {x: -0.036206484, y: 0, z: -0.027751923}
     closed: 0
     type: 3
     linearAverageDirection: 1
@@ -270,42 +130,42 @@ MonoBehaviour:
       m_RotationOrder: 4
     sampleRate: 10
   _rawSamples:
-  - position: {x: 0.030950546, y: 0, z: -0.041568756}
+  - position: {x: -0.0432806, y: 0, z: -3.9661489}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.0068089142, y: 0, z: -0.9999768}
+    forward: {x: 0.0017961892, y: 0, z: 0.9999984}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 0.057580948, y: 0, z: -3.9525867}
+  - position: {x: -0.036206484, y: 0, z: -0.027751923}
     up: {x: 0, y: 1.0000002, z: 0}
-    forward: {x: 0.0068089142, y: 0, z: -0.9999768}
+    forward: {x: 0.0017961892, y: 0, z: 0.9999984}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: 8.030951, y: 0.5, z: 7.9584312}
+  - position: {x: 2.9567194, y: 0.5, z: 4.033851}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.0068089142, y: 0, z: -0.9999768}
+    forward: {x: 0.0017961892, y: 0, z: 0.9999984}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 8.057581, y: 0.5, z: 4.0474133}
+  - position: {x: 2.9637935, y: 0.5, z: 7.972248}
     up: {x: 0, y: 1.0000002, z: 0}
-    forward: {x: 0.0068089142, y: 0, z: -0.9999768}
+    forward: {x: 0.0017961892, y: 0, z: 0.9999984}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: 8.030951, y: 0.5, z: 7.9584312}
+    - position: {x: 2.9567194, y: 0.5, z: 4.033851}
       up: {x: 0, y: 1, z: 0}
-      forward: {x: 0.0068089142, y: 0, z: -0.9999768}
+      forward: {x: 0.0017961892, y: 0, z: 0.9999984}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: 8.057581, y: 0.5, z: 4.0474133}
+    - position: {x: 2.9637935, y: 0.5, z: 7.972248}
       up: {x: 0, y: 1.0000002, z: 0}
-      forward: {x: 0.0068089142, y: 0, z: -0.9999768}
+      forward: {x: 0.0017961892, y: 0, z: 0.9999984}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -324,7 +184,7 @@ MonoBehaviour:
   _sampleMode: 0
   subscribers: []
   nodes: []
---- !u!1 &1853172230220274331
+--- !u!1 &4110339269258997672
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,8 +192,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1468520416880795396}
-  - component: {fileID: 5103761689650794356}
+  - component: {fileID: 2335269110035906113}
+  - component: {fileID: 404237406598724269}
   m_Layer: 12
   m_Name: Grind Cols
   m_TagString: Grind_Concrete
@@ -341,34 +201,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1468520416880795396
+--- !u!4 &2335269110035906113
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853172230220274331}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -0.025, z: -2}
+  m_GameObject: {fileID: 4110339269258997672}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 1.5, y: -0.025, z: -0.05000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 3727986005747042703}
+  m_Father: {fileID: 7357494462864307450}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &5103761689650794356
+--- !u!65 &404237406598724269
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853172230220274331}
+  m_GameObject: {fileID: 4110339269258997672}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.05, z: 4}
+  m_Size: {x: 0.1, y: 0.05, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &3368956310086906090
+--- !u!1 &4927358431094280998
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -376,8 +236,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 917190276513191734}
-  - component: {fileID: 9181607994037032280}
+  - component: {fileID: 7357494462864307450}
+  - component: {fileID: 3008671136316542111}
   m_Layer: 0
   m_Name: GrindSpline_Grind_Concrete
   m_TagString: Untagged
@@ -385,28 +245,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &917190276513191734
+--- !u!4 &7357494462864307450
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368956310086906090}
+  m_GameObject: {fileID: 4927358431094280998}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.5, y: 0.25, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5388868566479871373}
-  m_Father: {fileID: 4606610693558584288}
+  - {fileID: 2335269110035906113}
+  m_Father: {fileID: 6146403649003167788}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9181607994037032280
+--- !u!114 &3008671136316542111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368956310086906090}
+  m_GameObject: {fileID: 4927358431094280998}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
@@ -424,19 +284,19 @@ MonoBehaviour:
   spline:
     points:
     - _type: 0
-      position: {x: 2.9435463, y: 0, z: -0.053026676}
-      color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0, y: 1.0000002, z: 0}
-      size: 1
-      tangent: {x: 2.9435463, y: 0, z: -0.053026676}
-      tangent2: {x: 2.9435463, y: 0, z: -0.053026676}
-    - _type: 0
-      position: {x: 0.059773445, y: 0, z: -0.040028572}
+      position: {x: 2.971531, y: 0, z: -0.04695463}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 1, z: 0}
       size: 1
-      tangent: {x: 0.059773445, y: 0, z: -0.040028572}
-      tangent2: {x: 0.059773445, y: 0, z: -0.040028572}
+      tangent: {x: 2.971531, y: 0, z: -0.04695463}
+      tangent2: {x: 2.971531, y: 0, z: -0.04695463}
+    - _type: 0
+      position: {x: 0.042788625, y: 0, z: -0.049259186}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: 0.042788625, y: 0, z: -0.049259186}
+      tangent2: {x: 0.042788625, y: 0, z: -0.049259186}
     closed: 0
     type: 3
     linearAverageDirection: 1
@@ -454,42 +314,42 @@ MonoBehaviour:
       m_RotationOrder: 4
     sampleRate: 10
   _rawSamples:
-  - position: {x: 2.9435463, y: 0, z: -0.053026676}
-    up: {x: 0, y: 1.0000002, z: 0}
-    forward: {x: -0.9999898, y: 0, z: 0.00450728}
+  - position: {x: 2.971531, y: 0, z: -0.04695463}
+    up: {x: 0, y: 1, z: 0}
+    forward: {x: -0.9999997, y: 0, z: -0.0007868747}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 0.059773445, y: 0, z: -0.040028572}
+  - position: {x: 0.042788625, y: 0, z: -0.049259186}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.9999898, y: 0, z: 0.00450728}
+    forward: {x: -0.9999997, y: 0, z: -0.0007868747}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: 10.943546, y: 0.5, z: 7.9469733}
-    up: {x: 0, y: 1.0000002, z: 0}
-    forward: {x: -0.9999898, y: 0, z: 0.00450728}
+  - position: {x: 2.971531, y: 0.5, z: 7.9530454}
+    up: {x: 0, y: 1, z: 0}
+    forward: {x: -0.9999997, y: 0, z: -0.0007868747}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 8.059773, y: 0.5, z: 7.9599714}
+  - position: {x: 0.042788625, y: 0.5, z: 7.950741}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.9999898, y: 0, z: 0.00450728}
+    forward: {x: -0.9999997, y: 0, z: -0.0007868747}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: 10.943546, y: 0.5, z: 7.9469733}
-      up: {x: 0, y: 1.0000002, z: 0}
-      forward: {x: -0.9999898, y: 0, z: 0.00450728}
+    - position: {x: 2.971531, y: 0.5, z: 7.9530454}
+      up: {x: 0, y: 1, z: 0}
+      forward: {x: -0.9999997, y: 0, z: -0.0007868747}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: 8.059773, y: 0.5, z: 7.9599714}
+    - position: {x: 0.042788625, y: 0.5, z: 7.950741}
       up: {x: 0, y: 1, z: 0}
-      forward: {x: -0.9999898, y: 0, z: 0.00450728}
+      forward: {x: -0.9999997, y: 0, z: -0.0007868747}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -508,7 +368,7 @@ MonoBehaviour:
   _sampleMode: 0
   subscribers: []
   nodes: []
---- !u!1 &4100480240281443519
+--- !u!1 &5928501296336682867
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -516,51 +376,51 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4606610693558584288}
-  - component: {fileID: 6834962654226291474}
-  - component: {fileID: 8270274167829150578}
-  - component: {fileID: 4289712780825228259}
-  - component: {fileID: 2704358642926062838}
+  - component: {fileID: 6146403649003167788}
+  - component: {fileID: 3781682124878575838}
+  - component: {fileID: 1757664997336897726}
+  - component: {fileID: 5848362283358916655}
+  - component: {fileID: 5703349686945017658}
   m_Layer: 0
-  m_Name: Ledge_MannyPad_Short
-  m_TagString: Untagged
+  m_Name: Ledge_MannyPad_Short-Brick
+  m_TagString: Surface_Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4606610693558584288
+--- !u!4 &6146403649003167788
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100480240281443519}
+  m_GameObject: {fileID: 5928501296336682867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5, y: 0.25, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 917190276513191734}
-  - {fileID: 559547899203613265}
-  - {fileID: 3727986005747042703}
-  - {fileID: 7992740442332708883}
+  - {fileID: 7357494462864307450}
+  - {fileID: 7881994585498718621}
+  - {fileID: 6421541584403360323}
+  - {fileID: 309194337677157343}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6834962654226291474
+--- !u!33 &3781682124878575838
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100480240281443519}
+  m_GameObject: {fileID: 5928501296336682867}
   m_Mesh: {fileID: 0}
---- !u!23 &8270274167829150578
+--- !u!23 &1757664997336897726
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100480240281443519}
+  m_GameObject: {fileID: 5928501296336682867}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -572,7 +432,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f6a2932196c355248b2b91b2b45117ef, type: 2}
+  - {fileID: 2100000, guid: 9faa21e64e6db8042be6f692694d305e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -593,13 +453,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4289712780825228259
+--- !u!114 &5848362283358916655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100480240281443519}
+  m_GameObject: {fileID: 5928501296336682867}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8233d90336aea43098adf6dbabd606a2, type: 3}
@@ -808,20 +668,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!65 &2704358642926062838
+--- !u!65 &5703349686945017658
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4100480240281443519}
+  m_GameObject: {fileID: 5928501296336682867}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3, y: 0.5, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &6028994167762947172
+--- !u!1 &7016837884716148516
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -829,52 +689,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5388868566479871373}
-  - component: {fileID: 8015758962178726241}
-  m_Layer: 12
-  m_Name: Grind Cols
-  m_TagString: Grind_Concrete
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5388868566479871373
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028994167762947172}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.5, y: -0.025, z: -0.05000001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 917190276513191734}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8015758962178726241
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028994167762947172}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.05, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &6648097766452564865
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7992740442332708883}
-  - component: {fileID: 2402737490153478600}
+  - component: {fileID: 7881994585498718621}
+  - component: {fileID: 5005921761676516777}
   m_Layer: 0
   m_Name: GrindSpline_Grind_Concrete
   m_TagString: Untagged
@@ -882,28 +698,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7992740442332708883
+--- !u!4 &7881994585498718621
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6648097766452564865}
+  m_GameObject: {fileID: 7016837884716148516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.25, z: 2}
+  m_LocalPosition: {x: 1.5, y: 0.25, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7308770392301211972}
-  m_Father: {fileID: 4606610693558584288}
-  m_RootOrder: 3
+  - {fileID: 6617690355728806091}
+  m_Father: {fileID: 6146403649003167788}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2402737490153478600
+--- !u!114 &5005921761676516777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6648097766452564865}
+  m_GameObject: {fileID: 7016837884716148516}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
@@ -921,19 +737,19 @@ MonoBehaviour:
   spline:
     points:
     - _type: 0
-      position: {x: -0.050141335, y: 0, z: -3.95092}
+      position: {x: -0.051011562, y: 0, z: 0.048365116}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 1, z: 0}
       size: 1
-      tangent: {x: -0.050141335, y: 0, z: -3.95092}
-      tangent2: {x: -0.050141335, y: 0, z: -3.95092}
+      tangent: {x: -0.051011562, y: 0, z: 0.048365116}
+      tangent2: {x: -0.051011562, y: 0, z: 0.048365116}
     - _type: 0
-      position: {x: -0.062145233, y: 0, z: -0.02524376}
+      position: {x: -2.9491367, y: 0, z: 0.03741932}
       color: {r: 1, g: 1, b: 1, a: 1}
-      normal: {x: 0, y: 1, z: 0}
+      normal: {x: 0, y: 1.0000002, z: 0}
       size: 1
-      tangent: {x: -0.062145233, y: 0, z: -0.02524376}
-      tangent2: {x: -0.062145233, y: 0, z: -0.02524376}
+      tangent: {x: -2.9491367, y: 0, z: 0.03741932}
+      tangent2: {x: -2.9491367, y: 0, z: 0.03741932}
     closed: 0
     type: 3
     linearAverageDirection: 1
@@ -951,42 +767,42 @@ MonoBehaviour:
       m_RotationOrder: 4
     sampleRate: 10
   _rawSamples:
-  - position: {x: -0.050141335, y: 0, z: -3.95092}
+  - position: {x: -0.051011562, y: 0, z: 0.048365116}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.003057777, y: 0, z: 0.99999535}
+    forward: {x: -0.99999285, y: 0, z: -0.0037768274}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: -0.062145233, y: 0, z: -0.02524376}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.003057777, y: 0, z: 0.99999535}
+  - position: {x: -2.9491367, y: 0, z: 0.03741932}
+    up: {x: 0, y: 1.0000002, z: 0}
+    forward: {x: -0.99999285, y: 0, z: -0.0037768274}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: 10.949859, y: 0.5, z: 4.04908}
+  - position: {x: 2.9489884, y: 0.5, z: 4.048365}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.003057777, y: 0, z: 0.99999535}
+    forward: {x: -0.99999285, y: 0, z: -0.0037768274}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 10.937855, y: 0.5, z: 7.9747562}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.003057777, y: 0, z: 0.99999535}
+  - position: {x: 0.050863266, y: 0.5, z: 4.0374193}
+    up: {x: 0, y: 1.0000002, z: 0}
+    forward: {x: -0.99999285, y: 0, z: -0.0037768274}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: 10.949859, y: 0.5, z: 4.04908}
+    - position: {x: 2.9489884, y: 0.5, z: 4.048365}
       up: {x: 0, y: 1, z: 0}
-      forward: {x: -0.003057777, y: 0, z: 0.99999535}
+      forward: {x: -0.99999285, y: 0, z: -0.0037768274}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: 10.937855, y: 0.5, z: 7.9747562}
-      up: {x: 0, y: 1, z: 0}
-      forward: {x: -0.003057777, y: 0, z: 0.99999535}
+    - position: {x: 0.050863266, y: 0.5, z: 4.0374193}
+      up: {x: 0, y: 1.0000002, z: 0}
+      forward: {x: -0.99999285, y: 0, z: -0.0037768274}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -1005,7 +821,7 @@ MonoBehaviour:
   _sampleMode: 0
   subscribers: []
   nodes: []
---- !u!1 &7943934130225785836
+--- !u!1 &7488732890832851107
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1013,8 +829,148 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3564409817773806343}
-  - component: {fileID: 307960335026797028}
+  - component: {fileID: 6421541584403360323}
+  - component: {fileID: 8384945776696205154}
+  m_Layer: 0
+  m_Name: GrindSpline_Grind_Concrete
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6421541584403360323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7488732890832851107}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0.25, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 9133486965469641928}
+  m_Father: {fileID: 6146403649003167788}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8384945776696205154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7488732890832851107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editorPathColor: {r: 1, g: 1, b: 1, a: 1}
+  alwaysDraw: 0
+  drawThinckness: 0
+  billboardThickness: 1
+  isNewlyCreated: 0
+  multithreaded: 0
+  rebuildOnAwake: 0
+  updateMode: 0
+  triggerGroups: []
+  spline:
+    points:
+    - _type: 0
+      position: {x: 0.040802956, y: 0, z: -0.039667606}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: 0.040802956, y: 0, z: -0.039667606}
+      tangent2: {x: 0.040802956, y: 0, z: -0.039667606}
+    - _type: 0
+      position: {x: 0.07553232, y: 0, z: -3.944458}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: 0}
+      size: 1
+      tangent: {x: 0.07553232, y: 0, z: -3.944458}
+      tangent2: {x: 0.07553232, y: 0, z: -3.944458}
+    closed: 0
+    type: 3
+    linearAverageDirection: 1
+    customValueInterpolation:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    customNormalInterpolation:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    sampleRate: 10
+  _rawSamples:
+  - position: {x: 0.040802956, y: 0, z: -0.039667606}
+    up: {x: 0, y: 1, z: 0}
+    forward: {x: 0.008893688, y: 0, z: -0.9999604}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: 0.07553232, y: 0, z: -3.944458}
+    up: {x: 0, y: 1, z: 0}
+    forward: {x: 0.008893688, y: 0, z: -0.9999604}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  _transformedSamples:
+  - position: {x: 0.040802956, y: 0.5, z: 7.9603324}
+    up: {x: 0, y: 1, z: 0}
+    forward: {x: 0.008893688, y: 0, z: -0.9999604}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: 0.07553232, y: 0.5, z: 4.055542}
+    up: {x: 0, y: 1, z: 0}
+    forward: {x: 0.008893688, y: 0, z: -0.9999604}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  sampleCollection:
+    samples:
+    - position: {x: 0.040802956, y: 0.5, z: 7.9603324}
+      up: {x: 0, y: 1, z: 0}
+      forward: {x: 0.008893688, y: 0, z: -0.9999604}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      size: 1
+      percent: 0
+    - position: {x: 0.07553232, y: 0.5, z: 4.055542}
+      up: {x: 0, y: 1, z: 0}
+      forward: {x: 0.008893688, y: 0, z: -0.9999604}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      size: 1
+      percent: 1
+    optimizedIndices: 
+    sampleMode: 0
+    clipFrom: 0
+    clipTo: 1
+    loopSamples: 0
+  originalSamplePercents: []
+  _sampleCount: 2
+  _is2D: 0
+  hasSamples: 1
+  pointsDirty: 0000
+  _optimizeAngleThreshold: 0.5
+  _space: 1
+  _sampleMode: 0
+  subscribers: []
+  nodes: []
+--- !u!1 &8061731942920232923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1138397487957897864}
+  - component: {fileID: 3017077835564239927}
   m_Layer: 12
   m_Name: Grind Cols
   m_TagString: Grind_Concrete
@@ -1022,30 +978,74 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3564409817773806343
+--- !u!4 &1138397487957897864
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7943934130225785836}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.5, y: -0.025, z: 0.05000001}
+  m_GameObject: {fileID: 8061731942920232923}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.05, y: -0.025, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 559547899203613265}
+  m_Father: {fileID: 309194337677157343}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &307960335026797028
+--- !u!65 &3017077835564239927
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7943934130225785836}
+  m_GameObject: {fileID: 8061731942920232923}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.05, z: 3}
+  m_Size: {x: 0.1, y: 0.05, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8292916756533033303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9133486965469641928}
+  - component: {fileID: 3203648946900495544}
+  m_Layer: 12
+  m_Name: Grind Cols
+  m_TagString: Grind_Concrete
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9133486965469641928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292916756533033303}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.05, y: -0.025, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6421541584403360323}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3203648946900495544
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292916756533033303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.05, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
