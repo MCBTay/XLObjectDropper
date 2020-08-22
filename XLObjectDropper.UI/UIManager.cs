@@ -36,7 +36,6 @@ namespace XLObjectDropper.UI
         {
 	        var player = PlayerController.Instance.inputController.player;
 
-
             #region OptionsMenu
             if (player.GetButtonDown("Select"))
             {

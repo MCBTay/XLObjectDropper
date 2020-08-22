@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3890001537
+CRC: 839455500
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8f52aad0eb1cf3c2d0b3643ecc62df78
+    Hash: 48dde79442bfff838ee785769d0e036d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: a471a6ff4effd1f8535092bd1c8556da
+    Hash: 6869c5aa541e12f5b290e1f925abc7f9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -29,7 +29,15 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
 - Class: 108
+  Script: {instanceID: 0}
+- Class: 111
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
@@ -42,8 +50,24 @@ ClassTypes:
 - Class: 205
   Script: {instanceID: 0}
 Assets:
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Ledge_MannyPad-Brick.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/CopingRect_Metal.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/GrindRound_Metal.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Rail_Flat_Medium.prefab
 - Assets/OBJ_Dropper_Bundles/Object_TestBundle/Cube.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/CopingRound_Metal.prefab
 - Assets/OBJ_Dropper_Bundles/Object_TestBundle/Construction Light.prefab
 - Assets/OBJ_Dropper_Bundles/Object_TestBundle/Workbench.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Ledge_MannyPad.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/GrindRound_Concrete.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/GrindRect_Metal.prefab
 - Assets/OBJ_Dropper_Bundles/Object_TestBundle/Paint Supplies.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Ledge_Flat_Low_Narrow.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/CopingRound_Concrete.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Ledge_Flat_Low_Wide.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/CopingRect_Concrete.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/GrindRect_Concrete.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Ledge_Flat_Low.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/Rail_Flat_Short.prefab
+- Assets/OBJ_Dropper_Bundles/Object_TestBundle/ScaleReference.prefab
 Dependencies: []
