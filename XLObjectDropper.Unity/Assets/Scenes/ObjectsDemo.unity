@@ -1254,6 +1254,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cf2a45e29889a540b8db32400eff8e1, type: 3}
+--- !u!1001 &993862505760285404
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000008146034
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 47893408238881031, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856236302991430589, guid: 66616cb018501eb40b0c03556609aff5,
+        type: 3}
+      propertyPath: m_Name
+      value: Ledge_MannyPad-Brick
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 66616cb018501eb40b0c03556609aff5, type: 3}
 --- !u!1001 &1857501342704357370
 PrefabInstance:
   m_ObjectHideFlags: 0
