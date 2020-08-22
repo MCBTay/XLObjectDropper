@@ -86,19 +86,19 @@ MonoBehaviour:
   spline:
     points:
     - _type: 0
-      position: {x: 15.750373, y: 0.53965557, z: 7.379142}
+      position: {x: 0.00037288666, y: -0.000002259901, z: -0.031152725}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0.009322291, y: 0.9999566, z: 0}
       size: 1
-      tangent: {x: 15.750373, y: 0.53965557, z: 7.379142}
-      tangent2: {x: 15.750373, y: 0.53965557, z: 7.379142}
+      tangent: {x: 0.00037288666, y: -0.000002259901, z: -0.031152725}
+      tangent2: {x: 0.00037288666, y: -0.000002259901, z: -0.031152725}
     - _type: 0
-      position: {x: 15.750011, y: 0.5396582, z: 3.6156194}
+      position: {x: 0.000011444092, y: 0.0000003798125, z: -3.794675}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0.0002860998, y: 1, z: 0}
       size: 1
-      tangent: {x: 15.750011, y: 0.5396582, z: 3.6156194}
-      tangent2: {x: 15.750011, y: 0.5396582, z: 3.6156194}
+      tangent: {x: 0.000011444092, y: 0.0000003798125, z: -3.794675}
+      tangent2: {x: 0.000011444092, y: 0.0000003798125, z: -3.794675}
     closed: 0
     type: 3
     linearAverageDirection: 1
@@ -116,42 +116,42 @@ MonoBehaviour:
       m_RotationOrder: 4
     sampleRate: 10
   _rawSamples:
-  - position: {x: 15.750373, y: 0.53965557, z: 7.379142}
+  - position: {x: 0.00037288666, y: -0.000002259901, z: -0.031152725}
     up: {x: 0.009322291, y: 0.9999566, z: 0}
-    forward: {x: -0.00009603838, y: 0.0000006968484, z: -1}
+    forward: {x: -0.00009603837, y: 0.00000070139436, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 15.750011, y: 0.5396582, z: 3.6156194}
+  - position: {x: 0.000011444092, y: 0.0000003798125, z: -3.794675}
     up: {x: 0.00029909424, y: 1, z: 0}
-    forward: {x: -0.00009603837, y: 0.00000069684836, z: -1}
+    forward: {x: -0.00009603837, y: 0.0000007013944, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: 15.750373, y: 0.53965557, z: 7.379142}
-    up: {x: 0.009322291, y: 0.9999566, z: 0}
-    forward: {x: -0.00009603838, y: 0.0000006968484, z: -1}
+  - position: {x: 0.00037288666, y: 0.53965586, z: 1.8791417}
+    up: {x: 0.009322291, y: 0.9999566, z: -0.00000016291362}
+    forward: {x: -0.00009603837, y: 0.00000053847367, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 15.750011, y: 0.5396582, z: 3.6156194}
-    up: {x: 0.00029909424, y: 1, z: 0}
-    forward: {x: -0.00009603837, y: 0.00000069684836, z: -1}
+  - position: {x: 0.000011444092, y: 0.5396579, z: -1.8843807}
+    up: {x: 0.00029909424, y: 1, z: -0.00000016292068}
+    forward: {x: -0.00009603837, y: 0.0000005384737, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: 15.750373, y: 0.53965557, z: 7.379142}
-      up: {x: 0.009322291, y: 0.9999566, z: 0}
-      forward: {x: -0.00009603838, y: 0.0000006968484, z: -1}
+    - position: {x: 0.00037288666, y: 0.53965586, z: 1.8791417}
+      up: {x: 0.009322291, y: 0.9999566, z: -0.00000016291362}
+      forward: {x: -0.00009603837, y: 0.00000053847367, z: -1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: 15.750011, y: 0.5396582, z: 3.6156194}
-      up: {x: 0.00029909424, y: 1, z: 0}
-      forward: {x: -0.00009603837, y: 0.00000069684836, z: -1}
+    - position: {x: 0.000011444092, y: 0.5396579, z: -1.8843807}
+      up: {x: 0.00029909424, y: 1, z: -0.00000016292068}
+      forward: {x: -0.00009603837, y: 0.0000005384737, z: -1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -166,7 +166,7 @@ MonoBehaviour:
   hasSamples: 1
   pointsDirty: 0000
   _optimizeAngleThreshold: 0.5
-  _space: 0
+  _space: 1
   _sampleMode: 0
   subscribers: []
   nodes: []
@@ -226,7 +226,6 @@ GameObject:
   - component: {fileID: 8469724728451051442}
   - component: {fileID: 4766315086168301591}
   - component: {fileID: 7332331989958481117}
-  - component: {fileID: 8214628089256724549}
   - component: {fileID: 8214628089256724570}
   m_Layer: 0
   m_Name: Rail_Flat_Medium
@@ -242,8 +241,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9133671028585329928}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.75, y: 0, z: 5.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8214628088667626862}
@@ -297,33 +296,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8214628089256724549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9133671028585329928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af41b5cb1e60453381ec6e9ed0409554, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Splines:
-  - {fileID: 8214628088667626863}
-  SurfaceType: 0
-  IsRound: 0
-  ColliderGenerationSettings:
-    ColliderType: 0
-    Radius: 0.1
-    Width: 0.1
-    Depth: 0.05
-    IsEdge: 0
-    AutoDetectEdgeAlignment: 0
-    LayerMask:
-      serializedVersion: 2
-      m_Bits: 1
-    FlipEdge: 0
 --- !u!64 &8214628089256724570
 MeshCollider:
   m_ObjectHideFlags: 0

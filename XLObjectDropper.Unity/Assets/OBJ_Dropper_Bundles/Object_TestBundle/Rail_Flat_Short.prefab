@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5190351502676812463}
   m_Layer: 12
   m_Name: Grind Cols
-  m_TagString: Grind_Concrete
+  m_TagString: Grind_Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4404376031329432860}
   - component: {fileID: 7132709730266820392}
   m_Layer: 0
-  m_Name: GrindSpline_Grind_Concrete
+  m_Name: GrindSpline_Grind_Metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,19 +101,19 @@ MonoBehaviour:
   spline:
     points:
     - _type: 0
-      position: {x: 15.249915, y: 0.28965878, z: 3.576429}
+      position: {x: -0.000084877014, y: 0.0000009808804, z: 0.015935898}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: -0.0021218688, y: 0.99999774, z: 0.0000059603058}
       size: 1
-      tangent: {x: 15.249915, y: 0.28965878, z: 3.576429}
-      tangent2: {x: 15.249915, y: 0.28965878, z: 3.576429}
+      tangent: {x: -0.000084877014, y: 0.0000009808804, z: 0.015935898}
+      tangent2: {x: -0.000084877014, y: 0.0000009808804, z: 0.015935898}
     - _type: 0
-      position: {x: 15.250605, y: 0.28965437, z: 7.41905}
+      position: {x: 0.0006046295, y: -0.000003430057, z: 3.8585572}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0.015115309, y: 0.99988574, z: 0}
       size: 1
-      tangent: {x: 15.250605, y: 0.28965437, z: 7.41905}
-      tangent2: {x: 15.250605, y: 0.28965437, z: 7.41905}
+      tangent: {x: 0.0006046295, y: -0.000003430057, z: 3.8585572}
+      tangent2: {x: 0.0006046295, y: -0.000003430057, z: 3.8585572}
     closed: 0
     type: 3
     linearAverageDirection: 1
@@ -131,28 +131,28 @@ MonoBehaviour:
       m_RotationOrder: 4
     sampleRate: 10
   _rawSamples:
-  - position: {x: 15.249915, y: 0.28965878, z: 3.576429}
+  - position: {x: -0.000084877014, y: 0.0000009808804, z: 0.015935898}
     up: {x: -0.0021218688, y: 0.99999774, z: 0.0000059603058}
-    forward: {x: 0.00017943651, y: -0.0000011478476, z: 1}
+    forward: {x: 0.00017943651, y: -0.000001147898, z: 1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 15.250605, y: 0.28965437, z: 7.41905}
+  - position: {x: 0.0006046295, y: -0.000003430057, z: 3.8585572}
     up: {x: 0.015113473, y: 0.99988574, z: 6.343725e-10}
-    forward: {x: 0.00017943651, y: -0.0000011478477, z: 1}
+    forward: {x: 0.00017943651, y: -0.000001147898, z: 1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   _transformedSamples:
   - position: {x: 15.249915, y: 0.28965878, z: 3.576429}
     up: {x: -0.0021218688, y: 0.99999774, z: 0.0000059603058}
-    forward: {x: 0.00017943651, y: -0.0000011478476, z: 1}
+    forward: {x: 0.00017943651, y: -0.000001147898, z: 1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   - position: {x: 15.250605, y: 0.28965437, z: 7.41905}
-    up: {x: 0.015113473, y: 0.99988574, z: 6.343725e-10}
-    forward: {x: 0.00017943651, y: -0.0000011478477, z: 1}
+    up: {x: 0.015113473, y: 0.99988574, z: 6.3437255e-10}
+    forward: {x: 0.00017943651, y: -0.000001147898, z: 1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
@@ -160,13 +160,13 @@ MonoBehaviour:
     samples:
     - position: {x: 15.249915, y: 0.28965878, z: 3.576429}
       up: {x: -0.0021218688, y: 0.99999774, z: 0.0000059603058}
-      forward: {x: 0.00017943651, y: -0.0000011478476, z: 1}
+      forward: {x: 0.00017943651, y: -0.000001147898, z: 1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
     - position: {x: 15.250605, y: 0.28965437, z: 7.41905}
-      up: {x: 0.015113473, y: 0.99988574, z: 6.343725e-10}
-      forward: {x: 0.00017943651, y: -0.0000011478477, z: 1}
+      up: {x: 0.015113473, y: 0.99988574, z: 6.3437255e-10}
+      forward: {x: 0.00017943651, y: -0.000001147898, z: 1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -181,7 +181,7 @@ MonoBehaviour:
   hasSamples: 1
   pointsDirty: 0000
   _optimizeAngleThreshold: 0.5
-  _space: 0
+  _space: 1
   _sampleMode: 0
   subscribers: []
   nodes: []
@@ -197,7 +197,6 @@ GameObject:
   - component: {fileID: 7641251803265391239}
   - component: {fileID: 5615946190574235213}
   - component: {fileID: 2122330861395151944}
-  - component: {fileID: 7668574305656038031}
   m_Layer: 12
   m_Name: Rail_Flat_Short
   m_TagString: Untagged
@@ -212,8 +211,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6264266556797947800}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.25, y: 0, z: 5.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4404376031329432860}
@@ -281,29 +280,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -462981019419857548, guid: d41ab35e8c167d04f8ea388f5422093b, type: 3}
---- !u!114 &7668574305656038031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6264266556797947800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af41b5cb1e60453381ec6e9ed0409554, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Splines: []
-  SurfaceType: 0
-  IsRound: 0
-  ColliderGenerationSettings:
-    ColliderType: 1
-    Radius: 0.1
-    Width: 0.1
-    Depth: 0.05
-    IsEdge: 0
-    AutoDetectEdgeAlignment: 0
-    LayerMask:
-      serializedVersion: 2
-      m_Bits: 1
-    FlipEdge: 0

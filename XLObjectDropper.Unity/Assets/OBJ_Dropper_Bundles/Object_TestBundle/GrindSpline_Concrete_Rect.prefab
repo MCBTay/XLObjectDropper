@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3742656874052983536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.75, y: 0.5, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -229,13 +229,13 @@ MonoBehaviour:
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: -1.7200102, y: 0.5, z: 4.0758734}
+  - position: {x: 0.029989839, y: 0, z: -1.9241266}
     up: {x: 0, y: 1, z: 0}
     forward: {x: 0.004527853, y: 0, z: 0.99998975}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: -1.7025226, y: 0.5, z: 7.9380455}
+  - position: {x: 0.047477365, y: 0, z: 1.9380455}
     up: {x: 0, y: 1, z: 0}
     forward: {x: 0.004527853, y: 0, z: 0.99998975}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -243,13 +243,13 @@ MonoBehaviour:
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: -1.7200102, y: 0.5, z: 4.0758734}
+    - position: {x: 0.029989839, y: 0, z: -1.9241266}
       up: {x: 0, y: 1, z: 0}
       forward: {x: 0.004527853, y: 0, z: 0.99998975}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: -1.7025226, y: 0.5, z: 7.9380455}
+    - position: {x: 0.047477365, y: 0, z: 1.9380455}
       up: {x: 0, y: 1, z: 0}
       forward: {x: 0.004527853, y: 0, z: 0.99998975}
       color: {r: 1, g: 1, b: 1, a: 1}
