@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8214628088667626862}
-  - component: {fileID: 8214628088667626863}
   - component: {fileID: 8214628088667626857}
   m_Layer: 0
   m_Name: GrindSpline_Grind_Metal
@@ -33,35 +32,6 @@ Transform:
   m_Father: {fileID: 8469724728451051442}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8214628088667626863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8214628088667626860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb3cc901b7f01d74489be9ef70a5506d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SurfaceType: 1
-  IsRound: 0
-  ColliderGenerationSettings:
-    ColliderType: 1
-    Radius: 0.04
-    Width: 0.1
-    Depth: 0.05
-    IsEdge: 1
-    AutoDetectEdgeAlignment: 0
-    LayerMask:
-      serializedVersion: 2
-      m_Bits: 1
-    FlipEdge: 0
-  PointsContainer: {fileID: 8214628088667626862}
-  ColliderContainer: {fileID: 0}
-  GeneratedColliders:
-  - {fileID: 8214628089100408917}
 --- !u!114 &8214628088667626857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,29 +99,29 @@ MonoBehaviour:
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: 0.00037288666, y: 0.53965586, z: 1.8791417}
-    up: {x: 0.009322291, y: 0.9999566, z: -0.00000016291362}
-    forward: {x: -0.00009603837, y: 0.00000053847367, z: -1}
+  - position: {x: 0.00037288666, y: 0.53965557, z: 1.8791418}
+    up: {x: 0.009322291, y: 0.9999566, z: 0}
+    forward: {x: -0.00009603837, y: 0.00000070139436, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 0.000011444092, y: 0.5396579, z: -1.8843807}
-    up: {x: 0.00029909424, y: 1, z: -0.00000016292068}
-    forward: {x: -0.00009603837, y: 0.0000005384737, z: -1}
+  - position: {x: 0.000011444092, y: 0.5396582, z: -1.8843806}
+    up: {x: 0.00029909424, y: 1, z: 0}
+    forward: {x: -0.00009603837, y: 0.0000007013944, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: 0.00037288666, y: 0.53965586, z: 1.8791417}
-      up: {x: 0.009322291, y: 0.9999566, z: -0.00000016291362}
-      forward: {x: -0.00009603837, y: 0.00000053847367, z: -1}
+    - position: {x: 0.00037288666, y: 0.53965557, z: 1.8791418}
+      up: {x: 0.009322291, y: 0.9999566, z: 0}
+      forward: {x: -0.00009603837, y: 0.00000070139436, z: -1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: 0.000011444092, y: 0.5396579, z: -1.8843807}
-      up: {x: 0.00029909424, y: 1, z: -0.00000016292068}
-      forward: {x: -0.00009603837, y: 0.0000005384737, z: -1}
+    - position: {x: 0.000011444092, y: 0.5396582, z: -1.8843806}
+      up: {x: 0.00029909424, y: 1, z: 0}
+      forward: {x: -0.00009603837, y: 0.0000007013944, z: -1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
