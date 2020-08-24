@@ -132,11 +132,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObjectSelectionListItem.cs" />
     <Compile Include="ObjectPlacementUI.cs" />
     <Compile Include="ObjectSelectionUI.cs" />
     <Compile Include="OptionsMenuUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIManager.cs" />
+    <Compile Include="UIScrollToSelection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

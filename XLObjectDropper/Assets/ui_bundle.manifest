@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1132494915
+CRC: 2464927013
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2398688a98fe99e611139b93b76790fd
+    Hash: d248e8cca964e90c607fe292e1306581
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6dbfad6c0f6ec84261c80c974e3a9150
+    Hash: 0e9976fa6819ab13fa1acf4c6c5bbeb9
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -24,7 +24,11 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
 - Class: 114
@@ -34,11 +38,15 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 470394671, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
 - Class: 114
+  Script: {fileID: -45407270, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+- Class: 114
   Script: {fileID: 1060342008, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
 - Class: 114
   Script: {fileID: -1655278826, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
 - Class: 114
   Script: {fileID: 2040033396, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+- Class: 114
+  Script: {fileID: -538635808, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
@@ -51,8 +59,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
 - Class: 114
@@ -73,4 +79,5 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab
+- Assets/OBJ_Dropper_Bundles/UI_Bundle/ListItem.prefab
 Dependencies: []

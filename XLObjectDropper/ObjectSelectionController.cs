@@ -4,102 +4,69 @@ using GameManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityModManagerNet;
+using XLObjectDropper.UI;
 
 namespace XLObjectDropper
 {
-	public class ObjectSelectionController : ListViewController<ObjectInfo>
+	public class ObjectSelectionController : MonoBehaviour, ISelectHandler
 	{
-		public GameObject ObjectCategoryButtonGameObject;
+		public static ObjectSelectionUI ObjectSelection { get; set; }
 
-        public CategoryButton ObjectCategoryButton;
-        [SerializeField]
-        private ObjectListItem m_itemPrefab;
+		public static GameObject ListItemPrefab { get; set; }
 
-        public bool showCustom { get; private set; }
+		private void Awake()
+		{
 
-        public override ListViewItem<ObjectInfo> ItemPrefab
-        {
-            get
-            {
-                return (ListViewItem<ObjectInfo>)m_itemPrefab;
-            }
-        }
+		}
 
-        public override List<ObjectInfo> Items
-        {
-            get
-            {
-	            return Assets;
-            }
-        }
-
-        public List<ObjectInfo> Assets { get; set; }
-
-        private void Awake()
-        {
-            Debug.Log("XLObjectDropper: ObjectSelectionController.Awake()");
-
-            Assets = new List<ObjectInfo>();
-            
-            m_itemPrefab = new ObjectListItem();
-
-            scrollRect.content = new RectTransform();
-
-            ObjectCategoryButtonGameObject = new GameObject();
-            //ObjectCategoryButtonGameObject.transform.SetParent(gameObject.transform);
-            ObjectCategoryButton = ObjectCategoryButtonGameObject.AddComponent<CategoryButton>();
-	        ObjectCategoryButton.Label = ObjectCategoryButton.gameObject.AddComponent<TextMeshProUGUI>();
-	        
-            ObjectCategoryButton.OnNextCategory += ToggleShowCustom;
-            ObjectCategoryButton.OnPreviousCategory += ToggleShowCustom;
-
-            foreach (var item in AssetBundleHelper.LoadedAssets)
-            {
-                Assets.Add(new ObjectInfo { name = item.name });
-            }
-        }
-
-        private void OnEnable()
-        {
-	        enabled = true;
-	        gameObject.SetActive(true);
-
-	        ObjectCategoryButtonGameObject.SetActive(true);
-
-
-            UpdateList();
-        }
-
-        public void ToggleShowCustom()
-        {
-            showCustom = !showCustom;
-            UpdateList();
-            ObjectCategoryButton.Label.text = this.showCustom ? "Custom Objs" : "Official Objs";
-        }
-
-        protected override void Update()
-        {
-            //base.Update();
-			if (EventSystem.current.currentSelectedGameObject == null || !EventSystem.current.currentSelectedGameObject.activeInHierarchy)
+		private void OnEnable()
+		{
+			// Clear list
+			for (var i = ObjectSelection.ListContent.transform.childCount - 1; i >= 0; i--)
 			{
-				if (ItemViews.Count > 0)
-					EventSystem.current.SetSelectedGameObject(ItemViews.First<ListViewItem<ObjectInfo>>().gameObject);
-				else
-					EventSystem.current.SetSelectedGameObject(ObjectCategoryButton.gameObject);
+				// objectA is not the attached GameObject, so you can do all your checks with it.
+				var objectA = ObjectSelection.ListContent.transform.GetChild(i);
+				objectA.transform.parent = null;
+				// Optionally destroy the objectA if not longer needed
 			}
 
-			if (!PlayerController.Instance.inputController.player.GetButtonDown("LB") && !PlayerController.Instance.inputController.player.GetButtonDown("RB"))
-				return;
+			if (ListItemPrefab != null)
+			{
+				// Populate List
+				foreach (var item in AssetBundleHelper.LoadedAssets)
+				{
+					var listItem = Object.Instantiate(ListItemPrefab, ObjectSelection.ListContent.transform);
+					listItem.GetComponentInChildren<TMP_Text>().SetText(item.name);
+					listItem.GetComponent<Button>().onClick.AddListener(() => ObjectSelected(item));
 
-			ToggleShowCustom();
-        }
+					listItem.SetActive(true);
+				}
+			}
+		}
 
-        public override void OnItemSelected(ObjectInfo selectedObject)
-        {
-            // set preview object, close menu
-            Debug.Log("XLObjectDropper: You selected an object, yay!");
-        }
-    }
+		private void ObjectSelected(GameObject gameObject)
+		{
+			UnityModManager.Logger.Log("You clicked an item: " + gameObject.name);
+			// Exit object selection state, set this item as the preview object
+		}
+
+		private void OnDisable()
+		{
+			
+		}
+
+		public void OnSelect(BaseEventData eventData)
+		{
+			UnityModManager.Logger.Log(this.gameObject.name + " was selected");
+		}
+
+		private void Update()
+		{
+			
+		}
+	}
 
 	public class ObjectInfo
 	{

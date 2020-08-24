@@ -16,9 +16,13 @@ namespace XLObjectDropper.UserInterface
 		{
 			if (UIManager.Instance == null)
 			{
-				UserInterface = AssetBundleHelper.LoadUIBundle();
+				AssetBundleHelper.LoadUIBundle();
+				UserInterface = Object.Instantiate(AssetBundleHelper.UIPrefab);
 
 				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>(true);
+
+				ObjectSelectionController.ObjectSelection = UserInterface.GetComponentInChildren<ObjectSelectionUI>(true);
+				ObjectSelectionController.ListItemPrefab = AssetBundleHelper.ListItemPrefab;
 			}
 		}
 

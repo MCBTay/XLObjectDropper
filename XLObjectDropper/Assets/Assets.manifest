@@ -1,12 +1,16 @@
 ManifestFileVersion: 0
+<<<<<<< HEAD
 CRC: 3711998883
+=======
+CRC: 3399125920
+>>>>>>> 67c94b53fa3d2be4a99a9a960f189225c455e651
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: ui_bundle
+      Name: object_testbundle
       Dependencies: {}
     Info_1:
-      Name: object_testbundle
+      Name: ui_bundle
       Dependencies: {}
     Info_2:
       Name: ausbundle
