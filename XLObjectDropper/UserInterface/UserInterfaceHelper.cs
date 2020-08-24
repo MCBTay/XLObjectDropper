@@ -2,7 +2,6 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityModManagerNet;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 
@@ -18,6 +17,7 @@ namespace XLObjectDropper.UserInterface
 			{
 				AssetBundleHelper.LoadUIBundle();
 				UserInterface = Object.Instantiate(AssetBundleHelper.UIPrefab);
+				UIManager.Instance.Player = PlayerController.Instance.inputController.player;
 
 				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>(true);
 

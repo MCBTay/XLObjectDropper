@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using Rewired;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace XLObjectDropper.UI
 {
     public class UIManager : MonoBehaviour
     {
+        [HideInInspector] public Player Player { get; set; }
+
         [Header("Master Elements")]
         // Master Elements
         public GameObject ObjectPlacementUI;
@@ -29,16 +32,18 @@ namespace XLObjectDropper.UI
             ObjectPlacementUI.SetActive(true);
             ObjectSelectionUI.SetActive(false);
             OptionsMenuUI.SetActive(false);
+
+            //if (Application.isEditor)
+            //{
+            //    Player = new Player()
+            //}
         }
 
         // Update is called once per frame
         private void Update()
         {
-	        var player = PlayerController.Instance.inputController.player;
-
-
-            #region OptionsMenu
-            if (player.GetButtonDown("Select"))
+	        #region OptionsMenu
+            if (Player.GetButtonDown("Select"))
             {
 	            if (!OptionsMenuUI.activeInHierarchy)
 	            {
@@ -51,9 +56,9 @@ namespace XLObjectDropper.UI
 		            ObjectPlacementUI.SetActive(true);
 	            }
             }
-            #endregion
+			#endregion
 
-            if (player.GetButtonDown("Start"))
+            if (Player.GetButtonDown("Start"))
             {
 	            if (!ObjectSelectionUI.activeInHierarchy)
 	            {

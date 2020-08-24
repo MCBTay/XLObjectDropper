@@ -35,13 +35,9 @@
       <HintPath>..\XLObjectDropper\References\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\XLObjectDropper\References\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Rewired_Core">
       <HintPath>..\XLObjectDropper\References\Rewired_Core.dll</HintPath>
-      <Private>False</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -116,10 +112,6 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\XLObjectDropper\References\UnityEngine.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.UIElementsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIModule">

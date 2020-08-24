@@ -35,15 +35,15 @@ namespace XLObjectDropper.UI
 
 		private void Update()
 		{
-			var player = PlayerController.Instance.inputController.player;
+			//var Player = PlayerController.Instance.inputController.Player;
 
             #region Right bumper
-            if (player.GetButtonDown("RB"))
+            if (UIManager.Instance.Player.GetButtonDown("RB"))
             {
                 MainScreen_UI.SetActive(false);
                 RB_UI.SetActive(true);
             }
-            if (player.GetButtonUp("RB"))
+            if (UIManager.Instance.Player.GetButtonUp("RB"))
             {
                 MainScreen_UI.SetActive(true);
                 RB_UI.SetActive(false);
@@ -51,12 +51,12 @@ namespace XLObjectDropper.UI
             #endregion
 
             #region Left Bumper
-            if (player.GetButtonDown("LB"))
+            if (UIManager.Instance.Player.GetButtonDown("LB"))
             {
                 MainScreen_UI.SetActive(false);
                 LB_UI.SetActive(true);
             }
-            if (player.GetButtonUp("LB"))
+            if (UIManager.Instance.Player.GetButtonUp("LB"))
             {
                 MainScreen_UI.SetActive(true);
                 LB_UI.SetActive(false);
@@ -64,7 +64,7 @@ namespace XLObjectDropper.UI
             #endregion
 
             #region Right Trigger
-            var axisTest_RT = player.GetAxis("RT");
+            var axisTest_RT = UIManager.Instance.Player.GetAxis("RT");
             if (axisTest_RT > .1)
             {
                 if (LB_UI.activeInHierarchy == false)
@@ -79,7 +79,7 @@ namespace XLObjectDropper.UI
             #endregion
 
             #region Left Trigger
-            var axisTest_LT = player.GetAxis("LT");
+            var axisTest_LT = UIManager.Instance.Player.GetAxis("LT");
             if (axisTest_LT > .1)
             {
                 if (LB_UI.activeInHierarchy == false)
@@ -95,7 +95,7 @@ namespace XLObjectDropper.UI
 
             #region Directional Pad
             #region Directional Pad X
-            var axisTest_DPadX = player.GetAxis("DPadX");
+            var axisTest_DPadX = UIManager.Instance.Player.GetAxis("DPadX");
             if (axisTest_DPadX < 0)
             {
                 Dpad_Left.SetActive(true);
@@ -115,7 +115,7 @@ namespace XLObjectDropper.UI
             #endregion
 
             #region Directional Pad Y
-            var axisTest_DPadY = player.GetAxis("DPadY");
+            var axisTest_DPadY = UIManager.Instance.Player.GetAxis("DPadY");
             if (axisTest_DPadY < 0)
             {
                 Dpad_Down.SetActive(true);
