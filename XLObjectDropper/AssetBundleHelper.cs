@@ -1,22 +1,60 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityModManagerNet;
+using Object = UnityEngine.Object;
 
 namespace XLObjectDropper
 {
-	public class AssetBundleHelper
+	public static class AssetBundleHelper
 	{
 		public static List<GameObject> LoadedAssets { get; set; }
 
-		public static void LoadDefaultBundles()
+		static AssetBundleHelper()
 		{
 			LoadedAssets = new List<GameObject>();
+		}
 
+		public static void LoadDefaultBundles()
+		{
 			LoadBundle("XLObjectDropper.Assets.object_testbundle", true);
 		}
 
-		public static void DisposeDefaultBundles()
+		public static void LoadUserBundles()
 		{
+			var assetPackDirectory = Path.Combine(Main.ModPath, "AssetPacks");
+
+			if (!Directory.Exists(assetPackDirectory))
+			{
+				Directory.CreateDirectory(assetPackDirectory);
+			}
+
+			foreach (var assetPack in Directory.GetFiles(assetPackDirectory, "*", SearchOption.AllDirectories))
+			{
+				if (Path.HasExtension(assetPack)) continue;
+
+				try
+				{
+					LoadBundle(assetPack);
+				}
+				catch (Exception e)
+				{
+					UnityModManager.Logger.Log("XLObjectDropper: Failed to load asset pack: " + assetPack);
+				}
+			}
+		}
+
+		public static void DisposeLoadedAssets()
+		{
+			foreach (var gameObject in LoadedAssets)
+			{
+				gameObject.SetActive(false);
+				Object.Destroy(gameObject);
+			}
+
 			LoadedAssets.Clear();
 		}
 

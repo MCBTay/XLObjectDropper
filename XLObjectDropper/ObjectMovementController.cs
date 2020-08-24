@@ -11,11 +11,11 @@ namespace XLObjectDropper
 {
 	public class ObjectMovementController : MonoBehaviour
 	{
-		public GameObject PreviewObject { get; set; }
+		public static GameObject PreviewObject { get; set; }
         public List<GameObject> SpawnedObjects { get; set; }
         
 		private TMP_Text ZoomInOutText { get; set; }
-		private static PinMovementController PinMovementController { get; set; }
+		public static PinMovementController PinMovementController { get; set; }
 		private static GameObject OriginalPinObject { get; set; }
 
 		private static bool OptionsMenuShown { get; set; }
@@ -23,6 +23,7 @@ namespace XLObjectDropper
 		private static OptionsMenuController OptionsMenuController { get; set; }
 
 		private static bool ObjectSelectionShown { get; set; }
+		private static bool ObjectSelected { get; set; }
 		private static GameObject ObjectSelectionGameObject;
 		private static ObjectSelectionController ObjectSelectionController { get; set; }
 
@@ -45,10 +46,11 @@ namespace XLObjectDropper
 
 			ObjectSelectionGameObject = new GameObject();
 			ObjectSelectionController = OptionsMenuGameObject.AddComponent<ObjectSelectionController>();
+			ObjectSelectionController.ObjectSelected += ObjectSelectionControllerOnObjectSelected;
 
-			InstantiatePreviewObject();
+			//InstantiatePreviewObject();
 
-			PreviewObject.SetActive(false);
+			//PreviewObject.SetActive(false);
 			
 	        //DontDestroyOnLoad(PreviewObject);
 
@@ -61,6 +63,11 @@ namespace XLObjectDropper
 			enabled = false;
         }
 
+		private void ObjectSelectionControllerOnObjectSelected()
+		{
+			ObjectSelected = true;
+		}
+
 		private void OnEnable()
         {
 	        enabled = true;
@@ -70,7 +77,7 @@ namespace XLObjectDropper
 
 			PinMovementController.PinRenderer.enabled = false;
 
-			PreviewObject.SetActive(true);
+			//PreviewObject.SetActive(true);
 
 			ZoomInOutText = GameStateMachine.Instance.PinObject.GetComponentInChildren<TMP_Text>();
 			ZoomInOutText?.gameObject?.SetActive(false);
@@ -93,7 +100,7 @@ namespace XLObjectDropper
 
         private void Update()
         {
-	        Time.timeScale = OptionsMenuShown ? 0.0f : 1.0f;
+	        Time.timeScale = OptionsMenuShown || ObjectSelectionShown ? 0.0f : 1.0f;
 
 	        UpdateGroundLevel();
 
@@ -110,11 +117,11 @@ namespace XLObjectDropper
 
 		        return;
 	        }
-			else if (ObjectSelectionShown)
+			if (ObjectSelectionShown)
 	        {
 		        if (player.GetButtonDown("Start"))
 		        {
-			        ObjectSelectionGameObject.SetActive(true);
+			        ObjectSelectionGameObject.SetActive(false);
 			        ObjectSelectionShown = !ObjectSelectionShown;
 		        }
 
@@ -159,12 +166,15 @@ namespace XLObjectDropper
 			}
 			else
 	        {
-		        // If dpad up/down, move object up/down
-		        var scaleFactor = 10f;
-		        Vector2 dpad = player.GetAxis2D("DPadX", "DPadY");
-		        PreviewObject.transform.position = new Vector3(PreviewObject.transform.position.x, PreviewObject.transform.position.y + dpad.y / scaleFactor, PreviewObject.transform.position.z);
+				// If dpad up/down, move object up/down
+				if (PreviewObject != null)
+				{
+					var scaleFactor = 10f;
+					Vector2 dpad = player.GetAxis2D("DPadX", "DPadY");
+					PreviewObject.transform.position = new Vector3(PreviewObject.transform.position.x, PreviewObject.transform.position.y + dpad.y / scaleFactor, PreviewObject.transform.position.z);
+				}
 
-		        if (player.GetButtonDown("A") && PreviewObject.activeSelf)
+				if (player.GetButtonDown("A") && PreviewObject != null && PreviewObject.activeSelf)
 				{
 					// If a, place object and delete preview
 					Debug.Log("XLObjectDropper: Pressed A");
@@ -203,7 +213,7 @@ namespace XLObjectDropper
 					// if y, delete highlighted object (if any)
 					Debug.Log("XLObjectDropper: Pressed Y");
 				}
-				else if (player.GetButtonDown("Left Stick Button"))
+				else if (player.GetButtonDown("Left Stick Button") && PreviewObject != null)
 		        {
 					PreviewObject.transform.localScale = Vector3.one;
 					PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;

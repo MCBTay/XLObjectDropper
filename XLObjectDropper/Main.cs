@@ -41,6 +41,7 @@ namespace XLObjectDropper
 
 				UserInterfaceHelper.CreateObjectDropperButton();
 				AssetBundleHelper.LoadDefaultBundles();
+				AssetBundleHelper.LoadUserBundles();
 			}
 			else
 			{
@@ -54,7 +55,7 @@ namespace XLObjectDropper
 		static bool Unload(UnityModManager.ModEntry modEntry)
 		{
 			UserInterfaceHelper.DestroyObjectDropperButton();
-			AssetBundleHelper.DisposeDefaultBundles();
+			AssetBundleHelper.DisposeLoadedAssets();
 
 			Harmony?.UnpatchAll();
 			return true;
