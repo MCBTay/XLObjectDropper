@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
 
-namespace XLObjectDropper
+namespace XLObjectDropper.Controllers
 {
 	public class OptionsMenuController : MonoBehaviour
 	{

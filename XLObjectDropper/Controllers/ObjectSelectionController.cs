@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XLObjectDropper.UI;
 
-namespace XLObjectDropper
+namespace XLObjectDropper.Controllers
 {
 	public class ObjectSelectionController : MonoBehaviour
 	{

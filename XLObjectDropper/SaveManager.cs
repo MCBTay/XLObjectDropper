@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityModManagerNet;
+using XLObjectDropper.Controllers;
 using Object = UnityEngine.Object;
 
 namespace XLObjectDropper

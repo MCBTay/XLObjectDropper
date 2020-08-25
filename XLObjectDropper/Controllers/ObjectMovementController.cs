@@ -7,7 +7,7 @@ using UnityEngine;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UserInterface;
 
-namespace XLObjectDropper
+namespace XLObjectDropper.Controllers
 {
 	public class ObjectMovementController : MonoBehaviour
 	{
@@ -24,7 +24,8 @@ namespace XLObjectDropper
 
 		private static bool ObjectSelectionShown { get; set; }
 		private static Spawnable SelectedObject { get; set; }
-		private static GameObject ObjectSelectionGameObject;
+
+		private static GameObject ObjectSelectionMenuGameObject;
 		private static ObjectSelectionController ObjectSelectionController { get; set; }
 
 		public static ObjectMovementController Instance { get; set; }
@@ -44,7 +45,7 @@ namespace XLObjectDropper
 			OptionsMenuGameObject = new GameObject();
 			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
 
-			ObjectSelectionGameObject = new GameObject();
+			ObjectSelectionMenuGameObject = new GameObject();
 			ObjectSelectionController = OptionsMenuGameObject.AddComponent<ObjectSelectionController>();
 			ObjectSelectionController.ObjectSelected += ObjectSelectionControllerOnObjectSelected;
 
@@ -120,16 +121,16 @@ namespace XLObjectDropper
 
 		        return;
 	        }
-			if (ObjectSelectionShown)
+	        if (ObjectSelectionShown)
 	        {
 		        if (player.GetButtonDown("Start"))
 		        {
-			        ObjectSelectionGameObject.SetActive(false);
+			        ObjectSelectionMenuGameObject.SetActive(false);
 			        ObjectSelectionShown = !ObjectSelectionShown;
 		        }
 
 		        return;
-			}
+	        }
 
 			if (player.GetButtonSinglePressHold("LB"))
 			{
@@ -171,7 +172,8 @@ namespace XLObjectDropper
 
 					PlaceObject();
 				}
-				else if (player.GetButtonDown("X"))
+				
+				if (player.GetButtonDown("X"))
 				{
 					// if x, open new object selection menu
 					Debug.Log("XLObjectDropper: Pressed X");
@@ -179,25 +181,28 @@ namespace XLObjectDropper
 
 					GameStateMachine.Instance.RequestTransitionTo(typeof(ObjectSelectionState));
 				}
-				else if (player.GetButtonDown("Y"))
+				
+				if (player.GetButtonDown("Y"))
 		        {
 					// if y, delete highlighted object (if any)
 					Debug.Log("XLObjectDropper: Pressed Y");
 				}
-				else if (player.GetButtonDown("Left Stick Button") && PreviewObject != null)
+				
+				if (player.GetButtonDown("Left Stick Button") && PreviewObject != null)
 		        {
 					PreviewObject.transform.localScale = Vector3.one;
 					PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
 				}
-				else if (player.GetButtonDown("Select"))
+				
+				if (player.GetButtonDown("Select"))
 		        {
 			        OptionsMenuShown = !OptionsMenuShown;
 					OptionsMenuGameObject.SetActive(OptionsMenuShown);
 		        }
-				else if (player.GetButtonDown("Start"))
+				if (player.GetButtonDown("Start"))
 		        {
 					ObjectSelectionShown = !ObjectSelectionShown;
-					ObjectSelectionGameObject.SetActive(ObjectSelectionShown);
+					ObjectSelectionMenuGameObject.SetActive(ObjectSelectionShown);
 				}
 	        }
         }
