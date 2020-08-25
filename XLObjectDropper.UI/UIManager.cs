@@ -27,16 +27,24 @@ namespace XLObjectDropper.UI
             Debug.Log("[XLObjectDropper.UI] UIManager.dll Initialized");
             Debug.Log("[XLObjectDropper.UI] UIManager version 0.1.7");
             
-            // Hide UI at start
-            // Master UIs
-            ObjectPlacementUI.SetActive(true);
-            ObjectSelectionUI.SetActive(false);
-            OptionsMenuUI.SetActive(false);
+            SetDefaultState();
 
             //if (Application.isEditor)
             //{
             //    Player = new Player()
             //}
+        }
+
+        private void OnEnable()
+        {
+	        SetDefaultState();
+        }
+
+        private void SetDefaultState()
+        {
+	        ObjectPlacementUI.SetActive(true);
+	        ObjectSelectionUI.SetActive(false);
+	        OptionsMenuUI.SetActive(false);
         }
 
         // Update is called once per frame
