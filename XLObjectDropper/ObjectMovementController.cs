@@ -1,13 +1,11 @@
-﻿using System;
-using GameManagement;
+﻿using GameManagement;
 using Rewired;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UserInterface;
-using Object = UnityEngine.Object;
 
 namespace XLObjectDropper
 {
@@ -228,7 +226,10 @@ namespace XLObjectDropper
 
         private void HandleScaling(Player player)
         {
-	        var scaleFactor = 15f * (1 - Settings.Instance.Sensitivity);
+	        var scaleFactor = 15f;
+	        if (!Mathf.Approximately(Settings.Instance.Sensitivity, 1)) scaleFactor *= Settings.Instance.Sensitivity;
+		    else scaleFactor = 1;
+
 	        Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
 	        var scale = rightStick.y / scaleFactor;
 
