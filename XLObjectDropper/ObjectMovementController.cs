@@ -25,15 +25,13 @@ namespace XLObjectDropper
 		private static OptionsMenuController OptionsMenuController { get; set; }
 
 		private static bool ObjectSelectionShown { get; set; }
-		private static bool ObjectSelected { get; set; }
+		private static Spawnable SelectedObject { get; set; }
 		private static GameObject ObjectSelectionGameObject;
 		private static ObjectSelectionController ObjectSelectionController { get; set; }
 
 		public static ObjectMovementController Instance { get; set; }
 
 		private static int CurrentScaleMode { get; set; }
-
-		private int counter = 0;
 
 		private void Awake()
 		{
@@ -62,9 +60,9 @@ namespace XLObjectDropper
 			enabled = false;
         }
 
-		private void ObjectSelectionControllerOnObjectSelected()
+		private void ObjectSelectionControllerOnObjectSelected(Spawnable spawnable)
 		{
-			ObjectSelected = true;
+			SelectedObject = spawnable;
 		}
 
 		private void OnEnable()
@@ -96,6 +94,7 @@ namespace XLObjectDropper
 			PreviewObject?.SetActive(false);
         }
 
+        private int originalLayer = -1;
 
         private void Update()
         {
@@ -105,11 +104,12 @@ namespace XLObjectDropper
 
 	        Player player = PlayerController.Instance.inputController.player;
 
-	        if (ObjectSelected)
+	        if (SelectedObject != null)
 	        {
 		        Time.timeScale = 1.0f;
-		        ObjectSelected = false;
 		        ObjectSelectionShown = false;
+		        originalLayer = SelectedObject.OriginalLayer;
+		        SelectedObject = null;
 		        return;
 	        }
 	        if (OptionsMenuShown)
@@ -137,60 +137,14 @@ namespace XLObjectDropper
 			{
 				Time.timeScale = 0.0f;
 
-				if (player.GetButtonDown("DPadX"))
-				{
-					CurrentScaleMode++;
-
-					if (CurrentScaleMode > Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1)
-						CurrentScaleMode = 0;
-				}
-				if (player.GetNegativeButtonDown("DPadX"))
-				{
-					CurrentScaleMode--;
-
-					if (CurrentScaleMode < 0)
-						CurrentScaleMode = Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1;
-				}
-
-				// If left stick movement, rotate the object on X/z axis
-				Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
-				PreviewObject.transform.Rotate(leftStick.y, leftStick.x, 0);
-
-				// If right stick Y movement, scale object 
-				//TODO: Tie in sensitivity
-				var scaleFactor = 10f;
-				Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
-				var scale = rightStick.y / scaleFactor;
-				switch (CurrentScaleMode)
-				{
-					case (int)Enumerations.ScalingMode.Uniform:
-						PreviewObject.transform.localScale += new Vector3(scale, scale, scale);
-						break;
-					case (int)Enumerations.ScalingMode.Width:
-						PreviewObject.transform.localScale += new Vector3(scale, 0, 0);
-						break;
-					case (int)Enumerations.ScalingMode.Height:
-						PreviewObject.transform.localScale += new Vector3(0, scale, 0);
-						break;
-					case (int)Enumerations.ScalingMode.Depth:
-						PreviewObject.transform.localScale += new Vector3(0, 0, scale);
-						break;
-				}
+				HandleScaleModeSwitching(player);
+				HandleRotation(player);
+				HandleScaling(player);
 				
-
-
 				// If a, place the object, but keep the preview object
 				if (player.GetButtonDown("A"))
 				{
-					Debug.Log("XLObjectDropper: Holding LB Pressed A");
-
-					UISounds.Instance?.PlayOneShotSelectMajor();
-
-					var newObject = Instantiate(PreviewObject, PreviewObject.transform.position, PreviewObject.transform.rotation);
-					newObject.SetActive(true);
-					SpawnedObjects.Add(newObject);
-
-					newObject.transform.ChangeLayersRecursively("Default");
+					PlaceObject(false);
 				}
 				else if (player.GetButtonDown("Left Stick Button"))
 				{
@@ -217,14 +171,7 @@ namespace XLObjectDropper
 					Debug.Log("XLObjectDropper: Pressed A");
 					UISounds.Instance?.PlayOneShotSelectMajor();
 
-					var newObject = Instantiate(PreviewObject, PreviewObject.transform.position, PreviewObject.transform.rotation);
-					newObject.SetActive(true);
-
-					newObject.transform.ChangeLayersRecursively("Default");
-
-					SpawnedObjects.Add(newObject);
-
-					PreviewObject.SetActive(false);
+					PlaceObject();
 				}
 				else if (player.GetButtonDown("X"))
 				{
@@ -236,17 +183,6 @@ namespace XLObjectDropper
 				}
 				else if (player.GetButtonDown("Y"))
 		        {
-			        counter++;
-
-			        if (counter >= AssetBundleHelper.LoadedAssets.Count) counter = 0;
-
-					PreviewObject.SetActive(false);
-					Object.Destroy(PreviewObject);
-
-					InstantiatePreviewObject();
-
-					PreviewObject.SetActive(true);
-
 					// if y, delete highlighted object (if any)
 					Debug.Log("XLObjectDropper: Pressed Y");
 				}
@@ -268,14 +204,68 @@ namespace XLObjectDropper
 	        }
         }
 
-        private void InstantiatePreviewObject()
+        private void PlaceObject(bool disablePreview = true)
         {
-	        PreviewObject = Instantiate(AssetBundleHelper.LoadedAssets.ElementAt(counter), PinMovementController.GroundIndicator.transform);
-	        PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
-	        PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
-	        PreviewObject.transform.position = GameStateMachine.Instance.PinObject.transform.position;
-	        PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
-	        
+	        var newObject = Instantiate(PreviewObject, PreviewObject.transform.position, PreviewObject.transform.rotation);
+	        newObject.SetActive(true);
+
+	        newObject.transform.ChangeLayersRecursively(originalLayer);
+
+	        SpawnedObjects.Add(newObject);
+
+	        if (disablePreview)
+	        {
+		        PreviewObject.SetActive(false);
+		        originalLayer = -1;
+	        }
+        }
+
+        private void HandleRotation(Player player)
+        {
+			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
+	        PreviewObject.transform.Rotate(leftStick.y, leftStick.x, 0);
+        }
+
+        private void HandleScaling(Player player)
+        {
+	        var scaleFactor = 15f * (1 - Settings.Instance.Sensitivity);
+	        Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
+	        var scale = rightStick.y / scaleFactor;
+
+	        switch (CurrentScaleMode)
+	        {
+		        case (int)Enumerations.ScalingMode.Uniform:
+			        PreviewObject.transform.localScale += new Vector3(scale, scale, scale);
+			        break;
+		        case (int)Enumerations.ScalingMode.Width:
+			        PreviewObject.transform.localScale += new Vector3(scale, 0, 0);
+			        break;
+		        case (int)Enumerations.ScalingMode.Height:
+			        PreviewObject.transform.localScale += new Vector3(0, scale, 0);
+			        break;
+		        case (int)Enumerations.ScalingMode.Depth:
+			        PreviewObject.transform.localScale += new Vector3(0, 0, scale);
+			        break;
+	        }
+		}
+
+        private void HandleScaleModeSwitching(Player player)
+        {
+	        if (player.GetButtonDown("DPadX"))
+	        {
+		        CurrentScaleMode++;
+
+		        if (CurrentScaleMode > Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1)
+			        CurrentScaleMode = 0;
+	        }
+
+	        if (player.GetNegativeButtonDown("DPadX"))
+	        {
+		        CurrentScaleMode--;
+
+		        if (CurrentScaleMode < 0)
+			        CurrentScaleMode = Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1;
+	        }
 		}
 
         private float groundLevel;
@@ -304,6 +294,15 @@ namespace XLObjectDropper
 			foreach (Transform child in trans)
 			{
 				child.ChangeLayersRecursively(name);
+			}
+		}
+
+		public static void ChangeLayersRecursively(this Transform trans, int layer)
+		{
+			trans.gameObject.layer = layer;
+			foreach (Transform child in trans)
+			{
+				child.ChangeLayersRecursively(layer);
 			}
 		}
 	}

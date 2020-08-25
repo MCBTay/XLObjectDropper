@@ -13,7 +13,7 @@ namespace XLObjectDropper
 		public static ObjectSelectionUI ObjectSelection { get; set; }
 
 		public static GameObject ListItemPrefab { get; set; }
-		public event UnityAction ObjectSelected = () => { };
+		public event UnityAction<Spawnable> ObjectSelected = (x) => { };
 
 		private void Awake()
 		{
@@ -25,10 +25,10 @@ namespace XLObjectDropper
 			ClearList();
 
 			// Populate List
-			foreach (var item in AssetBundleHelper.LoadedAssets)
+			foreach (var item in AssetBundleHelper.LoadedSpawnables)
 			{
 				var listItem = Object.Instantiate(ListItemPrefab, ObjectSelection.ListContent.transform);
-				listItem.GetComponentInChildren<TMP_Text>().SetText(item.name.Replace('_', ' '));
+				listItem.GetComponentInChildren<TMP_Text>().SetText(item.Prefab.name.Replace('_', ' '));
 				listItem.GetComponent<Button>().onClick.AddListener(() => ObjectClicked(item));
 				listItem.GetComponent<ObjectSelectionListItem>().ListItemSelected += () => ListItemSelected(item);
 				listItem.SetActive(true);
@@ -46,32 +46,29 @@ namespace XLObjectDropper
 			}
 		}
 
-		private static void ListItemSelected(GameObject prefab)
+		private static void ListItemSelected(Spawnable spawnable)
 		{
 			if (ObjectMovementController.PreviewObject != null && ObjectMovementController.PreviewObject.activeInHierarchy)
 			{
-				foreach (var item in AssetBundleHelper.LoadedAssets)
-				{
-					ObjectMovementController.PreviewObject.SetActive(false);
-					Destroy(ObjectMovementController.PreviewObject);
-				}
+				ObjectMovementController.PreviewObject.SetActive(false);
+				Destroy(ObjectMovementController.PreviewObject);
 			}
 
-			InstantiatePreviewObject(prefab);
+			InstantiatePreviewObject(spawnable);
 		}
 
-		private static void InstantiatePreviewObject(GameObject prefab)
+		private static void InstantiatePreviewObject(Spawnable spawnable)
 		{
-			ObjectMovementController.PreviewObject = Instantiate(prefab, ObjectMovementController.PinMovementController.GroundIndicator.transform);
+			ObjectMovementController.PreviewObject = Instantiate(spawnable.Prefab, ObjectMovementController.PinMovementController.GroundIndicator.transform);
 			ObjectMovementController.PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
 			ObjectMovementController.PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
 			ObjectMovementController.PreviewObject.transform.position = GameStateMachine.Instance.PinObject.transform.position;
 			ObjectMovementController.PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
 		}
 
-		private void ObjectClicked(GameObject prefab)
+		private void ObjectClicked(Spawnable spawnable)
 		{
-			ObjectSelected.Invoke();
+			ObjectSelected.Invoke(spawnable);
 			enabled = false;
 		}
 	}

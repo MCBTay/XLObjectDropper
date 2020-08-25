@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityModManagerNet;
@@ -11,11 +10,11 @@ namespace XLObjectDropper
 {
 	public static class AssetBundleHelper
 	{
-		public static List<GameObject> LoadedAssets { get; set; }
+		public static List<Spawnable> LoadedSpawnables { get; set; }
 
 		static AssetBundleHelper()
 		{
-			LoadedAssets = new List<GameObject>();
+			LoadedSpawnables = new List<Spawnable>();
 		}
 
 		public static void LoadDefaultBundles()
@@ -49,13 +48,13 @@ namespace XLObjectDropper
 
 		public static void DisposeLoadedAssets()
 		{
-			foreach (var gameObject in LoadedAssets)
+			foreach (var spawnable in LoadedSpawnables)
 			{
-				gameObject.SetActive(false);
-				Object.Destroy(gameObject);
+				spawnable.Prefab.SetActive(false);
+				Object.Destroy(spawnable.Prefab);
 			}
 
-			LoadedAssets.Clear();
+			LoadedSpawnables.Clear();
 		}
 
 		private static void LoadBundle(string name, bool isEmbedded = false)
@@ -68,7 +67,10 @@ namespace XLObjectDropper
 			var assets = bundle.LoadAllAssets<GameObject>();
 			Debug.Log("Loaded " + assets.Length + " assets from " + name + ".");
 
-			LoadedAssets.AddRange(assets);
+			foreach (var asset in assets)
+			{
+				LoadedSpawnables.Add(new Spawnable { Prefab = asset, OriginalLayer = asset.layer });
+			}
 
 			bundle.Unload(false);
 		}
@@ -85,35 +87,6 @@ namespace XLObjectDropper
 
 			bundle.Unload(false);
 		}
-
-		//private static IEnumerator LoadBundle(string name, bool isEmbedded = false)
-		//{
-		//	AssetBundleCreateRequest bundleLoadRequest = null;
-
-		//	if (isEmbedded)
-		//	{
-		//		bundleLoadRequest = AssetBundle.LoadFromMemoryAsync(ExtractResource(name));
-		//	}
-		//	else
-		//	{
-		//		bundleLoadRequest = AssetBundle.LoadFromFileAsync(name);
-		//	}
-		//	yield return bundleLoadRequest;
-
-		//	var myLoadedAssetBundle = bundleLoadRequest.assetBundle;
-		//	if (myLoadedAssetBundle == null)
-		//	{
-		//		Debug.Log("Failed to load AssetBundle: " + name);
-		//		yield break;
-		//	}
-
-		//	var assetLoadRequest = myLoadedAssetBundle.LoadAllAssetsAsync();
-		//	yield return assetLoadRequest;
-
-		//	LoadedAssets.AddRange(assetLoadRequest.allAssets);
-
-		//	myLoadedAssetBundle.Unload(false);
-		//}
 
 		private static byte[] ExtractResource(string filename)
 		{
