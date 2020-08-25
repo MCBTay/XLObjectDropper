@@ -134,25 +134,7 @@ namespace XLObjectDropper.Controllers
 
 			if (player.GetButtonSinglePressHold("LB"))
 			{
-				Time.timeScale = 0.0f;
-
-				HandleScaleModeSwitching(player);
-				HandleRotation(player);
-				HandleScaling(player);
-				
-				// If a, place the object, but keep the preview object
-				if (player.GetButtonDown("A"))
-				{
-					PlaceObject(false);
-				}
-				else if (player.GetButtonDown("Left Stick Button"))
-				{
-					PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
-				}
-				else if (player.GetButtonDown("Right Stick Button"))
-				{
-					PreviewObject.transform.localScale = Vector3.one;
-				}
+				HandleRotationAndScalingInput(player);
 			}
 			else
 	        {
@@ -178,8 +160,6 @@ namespace XLObjectDropper.Controllers
 					// if x, open new object selection menu
 					Debug.Log("XLObjectDropper: Pressed X");
 					UISounds.Instance?.PlayOneShotSelectMinor();
-
-					GameStateMachine.Instance.RequestTransitionTo(typeof(ObjectSelectionState));
 				}
 				
 				if (player.GetButtonDown("Y"))
@@ -199,6 +179,7 @@ namespace XLObjectDropper.Controllers
 			        OptionsMenuShown = !OptionsMenuShown;
 					OptionsMenuGameObject.SetActive(OptionsMenuShown);
 		        }
+
 				if (player.GetButtonDown("Start"))
 		        {
 					ObjectSelectionShown = !ObjectSelectionShown;
@@ -223,17 +204,63 @@ namespace XLObjectDropper.Controllers
 	        }
         }
 
-        private void HandleRotation(Player player)
+		#region Rotation and Scaling
+		private void HandleRotationAndScalingInput(Player player)
+        {
+	        Time.timeScale = 0.0f;
+
+	        if (PreviewObject == null || !PreviewObject.activeInHierarchy) return;
+
+	        HandleScaleModeSwitching(player);
+	        HandleRotation(player);
+	        HandleScaling(player);
+
+	        // If a, place the object, but keep the preview object
+	        if (player.GetButtonDown("A"))
+	        {
+		        PlaceObject(false);
+	        }
+	        else if (player.GetButtonDown("Left Stick Button"))
+	        {
+		        PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
+	        }
+	        else if (player.GetButtonDown("Right Stick Button"))
+	        {
+		        PreviewObject.transform.localScale = Vector3.one;
+	        }
+		}
+
+		private void HandleScaleModeSwitching(Player player)
+		{
+			if (player.GetButtonDown("DPadX"))
+			{
+				CurrentScaleMode++;
+
+				if (CurrentScaleMode > Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1)
+					CurrentScaleMode = 0;
+			}
+
+			if (player.GetNegativeButtonDown("DPadX"))
+			{
+				CurrentScaleMode--;
+
+				if (CurrentScaleMode < 0)
+					CurrentScaleMode = Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1;
+			}
+		}
+
+		private void HandleRotation(Player player)
         {
 			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
-	        PreviewObject.transform.Rotate(leftStick.y, leftStick.x, 0);
+
+	        PreviewObject?.transform.Rotate(leftStick.y, leftStick.x, 0);
         }
 
         private void HandleScaling(Player player)
         {
 	        var scaleFactor = 15f;
-	        if (!Mathf.Approximately(Settings.Instance.Sensitivity, 1)) scaleFactor *= Settings.Instance.Sensitivity;
-		    else scaleFactor = 1;
+	     //   if (!Mathf.Approximately(Settings.Instance.Sensitivity, 1)) scaleFactor *= Settings.Instance.Sensitivity;
+		    //else scaleFactor = 1;
 
 	        Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
 	        var scale = rightStick.y / scaleFactor;
@@ -255,26 +282,9 @@ namespace XLObjectDropper.Controllers
 	        }
 		}
 
-        private void HandleScaleModeSwitching(Player player)
-        {
-	        if (player.GetButtonDown("DPadX"))
-	        {
-		        CurrentScaleMode++;
+		#endregion
 
-		        if (CurrentScaleMode > Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1)
-			        CurrentScaleMode = 0;
-	        }
-
-	        if (player.GetNegativeButtonDown("DPadX"))
-	        {
-		        CurrentScaleMode--;
-
-		        if (CurrentScaleMode < 0)
-			        CurrentScaleMode = Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1;
-	        }
-		}
-
-        private float groundLevel;
+		private float groundLevel;
 
         private bool UpdateGroundLevel()
         {

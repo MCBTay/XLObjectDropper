@@ -26,7 +26,7 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.SaveClicked += SaveClicked;
 			OptionsMenu.LoadClicked += LoadClicked;
 
-			OptionsMenu.gameObject.SetActive(true);
+			OptionsMenu.gameObject?.SetActive(true);
 		}
 
 		private void OnDisable()
@@ -38,7 +38,7 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.SaveClicked -= SaveClicked;
 			OptionsMenu.LoadClicked -= LoadClicked;
 
-			OptionsMenu.gameObject.SetActive(false);
+			OptionsMenu.gameObject?.SetActive(false);
 		}
 
 		private void Update()
