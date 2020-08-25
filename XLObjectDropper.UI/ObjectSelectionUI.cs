@@ -47,7 +47,8 @@ namespace XLObjectDropper.UI
 
 		private void Start()
 		{
-			CurrentCategoryIndex = 0;
+			CurrentCategoryIndex = -1;
+			SetActiveCategory(true);
 
 			UIButton_LB.SetActive(true);
 			UIButton_RB.SetActive(true);
@@ -63,8 +64,6 @@ namespace XLObjectDropper.UI
 			{
 				UIButton_RB.SetActive(false);
 				UIButton_RB_Pressed.SetActive(true);
-
-				
 
 				SetActiveCategory(true);
 			}
