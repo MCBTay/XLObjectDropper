@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace XLObjectDropper.UI
 {
@@ -18,14 +20,35 @@ namespace XLObjectDropper.UI
 		public GameObject TiredCategory;
 		public GameObject PacksCategory;
 
+		[HideInInspector]
+		public List<GameObject> Categories;
+		[HideInInspector]
+		private int CurrentCategoryIndex;
+
 		[Header("UserInterface")]
 		public GameObject UIButton_LB;
 		public GameObject UIButton_LB_Pressed;
 		public GameObject UIButton_RB;
 		public GameObject UIButton_RB_Pressed;
 
+		private void Awake()
+		{
+			Categories = new List<GameObject>();
+
+			Categories.Add(BasicCategory);
+			Categories.Add(OtherCategory);
+			Categories.Add(MoreCategory);
+			Categories.Add(StuffCategory);
+			Categories.Add(TiredCategory);
+			Categories.Add(PacksCategory);
+
+			CurrentCategoryIndex = 0;
+		}
+
 		private void Start()
 		{
+			CurrentCategoryIndex = 0;
+
 			UIButton_LB.SetActive(true);
 			UIButton_RB.SetActive(true);
 
@@ -40,6 +63,10 @@ namespace XLObjectDropper.UI
 			{
 				UIButton_RB.SetActive(false);
 				UIButton_RB_Pressed.SetActive(true);
+
+				
+
+				SetActiveCategory(true);
 			}
 			if (UIManager.Instance.Player.GetButtonUp("RB"))
 			{
@@ -53,6 +80,8 @@ namespace XLObjectDropper.UI
 			{
 				UIButton_LB.SetActive(false);
 				UIButton_LB_Pressed.SetActive(true);
+
+				SetActiveCategory(false);
 			}
 			if (UIManager.Instance.Player.GetButtonUp("LB"))
 			{
@@ -60,6 +89,29 @@ namespace XLObjectDropper.UI
 				UIButton_LB_Pressed.SetActive(false);
 			}
 			#endregion
+		}
+
+		private void SetActiveCategory(bool increment)
+		{
+			if (increment) CurrentCategoryIndex++;
+			else CurrentCategoryIndex--;
+
+			if (CurrentCategoryIndex > Categories.Count - 1)
+			{
+				CurrentCategoryIndex = 0;
+			}
+
+			if (CurrentCategoryIndex < 0)
+			{
+				CurrentCategoryIndex = Categories.Count - 1;
+			}
+
+			foreach (var category in Categories)
+			{
+				category.SetActive(false);
+			}
+
+			Categories.ElementAt(CurrentCategoryIndex).SetActive(true);
 		}
 	}
 }
