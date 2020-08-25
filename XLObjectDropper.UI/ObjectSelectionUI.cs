@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace XLObjectDropper.UI
 {
@@ -26,7 +27,7 @@ namespace XLObjectDropper.UI
 		public GameObject PacksCategoryListContent;
 
 		[HideInInspector]
-		public List<GameObject> Categories;
+		public Dictionary<SpawnableType, GameObject> Categories;
 		[HideInInspector]
 		private int CurrentCategoryIndex;
 
@@ -38,14 +39,14 @@ namespace XLObjectDropper.UI
 
 		private void Awake()
 		{
-			Categories = new List<GameObject>();
+			Categories = new Dictionary<SpawnableType, GameObject>();
 
-			Categories.Add(BasicCategory);
-			Categories.Add(OtherCategory);
-			Categories.Add(MoreCategory);
-			Categories.Add(StuffCategory);
-			Categories.Add(TiredCategory);
-			Categories.Add(PacksCategory);
+			Categories.Add(SpawnableType.Basic, BasicCategory);
+			Categories.Add(SpawnableType.Other, OtherCategory);
+			Categories.Add(SpawnableType.More, MoreCategory);
+			Categories.Add(SpawnableType.Stuff, StuffCategory);
+			Categories.Add(SpawnableType.Tired, TiredCategory);
+			Categories.Add(SpawnableType.Packs, PacksCategory);
 
 			CurrentCategoryIndex = 0;
 		}
@@ -112,10 +113,15 @@ namespace XLObjectDropper.UI
 
 			foreach (var category in Categories)
 			{
-				category.SetActive(false);
+				category.Value.SetActive(false);
 			}
 
-			Categories.ElementAt(CurrentCategoryIndex).SetActive(true);
+			var activeCategory = Categories.ElementAt(CurrentCategoryIndex);
+			activeCategory.Value.SetActive(true);
+
+			var activeList = GetListByType(activeCategory.Key);
+			if (activeList.transform.childCount > 0)
+				EventSystem.current.SetSelectedGameObject(activeList.transform.GetChild(0).gameObject);
 		}
 
 		public GameObject GetListByType(SpawnableType type)
