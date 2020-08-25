@@ -4,17 +4,18 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 using UnityModManagerNet;
+using XLObjectDropper.UI;
 using Object = UnityEngine.Object;
 
 namespace XLObjectDropper
 {
 	public static class AssetBundleHelper
 	{
-		public static List<Spawnable> LoadedSpawnables { get; set; }
+		public static Dictionary<SpawnableType, List<Spawnable>> LoadedSpawnables { get; private set; }
 
 		static AssetBundleHelper()
 		{
-			LoadedSpawnables = new List<Spawnable>();
+			LoadedSpawnables = new Dictionary<SpawnableType, List<Spawnable>>();
 		}
 
 		public static void LoadDefaultBundles()
@@ -48,10 +49,13 @@ namespace XLObjectDropper
 
 		public static void DisposeLoadedAssets()
 		{
-			foreach (var spawnable in LoadedSpawnables)
+			foreach (var type in LoadedSpawnables)
 			{
-				spawnable.Prefab.SetActive(false);
-				Object.Destroy(spawnable.Prefab);
+				foreach (var spawnable in type.Value)
+				{
+					spawnable.Prefab.SetActive(false);
+					Object.Destroy(spawnable.Prefab);
+				}
 			}
 
 			LoadedSpawnables.Clear();
@@ -69,7 +73,11 @@ namespace XLObjectDropper
 
 			foreach (var asset in assets)
 			{
-				LoadedSpawnables.Add(new Spawnable { Prefab = asset, OriginalLayer = asset.layer });
+				if (!LoadedSpawnables.ContainsKey(isEmbedded ? SpawnableType.Basic : SpawnableType.Packs))
+				{
+					LoadedSpawnables.Add(isEmbedded ? SpawnableType.Basic : SpawnableType.Packs, new List<Spawnable>());
+				}
+				LoadedSpawnables[isEmbedded ? SpawnableType.Basic : SpawnableType.Packs].Add(new Spawnable { Prefab = asset, OriginalLayer = asset.layer });
 			}
 
 			bundle.Unload(false);

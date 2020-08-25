@@ -1,10 +1,12 @@
-﻿using GameManagement;
+﻿using System;
+using GameManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XLObjectDropper.UI;
+using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Controllers
 {
@@ -22,27 +24,35 @@ namespace XLObjectDropper.Controllers
 
 		private void OnEnable()
 		{
-			ClearList();
+			ClearLists();
 
 			// Populate List
 			foreach (var item in AssetBundleHelper.LoadedSpawnables)
 			{
-				var listItem = Object.Instantiate(ListItemPrefab, ObjectSelection.ListContent.transform);
-				listItem.GetComponentInChildren<TMP_Text>().SetText(item.Prefab.name.Replace('_', ' '));
-				listItem.GetComponent<Button>().onClick.AddListener(() => ObjectClicked(item));
-				listItem.GetComponent<ObjectSelectionListItem>().ListItemSelected += () => ListItemSelected(item);
-				listItem.SetActive(true);
+				foreach (var spawnable in item.Value)
+				{
+					var listItem = Object.Instantiate(ListItemPrefab, ObjectSelection.GetListByType(item.Key).transform);
+					listItem.GetComponentInChildren<TMP_Text>().SetText(spawnable.Prefab.name.Replace('_', ' '));
+					listItem.GetComponent<Button>().onClick.AddListener(() => ObjectClicked(spawnable));
+					listItem.GetComponent<ObjectSelectionListItem>().ListItemSelected += () => ListItemSelected(spawnable);
+					listItem.SetActive(true);
+				}
 			}
 		}
 
-		private void ClearList()
+		private void ClearLists()
 		{
-			for (var i = ObjectSelection.ListContent.transform.childCount - 1; i >= 0; i--)
+			foreach (var item in AssetBundleHelper.LoadedSpawnables.Keys)
 			{
-				var objectA = ObjectSelection.ListContent.transform.GetChild(i);
-				objectA.transform.parent = null;
-				// Optionally destroy the objectA if not longer needed
-				//Destroy(objectA);
+				var listContent = ObjectSelection.GetListByType(item);
+
+				for (var i = listContent.transform.childCount - 1; i >= 0; i--)
+				{
+					var objectA = listContent.transform.GetChild(i);
+					objectA.transform.parent = null;
+					// Optionally destroy the objectA if not longer needed
+					//Destroy(objectA);
+				}
 			}
 		}
 

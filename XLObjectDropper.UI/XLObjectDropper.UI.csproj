@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations.cs" />
     <Compile Include="ObjectSelectionListItem.cs" />
     <Compile Include="ObjectPlacementUI.cs" />
     <Compile Include="ObjectSelectionUI.cs" />

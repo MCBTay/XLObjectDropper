@@ -9,9 +9,6 @@ namespace XLObjectDropper.UI
 		[Header("Options Menu Elements")] 
 		public GameObject MainUI;
 
-		[Space(10)]
-		public GameObject ListContent;
-
 		[Header("Categories")] 
 		public GameObject BasicCategory;
 		public GameObject OtherCategory;
@@ -19,6 +16,14 @@ namespace XLObjectDropper.UI
 		public GameObject StuffCategory;
 		public GameObject TiredCategory;
 		public GameObject PacksCategory;
+
+		[Header("Categories List Content")]
+		public GameObject BasicCategoryListContent;
+		public GameObject OtherCategoryListContent;
+		public GameObject MoreCategoryListContent;
+		public GameObject StuffCategoryListContent;
+		public GameObject TiredCategoryListContent;
+		public GameObject PacksCategoryListContent;
 
 		[HideInInspector]
 		public List<GameObject> Categories;
@@ -111,6 +116,21 @@ namespace XLObjectDropper.UI
 			}
 
 			Categories.ElementAt(CurrentCategoryIndex).SetActive(true);
+		}
+
+		public GameObject GetListByType(SpawnableType type)
+		{
+			switch (type)
+			{
+				case SpawnableType.Other: return OtherCategoryListContent;
+				case SpawnableType.More: return MoreCategoryListContent;
+				case SpawnableType.Stuff: return StuffCategoryListContent;
+				case SpawnableType.Tired: return TiredCategoryListContent;
+				case SpawnableType.Packs: return PacksCategoryListContent;
+				case SpawnableType.Basic:
+				default:
+					return BasicCategoryListContent;
+			}
 		}
 	}
 }

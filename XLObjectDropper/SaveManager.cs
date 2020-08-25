@@ -61,7 +61,12 @@ namespace XLObjectDropper
 				var position = new Vector3(spawnable.positionX, spawnable.positionY, spawnable.positionZ);
 				var rotation = new Quaternion(spawnable.rotationX, spawnable.rotationY, spawnable.rotationZ, spawnable.rotationW);
 
-				var newObject = Object.Instantiate(AssetBundleHelper.LoadedSpawnables.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name))?.Prefab, position, rotation);
+				var prefab = AssetBundleHelper.LoadedSpawnables.FirstOrDefault(x =>
+					x.Value.FirstOrDefault(y => spawnable.Id.StartsWith(y.Prefab.name)) != null).Value.FirstOrDefault();
+
+				if (prefab == null) continue;
+
+				var newObject = Object.Instantiate(prefab.Prefab, position, rotation);
 				newObject.SetActive(true);
 
 				newObject.transform.ChangeLayersRecursively("Default");

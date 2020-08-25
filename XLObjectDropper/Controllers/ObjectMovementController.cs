@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UserInterface;
+using XLObjectDropper.UI;
 
 namespace XLObjectDropper.Controllers
 {
@@ -49,7 +50,7 @@ namespace XLObjectDropper.Controllers
 			ObjectSelectionController = OptionsMenuGameObject.AddComponent<ObjectSelectionController>();
 			ObjectSelectionController.ObjectSelected += ObjectSelectionControllerOnObjectSelected;
 
-			CurrentScaleMode = (int)Enumerations.ScalingMode.Uniform;
+			CurrentScaleMode = (int)ScalingMode.Uniform;
 	        
 	        OriginalPinObject = GameStateMachine.Instance.PinObject;
 
@@ -73,7 +74,7 @@ namespace XLObjectDropper.Controllers
 
 			PinMovementController.PinRenderer.enabled = false;
 
-			CurrentScaleMode = (int)Enumerations.ScalingMode.Uniform;
+			CurrentScaleMode = (int)ScalingMode.Uniform;
 
 			ZoomInOutText = GameStateMachine.Instance.PinObject.GetComponentInChildren<TMP_Text>();
 			ZoomInOutText?.gameObject?.SetActive(false);
@@ -236,7 +237,7 @@ namespace XLObjectDropper.Controllers
 			{
 				CurrentScaleMode++;
 
-				if (CurrentScaleMode > Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1)
+				if (CurrentScaleMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
 					CurrentScaleMode = 0;
 			}
 
@@ -245,7 +246,7 @@ namespace XLObjectDropper.Controllers
 				CurrentScaleMode--;
 
 				if (CurrentScaleMode < 0)
-					CurrentScaleMode = Enum.GetValues(typeof(Enumerations.ScalingMode)).Length - 1;
+					CurrentScaleMode = Enum.GetValues(typeof(ScalingMode)).Length - 1;
 			}
 		}
 
@@ -267,16 +268,16 @@ namespace XLObjectDropper.Controllers
 
 	        switch (CurrentScaleMode)
 	        {
-		        case (int)Enumerations.ScalingMode.Uniform:
+		        case (int)ScalingMode.Uniform:
 			        PreviewObject.transform.localScale += new Vector3(scale, scale, scale);
 			        break;
-		        case (int)Enumerations.ScalingMode.Width:
+		        case (int)ScalingMode.Width:
 			        PreviewObject.transform.localScale += new Vector3(scale, 0, 0);
 			        break;
-		        case (int)Enumerations.ScalingMode.Height:
+		        case (int)ScalingMode.Height:
 			        PreviewObject.transform.localScale += new Vector3(0, scale, 0);
 			        break;
-		        case (int)Enumerations.ScalingMode.Depth:
+		        case (int)ScalingMode.Depth:
 			        PreviewObject.transform.localScale += new Vector3(0, 0, scale);
 			        break;
 	        }
