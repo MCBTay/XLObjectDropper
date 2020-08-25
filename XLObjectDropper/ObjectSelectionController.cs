@@ -75,28 +75,4 @@ namespace XLObjectDropper
 			enabled = false;
 		}
 	}
-
-	public class ObjectInfo
-	{
-		public string name;
-	}
-
-	public class ObjectListItem : ListViewItem<ObjectInfo>
-	{
-		public TMP_Text ObjectNameText;
-		private ObjectInfo @object;
-
-		public override ObjectInfo Item
-		{
-			get
-			{
-				return @object;
-			}
-			set
-			{
-				@object = value;
-				ObjectNameText.text = this.@object.name;
-			}
-		}
-	}
 }
