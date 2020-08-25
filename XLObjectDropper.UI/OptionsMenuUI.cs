@@ -23,28 +23,50 @@ namespace XLObjectDropper.UI
 		[HideInInspector] public event UnityAction RedoClicked = () => { };
 		[HideInInspector] public event UnityAction SaveClicked = () => { };
 		[HideInInspector] public event UnityAction LoadClicked = () => { };
-		
+
+
+		private void OnEnable()
+		{
+			SetDefaultState(true);
+		}
 
 		private void Start()
 		{
-			Snapping.SetActive(true);
-			Sensitivity.SetActive(true);
-			UndoButton.SetActive(true);
-			RedoButton.SetActive(true);
-			SaveButton.SetActive(true);
-			LoadButton.SetActive(true);
-
-			Snapping.GetComponent<Toggle>().onValueChanged.AddListener(delegate { SnappingValueChanged.Invoke(Snapping.GetComponent<Toggle>().isOn); });
-			Sensitivity.GetComponent<Slider>().onValueChanged.AddListener(delegate { SensitivityValueChanged.Invoke(Sensitivity.GetComponent<Slider>().value); });
-			UndoButton.GetComponent<Button>().onClick.AddListener(delegate { UndoClicked.Invoke(); });
-			RedoButton.GetComponent<Button>().onClick.AddListener(delegate { RedoClicked.Invoke(); });
-			SaveButton.GetComponent<Button>().onClick.AddListener(delegate { SaveClicked.Invoke(); });
-			LoadButton.GetComponent<Button>().onClick.AddListener(delegate { LoadClicked.Invoke(); });
+			SetDefaultState(true);
 		}
 
-		private void Update()
+		private void SetDefaultState(bool enabled)
 		{
+			Snapping.SetActive(enabled);
+			Sensitivity.SetActive(enabled);
+			UndoButton.SetActive(enabled);
+			RedoButton.SetActive(enabled);
+			SaveButton.SetActive(enabled);
+			LoadButton.SetActive(enabled);
 
+			if (enabled)
+			{
+				Snapping.GetComponent<Toggle>().onValueChanged.AddListener(delegate { SnappingValueChanged.Invoke(Snapping.GetComponent<Toggle>().isOn); });
+				Sensitivity.GetComponent<Slider>().onValueChanged.AddListener(delegate { SensitivityValueChanged.Invoke(Sensitivity.GetComponent<Slider>().value); });
+				UndoButton.GetComponent<Button>().onClick.AddListener(delegate { UndoClicked.Invoke(); });
+				RedoButton.GetComponent<Button>().onClick.AddListener(delegate { RedoClicked.Invoke(); });
+				SaveButton.GetComponent<Button>().onClick.AddListener(delegate { SaveClicked.Invoke(); });
+				LoadButton.GetComponent<Button>().onClick.AddListener(delegate { LoadClicked.Invoke(); });
+			}
+			else
+			{
+				Snapping.GetComponent<Toggle>().onValueChanged.RemoveListener(delegate { SnappingValueChanged.Invoke(Snapping.GetComponent<Toggle>().isOn); });
+				Sensitivity.GetComponent<Slider>().onValueChanged.RemoveListener(delegate { SensitivityValueChanged.Invoke(Sensitivity.GetComponent<Slider>().value); });
+				UndoButton.GetComponent<Button>().onClick.RemoveListener(delegate { UndoClicked.Invoke(); });
+				RedoButton.GetComponent<Button>().onClick.RemoveListener(delegate { RedoClicked.Invoke(); });
+				SaveButton.GetComponent<Button>().onClick.RemoveListener(delegate { SaveClicked.Invoke(); });
+				LoadButton.GetComponent<Button>().onClick.RemoveListener(delegate { LoadClicked.Invoke(); });
+			}
+		}
+
+		private void OnDisable()
+		{
+			SetDefaultState(false);
 		}
 	}
 }
