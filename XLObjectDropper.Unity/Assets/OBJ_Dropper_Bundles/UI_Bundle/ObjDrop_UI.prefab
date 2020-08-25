@@ -1920,6 +1920,8 @@ RectTransform:
   - {fileID: 6842593968459339879}
   - {fileID: 606132257735202287}
   - {fileID: 2306318380787535687}
+  - {fileID: 2426540621397919218}
+  - {fileID: 9054804197109418699}
   m_Father: {fileID: 4362228921871459858}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9023,7 +9025,7 @@ GameObject:
   - component: {fileID: 2973806525468260977}
   - component: {fileID: 4641184783904592389}
   m_Layer: 5
-  m_Name: UIButton_LB (1)
+  m_Name: UIButton_LB_Pressed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11097,6 +11099,81 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3672248549095421248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2426540621397919218}
+  - component: {fileID: 4222488307027121176}
+  - component: {fileID: 2274916641674916788}
+  m_Layer: 5
+  m_Name: UIButton_RB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2426540621397919218
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672248549095421248}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6466911646278923324}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 134.4, y: 169.40001}
+  m_SizeDelta: {x: 25, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4222488307027121176
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672248549095421248}
+  m_CullTransparentMesh: 0
+--- !u!114 &2274916641674916788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3672248549095421248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1515382190666927914, guid: 15f26e860faa27a4c9b1415f827df5e1,
+    type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3682763002298620424
 GameObject:
   m_ObjectHideFlags: 0
@@ -17447,6 +17524,81 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6495880695436704906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9054804197109418699}
+  - component: {fileID: 3866611499974261439}
+  - component: {fileID: 8717264542251275820}
+  m_Layer: 5
+  m_Name: UIButton_LB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9054804197109418699
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6495880695436704906}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6466911646278923324}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -132.30002, y: 169.40001}
+  m_SizeDelta: {x: 25, y: 25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3866611499974261439
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6495880695436704906}
+  m_CullTransparentMesh: 0
+--- !u!114 &8717264542251275820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6495880695436704906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 7475578875763064728, guid: 15f26e860faa27a4c9b1415f827df5e1,
+    type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6521691011361389305
 GameObject:
   m_ObjectHideFlags: 0
@@ -19646,7 +19798,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8067593100067620759}
   m_HandleRect: {fileID: 7478533969394209803}
   m_Direction: 2
-  m_Value: 1.0000061
+  m_Value: 1.0000007
   m_Size: 0.6901943
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19980,7 +20132,7 @@ GameObject:
   - component: {fileID: 7316124901014957714}
   - component: {fileID: 186966862851377614}
   m_Layer: 5
-  m_Name: UIButton_RB (1)
+  m_Name: UIButton_RB_Pressed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21344,6 +21496,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainUI: {fileID: 3758429251598133818}
   ListContent: {fileID: 9034949123667764854}
+  BasicCategory: {fileID: 5990703670144602536}
+  OtherCategory: {fileID: 6677298598839327404}
+  MoreCategory: {fileID: 3118778900469053352}
+  StuffCategory: {fileID: 4791173453325933747}
+  TiredCategory: {fileID: 1048354174816459266}
+  PacksCategory: {fileID: 2666360507555465814}
+  UIButton_LB: {fileID: 6495880695436704906}
+  UIButton_LB_Pressed: {fileID: 2918920348498453987}
+  UIButton_RB: {fileID: 3672248549095421248}
+  UIButton_RB_Pressed: {fileID: 8000641617216713938}
 --- !u!1 &9034949123667764854
 GameObject:
   m_ObjectHideFlags: 0
@@ -21407,7 +21569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.8304, y: -0.0009984756}
+  m_AnchoredPosition: {x: 3.8304, y: -0.00009560282}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6954472442035869634
