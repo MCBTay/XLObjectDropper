@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssetBundleHelper.cs" />
+    <Compile Include="Enumerations.cs" />
     <Compile Include="OptionsMenuController.cs" />
     <Compile Include="SaveManager.cs" />
     <Compile Include="Settings.cs" />
