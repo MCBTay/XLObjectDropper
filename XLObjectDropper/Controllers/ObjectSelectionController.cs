@@ -1,9 +1,8 @@
-﻿using System;
-using GameManagement;
+﻿using GameManagement;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XLObjectDropper.UI;
 using Object = UnityEngine.Object;
@@ -15,7 +14,7 @@ namespace XLObjectDropper.Controllers
 		public static ObjectSelectionUI ObjectSelection { get; set; }
 
 		public static GameObject ListItemPrefab { get; set; }
-		public event UnityAction<Spawnable> ObjectSelected = (x) => { };
+		public event UnityAction<Spawnable> ObjectClickedEvent = (x) => { };
 
 		private void Awake()
 		{
@@ -40,31 +39,40 @@ namespace XLObjectDropper.Controllers
 			}
 		}
 
+		private void OnDisable()
+		{
+			ClearLists();
+		}
+
 		private void ClearLists()
 		{
-			foreach (var item in AssetBundleHelper.LoadedSpawnables.Keys)
+			foreach (var item in AssetBundleHelper.LoadedSpawnables)
 			{
-				var listContent = ObjectSelection.GetListByType(item);
+				var listContent = ObjectSelection.GetListByType(item.Key);
 
 				for (var i = listContent.transform.childCount - 1; i >= 0; i--)
 				{
 					var objectA = listContent.transform.GetChild(i);
 					objectA.transform.parent = null;
+
+					objectA.gameObject.GetComponent<ObjectSelectionListItem>().ListItemSelected -= () => ListItemSelected(item.Value.ElementAt(i));
 					// Optionally destroy the objectA if not longer needed
-					//Destroy(objectA);
 				}
 			}
 		}
 
-		private static void ListItemSelected(Spawnable spawnable)
+		private void ListItemSelected(Spawnable spawnable)
 		{
-			if (ObjectMovementController.PreviewObject != null && ObjectMovementController.PreviewObject.activeInHierarchy)
+			if (enabled)
 			{
-				ObjectMovementController.PreviewObject.SetActive(false);
-				Destroy(ObjectMovementController.PreviewObject);
-			}
+				if (ObjectMovementController.PreviewObject != null && ObjectMovementController.PreviewObject.activeInHierarchy)
+				{
+					ObjectMovementController.PreviewObject.SetActive(false);
+					Destroy(ObjectMovementController.PreviewObject);
+				}
 
-			InstantiatePreviewObject(spawnable);
+				InstantiatePreviewObject(spawnable);
+			}
 		}
 
 		private static void InstantiatePreviewObject(Spawnable spawnable)
@@ -78,8 +86,7 @@ namespace XLObjectDropper.Controllers
 
 		private void ObjectClicked(Spawnable spawnable)
 		{
-			ObjectSelected.Invoke(spawnable);
-			enabled = false;
+			ObjectClickedEvent.Invoke(spawnable);
 		}
 	}
 }

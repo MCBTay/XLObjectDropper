@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using XLObjectDropper.GameManagement;
-using XLObjectDropper.UserInterface;
 using XLObjectDropper.UI;
+using XLObjectDropper.UserInterface;
 
 namespace XLObjectDropper.Controllers
 {
@@ -46,10 +46,6 @@ namespace XLObjectDropper.Controllers
 			OptionsMenuGameObject = new GameObject();
 			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
 
-			ObjectSelectionMenuGameObject = new GameObject();
-			ObjectSelectionController = OptionsMenuGameObject.AddComponent<ObjectSelectionController>();
-			ObjectSelectionController.ObjectSelected += ObjectSelectionControllerOnObjectSelected;
-
 			CurrentScaleMode = (int)ScalingMode.Uniform;
 	        
 	        OriginalPinObject = GameStateMachine.Instance.PinObject;
@@ -60,9 +56,33 @@ namespace XLObjectDropper.Controllers
 			enabled = false;
         }
 
-		private void ObjectSelectionControllerOnObjectSelected(Spawnable spawnable)
+		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
 		{
 			SelectedObject = spawnable;
+
+			DestroyObjectSelection();
+		}
+
+		private void CreateObjectSelection()
+		{
+			ObjectSelectionMenuGameObject = new GameObject();
+			ObjectSelectionController = OptionsMenuGameObject.AddComponent<ObjectSelectionController>();
+			ObjectSelectionController.ObjectClickedEvent += ObjectSelectionControllerOnObjectClickedEvent;
+
+			ObjectSelectionMenuGameObject.SetActive(true);
+
+			ObjectSelectionShown = true;
+		}
+
+		private void DestroyObjectSelection()
+		{
+			ObjectSelectionMenuGameObject.SetActive(false);
+			ObjectSelectionController.ObjectClickedEvent -= ObjectSelectionControllerOnObjectClickedEvent;
+
+			Destroy(ObjectSelectionController);
+			Destroy(ObjectSelectionMenuGameObject);
+
+			ObjectSelectionShown = false;
 		}
 
 		private void OnEnable()
@@ -107,8 +127,9 @@ namespace XLObjectDropper.Controllers
 	        if (SelectedObject != null)
 	        {
 		        Time.timeScale = 1.0f;
-		        ObjectSelectionShown = false;
-		        originalLayer = SelectedObject.OriginalLayer;
+				DestroyObjectSelection();
+
+				originalLayer = SelectedObject.OriginalLayer;
 		        SelectedObject = null;
 		        return;
 	        }
@@ -126,8 +147,7 @@ namespace XLObjectDropper.Controllers
 	        {
 		        if (player.GetButtonDown("Start"))
 		        {
-			        ObjectSelectionMenuGameObject.SetActive(false);
-			        ObjectSelectionShown = !ObjectSelectionShown;
+			        DestroyObjectSelection();
 		        }
 
 		        return;
@@ -177,14 +197,14 @@ namespace XLObjectDropper.Controllers
 				
 				if (player.GetButtonDown("Select"))
 		        {
-			        OptionsMenuShown = !OptionsMenuShown;
-					OptionsMenuGameObject.SetActive(OptionsMenuShown);
+			        OptionsMenuGameObject.SetActive(OptionsMenuShown);
 		        }
 
 				if (player.GetButtonDown("Start"))
 		        {
-					ObjectSelectionShown = !ObjectSelectionShown;
-					ObjectSelectionMenuGameObject.SetActive(ObjectSelectionShown);
+			        ObjectSelectionShown = !ObjectSelectionShown;
+
+			        CreateObjectSelection();
 				}
 	        }
         }
