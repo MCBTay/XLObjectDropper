@@ -9147,7 +9147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ROTATE SNAPPING: OFF'
+  m_text: DUPLICATE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b790aeed1648a764ab67163dd5704955, type: 2}
   m_sharedMaterial: {fileID: -1470814966106991453, guid: b790aeed1648a764ab67163dd5704955,
@@ -9217,10 +9217,10 @@ MonoBehaviour:
   m_margin: {x: -39.744343, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 5302750148530480086}
-    characterCount: 20
+    characterCount: 9
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
