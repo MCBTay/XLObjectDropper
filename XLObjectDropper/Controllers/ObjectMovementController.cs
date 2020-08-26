@@ -32,6 +32,7 @@ namespace XLObjectDropper.Controllers
 		public static ObjectMovementController Instance { get; set; }
 
 		private static int CurrentScaleMode { get; set; }
+		private static int CurrentRotationSnappingMode { get; set; }
 
 		private void Awake()
 		{
@@ -114,7 +115,8 @@ namespace XLObjectDropper.Controllers
 			PreviewObject?.SetActive(false);
         }
 
-        private int originalLayer = -1;
+        //private int originalLayer = -1;
+        private GameObject LastPrefab;
 
         private void Update()
         {
@@ -129,7 +131,8 @@ namespace XLObjectDropper.Controllers
 		        Time.timeScale = 1.0f;
 				DestroyObjectSelection();
 
-				originalLayer = SelectedObject.OriginalLayer;
+				//originalLayer = SelectedObject.OriginalLayer;
+				LastPrefab = SelectedObject.Prefab;
 		        SelectedObject = null;
 		        return;
 	        }
@@ -212,14 +215,13 @@ namespace XLObjectDropper.Controllers
 	        var newObject = Instantiate(PreviewObject, PreviewObject.transform.position, PreviewObject.transform.rotation);
 	        newObject.SetActive(true);
 
-	        newObject.transform.ChangeLayersRecursively(originalLayer);
+	        newObject.transform.ChangeLayersRecursively(LastPrefab);
 
 	        SpawnedObjects.Add(newObject);
 
 	        if (disablePreview)
 	        {
 		        PreviewObject.SetActive(false);
-		        originalLayer = -1;
 	        }
         }
 
@@ -239,10 +241,8 @@ namespace XLObjectDropper.Controllers
 		        PlaceObject(false);
 	        }
 
-	        if (player.GetButtonDown("X"))
-	        {
-
-	        }
+			HandleRotationSnappingModeSwitching(player);
+	        
 	        
 	        if (player.GetButtonDown("Left Stick Button"))
 	        {
@@ -276,9 +276,24 @@ namespace XLObjectDropper.Controllers
 
 		private void HandleRotation(Player player)
         {
-			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
+	        Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-	        PreviewObject?.transform.Rotate(leftStick.y, leftStick.x, 0);
+			switch (CurrentScaleMode)
+	        {
+		        case (int)RotationSnappingMode.Off:
+					
+					PreviewObject?.transform.Rotate(leftStick.y, leftStick.x, 0);
+					break;
+				case (int)RotationSnappingMode.Degrees15:
+					PreviewObject?.transform.Rotate(leftStick.y + 15, leftStick.x + 15, 0);
+					break;
+				case (int)RotationSnappingMode.Degrees45:
+					PreviewObject?.transform.Rotate(leftStick.y + 45, leftStick.x + 45, 0);
+					break;
+				case (int)RotationSnappingMode.Degrees90:
+					PreviewObject?.transform.Rotate(leftStick.y + 90, leftStick.x + 90, 0);
+					break;
+	        }
         }
 
         private void HandleScaling(Player player)
@@ -306,6 +321,17 @@ namespace XLObjectDropper.Controllers
 			        break;
 	        }
 		}
+
+        private void HandleRotationSnappingModeSwitching(Player player)
+        {
+	        if (player.GetButtonDown("X"))
+	        {
+		        CurrentRotationSnappingMode++;
+
+		        if (CurrentRotationSnappingMode > Enum.GetValues(typeof(RotationSnappingMode)).Length - 1)
+			        CurrentRotationSnappingMode = 0;
+			}
+        }
 
 		#endregion
 
@@ -345,6 +371,16 @@ namespace XLObjectDropper.Controllers
 			foreach (Transform child in trans)
 			{
 				child.ChangeLayersRecursively(layer);
+			}
+		}
+
+		public static void ChangeLayersRecursively(this Transform trans, GameObject prefab)
+		{
+			trans.gameObject.layer = prefab.layer;
+
+			for (var i = trans.childCount - 1; i >= 0; i--)
+			{
+				trans.GetChild(i).ChangeLayersRecursively(prefab.transform.GetChild(i).gameObject);
 			}
 		}
 	}
