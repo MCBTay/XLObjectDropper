@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 110823601
+CRC: 3585221439
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -10,7 +10,4 @@ AssetBundleManifest:
       Dependencies: {}
     Info_2:
       Name: ausbundle
-      Dependencies: {}
-    Info_3:
-      Name: vanna
       Dependencies: {}
