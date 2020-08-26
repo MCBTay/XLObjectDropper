@@ -202,8 +202,6 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonDown("Start"))
 		        {
-			        ObjectSelectionShown = !ObjectSelectionShown;
-
 			        CreateObjectSelection();
 				}
 	        }
@@ -236,16 +234,22 @@ namespace XLObjectDropper.Controllers
 	        HandleRotation(player);
 	        HandleScaling(player);
 
-	        // If a, place the object, but keep the preview object
 	        if (player.GetButtonDown("A"))
 	        {
 		        PlaceObject(false);
 	        }
-	        else if (player.GetButtonDown("Left Stick Button"))
+
+	        if (player.GetButtonDown("X"))
+	        {
+
+	        }
+	        
+	        if (player.GetButtonDown("Left Stick Button"))
 	        {
 		        PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
 	        }
-	        else if (player.GetButtonDown("Right Stick Button"))
+	        
+	        if (player.GetButtonDown("Right Stick Button"))
 	        {
 		        PreviewObject.transform.localScale = Vector3.one;
 	        }
@@ -305,7 +309,7 @@ namespace XLObjectDropper.Controllers
 
 		#endregion
 
-		private float groundLevel;
+		public static float groundLevel;
 
         private bool UpdateGroundLevel()
         {
@@ -315,7 +319,8 @@ namespace XLObjectDropper.Controllers
 	        ref RaycastHit local = ref raycastHit;
 	        if (!Physics.SphereCast(ray1, 0.2f, out local))
 		        return false;
-	        this.groundLevel = raycastHit.point.y;
+	        groundLevel = raycastHit.point.y;
+
 
 			//Debug.Log("XLObjectDropper: groundLevel : " + groundLevel);
 

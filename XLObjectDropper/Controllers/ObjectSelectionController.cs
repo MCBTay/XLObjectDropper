@@ -54,8 +54,6 @@ namespace XLObjectDropper.Controllers
 				{
 					var objectA = listContent.transform.GetChild(i);
 					objectA.transform.parent = null;
-
-					objectA.gameObject.GetComponent<ObjectSelectionListItem>().ListItemSelected -= () => ListItemSelected(item.Value.ElementAt(i));
 					// Optionally destroy the objectA if not longer needed
 				}
 			}
@@ -80,7 +78,7 @@ namespace XLObjectDropper.Controllers
 			ObjectMovementController.PreviewObject = Instantiate(spawnable.Prefab, ObjectMovementController.PinMovementController.GroundIndicator.transform);
 			ObjectMovementController.PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
 			ObjectMovementController.PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
-			ObjectMovementController.PreviewObject.transform.position = GameStateMachine.Instance.PinObject.transform.position;
+			ObjectMovementController.PreviewObject.transform.position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, -ObjectMovementController.groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
 			ObjectMovementController.PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
 		}
 

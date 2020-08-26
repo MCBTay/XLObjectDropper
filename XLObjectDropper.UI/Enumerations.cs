@@ -17,4 +17,12 @@
 		Tired,
 		Packs
 	}
+
+	public enum RotationSnappingMode
+	{
+		Off,
+		Degrees15,
+		Degrees45,
+		Degrees90
+	}
 }

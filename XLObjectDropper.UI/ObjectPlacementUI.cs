@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace XLObjectDropper.UI
 {
@@ -19,6 +20,8 @@ namespace XLObjectDropper.UI
 		public GameObject Dpad_Down;
 		public GameObject Dpad_Left;
 		public GameObject Dpad_Right;
+        [Space(10)]
+        public TMP_Text RotationSnappingStateText;
 
 		private void Start()
 		{
