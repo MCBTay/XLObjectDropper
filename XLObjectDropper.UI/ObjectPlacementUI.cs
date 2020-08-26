@@ -15,11 +15,7 @@ namespace XLObjectDropper.UI
 		[Space(10)]
 		public GameObject RT_UI;
 		public GameObject LT_UI;
-		[Space(10)]
-		public GameObject Dpad_Up;
-		public GameObject Dpad_Down;
-		public GameObject Dpad_Left;
-		public GameObject Dpad_Right;
+		
         [Space(10)]
         public TMP_Text RotationSnappingStateText;
 
@@ -30,10 +26,6 @@ namespace XLObjectDropper.UI
 			LB_UI.SetActive(false);
 			RT_UI.SetActive(false);
 			LT_UI.SetActive(false);
-			Dpad_Down.SetActive(false);
-			Dpad_Up.SetActive(false);
-			Dpad_Left.SetActive(false);
-			Dpad_Right.SetActive(false);
 		}
 
 		private void Update()
@@ -95,49 +87,6 @@ namespace XLObjectDropper.UI
                 LT_UI.SetActive(false);
             }
             #endregion
-
-            #region Directional Pad
-            #region Directional Pad X
-            var axisTest_DPadX = UIManager.Instance.Player.GetAxis("DPadX");
-            if (axisTest_DPadX < 0)
-            {
-                Dpad_Left.SetActive(true);
-            }
-            else
-            {
-                Dpad_Left.SetActive(false);
-            }
-            if (axisTest_DPadX > 0)
-            {
-                Dpad_Right.SetActive(true);
-            }
-            else
-            {
-                Dpad_Right.SetActive(false);
-            }
-            #endregion
-
-            #region Directional Pad Y
-            var axisTest_DPadY = UIManager.Instance.Player.GetAxis("DPadY");
-            if (axisTest_DPadY < 0)
-            {
-                Dpad_Down.SetActive(true);
-            }
-            else
-            {
-                Dpad_Down.SetActive(false);
-            }
-            if (axisTest_DPadY > 0)
-            {
-                Dpad_Up.SetActive(true);
-            }
-            else
-            {
-                Dpad_Up.SetActive(false);
-            }
-            #endregion
-            #endregion
-
-        }
+		}
     }
 }

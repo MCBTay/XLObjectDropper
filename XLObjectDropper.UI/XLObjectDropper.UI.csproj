@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AXYBController.cs" />
+    <Compile Include="DirectionalPadController.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="ObjectSelectionListItem.cs" />
     <Compile Include="ObjectPlacementUI.cs" />
