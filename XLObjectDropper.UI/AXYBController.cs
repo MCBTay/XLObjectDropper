@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace XLObjectDropper.UI
 {
@@ -6,16 +7,24 @@ namespace XLObjectDropper.UI
 	{
 		[Header("A, X, Y, B Buttons")] 
 		public GameObject AButton;
+		public TMP_Text AButtonLabel;
 		public GameObject XButton;
+		public TMP_Text XButtonLabel;
 		public GameObject YButton;
+		public TMP_Text YButtonLabel;
 		public GameObject BButton;
+		public TMP_Text BButtonLabel;
 
 		[Space(10)] 
 		[Header("A, X, Y, B Buttons Pressed")]
-		public GameObject AButton_Pressed;
-		public GameObject XButton_Pressed;
-		public GameObject YButton_Pressed;
-		public GameObject BButton_Pressed;
+		public GameObject AButtonPressed;
+		public TMP_Text AButtonPressedLabel;
+		public GameObject XButtonPressed;
+		public TMP_Text XButtonPressedLabel;
+		public GameObject YButtonPressed;
+		public TMP_Text YButtonPressedLabel;
+		public GameObject BButtonPressed;
+		public TMP_Text BButtonPressedLabel;
 
 		void OnEnable()
 		{
@@ -34,10 +43,10 @@ namespace XLObjectDropper.UI
 			YButton.SetActive(true);
 			BButton.SetActive(true);
 
-			AButton_Pressed.SetActive(false);
-			XButton_Pressed.SetActive(false);
-			YButton_Pressed.SetActive(false);
-			BButton_Pressed.SetActive(false);
+			AButtonPressed.SetActive(false);
+			XButtonPressed.SetActive(false);
+			YButtonPressed.SetActive(false);
+			BButtonPressed.SetActive(false);
 		}
 
 		void Start()
@@ -50,66 +59,66 @@ namespace XLObjectDropper.UI
 		{
 			var player = UIManager.Instance.Player;
 
-			#region A
+			#region A Button
 
 			if (player.GetButtonDown("A"))
 			{
 				AButton.SetActive(false);
-				AButton_Pressed.SetActive(true);
+				AButtonPressed.SetActive(true);
 			}
 
 			if (player.GetButtonUp("A"))
 			{
 				AButton.SetActive(true);
-				AButton_Pressed.SetActive(false);
+				AButtonPressed.SetActive(false);
 			}
 
 			#endregion
 
-			#region X
+			#region X Button
 
 			if (player.GetButtonDown("X"))
 			{
 				XButton.SetActive(false);
-				XButton_Pressed.SetActive(true);
+				XButtonPressed.SetActive(true);
 			}
 
 			if (player.GetButtonUp("X"))
 			{
 				XButton.SetActive(true);
-				XButton_Pressed.SetActive(false);
+				XButtonPressed.SetActive(false);
 			}
 
 			#endregion
 
-			#region Y
+			#region Y Button
 
 			if (player.GetButtonDown("Y"))
 			{
 				YButton.SetActive(false);
-				YButton_Pressed.SetActive(true);
+				YButtonPressed.SetActive(true);
 			}
 
 			if (player.GetButtonUp("Y"))
 			{
 				YButton.SetActive(true);
-				YButton_Pressed.SetActive(false);
+				YButtonPressed.SetActive(false);
 			}
 
 			#endregion
 
-			#region B
+			#region B Button
 
 			if (player.GetButtonDown("B"))
 			{
 				BButton.SetActive(false);
-				BButton_Pressed.SetActive(true);
+				BButtonPressed.SetActive(true);
 			}
 
 			if (player.GetButtonUp("B"))
 			{
 				BButton.SetActive(true);
-				BButton_Pressed.SetActive(false);
+				BButtonPressed.SetActive(false);
 			}
 
 			#endregion

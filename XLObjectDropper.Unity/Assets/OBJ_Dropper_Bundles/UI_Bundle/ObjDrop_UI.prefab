@@ -4176,13 +4176,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AButton: {fileID: 1751118476046132882}
+  AButtonLabel: {fileID: 1751118476491381698}
   XButton: {fileID: 1751118475050464296}
+  XButtonLabel: {fileID: 1751118474877679114}
   YButton: {fileID: 1751118475536519902}
+  YButtonLabel: {fileID: 1751118476091335498}
   BButton: {fileID: 1751118475906446742}
-  AButton_Pressed: {fileID: 6928040725644505712}
-  XButton_Pressed: {fileID: 3028903298461108828}
-  YButton_Pressed: {fileID: 6042814469991152269}
-  BButton_Pressed: {fileID: 7841314448927228985}
+  BButtonLabel: {fileID: 1751118476112251854}
+  AButtonPressed: {fileID: 6928040725644505712}
+  AButtonPressedLabel: {fileID: 281824148964836729}
+  XButtonPressed: {fileID: 3028903298461108828}
+  XButtonPressedLabel: {fileID: 6701887671392675070}
+  YButtonPressed: {fileID: 6042814469991152269}
+  YButtonPressedLabel: {fileID: 4147515510543499066}
+  BButtonPressed: {fileID: 7841314448927228985}
+  BButtonPressedLabel: {fileID: 2748302211377586843}
 --- !u!1 &1751118474691045825
 GameObject:
   m_ObjectHideFlags: 0
@@ -24433,13 +24441,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AButton: {fileID: 1021116225174427128}
+  AButtonLabel: {fileID: 5302750148530480086}
   XButton: {fileID: 1861044111661048585}
+  XButtonLabel: {fileID: 5034201515043391077}
   YButton: {fileID: 269525096006300910}
+  YButtonLabel: {fileID: 485216075848967888}
   BButton: {fileID: 602377266653247109}
-  AButton_Pressed: {fileID: 6795689206838106935}
-  XButton_Pressed: {fileID: 6362277653027510794}
-  YButton_Pressed: {fileID: 3598304386261798412}
-  BButton_Pressed: {fileID: 6476629442665272795}
+  BButtonLabel: {fileID: 1657209525579288714}
+  AButtonPressed: {fileID: 6795689206838106935}
+  AButtonPressedLabel: {fileID: 2101576737250812469}
+  XButtonPressed: {fileID: 6362277653027510794}
+  XButtonPressedLabel: {fileID: 4550070909164827547}
+  YButtonPressed: {fileID: 3598304386261798412}
+  YButtonPressedLabel: {fileID: 3452021481118139613}
+  BButtonPressed: {fileID: 6476629442665272795}
+  BButtonPressedLabel: {fileID: 6435083619512540170}
 --- !u!1 &8921691296129913095
 GameObject:
   m_ObjectHideFlags: 0
