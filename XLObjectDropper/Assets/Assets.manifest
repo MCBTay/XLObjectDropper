@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 61814910
+CRC: 3485182271
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -10,7 +10,4 @@ AssetBundleManifest:
       Dependencies: {}
     Info_2:
       Name: ausbundle
-      Dependencies: {}
-    Info_3:
-      Name: tv
       Dependencies: {}

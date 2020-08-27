@@ -2,6 +2,7 @@
 using Rewired;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using XLObjectDropper.GameManagement;
@@ -159,6 +160,10 @@ namespace XLObjectDropper.Controllers
 			{
 				HandleRotationAndScalingInput(player);
 			}
+			else if (player.GetButtonSinglePressHold("RB"))
+			{
+				HandleAxisLocking(player);
+			}
 			else
 	        {
 				// If dpad up/down, move object up/down
@@ -221,7 +226,9 @@ namespace XLObjectDropper.Controllers
 	        if (disablePreview)
 	        {
 		        PreviewObject.SetActive(false);
-	        }
+		        GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = true;
+		        PinMovementController.GroundIndicator.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+			}
         }
 
 		#region Rotation and Scaling
@@ -241,9 +248,8 @@ namespace XLObjectDropper.Controllers
 	        }
 
 			HandleRotationSnappingModeSwitching(player);
-	        
-	        
-	        if (player.GetButtonDown("Left Stick Button"))
+
+			if (player.GetButtonDown("Left Stick Button"))
 	        {
 		        PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
 	        }
@@ -350,6 +356,14 @@ namespace XLObjectDropper.Controllers
 			}
         }
 
+		#endregion
+
+		#region Axis Locking
+
+		private void HandleAxisLocking(Player player)
+		{
+
+		}
 		#endregion
 
 		public static float groundLevel;

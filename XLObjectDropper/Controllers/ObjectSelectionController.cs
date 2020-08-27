@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityModManagerNet;
 using XLObjectDropper.UI;
 using Object = UnityEngine.Object;
 
@@ -80,6 +79,8 @@ namespace XLObjectDropper.Controllers
 			
 			ObjectMovementController.PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
 
+			GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = false;
+			
 			ObjectMovementController.PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
 
 			ObjectMovementController.PreviewObject.transform.position = ObjectMovementController.PinMovementController.GroundIndicator.transform.position;
