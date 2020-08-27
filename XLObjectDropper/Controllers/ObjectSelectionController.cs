@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityModManagerNet;
 using XLObjectDropper.UI;
 using Object = UnityEngine.Object;
 
@@ -76,10 +77,13 @@ namespace XLObjectDropper.Controllers
 		private static void InstantiatePreviewObject(Spawnable spawnable)
 		{
 			ObjectMovementController.PreviewObject = Instantiate(spawnable.Prefab, ObjectMovementController.PinMovementController.GroundIndicator.transform);
+			
 			ObjectMovementController.PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
-			ObjectMovementController.PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
-			ObjectMovementController.PreviewObject.transform.position = new Vector3(GameStateMachine.Instance.PinObject.transform.position.x, -ObjectMovementController.groundLevel, GameStateMachine.Instance.PinObject.transform.position.z);
+
 			ObjectMovementController.PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
+
+			ObjectMovementController.PreviewObject.transform.position = ObjectMovementController.PinMovementController.GroundIndicator.transform.position;
+			ObjectMovementController.PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
 		}
 
 		private void ObjectClicked(Spawnable spawnable)

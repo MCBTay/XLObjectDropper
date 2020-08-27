@@ -105,6 +105,7 @@ namespace XLObjectDropper.Controllers
         {
 			enabled = false;
 
+			PinMovementController.GroundIndicator.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 			GameStateMachine.Instance.PinObject.SetActive(false);
 
 			UserInterfaceHelper.UserInterface?.SetActive(false);
@@ -115,7 +116,6 @@ namespace XLObjectDropper.Controllers
 			PreviewObject?.SetActive(false);
         }
 
-        //private int originalLayer = -1;
         private GameObject LastPrefab;
 
         private void Update()
@@ -131,7 +131,6 @@ namespace XLObjectDropper.Controllers
 		        Time.timeScale = 1.0f;
 				DestroyObjectSelection();
 
-				//originalLayer = SelectedObject.OriginalLayer;
 				LastPrefab = SelectedObject.Prefab;
 		        SelectedObject = null;
 		        return;
