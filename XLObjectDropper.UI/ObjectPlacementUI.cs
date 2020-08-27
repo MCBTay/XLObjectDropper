@@ -15,9 +15,6 @@ namespace XLObjectDropper.UI
 		[Space(10)]
 		public GameObject RT_UI;
 		public GameObject LT_UI;
-		
-        [Space(10)]
-        public TMP_Text RotationSnappingStateText;
 
 		private void Start()
 		{

@@ -123,5 +123,29 @@ namespace XLObjectDropper.UI
 
 			#endregion
 		}
+
+		public void SetAButtonLabelText(string text)
+		{
+			AButtonLabel.SetText(text);
+			AButtonPressedLabel.SetText(text);
+		}
+
+		public void SetBButtonLabelText(string text)
+		{
+			BButtonLabel.SetText(text);
+			BButtonPressedLabel.SetText(text);
+		}
+
+		public void SetXButtonLabelText(string text)
+		{
+			XButtonLabel.SetText(text);
+			XButtonPressedLabel.SetText(text);
+		}
+
+		public void SetYButtonLabelText(string text)
+		{
+			YButtonLabel.SetText(text);
+			YButtonPressedLabel.SetText(text);
+		}
 	}
 }
