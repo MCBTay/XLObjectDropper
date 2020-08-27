@@ -68,5 +68,25 @@ namespace XLObjectDropper.UI
 		{
 			SetDefaultState(false);
 		}
+
+		public void EnableUndoButton(bool enabled)
+		{
+			UndoButton.GetComponent<Button>().interactable = enabled;
+		}
+
+		public void EnableRedoButton(bool enabled)
+		{
+			RedoButton.GetComponent<Button>().interactable = enabled;
+		}
+
+		public void EnableSaveButton(bool enabled)
+		{
+			SaveButton.GetComponent<Button>().interactable = enabled;
+		}
+
+		public void EnableLoadButton(bool enabled)
+		{
+			LoadButton.GetComponent<Button>().interactable = enabled;
+		}
 	}
 }
