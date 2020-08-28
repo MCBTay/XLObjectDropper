@@ -168,7 +168,6 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Spawnable.cs" />
     <Compile Include="UserInterface\ControllerButtonHelper.cs" />
-    <Compile Include="GameManagement\ObjectSelectionState.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="GameManagement\ObjectMovementState.cs" />
     <Compile Include="Controllers\ObjectMovementController.cs" />

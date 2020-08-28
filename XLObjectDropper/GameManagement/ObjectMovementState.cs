@@ -16,8 +16,7 @@ namespace XLObjectDropper.GameManagement
 
 			availableTransitions = new[]
 			{
-				typeof(PauseState), 
-				typeof(ObjectSelectionState)
+				typeof(PauseState)
 			};
 		}
 
