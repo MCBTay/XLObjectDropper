@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityModManagerNet;
@@ -20,7 +22,7 @@ namespace XLObjectDropper
 
 		public static void LoadDefaultBundles()
 		{
-			LoadBundle("XLObjectDropper.Assets.object_testbundle", true);
+			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.object_testbundle", true));
 		}
 
 		public static void LoadUserBundles()
@@ -38,7 +40,7 @@ namespace XLObjectDropper
 
 				try
 				{
-					LoadBundle(assetPack);
+					PlayerController.Instance.StartCoroutine(LoadBundleAsync(assetPack));
 				}
 				catch (Exception e)
 				{
@@ -61,15 +63,29 @@ namespace XLObjectDropper
 			LoadedSpawnables.Clear();
 		}
 
-		private static void LoadBundle(string name, bool isEmbedded = false)
+		static IEnumerator LoadBundleAsync(string name, bool isEmbedded = false)
 		{
-			AssetBundle bundle = null;
+			AssetBundleCreateRequest abCreateRequest;
 
-			if (isEmbedded) bundle = AssetBundle.LoadFromMemory(ExtractResource(name));
-			else bundle = AssetBundle.LoadFromFile(name);
+			if (isEmbedded)
+			{
+				abCreateRequest = AssetBundle.LoadFromMemoryAsync(ExtractResource(name));
+			}
+			else
+			{
+				abCreateRequest = AssetBundle.LoadFromFileAsync(name);
+			}
 
-			var assets = bundle.LoadAllAssets<GameObject>();
-			Debug.Log("Loaded " + assets.Length + " assets from " + name + ".");
+			yield return abCreateRequest;
+
+			var bundle = abCreateRequest.assetBundle;
+			if (bundle == null) yield break;
+
+			var assetLoadRequest = bundle.LoadAllAssetsAsync<GameObject>();
+			yield return assetLoadRequest;
+
+			var assets = assetLoadRequest.allAssets;
+			if (assets == null || !assets.Any()) yield break;
 
 			foreach (var asset in assets)
 			{
@@ -77,7 +93,7 @@ namespace XLObjectDropper
 				{
 					LoadedSpawnables.Add(isEmbedded ? SpawnableType.Basic : SpawnableType.Packs, new List<Spawnable>());
 				}
-				LoadedSpawnables[isEmbedded ? SpawnableType.Basic : SpawnableType.Packs].Add(new Spawnable { Prefab = asset, OriginalLayer = asset.layer });
+				LoadedSpawnables[isEmbedded ? SpawnableType.Basic : SpawnableType.Packs].Add(new Spawnable { Prefab = asset as GameObject });
 			}
 
 			bundle.Unload(false);

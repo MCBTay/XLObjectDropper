@@ -151,10 +151,6 @@
       <HintPath>References\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>References\UnityEngine.UIElementsModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\UnityEngine.UIModule.dll</HintPath>
@@ -204,6 +200,9 @@ del /Q /F "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObject
 copy /Y "$(TargetDir)XLObjectDropper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.dll"
 copy /Y "$(TargetDir)XLObjectDropper.pdb" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.pdb"
 copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.dll"
+copy /Y "$(TargetDir)XLObjectDropper.UI.pdb" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.pdb"
+copy /Y "$(TargetDir)XLObjectDropper.RuntimeTransformHandles.dll" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.RuntimeTransformHandles.dll"
+copy /Y "$(TargetDir)XLObjectDropper.RuntimeTransformHandles.pdb" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.RuntimeTransformHandles.pdb"
 copy /Y "$(TargetDir)Info.json" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\Info.json"
 )
 
@@ -211,6 +210,7 @@ if "$(ConfigurationName)"=="Release" (
 mkdir $(TargetDir)XLObjectDropper
 copy /Y "$(TargetDir)XLObjectDropper.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.dll"
 copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.UI.dll"
+copy /Y "$(TargetDir)RutimeTransformHandles.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.RuntimeTransformHandles.dll"
 copy /Y "$(TargetDir)Info.json" "$(TargetDir)XLObjectDropper\Info.json"
 
 powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-0-0-1.zip' -Force
