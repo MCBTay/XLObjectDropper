@@ -35,6 +35,8 @@ namespace XLObjectDropper.Controllers
 		private static int CurrentScaleMode { get; set; }
 		private static int CurrentRotationSnappingMode { get; set; }
 
+		public bool LockCameraMovement { get; private set; }
+
 		private void Awake()
 		{
 			Instance = this;
@@ -97,6 +99,7 @@ namespace XLObjectDropper.Controllers
 			PinMovementController.PinRenderer.enabled = false;
 
 			CurrentScaleMode = (int)ScalingMode.Uniform;
+			LockCameraMovement = false;
 
 			ZoomInOutText = GameStateMachine.Instance.PinObject.GetComponentInChildren<TMP_Text>();
 			ZoomInOutText?.gameObject?.SetActive(false);
@@ -170,8 +173,13 @@ namespace XLObjectDropper.Controllers
 				if (PreviewObject != null)
 				{
 					var scaleFactor = 10f;
-					Vector2 dpad = player.GetAxis2D("DPadX", "DPadY");
-					PreviewObject.transform.position = new Vector3(PreviewObject.transform.position.x, PreviewObject.transform.position.y + dpad.y / scaleFactor, PreviewObject.transform.position.z);
+					float dpad = player.GetAxis("DPadY");
+					PreviewObject.transform.position = new Vector3(PreviewObject.transform.position.x, PreviewObject.transform.position.y + dpad / scaleFactor, PreviewObject.transform.position.z);
+				}
+
+				if (player.GetButtonDown("DPadX"))
+				{
+					LockCameraMovement = !LockCameraMovement;
 				}
 
 				if (player.GetButtonDown("A") && PreviewObject != null && PreviewObject.activeSelf)

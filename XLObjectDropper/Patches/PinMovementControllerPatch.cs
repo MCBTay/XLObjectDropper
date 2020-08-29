@@ -1,6 +1,7 @@
 ﻿using GameManagement;
 using HarmonyLib;
 using UnityEngine;
+using XLObjectDropper.Controllers;
 using XLObjectDropper.GameManagement;
 
 namespace XLObjectDropper.Patches
@@ -39,7 +40,11 @@ namespace XLObjectDropper.Patches
 
                     traverseInst.Field("currentHeight").SetValue(__instance.transform.position.y - traverseInst.Field("groundLevel").GetValue<float>());
                     __instance.transform.Rotate(0.0f, axis * Time.deltaTime * __instance.RotateSpeed, 0.0f);
-                    traverseInst.Method("MoveCamera", false).GetValue();
+                    
+                    if (!ObjectMovementController.Instance.LockCameraMovement)
+                    {
+	                    traverseInst.Method("MoveCamera", false).GetValue();
+                    }
 
                     return false;
 				}
