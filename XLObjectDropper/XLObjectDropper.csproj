@@ -164,6 +164,7 @@
   <ItemGroup>
     <Compile Include="AssetBundleHelper.cs" />
     <Compile Include="Controllers\OptionsMenuController.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Patches\PinMovementControllerPatch.cs" />
     <Compile Include="SaveManager.cs" />
     <Compile Include="Settings.cs" />
