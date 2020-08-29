@@ -346,23 +346,7 @@ namespace XLObjectDropper.Controllers
 
 		        if (CurrentRotationSnappingMode > Enum.GetValues(typeof(RotationSnappingMode)).Length - 1)
 			        CurrentRotationSnappingMode = 0;
-
-		        //switch (CurrentRotationSnappingMode)
-		        //{
-			       // case (int)RotationSnappingMode.Off:
-				      //  SetXButtonLabelText("ROTATION SNAPPING: OFF");
-				      //  break;
-			       // case (int)RotationSnappingMode.Degrees15:
-				      //  SetXButtonLabelText("ROTATION SNAPPING: 15°");
-				      //  break;
-			       // case (int)RotationSnappingMode.Degrees45:
-				      //  SetXButtonLabelText("ROTATION SNAPPING: 45°");
-				      //  break;
-			       // case (int)RotationSnappingMode.Degrees90:
-				      //  SetXButtonLabelText("ROTATION SNAPPING: 90°");
-				      //  break;
-		        //}
-			}
+	        }
         }
 
 		#endregion

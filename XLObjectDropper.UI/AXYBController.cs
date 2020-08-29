@@ -18,13 +18,9 @@ namespace XLObjectDropper.UI
 		[Space(10)] 
 		[Header("A, X, Y, B Buttons Pressed")]
 		public GameObject AButtonPressed;
-		public TMP_Text AButtonPressedLabel;
 		public GameObject XButtonPressed;
-		public TMP_Text XButtonPressedLabel;
 		public GameObject YButtonPressed;
-		public TMP_Text YButtonPressedLabel;
 		public GameObject BButtonPressed;
-		public TMP_Text BButtonPressedLabel;
 
 		void OnEnable()
 		{
@@ -127,25 +123,21 @@ namespace XLObjectDropper.UI
 		public void SetAButtonLabelText(string text)
 		{
 			AButtonLabel.SetText(text);
-			AButtonPressedLabel.SetText(text);
 		}
 
 		public void SetBButtonLabelText(string text)
 		{
 			BButtonLabel.SetText(text);
-			BButtonPressedLabel.SetText(text);
 		}
 
 		public void SetXButtonLabelText(string text)
 		{
 			XButtonLabel.SetText(text);
-			XButtonPressedLabel.SetText(text);
 		}
 
 		public void SetYButtonLabelText(string text)
 		{
 			YButtonLabel.SetText(text);
-			YButtonPressedLabel.SetText(text);
 		}
 	}
 }
