@@ -179,6 +179,7 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonDown("DPadX"))
 				{
+					UISounds.Instance?.PlayOneShotSelectMajor();
 					LockCameraMovement = !LockCameraMovement;
 				}
 
