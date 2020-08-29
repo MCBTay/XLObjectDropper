@@ -23,7 +23,7 @@ namespace XLObjectDropper.Patches.GameManagement
 					typeof(ChallengeSelectionState),
 					typeof(SettingsState),
 					typeof(ReplayMenuState),
-					typeof(ObjectMovementState)
+					typeof(ObjectDropperState)
 				};
 			}
 		}

@@ -170,7 +170,7 @@
     <Compile Include="Spawnable.cs" />
     <Compile Include="UserInterface\ControllerButtonHelper.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="GameManagement\ObjectMovementState.cs" />
+    <Compile Include="GameManagement\ObjectDropperState.cs" />
     <Compile Include="Controllers\ObjectMovementController.cs" />
     <Compile Include="Controllers\ObjectSelectionController.cs" />
     <Compile Include="Patches\GameManagement\PauseStatePatch.cs" />

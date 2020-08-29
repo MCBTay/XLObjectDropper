@@ -4,13 +4,13 @@ using XLObjectDropper.Controllers;
 
 namespace XLObjectDropper.GameManagement
 {
-	public class ObjectMovementState : GameState
+	public class ObjectDropperState : GameState
 	{
 		private GameObject ObjectMovementControllerGameObject { get; set; }
 		public ObjectMovementController ObjectMovementController { get; set; }
-		public static ObjectMovementState Instance { get; private set; }
+		public static ObjectDropperState Instance { get; private set; }
 
-		public ObjectMovementState()
+		public ObjectDropperState()
 		{
 			Instance = this;
 

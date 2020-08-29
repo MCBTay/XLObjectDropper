@@ -48,7 +48,7 @@ namespace XLObjectDropper.UserInterface
 				ObjectDropperButton.onClick.SetPersistentListenerState(0, UnityEventCallState.Off);
 				ObjectDropperButton.onClick.AddListener(() =>
 				{
-					GameStateMachine.Instance.RequestTransitionTo(typeof(ObjectMovementState));
+					GameStateMachine.Instance.RequestTransitionTo(typeof(ObjectDropperState));
 				});
 			}
 		}

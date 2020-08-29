@@ -12,7 +12,7 @@ namespace XLObjectDropper.Patches
 		{
 			static bool Prefix(PinMovementController __instance)
 			{
-				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectMovementState))
+				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
 				{
 					var traverseInst = Traverse.Create(__instance);
 

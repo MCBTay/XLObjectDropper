@@ -52,7 +52,7 @@ namespace XLObjectDropper.Controllers
 	        
 	        OriginalPinObject = GameStateMachine.Instance.PinObject;
 
-	        if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectMovementState)))
+	        if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectDropperState)))
 				return;
 
 			enabled = false;
