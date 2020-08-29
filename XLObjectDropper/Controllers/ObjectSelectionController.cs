@@ -69,22 +69,8 @@ namespace XLObjectDropper.Controllers
 					Destroy(ObjectMovementController.PreviewObject);
 				}
 
-				InstantiatePreviewObject(spawnable);
+				ObjectMovementController.InstantiatePreviewObject(spawnable);
 			}
-		}
-
-		private static void InstantiatePreviewObject(Spawnable spawnable)
-		{
-			ObjectMovementController.PreviewObject = Instantiate(spawnable.Prefab, ObjectMovementController.PinMovementController.GroundIndicator.transform);
-			
-			ObjectMovementController.PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
-
-			GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = false;
-			
-			ObjectMovementController.PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
-
-			ObjectMovementController.PreviewObject.transform.position = ObjectMovementController.PinMovementController.GroundIndicator.transform.position;
-			ObjectMovementController.PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
 		}
 
 		private void ObjectClicked(Spawnable spawnable)

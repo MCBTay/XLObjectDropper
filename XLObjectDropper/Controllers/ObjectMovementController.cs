@@ -391,6 +391,20 @@ namespace XLObjectDropper.Controllers
 
 	        return true;
         }
+
+        public static void InstantiatePreviewObject(Spawnable spawnable)
+        {
+	        PreviewObject = Instantiate(spawnable.Prefab, PinMovementController.GroundIndicator.transform);
+
+	        PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
+
+	        GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = false;
+
+	        PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
+
+	        PreviewObject.transform.position = PinMovementController.GroundIndicator.transform.position;
+	        PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
+        }
 	}
 
 	public static class Extensions
