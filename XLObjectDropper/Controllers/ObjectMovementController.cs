@@ -379,15 +379,16 @@ namespace XLObjectDropper.Controllers
 
         public static void InstantiatePreviewObject(Spawnable spawnable)
         {
-	        PreviewObject = Instantiate(spawnable.Prefab, PinMovementController.GroundIndicator.transform);
+			//PreviewObject = Instantiate(spawnable.Prefab, PinMovementController.GroundIndicator.transform);
+			PreviewObject = Instantiate(spawnable.Prefab, PinMovementController.transform);
 
-	        PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
+			PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
 
 	        GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = false;
 
 	        PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
 
-	        PreviewObject.transform.position = PinMovementController.GroundIndicator.transform.position;
+	        PreviewObject.transform.position = PinMovementController.transform.position;
 	        PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
         }
 	}

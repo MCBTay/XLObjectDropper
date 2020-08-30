@@ -17,14 +17,13 @@ namespace XLObjectDropper.Patches
 			{
 				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
 				{
-					Vector2 axis2D = PlayerController.Instance.inputController.player.GetAxis2D("LeftStickX", "LeftStickY");
-                    float axis = PlayerController.Instance.inputController.player.GetAxis(21);
-                    float rightStickYAxis = PlayerController.Instance.inputController.player.GetAxis("RightStickY");
-                    float a = (PlayerController.Instance.inputController.player.GetAxis(9) - PlayerController.Instance.inputController.player.GetAxis(8)) * Time.deltaTime * __instance.heightChangeSpeed * __instance.HeightToHeightChangeSpeedCurve.Evaluate(___targetHeight);
+					Vector2 leftStick = PlayerController.Instance.inputController.player.GetAxis2D("LeftStickX", "LeftStickY");
+					Vector2 rightStick = PlayerController.Instance.inputController.player.GetAxis2D("RightStickX", "RightStickY");
+					float a = (PlayerController.Instance.inputController.player.GetAxis(9) - PlayerController.Instance.inputController.player.GetAxis(8)) * Time.deltaTime * __instance.heightChangeSpeed * __instance.HeightToHeightChangeSpeedCurve.Evaluate(___targetHeight);
 
                     ___currentHeight = __instance.transform.position.y - ___groundLevel;
 					___currentMoveSpeed = Mathf.MoveTowards(___currentMoveSpeed, __instance.MoveSpeed * __instance.HeightToMoveSpeedFactorCurve.Evaluate(___targetHeight), __instance.HorizontalAcceleration * Time.deltaTime);
-                    ___collisionFlags = __instance.characterController.Move(__instance.transform.rotation * new Vector3(axis2D.x, 0.0f, axis2D.y) * ___currentMoveSpeed * Time.deltaTime);
+                    ___collisionFlags = __instance.characterController.Move(__instance.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * ___currentMoveSpeed * Time.deltaTime);
 					___currentHeight = __instance.transform.position.y - ___groundLevel;
 					if (!Mathf.Approximately(a, 0.0f))
                     {
@@ -45,9 +44,10 @@ namespace XLObjectDropper.Patches
                     }
 
 					___currentHeight = __instance.transform.position.y - ___groundLevel;
-					__instance.transform.Rotate(rightStickYAxis * Time.deltaTime * __instance.RotateSpeed, axis * Time.deltaTime * __instance.RotateSpeed, 0.0f);
-                    
-                    if (!ObjectMovementController.Instance.LockCameraMovement)
+					__instance.transform.Rotate(rightStick.y * Time.deltaTime * __instance.RotateSpeed, 0.0f, 0.0f);
+					__instance.transform.RotateAround(__instance.transform.position, Vector3.up, rightStick.x * Time.deltaTime * __instance.RotateSpeed);
+
+					if (!ObjectMovementController.Instance.LockCameraMovement)
                     {
 	                    Traverse.Create(__instance).Method("MoveCamera", false).GetValue();
                     }
@@ -87,7 +87,7 @@ namespace XLObjectDropper.Patches
 						___currentCameraDist = Mathf.MoveTowards(___currentCameraDist, ___targetHeight, Mathf.Abs(f) * Time.deltaTime);
 						___lastCameraVelocity = f;
 
-						UnityModManager.Logger.Log("XLObjectDropper: targetHeight: " + ___targetHeight + ", num1: " + num1 + ", num2: " + num2 + ", currentCameraDist: " + ___currentCameraDist + ", transform.position: " + __instance.transform.position);
+						//UnityModManager.Logger.Log("XLObjectDropper: targetHeight: " + ___targetHeight + ", num1: " + num1 + ", num2: " + num2 + ", currentCameraDist: " + ___currentCameraDist + ", transform.position: " + __instance.transform.position);
 					}
 					__instance.cameraNode.localPosition = new Vector3(0.0f, 0.0f, -___currentCameraDist);
 
@@ -97,6 +97,20 @@ namespace XLObjectDropper.Patches
 				}
 
 				return true;
+			}
+		}
+
+		[HarmonyPatch(typeof(PinMovementController), "OnDisable")]
+		static class OnDisablePatch
+		{
+			static void Prefix(PinMovementController __instance)
+			{
+				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
+				{
+					//Vector2 rightStick = PlayerController.Instance.inputController.player.GetAxis2D("RightStickX", "RightStickY");
+					__instance.transform.rotation = Quaternion.identity;
+					
+				}
 			}
 		}
 	}
