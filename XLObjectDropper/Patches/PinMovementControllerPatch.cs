@@ -1,4 +1,5 @@
-﻿using GameManagement;
+﻿using System;
+using GameManagement;
 using HarmonyLib;
 using UnityEngine;
 using UnityModManagerNet;
@@ -12,8 +13,12 @@ namespace XLObjectDropper.Patches
 		[HarmonyPatch(typeof(PinMovementController), "Update")]
 		static class UpdatePatch
 		{
+			private static float currentYAngle = 0f;
+
+			private static float targetYAngle = 0f;
+
 			static bool Prefix(PinMovementController __instance, ref float ___currentHeight, ref float ___targetHeight, ref float ___currentMoveSpeed, ref float ___groundLevel,
-				               ref CollisionFlags ___collisionFlags, ref float ___lastVerticalVelocity)
+				               ref CollisionFlags ___collisionFlags, ref float ___lastVerticalVelocity, Camera ___mainCam)
 			{
 				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
 				{
@@ -44,8 +49,39 @@ namespace XLObjectDropper.Patches
                     }
 
 					___currentHeight = __instance.transform.position.y - ___groundLevel;
-					__instance.transform.Rotate(rightStick.y * Time.deltaTime * __instance.RotateSpeed, 0.0f, 0.0f);
-					__instance.transform.RotateAround(__instance.transform.position, Vector3.up, rightStick.x * Time.deltaTime * __instance.RotateSpeed);
+
+					#region Camera rotation
+					var rotationAngleX = rightStick.x * Time.deltaTime * __instance.RotateSpeed;
+					var rotationAngleY = rightStick.y * Time.deltaTime * __instance.RotateSpeed;
+
+					var forwardA = Quaternion.Euler(Vector3.zero) * Vector3.forward;
+					var forwardB = __instance.cameraPivot.rotation;
+
+					var angleA = Mathf.Atan2(forwardA.x, forwardA.y) * Mathf.Rad2Deg;
+					var angleB = Mathf.Atan2(forwardB.x, forwardB.y) * Mathf.Rad2Deg;
+					var angleDiff = Mathf.DeltaAngle(angleA, angleB);
+
+					var testangle = Quaternion.Angle(Quaternion.Euler(Vector3.zero), __instance.cameraPivot.rotation);
+
+
+					UnityModManager.Logger.Log("XLObjectDropper: testAngle = " + testangle + ", rotationAngleY = " +
+					                           rotationAngleY + ", angleDiff: " + angleDiff + ", angleDiff > -55f: " + (angleDiff > -55f).ToString() + ", angleDiff < 55f: " + (angleDiff < 55f));
+
+					var maxAngle = 60f;
+
+					if (angleDiff > -maxAngle && angleDiff < maxAngle ||
+					    angleDiff <= -maxAngle && rotationAngleY > 0 ||
+					    angleDiff >= maxAngle && rotationAngleY < 0)
+					{
+						// Rotates camera around object (right stick y axis)
+						__instance.cameraPivot.transform.RotateAround(__instance.transform.position, __instance.transform.right, rotationAngleY);
+					}
+
+					// Rotates the object (right stick x axis)
+					__instance.transform.RotateAround(__instance.transform.position, __instance.transform.up, rotationAngleX);
+					// Rotates camera around object (right stick x axis)
+					//__instance.cameraPivot.transform.RotateAround(__instance.transform.position, __instance.transform.up, rotationAngleX);
+					#endregion
 
 					if (!ObjectMovementController.Instance.LockCameraMovement)
                     {
