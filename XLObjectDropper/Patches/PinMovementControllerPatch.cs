@@ -1,6 +1,7 @@
 ﻿using GameManagement;
 using HarmonyLib;
 using UnityEngine;
+using UnityModManagerNet;
 using XLObjectDropper.Controllers;
 using XLObjectDropper.GameManagement;
 
@@ -11,42 +12,88 @@ namespace XLObjectDropper.Patches
 		[HarmonyPatch(typeof(PinMovementController), "Update")]
 		static class UpdatePatch
 		{
-			static bool Prefix(PinMovementController __instance)
+			static bool Prefix(PinMovementController __instance, ref float ___currentHeight, ref float ___targetHeight, ref float ___currentMoveSpeed, ref float ___groundLevel,
+				               ref CollisionFlags ___collisionFlags, ref float ___lastVerticalVelocity)
 			{
 				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
 				{
-					var traverseInst = Traverse.Create(__instance);
-
-                    Vector2 axis2D = PlayerController.Instance.inputController.player.GetAxis2D("LeftStickX", "LeftStickY");
+					Vector2 axis2D = PlayerController.Instance.inputController.player.GetAxis2D("LeftStickX", "LeftStickY");
                     float axis = PlayerController.Instance.inputController.player.GetAxis(21);
-                    float a = (PlayerController.Instance.inputController.player.GetAxis(9) - PlayerController.Instance.inputController.player.GetAxis(8)) * Time.deltaTime * __instance.heightChangeSpeed * __instance.HeightToHeightChangeSpeedCurve.Evaluate(traverseInst.Field("targetHeight").GetValue<float>());
-                    traverseInst.Field("currentHeight").SetValue(__instance.transform.position.y - traverseInst.Field("groundLevel").GetValue<float>());
-                    traverseInst.Field("currentMoveSpeed").SetValue(Mathf.MoveTowards(traverseInst.Field("currentMoveSpeed").GetValue<float>(), __instance.MoveSpeed * __instance.HeightToMoveSpeedFactorCurve.Evaluate(traverseInst.Field("targetHeight").GetValue<float>()), __instance.HorizontalAcceleration * Time.deltaTime));
-                    traverseInst.Field("collisionFlags").SetValue(__instance.characterController.Move(__instance.transform.rotation * new Vector3(axis2D.x, 0.0f, axis2D.y) * traverseInst.Field("currentMoveSpeed").GetValue<float>() * Time.deltaTime));
-                    traverseInst.Field("currentHeight").SetValue(__instance.transform.position.y - traverseInst.Field("groundLevel").GetValue<float>());
-                    if (!Mathf.Approximately(a, 0.0f))
+                    float rightStickYAxis = PlayerController.Instance.inputController.player.GetAxis("RightStickY");
+                    float a = (PlayerController.Instance.inputController.player.GetAxis(9) - PlayerController.Instance.inputController.player.GetAxis(8)) * Time.deltaTime * __instance.heightChangeSpeed * __instance.HeightToHeightChangeSpeedCurve.Evaluate(___targetHeight);
+
+                    ___currentHeight = __instance.transform.position.y - ___groundLevel;
+					___currentMoveSpeed = Mathf.MoveTowards(___currentMoveSpeed, __instance.MoveSpeed * __instance.HeightToMoveSpeedFactorCurve.Evaluate(___targetHeight), __instance.HorizontalAcceleration * Time.deltaTime);
+                    ___collisionFlags = __instance.characterController.Move(__instance.transform.rotation * new Vector3(axis2D.x, 0.0f, axis2D.y) * ___currentMoveSpeed * Time.deltaTime);
+					___currentHeight = __instance.transform.position.y - ___groundLevel;
+					if (!Mathf.Approximately(a, 0.0f))
                     {
-                        if ((double)traverseInst.Field("currentHeight").GetValue<float>() < (double)__instance.maxHeight && (double)a > 0.0 || (double)traverseInst.Field("currentHeight").GetValue<float>() > (double)__instance.minHeight && (double)a < 0.0)
-	                        traverseInst.Field("collisionFlags").SetValue(__instance.characterController.Move(Vector3.up * a));
-                        traverseInst.Field("currentHeight").SetValue(__instance.transform.position.y - traverseInst.Field("groundLevel").GetValue<float>());
-                        traverseInst.Field("targetHeight").SetValue(Mathf.Clamp(traverseInst.Field("currentHeight").GetValue<float>(), __instance.minHeight, __instance.maxHeight));
+	                    if ((double) ___currentHeight < (double) __instance.maxHeight && (double) a > 0.0 ||
+	                        (double) ___currentHeight > (double) __instance.minHeight && (double) a < 0.0)
+	                    {
+		                    ___collisionFlags = __instance.characterController.Move(Vector3.up * a);
+	                    }
+
+						___currentHeight = __instance.transform.position.y - ___groundLevel;
+						___targetHeight = Mathf.Clamp(___currentHeight, __instance.minHeight, __instance.maxHeight);
                     }
                     else
                     {
-                        float num = (float)(((double)traverseInst.Field("targetHeight").GetValue<float>() - (double)traverseInst.Field("currentHeight").GetValue<float>()) / 0.25);
-                        traverseInst.Field("collisionFlags").SetValue(__instance.characterController.Move((Mathf.Approximately(traverseInst.Field("lastVerticalVelocity").GetValue<float>(), 0.0f) || (double)Mathf.Sign(num) == (double)Mathf.Sign(traverseInst.Field("lastVerticalVelocity").GetValue<float>()) ? ((double)Mathf.Abs(num) <= (double)Mathf.Abs(traverseInst.Field("lastVerticalVelocity").GetValue<float>()) ? num : Mathf.MoveTowards(traverseInst.Field("lastVerticalVelocity").GetValue<float>(), num, __instance.VerticalAcceleration * Time.deltaTime)) : 0.0f) * Time.deltaTime * Vector3.up));
-                        traverseInst.Field("lastVerticalVelocity").SetValue(__instance.characterController.velocity.y);
+                        float num = (float)(((double)___targetHeight - (double)___currentHeight) / 0.25);
+                        ___collisionFlags = __instance.characterController.Move((Mathf.Approximately(___lastVerticalVelocity, 0.0f) || (double)Mathf.Sign(num) == (double)Mathf.Sign(___lastVerticalVelocity) ? ((double)Mathf.Abs(num) <= (double)Mathf.Abs(___lastVerticalVelocity) ? num : Mathf.MoveTowards(___lastVerticalVelocity, num, __instance.VerticalAcceleration * Time.deltaTime)) : 0.0f) * Time.deltaTime * Vector3.up);
+                        ___lastVerticalVelocity = __instance.characterController.velocity.y;
                     }
 
-                    traverseInst.Field("currentHeight").SetValue(__instance.transform.position.y - traverseInst.Field("groundLevel").GetValue<float>());
-                    __instance.transform.Rotate(0.0f, axis * Time.deltaTime * __instance.RotateSpeed, 0.0f);
+					___currentHeight = __instance.transform.position.y - ___groundLevel;
+					__instance.transform.Rotate(rightStickYAxis * Time.deltaTime * __instance.RotateSpeed, axis * Time.deltaTime * __instance.RotateSpeed, 0.0f);
                     
                     if (!ObjectMovementController.Instance.LockCameraMovement)
                     {
-	                    traverseInst.Method("MoveCamera", false).GetValue();
+	                    Traverse.Create(__instance).Method("MoveCamera", false).GetValue();
                     }
 
                     return false;
+				}
+
+				return true;
+			}
+		}
+
+		[HarmonyPatch(typeof(PinMovementController), "MoveCamera", new [] { typeof(bool) })]
+		static class MoveCameraPatch
+		{
+			static bool Prefix(PinMovementController __instance, ref bool moveInstant, ref float ___targetHeight, ref float ___lastCameraVelocity, ref float ___currentCameraDist)
+			{
+				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
+				{
+					Ray ray = new Ray(__instance.cameraPivot.position, -__instance.cameraPivot.forward);
+					float num1 = __instance.HeightToCameraDistCurve.Evaluate(___targetHeight);
+					Debug.DrawRay(ray.origin, ray.direction, Color.red);
+					RaycastHit hitInfo;
+					if (Physics.SphereCast(ray, __instance.CameraSphereCastRadius, out hitInfo, num1, (int)__instance.layermask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - __instance.CameraSphereCastRadius)) < (double)___currentCameraDist)
+						moveInstant = true;
+					if (moveInstant)
+					{
+						___lastCameraVelocity = 0.0f;
+						___currentCameraDist = num1;
+					}
+					else
+					{
+						float num2 = (float)(((double)___targetHeight - (double)___currentCameraDist) / 0.25);
+
+						float f = Mathf.Approximately(___lastCameraVelocity, 0.0f) || (double)Mathf.Sign(num2) == (double)Mathf.Sign(___lastCameraVelocity) ?
+							((double)Mathf.Abs(num2) <= (double)Mathf.Abs(___lastCameraVelocity) ? num2 : Mathf.MoveTowards(___lastCameraVelocity, num2, __instance.MaxCameraAcceleration * Time.deltaTime)) :
+							0.0f;
+						___currentCameraDist = Mathf.MoveTowards(___currentCameraDist, ___targetHeight, Mathf.Abs(f) * Time.deltaTime);
+						___lastCameraVelocity = f;
+
+						UnityModManager.Logger.Log("XLObjectDropper: targetHeight: " + ___targetHeight + ", num1: " + num1 + ", num2: " + num2 + ", currentCameraDist: " + ___currentCameraDist + ", transform.position: " + __instance.transform.position);
+					}
+					__instance.cameraNode.localPosition = new Vector3(0.0f, 0.0f, -___currentCameraDist);
+
+					PlayerController.Instance.cameraController.MoveCameraTo(__instance.cameraNode.position, __instance.cameraNode.rotation);
+
+					return false;
 				}
 
 				return true;
