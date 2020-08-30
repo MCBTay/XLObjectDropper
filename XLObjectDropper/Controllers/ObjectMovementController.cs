@@ -3,6 +3,7 @@ using Rewired;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using TMPro;
 using UnityEngine;
 using XLObjectDropper.GameManagement;
@@ -208,7 +209,14 @@ namespace XLObjectDropper.Controllers
 				if (player.GetButtonDown("Left Stick Button") && PreviewObject != null)
 		        {
 					PreviewObject.transform.localScale = Vector3.one;
-					PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
+					PreviewObject.transform.rotation = LastPrefab.transform.rotation;
+				}
+
+				if (player.GetButtonDown("Right Stick Button"))
+				{
+					PinMovementController.transform.rotation = Quaternion.identity;
+					Traverse.Create(PinMovementController).Field("targetHeight").SetValue(PinMovementController.defaultHeight);
+					Traverse.Create(PinMovementController).Method("MoveCamera", true).GetValue();
 				}
 				
 				if (player.GetButtonDown("Select"))
