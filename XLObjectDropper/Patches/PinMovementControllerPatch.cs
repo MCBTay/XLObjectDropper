@@ -1,7 +1,6 @@
 ﻿using System;
 using GameManagement;
 using HarmonyLib;
-using Rewired;
 using UnityEngine;
 using UnityModManagerNet;
 using XLObjectDropper.Controllers;
@@ -15,7 +14,6 @@ namespace XLObjectDropper.Patches
 		private static float rotationAngleX;
 		private static float rotationAngleY;
 		private static float distance;
-		private static float targetDistance;
 
 		[HarmonyPatch(typeof(PinMovementController), "OnEnable")]
 		static class OnEnablePatch
@@ -25,12 +23,11 @@ namespace XLObjectDropper.Patches
 				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
 				{
 					__instance.defaultHeight = 2.5f;
-					__instance.minHeight = 0.01f;
+					Traverse.Create(__instance).Field("minHeight").SetValue(0f);
 				}
 				else
 				{
 					__instance.defaultHeight = 1.8f;
-					__instance.minHeight = 0.5f;
 				}
 			}
 
@@ -44,7 +41,6 @@ namespace XLObjectDropper.Patches
 					rotationAngleY = __instance.cameraPivot.eulerAngles.y;
 
 					distance = ___currentCameraDist;
-					targetDistance = ___currentCameraDist;
 				}
 			}
 		}
@@ -62,10 +58,7 @@ namespace XLObjectDropper.Patches
 				{
 					Vector2 leftStick = PlayerController.Instance.inputController.player.GetAxis2D("LeftStickX", "LeftStickY");
 					Vector2 rightStick = PlayerController.Instance.inputController.player.GetAxis2D("RightStickX", "RightStickY");
-					float a = (PlayerController.Instance.inputController.player.GetAxis(9) - PlayerController.Instance.inputController.player.GetAxis(8)) * 
-					          Time.deltaTime * 
-					          __instance.heightChangeSpeed * 
-					          __instance.HeightToHeightChangeSpeedCurve.Evaluate(___targetHeight);
+					float a = (PlayerController.Instance.inputController.player.GetAxis(9) - PlayerController.Instance.inputController.player.GetAxis(8)) * Time.deltaTime * __instance.heightChangeSpeed * __instance.HeightToHeightChangeSpeedCurve.Evaluate(___targetHeight);
 
                     ___currentHeight = __instance.transform.position.y - ___groundLevel;
 					___currentMoveSpeed = Mathf.MoveTowards(___currentMoveSpeed, __instance.MoveSpeed * __instance.HeightToMoveSpeedFactorCurve.Evaluate(___targetHeight), __instance.HorizontalAcceleration * Time.deltaTime);
@@ -76,7 +69,7 @@ namespace XLObjectDropper.Patches
 						if ((double) ___currentHeight < (double) __instance.maxHeight && (double) a > 0.0 ||
 							(double) ___currentHeight > (double) __instance.minHeight && (double) a < 0.0)
 						{
-							targetDistance += a;
+							___collisionFlags = __instance.characterController.Move(Vector3.up * a);
 						}
 
 						___currentHeight = __instance.transform.position.y - ___groundLevel;
@@ -91,7 +84,6 @@ namespace XLObjectDropper.Patches
 
 					___currentHeight = __instance.transform.position.y - ___groundLevel;
 
-					//TODO: Something about this new rotation method fucks up the default angle of the object dropper
 					#region Camera rotation
 					rotationAngleX -= rightStick.x * Time.deltaTime * __instance.RotateSpeed;
 					rotationAngleY += rightStick.y * Time.deltaTime * __instance.RotateSpeed;
@@ -152,13 +144,12 @@ namespace XLObjectDropper.Patches
 					}
 					else
 					{
-						float num2 = (float)(((double)targetDistance - (double)___currentCameraDist) / 0.25);
+						float num2 = (float)(((double)___targetHeight - (double)___currentCameraDist) / 0.25);
 
 						float f = Mathf.Approximately(___lastCameraVelocity, 0.0f) || (double)Mathf.Sign(num2) == (double)Mathf.Sign(___lastCameraVelocity) ?
 							((double)Mathf.Abs(num2) <= (double)Mathf.Abs(___lastCameraVelocity) ? num2 : Mathf.MoveTowards(___lastCameraVelocity, num2, __instance.MaxCameraAcceleration * Time.deltaTime)) :
 							0.0f;
-						___currentCameraDist = Mathf.MoveTowards(___currentCameraDist, targetDistance, Mathf.Abs(f) * Time.deltaTime);
-						___currentCameraDist = Mathf.Clamp(___currentCameraDist, 2.5f, 25f);
+						___currentCameraDist = Mathf.MoveTowards(___currentCameraDist, ___targetHeight, Mathf.Abs(f) * Time.deltaTime);
 						___lastCameraVelocity = f;
 
 					}
@@ -178,7 +169,6 @@ namespace XLObjectDropper.Patches
 		{
 			static void Prefix(PinMovementController __instance)
 			{
-
 				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
 				{
 					//Vector2 rightStick = PlayerController.Instance.inputController.player.GetAxis2D("RightStickX", "RightStickY");

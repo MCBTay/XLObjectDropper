@@ -175,9 +175,7 @@ namespace XLObjectDropper.Controllers
 				{
 					var scaleFactor = 10f;
 					float dpad = player.GetAxis("DPadY");
-					
-					var targetHeight = Traverse.Create(PinMovementController).Field("targetHeight");
-					targetHeight.SetValue(targetHeight.GetValue<float>() + (dpad * Time.deltaTime * PinMovementController.heightChangeSpeed * PinMovementController.HeightToHeightChangeSpeedCurve.Evaluate(targetHeight.GetValue<float>())));
+					PreviewObject.transform.position = new Vector3(PreviewObject.transform.position.x, PreviewObject.transform.position.y + dpad / scaleFactor, PreviewObject.transform.position.z);
 				}
 
 				if (player.GetButtonDown("DPadX"))
