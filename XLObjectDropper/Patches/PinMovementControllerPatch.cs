@@ -8,8 +8,13 @@ using XLObjectDropper.GameManagement;
 
 namespace XLObjectDropper.Patches
 {
-	public class PinMovementControllerPatch
+	public static class PinMovementControllerPatch
 	{
+		private static Vector3 initialVector = Vector3.forward;
+		private static float rotationAngleX;
+		private static float rotationAngleY;
+		private static float distance;
+
 		[HarmonyPatch(typeof(PinMovementController), "OnEnable")]
 		static class OnEnablePatch
 		{
@@ -25,15 +30,29 @@ namespace XLObjectDropper.Patches
 					__instance.defaultHeight = 1.8f;
 				}
 			}
+
+			private static void Postfix(PinMovementController __instance, ref float ___currentCameraDist)
+			{
+				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
+				{
+					initialVector = __instance.cameraPivot.position - __instance.transform.position;
+
+					rotationAngleX = __instance.cameraPivot.eulerAngles.x;
+					rotationAngleY = __instance.cameraPivot.eulerAngles.y;
+
+					distance = ___currentCameraDist;
+				}
+			}
 		}
 
 		[HarmonyPatch(typeof(PinMovementController), "Update")]
 		static class UpdatePatch
 		{
 			private static Transform marker;
+			
 
 			static bool Prefix(PinMovementController __instance, ref float ___currentHeight, ref float ___targetHeight, ref float ___currentMoveSpeed, ref float ___groundLevel,
-				               ref CollisionFlags ___collisionFlags, ref float ___lastVerticalVelocity, Camera ___mainCam)
+				               ref CollisionFlags ___collisionFlags, ref float ___lastVerticalVelocity, Camera ___mainCam, ref float ___currentCameraDist)
 			{
 				if (GameStateMachine.Instance.CurrentState.GetType() == typeof(ObjectDropperState))
 				{
@@ -66,33 +85,21 @@ namespace XLObjectDropper.Patches
 					___currentHeight = __instance.transform.position.y - ___groundLevel;
 
 					#region Camera rotation
-					var rotationAngleX = rightStick.x * Time.deltaTime * __instance.RotateSpeed;
-					var rotationAngleY = rightStick.y * Time.deltaTime * __instance.RotateSpeed;
+					rotationAngleX += rightStick.x * Time.deltaTime * __instance.RotateSpeed;
+					rotationAngleY += rightStick.y * Time.deltaTime * __instance.RotateSpeed;
 
-					//TODO: Currently forwardA does not update as you move the camera around, which causes the angle comparison to not be accurate.
-					var forwardA = __instance.transform.rotation * Vector3.forward;
-					var forwardB = __instance.cameraPivot.rotation * Vector3.forward;
-
-					var angleA = Mathf.Atan2(forwardA.y, forwardA.z) * Mathf.Rad2Deg;
-					var angleB = Mathf.Atan2(forwardB.y, forwardB.z) * Mathf.Rad2Deg;
-					var angleDiff = Mathf.DeltaAngle(angleA, angleB);
-
-					var minAngle = -85f;
 					var maxAngle = 85f;
-					//UnityModManager.Logger.Log("XLObjectDropper: forwardA: " + forwardA + ", forwardB: " + forwardB + ", rotationAngleY: " + rotationAngleY + ", angleDiff: " + angleDiff);
-					//UnityModManager.Logger.Log("--XLObjectDropper: angleDiff > minAngle: " + (angleDiff > minAngle) + ", angleDiff < maxAngle: " + (angleDiff < maxAngle));
-					//UnityModManager.Logger.Log("--XLObjectDropper: angleDiff <= minAngle && rotationAngleY > 0: " + (angleDiff <= minAngle) + " && " + (rotationAngleY > 0) + " = " + (angleDiff <= minAngle && rotationAngleY > 0));
-					//UnityModManager.Logger.Log("--XLObjectDropper: angleDiff >= maxAngle && rotationAngleY < 0: " + (angleDiff >= maxAngle) + " && " + (rotationAngleY < 0) + " = " + (angleDiff >= maxAngle && rotationAngleY < 0));
 
+					rotationAngleY = ClampAngle(rotationAngleY, -maxAngle, maxAngle);
 
-					if (angleDiff > minAngle && angleDiff < maxAngle || angleDiff <= minAngle && rotationAngleY < 0 || angleDiff >= maxAngle && rotationAngleY > 0)
-					{
-						// Rotates camera around object (right stick y axis)
-						__instance.cameraPivot.transform.RotateAround(__instance.transform.position, __instance.cameraPivot.right, rotationAngleY);
-					}
+					var toRotation = Quaternion.Euler(rotationAngleY, rotationAngleX, 0);
+					var rotation = toRotation;
 
-					// Rotates camera around object (right stick x axis)
-					__instance.cameraPivot.transform.RotateAround(__instance.transform.position, __instance.transform.up, rotationAngleX);
+					Vector3 negDistance = new Vector3(0, 0, -___currentCameraDist);
+					var position = rotation * negDistance + Vector3.zero;
+
+					__instance.cameraPivot.rotation = rotation;
+					__instance.cameraNode.position = position;
 					#endregion
 
 					if (!ObjectMovementController.Instance.LockCameraMovement)
@@ -104,6 +111,15 @@ namespace XLObjectDropper.Patches
 				}
 
 				return true;
+			}
+
+			private static float ClampAngle(float angle, float min, float max)
+			{
+				if (angle < -360F)
+					angle += 360F;
+				if (angle > 360F)
+					angle -= 360F;
+				return Mathf.Clamp(angle, min, max);
 			}
 		}
 
