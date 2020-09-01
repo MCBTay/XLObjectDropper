@@ -85,7 +85,7 @@ namespace XLObjectDropper.Patches
 					___currentHeight = __instance.transform.position.y - ___groundLevel;
 
 					#region Camera rotation
-					rotationAngleX += rightStick.x * Time.deltaTime * __instance.RotateSpeed;
+					rotationAngleX -= rightStick.x * Time.deltaTime * __instance.RotateSpeed;
 					rotationAngleY += rightStick.y * Time.deltaTime * __instance.RotateSpeed;
 
 					var maxAngle = 85f;
