@@ -1,6 +1,4 @@
-﻿using GameManagement;
-using System.Linq;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -69,7 +67,7 @@ namespace XLObjectDropper.Controllers
 					Destroy(ObjectMovementController.PreviewObject);
 				}
 
-				ObjectMovementController.InstantiatePreviewObject(spawnable);
+				ObjectMovementController.Instance?.InstantiatePreviewObject(spawnable);
 			}
 		}
 

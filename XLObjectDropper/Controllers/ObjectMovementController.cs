@@ -2,9 +2,6 @@
 using Rewired;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using HarmonyLib;
-using TMPro;
 using UnityEngine;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
@@ -16,12 +13,8 @@ namespace XLObjectDropper.Controllers
 	{
 		public static GameObject PreviewObject { get; set; }
         public List<GameObject> SpawnedObjects { get; set; }
-        
-		private TMP_Text ZoomInOutText { get; set; }
-		public static PinMovementController PinMovementController { get; set; }
-		private static GameObject OriginalPinObject { get; set; }
 
-		private static bool OptionsMenuShown { get; set; }
+        private static bool OptionsMenuShown { get; set; }
 		private static GameObject OptionsMenuGameObject;
 		private static OptionsMenuController OptionsMenuController { get; set; }
 
@@ -33,27 +26,90 @@ namespace XLObjectDropper.Controllers
 
 		public static ObjectMovementController Instance { get; set; }
 
-		private static int CurrentScaleMode { get; set; }
-		private static int CurrentRotationSnappingMode { get; set; }
 
+		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
+		public float HorizontalAcceleration = 10f;
+		private float MaxGroundAngle = 70f;
+		public float MaxCameraAcceleration = 5f;
+		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.5f, 0.5f, 15f, 5f);
+		public AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
+		public Transform cameraPivot;
+		public Transform cameraNode;
+		public float minHeight = 0.5f;
+		public float maxHeight = 15f;
+		public float heightChangeSpeed = 2f;
+		public float VerticalAcceleration = 20f;
+		public float RotateSpeed = 100f;
+		public float MoveSpeed = 10f;
+		public float CameraDistMoveSpeed;
+		public AnimationCurve HeightToCameraDistCurve;
+		public CharacterController characterController;
+		private LayerMask layermask = new LayerMask { value = 1118209 };
+		private RaycastHit lastHit;
+		private float groundLevel;
+		private Vector3 groundNormal;
+		private float targetHeight;
+		private float currentCameraDist;
+		private float currentHeight;
+		private float originalNearClipDist;
+		private Camera mainCam;
+		private float lastVerticalVelocity;
+		private float lastCameraVelocity;
+		private CollisionFlags collisionFlags;
+		public float CameraSphereCastRadius = 0.15f;
+		private float currentMoveSpeed;
+
+		private bool hasGround;
+
+		private GameObject LastPrefab;
+
+		private float distance;
+		private float targetDistance;
+		private float rotationAngleX;
+		private float rotationAngleY;
+
+
+		private int CurrentScaleMode { get; set; }
+		private int CurrentRotationSnappingMode { get; set; }
 		public bool LockCameraMovement { get; private set; }
 
 		private void Awake()
 		{
 			Instance = this;
 
-	        SpawnedObjects = new List<GameObject>();
+			this.mainCam = Camera.main;
 
-	        PinMovementController = GameStateMachine.Instance.PinObject.GetComponent<PinMovementController>();
+			SpawnedObjects = new List<GameObject>();
 
-	        UserInterfaceHelper.LoadUserInterface();
+			var pinMovementController = PlayerController.Instance.pinMover;
+			if (pinMovementController != null)
+			{
+				HeightToCameraDistCurve = pinMovementController.HeightToCameraDistCurve;
+			}
+
+			cameraPivot = transform;
+			cameraNode = Instantiate(mainCam.transform, cameraPivot);
+
+			characterController = this.gameObject.AddComponent<CharacterController>();
+			characterController.center = PlayerController.Instance.pinMover.characterController.center;
+			characterController.detectCollisions = PlayerController.Instance.pinMover.characterController.detectCollisions;
+			characterController.enableOverlapRecovery = PlayerController.Instance.pinMover.characterController.enableOverlapRecovery;
+			characterController.height = PlayerController.Instance.pinMover.characterController.height;
+			//characterController.isGrounded = PlayerController.Instance.pinMover.characterController.isGrounded;
+			characterController.minMoveDistance = PlayerController.Instance.pinMover.characterController.minMoveDistance;
+			characterController.radius = PlayerController.Instance.pinMover.characterController.radius;
+			characterController.skinWidth = PlayerController.Instance.pinMover.characterController.skinWidth;
+			characterController.slopeLimit = PlayerController.Instance.pinMover.characterController.slopeLimit;
+			characterController.stepOffset = PlayerController.Instance.pinMover.characterController.stepOffset;
+			characterController.enabled = true;
+
+			UserInterfaceHelper.LoadUserInterface();
 
 			OptionsMenuGameObject = new GameObject();
 			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
 
 			CurrentScaleMode = (int)ScalingMode.Uniform;
-	        
-	        OriginalPinObject = GameStateMachine.Instance.PinObject;
+			
 
 	        if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectDropperState)))
 				return;
@@ -64,10 +120,10 @@ namespace XLObjectDropper.Controllers
 		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
 		{
 			SelectedObject = spawnable;
-
 			DestroyObjectSelection();
 		}
 
+		#region Object Selection 
 		private void CreateObjectSelection()
 		{
 			ObjectSelectionMenuGameObject = new GameObject();
@@ -89,45 +145,128 @@ namespace XLObjectDropper.Controllers
 
 			ObjectSelectionShown = false;
 		}
+		#endregion
 
 		private void OnEnable()
         {
 	        enabled = true;
-	        GameStateMachine.Instance.PinObject.SetActive(true);
 
 	        UserInterfaceHelper.UserInterface?.SetActive(true);
 
-			PinMovementController.PinRenderer.enabled = false;
-
-			CurrentScaleMode = (int)ScalingMode.Uniform;
+	        CurrentScaleMode = (int)ScalingMode.Uniform;
 			LockCameraMovement = false;
 
-			ZoomInOutText = GameStateMachine.Instance.PinObject.GetComponentInChildren<TMP_Text>();
-			ZoomInOutText?.gameObject?.SetActive(false);
-        }
+			var pinMovementController = PlayerController.Instance.pinMover;
+			if (pinMovementController != null)
+			{
+				HeightToCameraDistCurve = pinMovementController.HeightToCameraDistCurve;
+			}
+
+			currentCameraDist = 5;
+
+			#region from PinMovementController
+
+			originalNearClipDist = mainCam.nearClipPlane;
+			mainCam.nearClipPlane = 0.01f;
+			targetHeight = defaultHeight;
+
+			Vector3 vector3_1 = PlayerController.Instance.skaterController.skaterRigidbody.position;
+
+			transform.rotation = Quaternion.Euler(0.0f, PlayerController.Instance.cameraController._actualCam.rotation.eulerAngles.y, 0.0f);
+			transform.position = vector3_1;
+
+			UpdateGroundLevel();
+
+			if (hasGround)
+				vector3_1.y = groundLevel + targetHeight;
+
+			transform.position = vector3_1;
+			MoveCamera(true);
+			#endregion
+
+			cameraPivot = transform;
+			cameraNode = mainCam.transform;
+
+			var prim = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+			prim.transform.SetParent(transform);
+
+			rotationAngleX = cameraPivot.eulerAngles.x;
+			rotationAngleY = cameraPivot.eulerAngles.y;
+
+			distance = currentCameraDist;
+			targetDistance = currentCameraDist;
+		}
 
         private void OnDisable()
         {
 			enabled = false;
 
-			PinMovementController.GroundIndicator.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-			GameStateMachine.Instance.PinObject.SetActive(false);
+			//PinMovementController.GroundIndicator.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+			//GameStateMachine.Instance.PinObject.SetActive(false);
 
 			UserInterfaceHelper.UserInterface?.SetActive(false);
-			ZoomInOutText?.gameObject?.SetActive(true);
+			//ZoomInOutText?.gameObject?.SetActive(true);
 
-			PinMovementController.PinRenderer.enabled = true;
+			//PinMovementController.PinRenderer.enabled = true;
 
 			PreviewObject?.SetActive(false);
-        }
 
-        private GameObject LastPrefab;
+			mainCam.nearClipPlane = originalNearClipDist;
+		}
 
-        private void Update()
+        
+
+		private void MoveCamera(bool moveInstant = false)
+        {
+	        Ray ray = new Ray(cameraPivot.position, -cameraPivot.forward);
+	        float num1 = HeightToCameraDistCurve.Evaluate(targetHeight);
+
+	        RaycastHit hitInfo;
+	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out hitInfo, num1, (int)layermask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
+		        moveInstant = true;
+
+	        if (moveInstant)
+	        {
+		        lastCameraVelocity = 0.0f;
+		        currentCameraDist = num1;
+	        }
+	        else
+	        {
+		        float num2 = (float)(((double)targetDistance - (double)currentCameraDist) / 0.25);
+
+		        float f = Mathf.Approximately(lastCameraVelocity, 0.0f) || (double)Mathf.Sign(num2) == (double)Mathf.Sign(lastCameraVelocity) ?
+			        ((double)Mathf.Abs(num2) <= (double)Mathf.Abs(lastCameraVelocity) ? num2 : Mathf.MoveTowards(lastCameraVelocity, num2, MaxCameraAcceleration * Time.deltaTime)) :
+			        0.0f;
+		        currentCameraDist = Mathf.MoveTowards(currentCameraDist, targetDistance, Mathf.Abs(f) * Time.deltaTime);
+		        currentCameraDist = Mathf.Clamp(currentCameraDist, 2.5f, 25f);
+		        lastCameraVelocity = f;
+
+	        }
+	        cameraNode.localPosition = new Vector3(0.0f, 0.0f, -currentCameraDist);
+			//DrawLine(cameraNode.position, cameraPivot.position, Color.green);
+
+			//UnityModManager.Logger.Log("XLObjectDropper: Moving camera to: " + cameraNode.position);
+
+	        PlayerController.Instance.cameraController.MoveCameraTo(cameraNode.position, cameraNode.rotation);
+		}
+
+		void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 100f)
+		{
+			GameObject myLine = new GameObject();
+			myLine.transform.position = start;
+			myLine.AddComponent<LineRenderer>();
+			LineRenderer lr = myLine.GetComponent<LineRenderer>();
+			lr.material = new Material(Shader.Find("HDRP/Lit"));
+			lr.startColor = lr.endColor = color;
+			lr.startWidth = lr.endWidth = 0.1f;
+			lr.SetPosition(0, start);
+			lr.SetPosition(1, end);
+			GameObject.Destroy(myLine, duration);
+		}
+
+		private void Update()
         {
 	        Time.timeScale = OptionsMenuShown || ObjectSelectionShown ? 0.0f : 1.0f;
-
-	        UpdateGroundLevel();
 
 	        Player player = PlayerController.Instance.inputController.player;
 
@@ -169,15 +308,18 @@ namespace XLObjectDropper.Controllers
 				HandleAxisLocking(player);
 			}
 			else
-	        {
+			{
+				HandleStickAndTriggerInput();
+
 				// If dpad up/down, move object up/down
 				if (PreviewObject != null)
 				{
 					var scaleFactor = 10f;
 					float dpad = player.GetAxis("DPadY");
 					
-					var targetHeight = Traverse.Create(PinMovementController).Field("targetHeight");
-					targetHeight.SetValue(targetHeight.GetValue<float>() + (dpad * Time.deltaTime * PinMovementController.heightChangeSpeed * PinMovementController.HeightToHeightChangeSpeedCurve.Evaluate(targetHeight.GetValue<float>())));
+					//var targetHeight = Traverse.Create(PinMovementController).Field("targetHeight");
+					//targetHeight.SetValue(targetHeight.GetValue<float>() + (dpad * Time.deltaTime * PinMovementController.heightChangeSpeed * PinMovementController.HeightToHeightChangeSpeedCurve.Evaluate(targetHeight.GetValue<float>())));
+					targetHeight = targetHeight + (dpad + Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
 				}
 
 				if (player.GetButtonDown("DPadX"))
@@ -216,9 +358,10 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonDown("Right Stick Button"))
 				{
-					PinMovementController.transform.rotation = Quaternion.identity;
-					Traverse.Create(PinMovementController).Field("targetHeight").SetValue(PinMovementController.defaultHeight);
-					Traverse.Create(PinMovementController).Method("MoveCamera", true).GetValue();
+					//TODO: Re-evaluate this
+					//PinMovementController.transform.rotation = Quaternion.identity;
+					//Traverse.Create(PinMovementController).Field("targetHeight").SetValue(PinMovementController.defaultHeight);
+					//Traverse.Create(PinMovementController).Method("MoveCamera", true).GetValue();
 				}
 				
 				if (player.GetButtonDown("Select"))
@@ -233,7 +376,79 @@ namespace XLObjectDropper.Controllers
 	        }
         }
 
-        private void PlaceObject(bool disablePreview = true)
+        private void LateUpdate()
+        {
+	        UpdateGroundLevel();
+        }
+
+        private void HandleStickAndTriggerInput()
+        {
+			Vector2 leftStick = PlayerController.Instance.inputController.player.GetAxis2D("LeftStickX", "LeftStickY");
+			Vector2 rightStick = PlayerController.Instance.inputController.player.GetAxis2D("RightStickX", "RightStickY");
+
+			float a = (PlayerController.Instance.inputController.player.GetAxis(9) - PlayerController.Instance.inputController.player.GetAxis(8)) *
+					  Time.deltaTime *
+					  heightChangeSpeed *
+					  HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
+
+			currentHeight = transform.position.y - groundLevel;
+			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
+			collisionFlags = characterController.Move(transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime);
+			currentHeight = transform.position.y - groundLevel;
+			if (!Mathf.Approximately(a, 0.0f))
+			{
+				if ((double)currentHeight < (double)maxHeight && (double)a > 0.0 ||
+					(double)currentHeight > (double)minHeight && (double)a < 0.0)
+				{
+					targetDistance += a;
+				}
+
+				currentHeight = transform.position.y - groundLevel;
+				targetHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
+			}
+			else
+			{
+				float num = (float)(((double)targetHeight - (double)currentHeight) / 0.25);
+				collisionFlags = characterController.Move((Mathf.Approximately(lastVerticalVelocity, 0.0f) || (double)Mathf.Sign(num) == (double)Mathf.Sign(lastVerticalVelocity) ? ((double)Mathf.Abs(num) <= (double)Mathf.Abs(lastVerticalVelocity) ? num : Mathf.MoveTowards(lastVerticalVelocity, num, VerticalAcceleration * Time.deltaTime)) : 0.0f) * Time.deltaTime * Vector3.up);
+				lastVerticalVelocity = characterController.velocity.y;
+			}
+
+			currentHeight = transform.position.y - groundLevel;
+
+			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
+			#region Camera rotation
+			rotationAngleX -= rightStick.x * Time.deltaTime * RotateSpeed;
+			rotationAngleY += rightStick.y * Time.deltaTime * RotateSpeed;
+
+			var maxAngle = 85f;
+
+			rotationAngleY = ClampAngle(rotationAngleY, -maxAngle, maxAngle);
+
+			var toRotation = Quaternion.Euler(rotationAngleY, rotationAngleX, 0);
+			var rotation = toRotation;
+
+			Vector3 negDistance = new Vector3(0, 0, -currentCameraDist);
+			var position = rotation * negDistance + Vector3.zero;
+
+			//UnityModManager.Logger.Log("XLObjectDropper: rotationAngleX = " + rotationAngleX + ", rotationAngleY = " + rotationAngleY + ", position = " + position);
+			cameraPivot.rotation = rotation;
+			cameraNode.position = position;
+			#endregion
+
+			if (!LockCameraMovement)
+			{
+				MoveCamera();
+			}
+		}
+
+		private float ClampAngle(float angle, float min, float max)
+		{
+			if (angle < -360F) angle += 360F;
+			if (angle > 360F) angle -= 360F;
+			return Mathf.Clamp(angle, min, max);
+		}
+
+		private void PlaceObject(bool disablePreview = true)
         {
 	        var newObject = Instantiate(PreviewObject, PreviewObject.transform.position, PreviewObject.transform.rotation);
 	        newObject.SetActive(true);
@@ -245,8 +460,8 @@ namespace XLObjectDropper.Controllers
 	        if (disablePreview)
 	        {
 		        PreviewObject.SetActive(false);
-		        GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = true;
-		        PinMovementController.GroundIndicator.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+		        //GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = true;
+		        //PinMovementController.GroundIndicator.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
 			}
         }
 
@@ -270,7 +485,7 @@ namespace XLObjectDropper.Controllers
 
 			if (player.GetButtonDown("Left Stick Button"))
 	        {
-		        PreviewObject.transform.rotation = GameStateMachine.Instance.PinObject.transform.rotation;
+		        PreviewObject.transform.rotation = transform.rotation;
 	        }
 	        
 	        if (player.GetButtonDown("Right Stick Button"))
@@ -369,36 +584,42 @@ namespace XLObjectDropper.Controllers
 		}
 		#endregion
 
-		public static float groundLevel;
+		private void UpdateGroundLevel()
+		{
+			Ray ray1 = new Ray(this.transform.position, Vector3.down);
+			Ray ray2 = new Ray(this.transform.position, Vector3.down);
+			bool flag = false;
+			RaycastHit raycastHit = new RaycastHit();
+			ref RaycastHit local = ref raycastHit;
+			int layermask = (int)this.layermask;
+			if (Physics.Raycast(ray1, out local, 10000f, layermask))
+			{
+				this.groundLevel = raycastHit.point.y;
+				this.groundNormal = raycastHit.normal;
+				//this.GroundIndicator.transform.position = raycastHit.point + Vector3.up * 0.005f;
+				//this.GroundIndicator.transform.rotation = Quaternion.LookRotation(raycastHit.normal);
+				if ((double)Vector3.Angle(raycastHit.normal, Vector3.up) < (double)this.MaxGroundAngle)
+					flag = true;
+			}
+			if (flag == this.hasGround)
+				return;
 
-        private bool UpdateGroundLevel()
-        {
-	        Ray ray1 = new Ray(this.transform.position, Vector3.down);
-	        Ray ray2 = new Ray(this.transform.position, Vector3.down);
-	        RaycastHit raycastHit = new RaycastHit();
-	        ref RaycastHit local = ref raycastHit;
-	        if (!Physics.SphereCast(ray1, 0.2f, out local))
-		        return false;
-	        groundLevel = raycastHit.point.y;
+			this.hasGround = flag;
+			//this.GroundIndicator.SetActive(this.hasGround);
+		}
 
-
-			//Debug.Log("XLObjectDropper: groundLevel : " + groundLevel);
-
-	        return true;
-        }
-
-        public static void InstantiatePreviewObject(Spawnable spawnable)
+		public void InstantiatePreviewObject(Spawnable spawnable)
         {
 			//PreviewObject = Instantiate(spawnable.Prefab, PinMovementController.GroundIndicator.transform);
-			PreviewObject = Instantiate(spawnable.Prefab, PinMovementController.transform);
+			PreviewObject = Instantiate(spawnable.Prefab, transform);
 
-			PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
+			//PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
 
-	        GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = false;
+	        //GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = false;
 
 	        PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
 
-	        PreviewObject.transform.position = PinMovementController.transform.position;
+	        PreviewObject.transform.position = transform.position;
 	        PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
         }
 	}

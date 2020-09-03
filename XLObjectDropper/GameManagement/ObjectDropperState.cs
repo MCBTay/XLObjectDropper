@@ -28,7 +28,6 @@ namespace XLObjectDropper.GameManagement
 			Time.timeScale = 1.0f;
 
 			GameStateMachine.Instance.PauseObject.SetActive(false);
-			GameStateMachine.Instance.PinObject.SetActive(true);
 			PlayerController.Instance.EnablePuppetMaster(false, true);
 			ObjectMovementControllerGameObject.SetActive(true);
 			GameStateMachine.Instance.PlayObject.SetActive(false);
@@ -38,20 +37,17 @@ namespace XLObjectDropper.GameManagement
 		{
 			Time.timeScale = 0.0f;
 			GameStateMachine.Instance.PauseObject.SetActive(true);
-
-			GameStateMachine.Instance.PinObject.SetActive(false);
 			ObjectMovementControllerGameObject.SetActive(false);
 			GameStateMachine.Instance.PlayObject.SetActive(true);
-			PlayerController.Instance.IsExitingPinState = true;
 			PlayerController.Instance.EnablePuppetMaster(true, false);
 		}
 
 		public override void OnUpdate()
 		{
+			// TODO: Consider moving this out of here and let the controller handle it.  Currently a bug exists where holding the LB and pressing B still exits the state.
 			if (!PlayerController.Instance.inputController.player.GetButtonDown("B"))
 				return;
 
-			GameStateMachine.Instance.PinObject.SetActive(false);
 			RequestTransitionBack();
 		}
 	}
