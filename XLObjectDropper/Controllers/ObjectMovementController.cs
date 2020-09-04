@@ -88,18 +88,7 @@ namespace XLObjectDropper.Controllers
 			cameraPivot = transform;
 			cameraNode = Instantiate(mainCam.transform, cameraPivot);
 
-			characterController = this.gameObject.AddComponent<CharacterController>();
-			characterController.center = PlayerController.Instance.pinMover.characterController.center;
-			characterController.detectCollisions = PlayerController.Instance.pinMover.characterController.detectCollisions;
-			characterController.enableOverlapRecovery = PlayerController.Instance.pinMover.characterController.enableOverlapRecovery;
-			characterController.height = PlayerController.Instance.pinMover.characterController.height;
-			//characterController.isGrounded = PlayerController.Instance.pinMover.characterController.isGrounded;
-			characterController.minMoveDistance = PlayerController.Instance.pinMover.characterController.minMoveDistance;
-			characterController.radius = PlayerController.Instance.pinMover.characterController.radius;
-			characterController.skinWidth = PlayerController.Instance.pinMover.characterController.skinWidth;
-			characterController.slopeLimit = PlayerController.Instance.pinMover.characterController.slopeLimit;
-			characterController.stepOffset = PlayerController.Instance.pinMover.characterController.stepOffset;
-			characterController.enabled = true;
+			CreateCharacterController();
 
 			UserInterfaceHelper.LoadUserInterface();
 
@@ -114,6 +103,21 @@ namespace XLObjectDropper.Controllers
 
 			enabled = false;
         }
+
+		private void CreateCharacterController()
+		{
+			characterController = gameObject.AddComponent<CharacterController>();
+			characterController.center = PlayerController.Instance.pinMover.characterController.center;
+			characterController.detectCollisions = true;
+			characterController.enableOverlapRecovery = true;
+			characterController.height = 0.5f;
+			characterController.minMoveDistance = 0.001f;
+			characterController.radius = 0.5f;
+			characterController.skinWidth = 0.08f;
+			characterController.slopeLimit = 80f;
+			characterController.stepOffset = 0.5f;
+			characterController.enabled = true;
+		}
 
 		#region Object Selection 
 		private void CreateObjectSelection()
