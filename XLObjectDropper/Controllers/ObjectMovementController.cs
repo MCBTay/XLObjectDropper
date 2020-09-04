@@ -3,6 +3,7 @@ using Rewired;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityModManagerNet;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
@@ -33,7 +34,10 @@ namespace XLObjectDropper.Controllers
 		public float MaxCameraAcceleration = 5f;
 		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.5f, 0.5f, 15f, 5f);
 		public AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
+
+		public GameObject cameraPivotGameObject;
 		public Transform cameraPivot;
+
 		public Transform cameraNode;
 		public float minHeight = 0.5f;
 		public float maxHeight = 15f;
@@ -63,11 +67,9 @@ namespace XLObjectDropper.Controllers
 
 		private GameObject LastPrefab;
 
-		private float distance;
 		private float targetDistance;
 		private float rotationAngleX;
 		private float rotationAngleY;
-
 
 		private int CurrentScaleMode { get; set; }
 		private int CurrentRotationSnappingMode { get; set; }
@@ -81,11 +83,7 @@ namespace XLObjectDropper.Controllers
 
 			SpawnedObjects = new List<GameObject>();
 
-			var pinMovementController = PlayerController.Instance.pinMover;
-			if (pinMovementController != null)
-			{
-				HeightToCameraDistCurve = pinMovementController.HeightToCameraDistCurve;
-			}
+			HeightToCameraDistCurve = PlayerController.Instance.pinMover.HeightToCameraDistCurve;
 
 			cameraPivot = transform;
 			cameraNode = Instantiate(mainCam.transform, cameraPivot);
@@ -117,12 +115,6 @@ namespace XLObjectDropper.Controllers
 			enabled = false;
         }
 
-		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
-		{
-			SelectedObject = spawnable;
-			DestroyObjectSelection();
-		}
-
 		#region Object Selection 
 		private void CreateObjectSelection()
 		{
@@ -145,6 +137,12 @@ namespace XLObjectDropper.Controllers
 
 			ObjectSelectionShown = false;
 		}
+
+		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
+		{
+			SelectedObject = spawnable;
+			DestroyObjectSelection();
+		}
 		#endregion
 
 		private void OnEnable()
@@ -156,16 +154,9 @@ namespace XLObjectDropper.Controllers
 	        CurrentScaleMode = (int)ScalingMode.Uniform;
 			LockCameraMovement = false;
 
-			var pinMovementController = PlayerController.Instance.pinMover;
-			if (pinMovementController != null)
-			{
-				HeightToCameraDistCurve = pinMovementController.HeightToCameraDistCurve;
-			}
-
-			currentCameraDist = 5;
+			HeightToCameraDistCurve = PlayerController.Instance.pinMover.HeightToCameraDistCurve;
 
 			#region from PinMovementController
-
 			originalNearClipDist = mainCam.nearClipPlane;
 			mainCam.nearClipPlane = 0.01f;
 			targetHeight = defaultHeight;
@@ -187,13 +178,9 @@ namespace XLObjectDropper.Controllers
 			cameraPivot = transform;
 			cameraNode = mainCam.transform;
 
-			var prim = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-			prim.transform.SetParent(transform);
-
 			rotationAngleX = cameraPivot.eulerAngles.x;
 			rotationAngleY = cameraPivot.eulerAngles.y;
 
-			distance = currentCameraDist;
 			targetDistance = currentCameraDist;
 		}
 
@@ -214,57 +201,7 @@ namespace XLObjectDropper.Controllers
 			mainCam.nearClipPlane = originalNearClipDist;
 		}
 
-        
-
-		private void MoveCamera(bool moveInstant = false)
-        {
-	        Ray ray = new Ray(cameraPivot.position, -cameraPivot.forward);
-	        float num1 = HeightToCameraDistCurve.Evaluate(targetHeight);
-
-	        RaycastHit hitInfo;
-	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out hitInfo, num1, (int)layermask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
-		        moveInstant = true;
-
-	        if (moveInstant)
-	        {
-		        lastCameraVelocity = 0.0f;
-		        currentCameraDist = num1;
-	        }
-	        else
-	        {
-		        float num2 = (float)(((double)targetDistance - (double)currentCameraDist) / 0.25);
-
-		        float f = Mathf.Approximately(lastCameraVelocity, 0.0f) || (double)Mathf.Sign(num2) == (double)Mathf.Sign(lastCameraVelocity) ?
-			        ((double)Mathf.Abs(num2) <= (double)Mathf.Abs(lastCameraVelocity) ? num2 : Mathf.MoveTowards(lastCameraVelocity, num2, MaxCameraAcceleration * Time.deltaTime)) :
-			        0.0f;
-		        currentCameraDist = Mathf.MoveTowards(currentCameraDist, targetDistance, Mathf.Abs(f) * Time.deltaTime);
-		        currentCameraDist = Mathf.Clamp(currentCameraDist, 2.5f, 25f);
-		        lastCameraVelocity = f;
-
-	        }
-	        cameraNode.localPosition = new Vector3(0.0f, 0.0f, -currentCameraDist);
-			//DrawLine(cameraNode.position, cameraPivot.position, Color.green);
-
-			//UnityModManager.Logger.Log("XLObjectDropper: Moving camera to: " + cameraNode.position);
-
-	        PlayerController.Instance.cameraController.MoveCameraTo(cameraNode.position, cameraNode.rotation);
-		}
-
-		void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 100f)
-		{
-			GameObject myLine = new GameObject();
-			myLine.transform.position = start;
-			myLine.AddComponent<LineRenderer>();
-			LineRenderer lr = myLine.GetComponent<LineRenderer>();
-			lr.material = new Material(Shader.Find("HDRP/Lit"));
-			lr.startColor = lr.endColor = color;
-			lr.startWidth = lr.endWidth = 0.1f;
-			lr.SetPosition(0, start);
-			lr.SetPosition(1, end);
-			GameObject.Destroy(myLine, duration);
-		}
-
-		private void Update()
+        private void Update()
         {
 	        Time.timeScale = OptionsMenuShown || ObjectSelectionShown ? 0.0f : 1.0f;
 
@@ -314,12 +251,8 @@ namespace XLObjectDropper.Controllers
 				// If dpad up/down, move object up/down
 				if (PreviewObject != null)
 				{
-					var scaleFactor = 10f;
 					float dpad = player.GetAxis("DPadY");
-					
-					//var targetHeight = Traverse.Create(PinMovementController).Field("targetHeight");
-					//targetHeight.SetValue(targetHeight.GetValue<float>() + (dpad * Time.deltaTime * PinMovementController.heightChangeSpeed * PinMovementController.HeightToHeightChangeSpeedCurve.Evaluate(targetHeight.GetValue<float>())));
-					targetHeight = targetHeight + (dpad + Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
+					targetHeight = targetHeight + (dpad * Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
 				}
 
 				if (player.GetButtonDown("DPadX"))
@@ -424,13 +357,12 @@ namespace XLObjectDropper.Controllers
 
 			rotationAngleY = ClampAngle(rotationAngleY, -maxAngle, maxAngle);
 
-			var toRotation = Quaternion.Euler(rotationAngleY, rotationAngleX, 0);
-			var rotation = toRotation;
+			var rotation = Quaternion.Euler(rotationAngleY, rotationAngleX, 0);
 
 			Vector3 negDistance = new Vector3(0, 0, -currentCameraDist);
-			var position = rotation * negDistance + Vector3.zero;
 
-			//UnityModManager.Logger.Log("XLObjectDropper: rotationAngleX = " + rotationAngleX + ", rotationAngleY = " + rotationAngleY + ", position = " + position);
+			var position = rotation * negDistance + Vector3.zero;
+			//UnityModManager.Logger.Log("XLObjectDropper: currentCameraDistance: " + currentCameraDist + ", cameraNode.position: " + cameraNode.position + ", newPosition: " + position);
 			cameraPivot.rotation = rotation;
 			cameraNode.position = position;
 			#endregion
@@ -440,6 +372,37 @@ namespace XLObjectDropper.Controllers
 				MoveCamera();
 			}
 		}
+
+        private void MoveCamera(bool moveInstant = false)
+        {
+	        Ray ray = new Ray(cameraPivot.position, -cameraPivot.forward);
+	        float num1 = HeightToCameraDistCurve.Evaluate(targetHeight);
+
+	        RaycastHit hitInfo;
+	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out hitInfo, num1, (int)layermask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
+		        moveInstant = true;
+
+	        if (moveInstant)
+	        {
+		        lastCameraVelocity = 0.0f;
+		        currentCameraDist = num1;
+	        }
+	        else
+	        {
+		        float num2 = (float)(((double)targetDistance - (double)currentCameraDist) / 0.25);
+
+		        float f = Mathf.Approximately(lastCameraVelocity, 0.0f) || (double)Mathf.Sign(num2) == (double)Mathf.Sign(lastCameraVelocity) ?
+			        ((double)Mathf.Abs(num2) <= (double)Mathf.Abs(lastCameraVelocity) ? num2 : Mathf.MoveTowards(lastCameraVelocity, num2, MaxCameraAcceleration * Time.deltaTime)) :
+			        0.0f;
+
+				currentCameraDist = Mathf.MoveTowards(currentCameraDist, targetDistance, Mathf.Abs(f) * Time.deltaTime);
+		        currentCameraDist = Mathf.Clamp(currentCameraDist, 2.5f, 25f);
+		        lastCameraVelocity = f;
+	        }
+
+			cameraNode.localPosition = new Vector3(0.0f, 0.0f, -currentCameraDist);
+			PlayerController.Instance.cameraController.MoveCameraTo(cameraNode.position, cameraNode.rotation);
+        }
 
 		private float ClampAngle(float angle, float min, float max)
 		{
@@ -460,12 +423,10 @@ namespace XLObjectDropper.Controllers
 	        if (disablePreview)
 	        {
 		        PreviewObject.SetActive(false);
-		        //GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = true;
-		        //PinMovementController.GroundIndicator.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-			}
+	        }
         }
 
-		#region Rotation and Scaling
+		#region Rotation and Scaling (holding LB)
 		private void HandleRotationAndScalingInput(Player player)
         {
 	        Time.timeScale = 0.0f;
@@ -573,11 +534,9 @@ namespace XLObjectDropper.Controllers
 			        CurrentRotationSnappingMode = 0;
 	        }
         }
-
 		#endregion
 
-		#region Axis Locking
-
+		#region Axis Locking (holding RB)
 		private void HandleAxisLocking(Player player)
 		{
 
@@ -610,14 +569,9 @@ namespace XLObjectDropper.Controllers
 
 		public void InstantiatePreviewObject(Spawnable spawnable)
         {
-			//PreviewObject = Instantiate(spawnable.Prefab, PinMovementController.GroundIndicator.transform);
 			PreviewObject = Instantiate(spawnable.Prefab, transform);
 
-			//PinMovementController.GroundIndicator.transform.localScale = Vector3.one;
-
-	        //GameStateMachine.Instance.PinObject.GetComponentsInChildren<MeshRenderer>(true).FirstOrDefault(x => x.name == "GroundLocationIndicator").enabled = false;
-
-	        PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
+			PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
 
 	        PreviewObject.transform.position = transform.position;
 	        PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
