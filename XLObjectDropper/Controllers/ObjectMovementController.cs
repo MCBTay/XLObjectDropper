@@ -147,8 +147,6 @@ namespace XLObjectDropper.Controllers
 
 		private void OnEnable()
         {
-	        enabled = true;
-
 	        UserInterfaceHelper.UserInterface?.SetActive(true);
 
 	        CurrentScaleMode = (int)ScalingMode.Uniform;
@@ -186,16 +184,7 @@ namespace XLObjectDropper.Controllers
 
         private void OnDisable()
         {
-			enabled = false;
-
-			//PinMovementController.GroundIndicator.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-			//GameStateMachine.Instance.PinObject.SetActive(false);
-
-			UserInterfaceHelper.UserInterface?.SetActive(false);
-			//ZoomInOutText?.gameObject?.SetActive(true);
-
-			//PinMovementController.PinRenderer.enabled = true;
-
+	        UserInterfaceHelper.UserInterface?.SetActive(false);
 			PreviewObject?.SetActive(false);
 
 			mainCam.nearClipPlane = originalNearClipDist;
@@ -350,7 +339,7 @@ namespace XLObjectDropper.Controllers
 
 			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
 			#region Camera rotation
-			rotationAngleX -= rightStick.x * Time.deltaTime * RotateSpeed;
+			rotationAngleX += rightStick.x * Time.deltaTime * RotateSpeed;
 			rotationAngleY += rightStick.y * Time.deltaTime * RotateSpeed;
 
 			var maxAngle = 85f;
@@ -362,9 +351,15 @@ namespace XLObjectDropper.Controllers
 			Vector3 negDistance = new Vector3(0, 0, -currentCameraDist);
 
 			var position = rotation * negDistance + Vector3.zero;
-			//UnityModManager.Logger.Log("XLObjectDropper: currentCameraDistance: " + currentCameraDist + ", cameraNode.position: " + cameraNode.position + ", newPosition: " + position);
+
 			cameraPivot.rotation = rotation;
+
 			cameraNode.position = position;
+
+			if (PreviewObject != null)
+			{
+				PreviewObject.transform.position = cameraPivot.position;
+			}
 			#endregion
 
 			if (!LockCameraMovement)
@@ -478,12 +473,12 @@ namespace XLObjectDropper.Controllers
         {
 	        Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-			switch (CurrentScaleMode)
+	        switch (CurrentScaleMode)
 	        {
 		        case (int)RotationSnappingMode.Off:
-					
-					PreviewObject?.transform.Rotate(leftStick.y, leftStick.x, 0);
-					break;
+
+			        PreviewObject?.transform.Rotate(leftStick.y, leftStick.x, 0);
+			        break;
 				case (int)RotationSnappingMode.Degrees15:
 					PreviewObject?.transform.Rotate(leftStick.y + 15, leftStick.x + 15, 0);
 					break;
@@ -545,31 +540,29 @@ namespace XLObjectDropper.Controllers
 
 		private void UpdateGroundLevel()
 		{
-			Ray ray1 = new Ray(this.transform.position, Vector3.down);
-			Ray ray2 = new Ray(this.transform.position, Vector3.down);
+			Ray ray1 = new Ray(transform.position, Vector3.down);
+			Ray ray2 = new Ray(transform.position, Vector3.down);
 			bool flag = false;
 			RaycastHit raycastHit = new RaycastHit();
 			ref RaycastHit local = ref raycastHit;
 			int layermask = (int)this.layermask;
 			if (Physics.Raycast(ray1, out local, 10000f, layermask))
 			{
-				this.groundLevel = raycastHit.point.y;
-				this.groundNormal = raycastHit.normal;
-				//this.GroundIndicator.transform.position = raycastHit.point + Vector3.up * 0.005f;
-				//this.GroundIndicator.transform.rotation = Quaternion.LookRotation(raycastHit.normal);
-				if ((double)Vector3.Angle(raycastHit.normal, Vector3.up) < (double)this.MaxGroundAngle)
+				groundLevel = raycastHit.point.y;
+				groundNormal = raycastHit.normal;
+
+				if ((double)Vector3.Angle(raycastHit.normal, Vector3.up) < (double)MaxGroundAngle)
 					flag = true;
 			}
-			if (flag == this.hasGround)
+			if (flag == hasGround)
 				return;
 
-			this.hasGround = flag;
-			//this.GroundIndicator.SetActive(this.hasGround);
+			hasGround = flag;
 		}
 
 		public void InstantiatePreviewObject(Spawnable spawnable)
         {
-			PreviewObject = Instantiate(spawnable.Prefab, transform);
+			PreviewObject = Instantiate(spawnable.Prefab);
 
 			PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
 
