@@ -237,11 +237,24 @@ namespace XLObjectDropper.Controllers
 			{
 				HandleStickAndTriggerInput();
 
-				// If dpad up/down, move object up/down
-				if (PreviewObject != null)
+				
+				if (PreviewObject != null && PreviewObject.activeInHierarchy)
 				{
+					// If dpad up/down, move object up/down
 					float dpad = player.GetAxis("DPadY");
 					targetHeight = targetHeight + (dpad * Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
+
+					if (player.GetButtonDown("A"))
+					{
+						UISounds.Instance?.PlayOneShotSelectMajor();
+						PlaceObject();
+					}
+
+					if (player.GetButtonDown("Left Stick Button"))
+					{
+						PreviewObject.transform.localScale = Vector3.one;
+						PreviewObject.transform.rotation = LastPrefab.transform.rotation;
+					}
 				}
 
 				if (player.GetButtonDown("DPadX"))
@@ -250,34 +263,17 @@ namespace XLObjectDropper.Controllers
 					LockCameraMovement = !LockCameraMovement;
 				}
 
-				if (player.GetButtonDown("A") && PreviewObject != null && PreviewObject.activeSelf)
-				{
-					// If a, place object and delete preview
-					Debug.Log("XLObjectDropper: Pressed A");
-					UISounds.Instance?.PlayOneShotSelectMajor();
-
-					PlaceObject();
-				}
-				
 				if (player.GetButtonDown("X"))
 				{
 					// if x, open new object selection menu
-					Debug.Log("XLObjectDropper: Pressed X");
 					UISounds.Instance?.PlayOneShotSelectMinor();
 				}
 				
 				if (player.GetButtonDown("Y"))
 		        {
 					// if y, delete highlighted object (if any)
-					Debug.Log("XLObjectDropper: Pressed Y");
-				}
+		        }
 				
-				if (player.GetButtonDown("Left Stick Button") && PreviewObject != null)
-		        {
-					PreviewObject.transform.localScale = Vector3.one;
-					PreviewObject.transform.rotation = LastPrefab.transform.rotation;
-				}
-
 				if (player.GetButtonDown("Right Stick Button"))
 				{
 					//TODO: Re-evaluate this
@@ -373,8 +369,7 @@ namespace XLObjectDropper.Controllers
 	        Ray ray = new Ray(cameraPivot.position, -cameraPivot.forward);
 	        float num1 = HeightToCameraDistCurve.Evaluate(targetHeight);
 
-	        RaycastHit hitInfo;
-	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out hitInfo, num1, (int)layermask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
+	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out RaycastHit hitInfo, num1, (int)layermask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
 		        moveInstant = true;
 
 	        if (moveInstant)
