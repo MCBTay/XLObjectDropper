@@ -615,6 +615,10 @@ namespace XLObjectDropper.Controllers
 		        CustomPass = Instantiate(AssetBundleHelper.CustomPassPrefab);
 		        CustomPassVolume = CustomPass.GetComponent<CustomPassVolume>();
 			}
+	        else
+	        {
+		        CustomPassVolume.enabled = true;
+	        }
         }
 	}
 }
