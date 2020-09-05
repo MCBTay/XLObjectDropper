@@ -43,7 +43,8 @@ namespace XLObjectDropper.Controllers
 		public float maxHeight = 15f;
 		public float heightChangeSpeed = 2f;
 		public float VerticalAcceleration = 20f;
-		public float RotateSpeed = 100f;
+		public float CameraRotateSpeed = 100f;
+		public float ObjectRotateSpeed = 10f;
 		public float MoveSpeed = 10f;
 		public float CameraDistMoveSpeed;
 		public AnimationCurve HeightToCameraDistCurve;
@@ -229,11 +230,11 @@ namespace XLObjectDropper.Controllers
 		        return;
 	        }
 
-			if (player.GetButtonSinglePressHold("LB"))
+			if (player.GetButton("LB"))
 			{
 				HandleRotationAndScalingInput(player);
 			}
-			else if (player.GetButtonSinglePressHold("RB"))
+			else if (player.GetButton("RB"))
 			{
 				HandleAxisLocking(player);
 			}
@@ -340,8 +341,8 @@ namespace XLObjectDropper.Controllers
 
 			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
 			#region Camera rotation
-			rotationAngleX += rightStick.x * Time.deltaTime * RotateSpeed;
-			rotationAngleY += rightStick.y * Time.deltaTime * RotateSpeed;
+			rotationAngleX += rightStick.x * Time.deltaTime * CameraRotateSpeed;
+			rotationAngleY += rightStick.y * Time.deltaTime * CameraRotateSpeed;
 
 			var maxAngle = 85f;
 
@@ -354,7 +355,6 @@ namespace XLObjectDropper.Controllers
 			var position = rotation * negDistance + Vector3.zero;
 
 			cameraPivot.rotation = rotation;
-
 			cameraNode.position = position;
 
 			if (PreviewObject != null)
@@ -464,26 +464,69 @@ namespace XLObjectDropper.Controllers
 		}
 
 		private void HandleRotation(Player player)
-        {
-	        Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
+		{
+			HandleStickRotation(player);
+			HandleDPadRotation(player);
+		}
 
-	        switch (CurrentRotationSnappingMode)
-	        {
-		        case (int)RotationSnappingMode.Off:
+		private void HandleStickRotation(Player player)
+		{
+			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-			        PreviewObject?.transform.Rotate(leftStick.y, leftStick.x, 0);
-			        break;
+			PreviewObject?.transform.RotateAround(PreviewObject.transform.position, cameraPivot.right, leftStick.y * ObjectRotateSpeed);
+			
+			//TODO: In the future, we'll have a toggle for local/global rotation axis
+			//PreviewObject?.transform.RotateAround(PreviewObject.transform.position, cameraPivot.up, leftStick.x * ObjectRotateSpeed);
+			PreviewObject?.transform.Rotate(0, leftStick.x * ObjectRotateSpeed, 0);
+		}
+
+		private float objectRotationX = 0.0f;
+		private float objectRotationY = 0.0f;
+
+		private void HandleDPadRotation(Player player)
+		{
+			float rotationIncrement = 0.0f;
+
+			switch (CurrentRotationSnappingMode)
+			{
+				case (int)RotationSnappingMode.Off:
+					rotationIncrement = 0.0f;
+					break;
 				case (int)RotationSnappingMode.Degrees15:
-					PreviewObject?.transform.Rotate(leftStick.y + 15, leftStick.x + 15, 0);
+					rotationIncrement = 15.0f;
 					break;
 				case (int)RotationSnappingMode.Degrees45:
-					PreviewObject?.transform.Rotate(leftStick.y + 45, leftStick.x + 45, 0);
+					rotationIncrement = 45.0f;
 					break;
 				case (int)RotationSnappingMode.Degrees90:
-					PreviewObject?.transform.Rotate(leftStick.y + 90, leftStick.x + 90, 0);
+					rotationIncrement = 90.0f;
 					break;
-	        }
-        }
+			}
+
+			if (player.GetButtonDown("DPadX"))
+			{
+				objectRotationX += rotationIncrement;
+				PreviewObject.transform.Rotate(new Vector3(0, rotationIncrement, 0));
+			}
+
+			if (player.GetNegativeButtonDown("DPadX"))
+			{
+				objectRotationX -= rotationIncrement;
+				PreviewObject.transform.Rotate(new Vector3(0, -rotationIncrement, 0));
+			}
+
+			if (player.GetButtonDown("DPadY"))
+			{
+				objectRotationY += rotationIncrement;
+				PreviewObject.transform.RotateAround(PreviewObject.transform.position, cameraPivot.right, rotationIncrement);
+			}
+
+			if (player.GetNegativeButtonDown("DPadY"))
+			{
+				objectRotationY -= rotationIncrement;
+				PreviewObject.transform.RotateAround(PreviewObject.transform.position, cameraPivot.right, -rotationIncrement);
+			}
+		}
 
         private void HandleScaling(Player player)
         {

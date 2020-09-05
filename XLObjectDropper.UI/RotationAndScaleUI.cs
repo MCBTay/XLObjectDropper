@@ -7,33 +7,13 @@ namespace XLObjectDropper.UI
 	{
 		public GameObject AXBYButtons;
 
-		[HideInInspector] private int CurrentRotationSnappingMode;
-		[HideInInspector] private int CurrentScaleMode;
+		[HideInInspector] private static int CurrentRotationSnappingMode;
+		[HideInInspector] private static int CurrentScaleMode;
 
-		private void OnEnable()
+		private void Awake()
 		{
-			SetDefaultState(true);
-		}
-
-		private void Start()
-		{
-			SetDefaultState(true);
-		}
-
-		private void SetDefaultState(bool enabled)
-		{
-			var controller = AXBYButtons.GetComponent<AXYBController>();
-			if (controller != null)
-			{
-				controller.SetXButtonLabelText("ROTATION SNAPPING: <color=#3286EC>OFF");
-				controller.SetYButtonLabelText("SCALE: <color=#3286EC>UNIFORM");
-			}
-			
-		}
-
-		private void OnDisable()
-		{
-			SetDefaultState(false);
+			CurrentScaleMode = (int) ScalingMode.Uniform;
+			CurrentRotationSnappingMode = (int) RotationSnappingMode.Off;
 		}
 
 		private void Update()
