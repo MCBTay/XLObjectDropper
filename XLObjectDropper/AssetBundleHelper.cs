@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
 using Object = UnityEngine.Object;
@@ -101,6 +102,7 @@ namespace XLObjectDropper
 
 		public static GameObject UIPrefab { get; set; }
 		public static GameObject ListItemPrefab { get; set; }
+		public static GameObject CustomPassPrefab { get; set; }
 
 		public static void LoadUIBundle()
 		{
@@ -108,6 +110,7 @@ namespace XLObjectDropper
 
 			UIPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab");
 			ListItemPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ListItem.prefab");
+			CustomPassPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/Custom Pass.prefab");
 
 			bundle.Unload(false);
 		}

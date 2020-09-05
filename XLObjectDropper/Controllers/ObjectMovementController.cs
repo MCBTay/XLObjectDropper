@@ -3,6 +3,7 @@ using Rewired;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
@@ -597,6 +598,9 @@ namespace XLObjectDropper.Controllers
 			hasGround = flag;
 		}
 
+		private GameObject CustomPass;
+		private CustomPassVolume CustomPassVolume;
+
 		public void InstantiatePreviewObject(Spawnable spawnable)
         {
 			PreviewObject = Instantiate(spawnable.Prefab);
@@ -605,6 +609,12 @@ namespace XLObjectDropper.Controllers
 
 	        PreviewObject.transform.position = transform.position;
 	        PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
+
+	        if (CustomPass == null && CustomPassVolume == null)
+	        {
+		        CustomPass = Instantiate(AssetBundleHelper.CustomPassPrefab);
+		        CustomPassVolume = CustomPass.GetComponent<CustomPassVolume>();
+			}
         }
 	}
 }
