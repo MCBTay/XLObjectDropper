@@ -11,6 +11,30 @@ TextureImporter:
   - first:
       213: -8655386203062082500
     second: XLObjectDropper_Icons_1
+  - first:
+      213: 3805521456162007187
+    second: XLObjectDropper_Icons_1
+  - first:
+      213: 2957827784848427315
+    second: XLObjectDropper_Icons_2
+  - first:
+      213: 5050689101973937226
+    second: XLObjectDropper_Icons_3
+  - first:
+      213: 449574020149820117
+    second: XLObjectDropper_Icons_4
+  - first:
+      213: -5293351961348184074
+    second: XLObjectDropper_Icons_5
+  - first:
+      213: 7844322077121868570
+    second: XLObjectDropper_Icons_6
+  - first:
+      213: 6149973550050335214
+    second: XLObjectDropper_Icons_7
+  - first:
+      213: 5817635401747451501
+    second: XLObjectDropper_Icons_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -131,8 +155,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c34eaa44b14e1e780800000000000000
-      internalID: -8655386203062082500
+      spriteID: 398e9a31a9defc430800000000000000
+      internalID: 3805521456162007187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XLObjectDropper_Icons_2
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 900
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 339cba6f2b05c0920800000000000000
+      internalID: 2957827784848427315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XLObjectDropper_Icons_3
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 900
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4cd7128af6a71640800000000000000
+      internalID: 5050689101973937226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: XLObjectDropper_Icons_4
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 900
+        width: 180
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5da364b70353d3600800000000000000
+      internalID: 449574020149820117
       vertices: []
       indices: 
       edges: []

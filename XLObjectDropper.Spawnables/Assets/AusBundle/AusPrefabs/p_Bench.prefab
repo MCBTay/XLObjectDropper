@@ -75,7 +75,6 @@ GameObject:
   - component: {fileID: 1065981998266198937}
   - component: {fileID: 1065981998265231705}
   - component: {fileID: 1065981998267134267}
-  - component: {fileID: 8889919216806168233}
   m_Layer: 0
   m_Name: Bench_LOD0
   m_TagString: Surface_Wood
@@ -124,6 +123,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -136,6 +136,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -158,34 +159,10 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 8ffd61fc9fbde0844b3498b11880c1bb, type: 3}
---- !u!114 &8889919216806168233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065981998267234201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af41b5cb1e60453381ec6e9ed0409554, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Splines: []
-  ColliderContainer: {fileID: 0}
-  GeneratedColliders:
-  - {fileID: 2743663890329103984}
-  - {fileID: 554571973928643543}
-  ColliderType: 0
-  GeneratedColliderRadius: 0.1
-  GeneratedColliderWidth: 0.05
-  GeneratedColliderDepth: 0.05
-  IsEdge: 1
-  AutoDetectEdgeAlignment: 0
-  FlipEdge: 0
 --- !u!1 &1065981998267234203
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +217,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -252,6 +230,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -318,6 +297,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -330,6 +310,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -396,6 +377,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -408,6 +390,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -534,13 +517,13 @@ MonoBehaviour:
   _transformedSamples:
   - position: {x: 54.58515, y: 0.60278004, z: 37.12892}
     up: {x: -3.5527133e-15, y: 0.9262642, z: 0.37687477}
-    forward: {x: 1, y: -0.00015097958, z: 0.0003707409}
+    forward: {x: 0.9999999, y: -0.00015097957, z: 0.00037074083}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   - position: {x: 56.406906, y: 0.60250497, z: 37.129597}
     up: {x: -3.5527133e-15, y: 0.9262642, z: 0.37687477}
-    forward: {x: 1, y: -0.00015097958, z: 0.0003707409}
+    forward: {x: 0.9999999, y: -0.00015097957, z: 0.00037074083}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
@@ -548,13 +531,13 @@ MonoBehaviour:
     samples:
     - position: {x: 54.58515, y: 0.60278004, z: 37.12892}
       up: {x: -3.5527133e-15, y: 0.9262642, z: 0.37687477}
-      forward: {x: 1, y: -0.00015097958, z: 0.0003707409}
+      forward: {x: 0.9999999, y: -0.00015097957, z: 0.00037074083}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
     - position: {x: 56.406906, y: 0.60250497, z: 37.129597}
       up: {x: -3.5527133e-15, y: 0.9262642, z: 0.37687477}
-      forward: {x: 1, y: -0.00015097958, z: 0.0003707409}
+      forward: {x: 0.9999999, y: -0.00015097957, z: 0.00037074083}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -642,12 +625,12 @@ MonoBehaviour:
   spline:
     points:
     - _type: 0
-      position: {x: 0.025026238, y: 0.000012018718, z: 1.8542056}
+      position: {x: 0.025091209, y: 0.00018524844, z: 1.8542056}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: -0.00000023841858, y: 1, z: 0}
       size: 1
-      tangent: {x: 0.025026238, y: 0.000012018718, z: 1.8542056}
-      tangent2: {x: 0.025026238, y: 0.000012018718, z: 1.8542056}
+      tangent: {x: 0.025091209, y: 0.00018524844, z: 1.8542056}
+      tangent2: {x: 0.025091209, y: 0.00018524844, z: 1.8542056}
     - _type: 0
       position: {x: 0.026643138, y: 0.00000041909516, z: 0.008911125}
       color: {r: 1, g: 1, b: 1, a: 1}
@@ -672,42 +655,42 @@ MonoBehaviour:
       m_RotationOrder: 4
     sampleRate: 10
   _rawSamples:
-  - position: {x: 0.025021885, y: 0.00000041071326, z: 1.8542056}
-    up: {x: -0.00000002980233, y: 1.0000001, z: 0}
-    forward: {x: 0.0008785878, y: 0.00000000454231, z: -0.9999996}
+  - position: {x: 0.025026238, y: 0.000012018718, z: 1.8542056}
+    up: {x: -0.00000023841858, y: 1, z: 0}
+    forward: {x: 0.0008762288, y: -0.0000062860527, z: -0.9999996}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   - position: {x: 0.026643138, y: 0.00000041909516, z: 0.008911125}
-    up: {x: -0.00000002980233, y: 1.0000001, z: 0}
-    forward: {x: 0.0008785878, y: 0.00000000454231, z: -0.9999996}
+    up: {x: -0.00000023841858, y: 1, z: 0}
+    forward: {x: 0.0008762288, y: -0.0000062860527, z: -0.9999996}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: 54.562748, y: 1.089014, z: 36.57254}
-    up: {x: 0.000000044703487, y: 0.9363132, z: -0.35116604}
-    forward: {x: 0.9999997, y: 0.00030848972, z: 0.0008227229}
+  - position: {x: 54.562748, y: 1.0890265, z: 36.57254}
+    up: {x: 0.000000044703512, y: 0.93631315, z: -0.35116622}
+    forward: {x: 0.9999996, y: 0.00030177133, z: 0.0008227228}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   - position: {x: 56.408043, y: 1.0895833, z: 36.57406}
-    up: {x: 0.000000044703487, y: 0.9363132, z: -0.35116604}
-    forward: {x: 0.9999997, y: 0.00030848972, z: 0.0008227229}
+    up: {x: 0.000000044703512, y: 0.93631315, z: -0.35116622}
+    forward: {x: 0.9999996, y: 0.00030177133, z: 0.0008227228}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: 54.562748, y: 1.089014, z: 36.57254}
-      up: {x: 0.000000044703487, y: 0.9363132, z: -0.35116604}
-      forward: {x: 0.9999997, y: 0.00030848972, z: 0.0008227229}
+    - position: {x: 54.562748, y: 1.0890265, z: 36.57254}
+      up: {x: 0.000000044703512, y: 0.93631315, z: -0.35116622}
+      forward: {x: 0.9999996, y: 0.00030177133, z: 0.0008227228}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
     - position: {x: 56.408043, y: 1.0895833, z: 36.57406}
-      up: {x: 0.000000044703487, y: 0.9363132, z: -0.35116604}
-      forward: {x: 0.9999997, y: 0.00030848972, z: 0.0008227229}
+      up: {x: 0.000000044703512, y: 0.93631315, z: -0.35116622}
+      forward: {x: 0.9999996, y: 0.00030177133, z: 0.0008227228}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
