@@ -454,6 +454,8 @@ namespace XLObjectDropper.Controllers
 		{
 			if (player.GetButtonDown("Y"))
 			{
+				UISounds.Instance?.PlayOneShotSelectMajor();
+
 				CurrentScaleMode++;
 
 				if (CurrentScaleMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
