@@ -8,6 +8,7 @@ namespace XLObjectDropper.UI
 		public GameObject AXBYButtons;
 
 		[HideInInspector] private int CurrentRotationSnappingMode;
+		[HideInInspector] private int CurrentScaleMode;
 
 		private void OnEnable()
 		{
@@ -21,7 +22,13 @@ namespace XLObjectDropper.UI
 
 		private void SetDefaultState(bool enabled)
 		{
-			AXBYButtons.GetComponent<AXYBController>().SetXButtonLabelText("ROTATION SNAPPING: <color=#3286EC>OFF");
+			var controller = AXBYButtons.GetComponent<AXYBController>();
+			if (controller != null)
+			{
+				controller.SetXButtonLabelText("ROTATION SNAPPING: <color=#3286EC>OFF");
+				controller.SetYButtonLabelText("SCALE: <color=#3286EC>UNIFORM");
+			}
+			
 		}
 
 		private void OnDisable()
@@ -31,7 +38,7 @@ namespace XLObjectDropper.UI
 
 		private void Update()
 		{
-			if (UIManager.Instance.Player.GetButtonUp("X"))
+			if (UIManager.Instance.Player.GetButtonDown("X"))
 			{
 				CurrentRotationSnappingMode++;
 
@@ -56,6 +63,33 @@ namespace XLObjectDropper.UI
 				}
 
 				AXBYButtons.GetComponent<AXYBController>().SetXButtonLabelText($"ROTATION SNAPPING: <color=#3286EC>{rotationSnapping}");
+			}
+
+			if (UIManager.Instance.Player.GetButtonDown("Y"))
+			{
+				CurrentScaleMode++;
+
+				if (CurrentScaleMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
+					CurrentScaleMode = 0;
+
+				string scalingMode = "UNIFORM";
+				switch (CurrentScaleMode)
+				{
+					case (int)ScalingMode.Uniform:
+						scalingMode = "UNIFORM";
+						break;
+					case (int)ScalingMode.Width:
+						scalingMode = "WIDTH";
+						break;
+					case (int)ScalingMode.Height:
+						scalingMode = "HEIGHT";
+						break;
+					case (int)ScalingMode.Depth:
+						scalingMode = "DEPTH";
+						break;
+				}
+
+				AXBYButtons.GetComponent<AXYBController>().SetYButtonLabelText($"SCALE: <color=#3286EC>{scalingMode}");
 			}
 		}
 	}

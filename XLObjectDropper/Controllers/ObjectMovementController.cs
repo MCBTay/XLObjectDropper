@@ -39,7 +39,7 @@ namespace XLObjectDropper.Controllers
 		public Transform cameraPivot;
 
 		public Transform cameraNode;
-		public float minHeight = 0.5f;
+		public float minHeight = 0.0f;
 		public float maxHeight = 15f;
 		public float heightChangeSpeed = 2f;
 		public float VerticalAcceleration = 20f;
@@ -336,6 +336,7 @@ namespace XLObjectDropper.Controllers
 			}
 
 			currentHeight = transform.position.y - groundLevel;
+			UnityModManager.Logger.Log("XLObjectDropper: currentHeight = " + currentHeight);
 
 			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
 			#region Camera rotation
@@ -451,20 +452,12 @@ namespace XLObjectDropper.Controllers
 
 		private void HandleScaleModeSwitching(Player player)
 		{
-			if (player.GetButtonDown("DPadX"))
+			if (player.GetButtonDown("Y"))
 			{
 				CurrentScaleMode++;
 
 				if (CurrentScaleMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
 					CurrentScaleMode = 0;
-			}
-
-			if (player.GetNegativeButtonDown("DPadX"))
-			{
-				CurrentScaleMode--;
-
-				if (CurrentScaleMode < 0)
-					CurrentScaleMode = Enum.GetValues(typeof(ScalingMode)).Length - 1;
 			}
 		}
 
@@ -472,7 +465,7 @@ namespace XLObjectDropper.Controllers
         {
 	        Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-	        switch (CurrentScaleMode)
+	        switch (CurrentRotationSnappingMode)
 	        {
 		        case (int)RotationSnappingMode.Off:
 
