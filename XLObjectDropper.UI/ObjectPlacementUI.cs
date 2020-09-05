@@ -18,6 +18,8 @@ namespace XLObjectDropper.UI
 
 		private void Start()
 		{
+            MainScreen_UI.SetActive(true);
+
 			// Object Placement
 			RB_UI.SetActive(false);
 			LB_UI.SetActive(false);
