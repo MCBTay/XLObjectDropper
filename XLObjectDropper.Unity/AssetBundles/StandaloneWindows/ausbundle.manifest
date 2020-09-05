@@ -1,0 +1,64 @@
+ManifestFileVersion: 0
+CRC: 1089890721
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 023d44c69fed0863a9c6971d615749ce
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9ff530a80d016725af2a5f7cdeec376f
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: af41b5cb1e60453381ec6e9ed0409554, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c6c2871f720b2af4e9210febdac74517, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4bd5e5ddd242bd64581fb5ed9c0e0507, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 205
+  Script: {instanceID: 0}
+Assets:
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Sign_Street.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Powerpole_2.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_LightPole.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Sign_Roundabout.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Trashcan.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Sign_Ped.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Sign_Speed.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Powerpole_1.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Bench.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_StreetLight.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Sign_Street_2.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Bikerack.prefab
+- Assets/OBJ_Dropper_Bundles/AusBundle/p_Sign_Parking.prefab
+Dependencies: []

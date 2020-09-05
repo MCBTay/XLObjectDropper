@@ -13,3 +13,5 @@
 /XLObjectDropper.UI/obj
 /McBtay Unity/Assets/Assembly/XLObjectDropper.UI.pdb
 /packages
+*.meta
+XLObjectDropper.Spawnables/Assets/AusBundle.meta

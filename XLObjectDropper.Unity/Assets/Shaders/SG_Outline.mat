@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Floats:
-    - Vector1_Scale: 1.042
+    - Vector1_Scale: 1.006
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 1
     - _AlphaSrcBlend: 1
@@ -61,7 +61,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - Color_11B08E89: {r: 1, g: 0.6045283, b: 0, a: 0}
+    - Color_11B08E89: {r: 0.028301895, g: 0.016846368, b: 0, a: 0}
     - Color_C4210A6: {r: 0.9528302, g: 0.5243493, b: 0.05842829, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
