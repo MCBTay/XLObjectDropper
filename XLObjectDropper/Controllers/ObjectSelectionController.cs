@@ -61,10 +61,10 @@ namespace XLObjectDropper.Controllers
 		{
 			if (enabled)
 			{
-				if (ObjectMovementController.PreviewObject != null && ObjectMovementController.PreviewObject.activeInHierarchy)
+				if (ObjectMovementController.Instance.PreviewObject != null && ObjectMovementController.Instance.PreviewObject.activeInHierarchy)
 				{
-					ObjectMovementController.PreviewObject.SetActive(false);
-					Destroy(ObjectMovementController.PreviewObject);
+					ObjectMovementController.Instance.PreviewObject.SetActive(false);
+					Destroy(ObjectMovementController.Instance.PreviewObject);
 				}
 
 				ObjectMovementController.Instance?.InstantiatePreviewObject(spawnable);
