@@ -281,10 +281,12 @@ namespace XLObjectDropper.Controllers
 				
 				if (player.GetButtonDown("Right Stick Button"))
 				{
-					//TODO: Re-evaluate this
-					//PinMovementController.transform.rotation = Quaternion.identity;
-					//Traverse.Create(PinMovementController).Field("targetHeight").SetValue(PinMovementController.defaultHeight);
-					//Traverse.Create(PinMovementController).Method("MoveCamera", true).GetValue();
+					transform.rotation = Quaternion.identity;
+					targetHeight = defaultHeight;
+					targetDistance = defaultHeight;
+					rotationAngleX = 0;
+					rotationAngleY = 0;
+					MoveCamera(true);
 				}
 				
 				if (player.GetButtonDown("Select"))
