@@ -16,17 +16,18 @@ namespace XLObjectDropper.Controllers
 		public static GameObject PreviewObject { get; set; }
         public List<GameObject> SpawnedObjects { get; set; }
 
-        private static bool OptionsMenuShown { get; set; }
 		private static GameObject OptionsMenuGameObject;
 		private static OptionsMenuController OptionsMenuController { get; set; }
 
-		private static bool ObjectSelectionShown { get; set; }
 		private static Spawnable SelectedObject { get; set; }
 
 		private static GameObject ObjectSelectionMenuGameObject;
 		private static ObjectSelectionController ObjectSelectionController { get; set; }
 
 		public static ObjectMovementController Instance { get; set; }
+
+		private GameObject CustomPass;
+		private CustomPassVolume CustomPassVolume;
 
 
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
@@ -94,9 +95,6 @@ namespace XLObjectDropper.Controllers
 
 			UserInterfaceHelper.LoadUserInterface();
 
-			OptionsMenuGameObject = new GameObject();
-			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
-
 			CurrentScaleMode = (int)ScalingMode.Uniform;
 			
 
@@ -120,36 +118,6 @@ namespace XLObjectDropper.Controllers
 			characterController.stepOffset = 0.5f;
 			characterController.enabled = true;
 		}
-
-		#region Object Selection 
-		private void CreateObjectSelection()
-		{
-			ObjectSelectionMenuGameObject = new GameObject();
-			ObjectSelectionController = OptionsMenuGameObject.AddComponent<ObjectSelectionController>();
-			ObjectSelectionController.ObjectClickedEvent += ObjectSelectionControllerOnObjectClickedEvent;
-
-			ObjectSelectionMenuGameObject.SetActive(true);
-
-			ObjectSelectionShown = true;
-		}
-
-		private void DestroyObjectSelection()
-		{
-			ObjectSelectionMenuGameObject.SetActive(false);
-			ObjectSelectionController.ObjectClickedEvent -= ObjectSelectionControllerOnObjectClickedEvent;
-
-			Destroy(ObjectSelectionController);
-			Destroy(ObjectSelectionMenuGameObject);
-
-			ObjectSelectionShown = false;
-		}
-
-		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
-		{
-			SelectedObject = spawnable;
-			DestroyObjectSelection();
-		}
-		#endregion
 
 		private void OnEnable()
         {
@@ -198,7 +166,7 @@ namespace XLObjectDropper.Controllers
 
         private void Update()
         {
-	        Time.timeScale = OptionsMenuShown || ObjectSelectionShown ? 0.0f : 1.0f;
+	        Time.timeScale = OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy || ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy ? 0.0f : 1.0f;
 
 	        Player player = PlayerController.Instance.inputController.player;
 
@@ -211,17 +179,17 @@ namespace XLObjectDropper.Controllers
 		        SelectedObject = null;
 		        return;
 	        }
-	        if (OptionsMenuShown)
+	        if (OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy)
 	        {
 		        if (player.GetButtonDown("Select"))
 		        {
-			        OptionsMenuGameObject.SetActive(true);
-			        OptionsMenuShown = !OptionsMenuShown;
+			        DestroyOptionsMenu();
 		        }
 
 		        return;
 	        }
-	        if (ObjectSelectionShown)
+
+	        if (ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy)
 	        {
 		        if (player.GetButtonDown("Start"))
 		        {
@@ -290,7 +258,7 @@ namespace XLObjectDropper.Controllers
 				
 				if (player.GetButtonDown("Select"))
 		        {
-			        OptionsMenuGameObject.SetActive(OptionsMenuShown);
+					CreateOptionsMenu();
 		        }
 
 				if (player.GetButtonDown("Start"))
@@ -598,8 +566,7 @@ namespace XLObjectDropper.Controllers
 			hasGround = flag;
 		}
 
-		private GameObject CustomPass;
-		private CustomPassVolume CustomPassVolume;
+		
 
 		public void InstantiatePreviewObject(Spawnable spawnable)
         {
@@ -620,5 +587,49 @@ namespace XLObjectDropper.Controllers
 		        CustomPassVolume.enabled = true;
 	        }
         }
+
+		#region Object Selection 
+		private void CreateObjectSelection()
+		{
+			ObjectSelectionMenuGameObject = new GameObject();
+			ObjectSelectionController = OptionsMenuGameObject.AddComponent<ObjectSelectionController>();
+			ObjectSelectionController.ObjectClickedEvent += ObjectSelectionControllerOnObjectClickedEvent;
+
+			ObjectSelectionMenuGameObject.SetActive(true);
+		}
+
+		private void DestroyObjectSelection()
+		{
+			ObjectSelectionMenuGameObject.SetActive(false);
+			ObjectSelectionController.ObjectClickedEvent -= ObjectSelectionControllerOnObjectClickedEvent;
+
+			Destroy(ObjectSelectionController);
+			Destroy(ObjectSelectionMenuGameObject);
+		}
+
+		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
+		{
+			SelectedObject = spawnable;
+			DestroyObjectSelection();
+		}
+		#endregion
+
+		#region Options Menu
+		private void CreateOptionsMenu()
+		{
+			OptionsMenuGameObject = new GameObject();
+			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
+
+			OptionsMenuGameObject.SetActive(true);
+		}
+
+		private void DestroyOptionsMenu()
+		{
+			OptionsMenuGameObject.SetActive(false);
+
+			Destroy(OptionsMenuController);
+			Destroy(OptionsMenuGameObject);
+		}
+		#endregion
 	}
 }
