@@ -246,10 +246,6 @@ namespace XLObjectDropper.Controllers
 				
 				if (PreviewObject != null && PreviewObject.activeInHierarchy)
 				{
-					// If dpad up/down, move object up/down
-					float dpad = player.GetAxis("DPadY");
-					targetHeight = targetHeight + (dpad * Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
-
 					if (player.GetButtonDown("A"))
 					{
 						UISounds.Instance?.PlayOneShotSelectMajor();
@@ -262,6 +258,10 @@ namespace XLObjectDropper.Controllers
 						PreviewObject.transform.rotation = LastPrefab.transform.rotation;
 					}
 				}
+
+				// If dpad up/down, move object up/down
+				float dpad = player.GetAxis("DPadY");
+				targetHeight = targetHeight + (dpad * Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
 
 				if (player.GetButtonDown("DPadX"))
 				{
