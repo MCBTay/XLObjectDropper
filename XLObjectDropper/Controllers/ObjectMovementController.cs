@@ -37,7 +37,7 @@ namespace XLObjectDropper.Controllers
 
 		private float HorizontalAcceleration = 10f;
 		private float MaxCameraAcceleration = 5f;
-		private float heightChangeSpeed = 2f;
+		private float heightChangeSpeed = 10f;
 		private float VerticalAcceleration = 20f;
 		private float CameraRotateSpeed = 100f;
 		private float ObjectRotateSpeed = 10f;
@@ -115,12 +115,12 @@ namespace XLObjectDropper.Controllers
 			characterController.center = PlayerController.Instance.pinMover.characterController.center;
 			characterController.detectCollisions = true;
 			characterController.enableOverlapRecovery = true;
-			characterController.height = 0.5f;
+			characterController.height = 0.01f;
 			characterController.minMoveDistance = 0.001f;
-			characterController.radius = 0.5f;
-			characterController.skinWidth = 0.08f;
+			characterController.radius = 0.25f;
+			characterController.skinWidth = 0.001f;
 			characterController.slopeLimit = 80f;
-			characterController.stepOffset = 0.5f;
+			characterController.stepOffset = 0.01f;
 			characterController.enabled = true;
 		}
 
