@@ -95,6 +95,9 @@ namespace XLObjectDropper.Controllers
 
 			UserInterfaceHelper.LoadUserInterface();
 
+			CustomPass = Instantiate(AssetBundleHelper.CustomPassPrefab);
+			CustomPassVolume = CustomPass.GetComponent<CustomPassVolume>();
+
 			CurrentScaleMode = (int)ScalingMode.Uniform;
 			
 
@@ -164,7 +167,7 @@ namespace XLObjectDropper.Controllers
 			mainCam.nearClipPlane = originalNearClipDist;
 		}
 
-        private void Update()
+		private void Update()
         {
 	        Time.timeScale = OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy || ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy ? 0.0f : 1.0f;
 
@@ -199,7 +202,31 @@ namespace XLObjectDropper.Controllers
 		        return;
 	        }
 
-			if (player.GetButton("LB"))
+	  //      if (TempSelectedObject != null)
+	  //      {
+		 //       TempSelectedObject.transform.ChangeLayersRecursively(TempSelectedObjectCopy);
+		 //       TempSelectedObjectCopy = null;
+		 //       TempSelectedObject = null;
+			//}
+			
+
+			//Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+	  //      if (Physics.Raycast(ray, out RaycastHit hit))
+	  //      {
+		 //       if (hit.collider != null)
+		 //       {
+			//        TempSelectedObject = TempSelectedObjectCopy = hit.transform.gameObject;
+
+			//		//PreviewObject = TempSelectedObject;
+			//		TempSelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+			//		CustomPassVolume.enabled = true;
+			        
+			//        UnityModManager.Logger.Log("XLObjectDropper: Ray hit " + hit.transform.name);
+			//	}
+		        
+	  //      }
+
+		    if (player.GetButton("LB"))
 			{
 				HandleRotationAndScalingInput(player);
 			}
@@ -387,6 +414,7 @@ namespace XLObjectDropper.Controllers
 	        if (disablePreview)
 	        {
 		        PreviewObject.SetActive(false);
+		        CustomPassVolume.enabled = false;
 	        }
         }
 
@@ -577,22 +605,14 @@ namespace XLObjectDropper.Controllers
 	        PreviewObject.transform.position = transform.position;
 	        PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
 
-	        if (CustomPass == null && CustomPassVolume == null)
-	        {
-		        CustomPass = Instantiate(AssetBundleHelper.CustomPassPrefab);
-		        CustomPassVolume = CustomPass.GetComponent<CustomPassVolume>();
-			}
-	        else
-	        {
-		        CustomPassVolume.enabled = true;
-	        }
+			CustomPassVolume.enabled = true;
         }
 
 		#region Object Selection 
 		private void CreateObjectSelection()
 		{
 			ObjectSelectionMenuGameObject = new GameObject();
-			ObjectSelectionController = OptionsMenuGameObject.AddComponent<ObjectSelectionController>();
+			ObjectSelectionController = ObjectSelectionMenuGameObject.AddComponent<ObjectSelectionController>();
 			ObjectSelectionController.ObjectClickedEvent += ObjectSelectionControllerOnObjectClickedEvent;
 
 			ObjectSelectionMenuGameObject.SetActive(true);
