@@ -112,7 +112,7 @@ namespace XLObjectDropper.Controllers
 		private void CreateCharacterController()
 		{
 			characterController = gameObject.AddComponent<CharacterController>();
-			characterController.center = PlayerController.Instance.pinMover.characterController.center;
+			characterController.center = transform.position;
 			characterController.detectCollisions = true;
 			characterController.enableOverlapRecovery = true;
 			characterController.height = 0.01f;
