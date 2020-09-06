@@ -155,7 +155,7 @@ namespace XLObjectDropper.Controllers
 			#endregion
 
 			cameraPivot = transform;
-			cameraNode = mainCam.transform;
+			cameraNode = Instantiate(mainCam.transform, cameraPivot);
 
 			rotationAngleX = cameraPivot.eulerAngles.x;
 			rotationAngleY = cameraPivot.eulerAngles.y;
@@ -240,7 +240,7 @@ namespace XLObjectDropper.Controllers
 			}
 			else
 			{
-				HandleStickAndTriggerInput();
+				HandleStickAndTriggerInput(player);
 
 				
 				if (PreviewObject != null && PreviewObject.activeInHierarchy)
@@ -304,10 +304,10 @@ namespace XLObjectDropper.Controllers
 	        UpdateGroundLevel();
         }
 
-        private void HandleStickAndTriggerInput()
+        private void HandleStickAndTriggerInput(Player player)
         {
-			Vector2 leftStick = PlayerController.Instance.inputController.player.GetAxis2D("LeftStickX", "LeftStickY");
-			Vector2 rightStick = PlayerController.Instance.inputController.player.GetAxis2D("RightStickX", "RightStickY");
+			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
+			Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
 
 			float a = (PlayerController.Instance.inputController.player.GetAxis(9) - PlayerController.Instance.inputController.player.GetAxis(8)) *
 					  Time.deltaTime *
@@ -316,7 +316,7 @@ namespace XLObjectDropper.Controllers
 
 			currentHeight = transform.position.y - groundLevel;
 			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
-			collisionFlags = characterController.Move(transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime);
+			collisionFlags = characterController.Move(cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime);
 			currentHeight = transform.position.y - groundLevel;
 			if (!Mathf.Approximately(a, 0.0f))
 			{
@@ -337,7 +337,6 @@ namespace XLObjectDropper.Controllers
 			}
 
 			currentHeight = transform.position.y - groundLevel;
-			//UnityModManager.Logger.Log("XLObjectDropper: currentHeight = " + currentHeight);
 
 			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
 			#region Camera rotation
@@ -372,7 +371,7 @@ namespace XLObjectDropper.Controllers
         private void MoveCamera(bool moveInstant = false)
         {
 	        Ray ray = new Ray(cameraPivot.position, -cameraPivot.forward);
-	        float num1 = HeightToCameraDistCurve.Evaluate(targetHeight);
+	        float num1 = targetDistance;
 
 	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out RaycastHit hitInfo, num1, (int)layerMask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
 		        moveInstant = true;
@@ -384,13 +383,13 @@ namespace XLObjectDropper.Controllers
 	        }
 	        else
 	        {
-		        float num2 = (float)(((double)targetDistance - (double)currentCameraDist) / 0.25);
+		        float num2 = (float)(((double)num1 - (double)currentCameraDist) / 0.25);
 
 		        float f = Mathf.Approximately(lastCameraVelocity, 0.0f) || (double)Mathf.Sign(num2) == (double)Mathf.Sign(lastCameraVelocity) ?
 			        ((double)Mathf.Abs(num2) <= (double)Mathf.Abs(lastCameraVelocity) ? num2 : Mathf.MoveTowards(lastCameraVelocity, num2, MaxCameraAcceleration * Time.deltaTime)) :
 			        0.0f;
 
-				currentCameraDist = Mathf.MoveTowards(currentCameraDist, targetDistance, Mathf.Abs(f) * Time.deltaTime);
+				currentCameraDist = Mathf.MoveTowards(currentCameraDist, num1, Mathf.Abs(f) * Time.deltaTime);
 		        currentCameraDist = Mathf.Clamp(currentCameraDist, 2.5f, 25f);
 		        lastCameraVelocity = f;
 	        }
