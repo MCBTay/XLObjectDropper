@@ -57,6 +57,8 @@ namespace XLObjectDropper.Controllers
 		public Transform cameraNode;
 		public float CameraSphereCastRadius = 0.15f;
 		private float currentCameraDist;
+		private float minDistance = 2.5f;
+		private float maxDistance = 25f;
 		private float originalNearClipDist;
 
 		public CharacterController characterController;
@@ -315,14 +317,11 @@ namespace XLObjectDropper.Controllers
 			currentHeight = transform.position.y - groundLevel;
 			if (!Mathf.Approximately(a, 0.0f))
 			{
-				if ((double)currentCameraDist < (double)25f && (double)a > 0.0 ||
-					(double)currentCameraDist > (double)2f && (double)a < 0.0)
+				if ((double)currentCameraDist < (double)maxDistance && (double)a > 0.0 ||
+					(double)currentCameraDist > (double)minDistance && (double)a < 0.0)
 				{
 					targetDistance += a;
 				}
-
-				currentHeight = transform.position.y - groundLevel;
-				targetHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
 			}
 			else
 			{
@@ -332,6 +331,7 @@ namespace XLObjectDropper.Controllers
 			}
 
 			currentHeight = transform.position.y - groundLevel;
+			targetHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
 
 			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
 			#region Camera rotation
@@ -385,7 +385,7 @@ namespace XLObjectDropper.Controllers
 			        0.0f;
 
 				currentCameraDist = Mathf.MoveTowards(currentCameraDist, num1, Mathf.Abs(f) * Time.deltaTime);
-		        currentCameraDist = Mathf.Clamp(currentCameraDist, 2.5f, 25f);
+		        currentCameraDist = Mathf.Clamp(currentCameraDist, minDistance, maxDistance);
 		        lastCameraVelocity = f;
 	        }
 
@@ -475,9 +475,6 @@ namespace XLObjectDropper.Controllers
 			PreviewObject?.transform.Rotate(0, leftStick.x * ObjectRotateSpeed, 0);
 		}
 
-		private float objectRotationX = 0.0f;
-		private float objectRotationY = 0.0f;
-		
 		private void HandleDPadRotation(Player player)
 		{
 			float rotationIncrement = 0.0f;
@@ -500,25 +497,21 @@ namespace XLObjectDropper.Controllers
 
 			if (player.GetButtonDown("DPadX"))
 			{
-				objectRotationX += rotationIncrement;
 				PreviewObject.transform.Rotate(new Vector3(0, rotationIncrement, 0));
 			}
 
 			if (player.GetNegativeButtonDown("DPadX"))
 			{
-				objectRotationX -= rotationIncrement;
 				PreviewObject.transform.Rotate(new Vector3(0, -rotationIncrement, 0));
 			}
 
 			if (player.GetButtonDown("DPadY"))
 			{
-				objectRotationY += rotationIncrement;
 				PreviewObject.transform.RotateAround(PreviewObject.transform.position, cameraPivot.right, rotationIncrement);
 			}
 
 			if (player.GetNegativeButtonDown("DPadY"))
 			{
-				objectRotationY -= rotationIncrement;
 				PreviewObject.transform.RotateAround(PreviewObject.transform.position, cameraPivot.right, -rotationIncrement);
 			}
 		}
