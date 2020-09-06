@@ -37,7 +37,7 @@ namespace XLObjectDropper.Controllers
 
 		private float HorizontalAcceleration = 10f;
 		private float MaxCameraAcceleration = 5f;
-		private float heightChangeSpeed = 10f;
+		private float heightChangeSpeed = 2f;
 		private float VerticalAcceleration = 20f;
 		private float CameraRotateSpeed = 100f;
 		private float ObjectRotateSpeed = 10f;
@@ -322,6 +322,9 @@ namespace XLObjectDropper.Controllers
 				{
 					targetDistance += a;
 				}
+
+				currentHeight = transform.position.y - groundLevel;
+				targetHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
 			}
 			else
 			{
@@ -331,7 +334,6 @@ namespace XLObjectDropper.Controllers
 			}
 
 			currentHeight = transform.position.y - groundLevel;
-			targetHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
 
 			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
 			#region Camera rotation
