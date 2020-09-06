@@ -24,7 +24,6 @@ namespace XLObjectDropper.Controllers
 		private GameObject CustomPass;
 		private CustomPassVolume CustomPassVolume;
 
-
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
 		public float minHeight = 0.0f;
 		public float maxHeight = 15f;
@@ -36,19 +35,18 @@ namespace XLObjectDropper.Controllers
 		private Vector3 groundNormal;
 		private bool hasGround;
 
-		
-
-		public float HorizontalAcceleration = 10f;
-		public float MaxCameraAcceleration = 5f;
-		public float heightChangeSpeed = 2f;
-		public float VerticalAcceleration = 20f;
-		public float CameraRotateSpeed = 100f;
-		public float ObjectRotateSpeed = 10f;
-		public float MoveSpeed = 10f;
-		public float CameraDistMoveSpeed;
+		private float HorizontalAcceleration = 10f;
+		private float MaxCameraAcceleration = 5f;
+		private float heightChangeSpeed = 2f;
+		private float VerticalAcceleration = 20f;
+		private float CameraRotateSpeed = 100f;
+		private float ObjectRotateSpeed = 10f;
+		private float MoveSpeed = 10f;
+		private float CameraDistMoveSpeed;
 		private float lastVerticalVelocity;
 		private float lastCameraVelocity;
 		private float currentMoveSpeed;
+		private float zoomSpeed = 10f;
 
 		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.5f, 0.5f, 15f, 5f);
 		public AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
@@ -66,11 +64,9 @@ namespace XLObjectDropper.Controllers
 
 		private LayerMask layerMask = new LayerMask { value = 1118209 };
 
-
 		private float targetDistance;
 		private float rotationAngleX;
 		private float rotationAngleY;
-
 
 		private GameObject OptionsMenuGameObject;
 		private OptionsMenuController OptionsMenuController { get; set; }
@@ -311,10 +307,7 @@ namespace XLObjectDropper.Controllers
 			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 			Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
 
-			float a = (PlayerController.Instance.inputController.player.GetAxis(9) - PlayerController.Instance.inputController.player.GetAxis(8)) *
-					  Time.deltaTime *
-					  heightChangeSpeed *
-					  HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
+			float a = (player.GetAxis(9) - player.GetAxis(8)) * Time.deltaTime * zoomSpeed; //* HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
 
 			currentHeight = transform.position.y - groundLevel;
 			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
@@ -322,8 +315,8 @@ namespace XLObjectDropper.Controllers
 			currentHeight = transform.position.y - groundLevel;
 			if (!Mathf.Approximately(a, 0.0f))
 			{
-				if ((double)currentHeight < (double)maxHeight && (double)a > 0.0 ||
-					(double)currentHeight > (double)minHeight && (double)a < 0.0)
+				if ((double)currentCameraDist < (double)25f && (double)a > 0.0 ||
+					(double)currentCameraDist > (double)2f && (double)a < 0.0)
 				{
 					targetDistance += a;
 				}
