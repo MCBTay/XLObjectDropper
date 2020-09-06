@@ -1,12 +1,12 @@
 {
   "Id": "XLObjectDropper",
   "DisplayName": "XL Object Dropper",
-  "Author": "mcbtay",
-  "Version": "0.0.1",
+  "Author": "mcbtay and SDT",
+  "Version": "0.0.2",
   "ManagerVersion": "0.22.5.0",
   "Requirements": [],
   "AssemblyName": "XLObjectDropper.dll",
   "EntryMethod": "XLObjectDropper.Main.Load",
-  "HomePage": "https://github.com/MCBTay/XLObjectDropper",
-  "Repository": "https://raw.githubusercontent.com/MCBTay/XLObjectDropper/master/repository.json"
+  "HomePage": "https://github.com/SqueegeeDino/XLObjectDropper",
+  "Repository": "https://github.com/SqueegeeDino/XLObjectDropper/master/repository.json"
 }
