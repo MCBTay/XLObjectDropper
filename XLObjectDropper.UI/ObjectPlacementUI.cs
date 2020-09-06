@@ -16,6 +16,8 @@ namespace XLObjectDropper.UI
 		public GameObject RT_UI;
 		public GameObject LT_UI;
 
+		public GameObject Cursor;
+
 		private void Start()
 		{
             MainScreen_UI.SetActive(true);

@@ -6,6 +6,7 @@ namespace XLObjectDropper.UI
 	public class RotationAndScaleUI : MonoBehaviour
 	{
 		public GameObject AXBYButtons;
+		public GameObject DPad;
 
 		[HideInInspector] private static int CurrentRotationSnappingMode;
 		[HideInInspector] private static int CurrentScaleMode;
@@ -14,6 +15,8 @@ namespace XLObjectDropper.UI
 		{
 			CurrentScaleMode = (int) ScalingMode.Uniform;
 			CurrentRotationSnappingMode = (int) RotationSnappingMode.Off;
+
+			DPad.SetActive(false);
 		}
 
 		private void Update()
@@ -40,6 +43,15 @@ namespace XLObjectDropper.UI
 					case (int)RotationSnappingMode.Degrees90:
 						rotationSnapping = "90°";
 						break;
+				}
+
+				if (CurrentRotationSnappingMode > 0)
+				{
+					DPad.SetActive(true);
+				}
+				else
+				{
+					DPad.SetActive(false);
 				}
 
 				AXBYButtons.GetComponent<AXYBController>().SetXButtonLabelText($"ROTATION SNAPPING: <color=#3286EC>{rotationSnapping}");
