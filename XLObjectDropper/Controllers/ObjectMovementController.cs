@@ -21,9 +21,6 @@ namespace XLObjectDropper.Controllers
 		private static Spawnable SelectedObject { get; set; }
 		public List<GameObject> SpawnedObjects { get; set; }
 
-		private GameObject CustomPass;
-		private CustomPassVolume CustomPassVolume;
-
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
 		public float minHeight = 0.0f;
 		public float maxHeight = 15f;
@@ -97,8 +94,7 @@ namespace XLObjectDropper.Controllers
 
 			UserInterfaceHelper.LoadUserInterface();
 
-			CustomPass = Instantiate(AssetBundleHelper.CustomPassPrefab);
-			CustomPassVolume = CustomPass.GetComponent<CustomPassVolume>();
+			
 
 			CurrentScaleMode = (int)ScalingMode.Uniform;
 			
@@ -414,7 +410,7 @@ namespace XLObjectDropper.Controllers
 	        if (disablePreview)
 	        {
 		        PreviewObject.SetActive(false);
-		        CustomPassVolume.enabled = false;
+		        UserInterfaceHelper.CustomPassVolume.enabled = false;
 	        }
         }
 
@@ -598,7 +594,7 @@ namespace XLObjectDropper.Controllers
 	        PreviewObject.transform.position = transform.position;
 	        PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
 
-			CustomPassVolume.enabled = true;
+	        UserInterfaceHelper.CustomPassVolume.enabled = true;
         }
 
 		#region Object Selection 

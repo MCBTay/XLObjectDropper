@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.HighDefinition;
 using XLObjectDropper.Controllers;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
@@ -11,7 +12,10 @@ namespace XLObjectDropper.UserInterface
 	public static class UserInterfaceHelper
 	{
 		public static GameObject UserInterface { get; set; }
-		
+
+		private static GameObject CustomPass;
+		public static CustomPassVolume CustomPassVolume;
+
 		public static void LoadUserInterface()
 		{
 			if (UIManager.Instance == null)
@@ -24,6 +28,9 @@ namespace XLObjectDropper.UserInterface
 
 				ObjectSelectionController.ObjectSelection = UserInterface.GetComponentInChildren<ObjectSelectionUI>(true);
 				ObjectSelectionController.ListItemPrefab = AssetBundleHelper.ListItemPrefab;
+
+				CustomPass = Object.Instantiate(AssetBundleHelper.CustomPassPrefab);
+				CustomPassVolume = CustomPass.GetComponent<CustomPassVolume>();
 			}
 		}
 
