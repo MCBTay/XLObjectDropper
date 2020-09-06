@@ -13,76 +13,80 @@ namespace XLObjectDropper.Controllers
 {
 	public class ObjectMovementController : MonoBehaviour
 	{
-		public static GameObject PreviewObject { get; set; }
-        public List<GameObject> SpawnedObjects { get; set; }
-
-		private static GameObject OptionsMenuGameObject;
-		private static OptionsMenuController OptionsMenuController { get; set; }
-
-		private static Spawnable SelectedObject { get; set; }
-
-		private static GameObject ObjectSelectionMenuGameObject;
-		private static ObjectSelectionController ObjectSelectionController { get; set; }
-
 		public static ObjectMovementController Instance { get; set; }
+
+		//TODO: Cleanup this lastprefab/selectedobject shit, it's a bad implementation
+		private GameObject LastPrefab;
+		public GameObject PreviewObject { get; set; }
+		private static Spawnable SelectedObject { get; set; }
+		public List<GameObject> SpawnedObjects { get; set; }
 
 		private GameObject CustomPass;
 		private CustomPassVolume CustomPassVolume;
 
 
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
-		public float HorizontalAcceleration = 10f;
-		private float MaxGroundAngle = 70f;
-		public float MaxCameraAcceleration = 5f;
-		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.5f, 0.5f, 15f, 5f);
-		public AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
-
-		public GameObject cameraPivotGameObject;
-		public Transform cameraPivot;
-
-		public Transform cameraNode;
 		public float minHeight = 0.0f;
 		public float maxHeight = 15f;
+		private float targetHeight;
+		private float currentHeight;
+
+		private float MaxGroundAngle = 70f;
+		private float groundLevel;
+		private Vector3 groundNormal;
+		private bool hasGround;
+
+		
+
+		public float HorizontalAcceleration = 10f;
+		public float MaxCameraAcceleration = 5f;
 		public float heightChangeSpeed = 2f;
 		public float VerticalAcceleration = 20f;
 		public float CameraRotateSpeed = 100f;
 		public float ObjectRotateSpeed = 10f;
 		public float MoveSpeed = 10f;
 		public float CameraDistMoveSpeed;
-		public AnimationCurve HeightToCameraDistCurve;
-		public CharacterController characterController;
-		private LayerMask layermask = new LayerMask { value = 1118209 };
-		private RaycastHit lastHit;
-		private float groundLevel;
-		private Vector3 groundNormal;
-		private float targetHeight;
-		private float currentCameraDist;
-		private float currentHeight;
-		private float originalNearClipDist;
-		private Camera mainCam;
 		private float lastVerticalVelocity;
 		private float lastCameraVelocity;
-		private CollisionFlags collisionFlags;
-		public float CameraSphereCastRadius = 0.15f;
 		private float currentMoveSpeed;
 
-		private bool hasGround;
+		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.5f, 0.5f, 15f, 5f);
+		public AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
+		public AnimationCurve HeightToCameraDistCurve;
 
-		private GameObject LastPrefab;
+		private Camera mainCam;
+		public Transform cameraPivot;
+		public Transform cameraNode;
+		public float CameraSphereCastRadius = 0.15f;
+		private float currentCameraDist;
+		private float originalNearClipDist;
+
+		public CharacterController characterController;
+		private CollisionFlags collisionFlags;
+
+		private LayerMask layerMask = new LayerMask { value = 1118209 };
+
 
 		private float targetDistance;
 		private float rotationAngleX;
 		private float rotationAngleY;
 
+
+		private GameObject OptionsMenuGameObject;
+		private OptionsMenuController OptionsMenuController { get; set; }
+
+		private GameObject ObjectSelectionMenuGameObject;
+		private ObjectSelectionController ObjectSelectionController { get; set; }
+
 		private int CurrentScaleMode { get; set; }
 		private int CurrentRotationSnappingMode { get; set; }
-		public bool LockCameraMovement { get; private set; }
+		private bool LockCameraMovement { get; set; }
 
 		private void Awake()
 		{
 			Instance = this;
 
-			this.mainCam = Camera.main;
+			mainCam = Camera.main;
 
 			SpawnedObjects = new List<GameObject>();
 
@@ -333,7 +337,7 @@ namespace XLObjectDropper.Controllers
 			}
 
 			currentHeight = transform.position.y - groundLevel;
-			UnityModManager.Logger.Log("XLObjectDropper: currentHeight = " + currentHeight);
+			//UnityModManager.Logger.Log("XLObjectDropper: currentHeight = " + currentHeight);
 
 			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
 			#region Camera rotation
@@ -370,7 +374,7 @@ namespace XLObjectDropper.Controllers
 	        Ray ray = new Ray(cameraPivot.position, -cameraPivot.forward);
 	        float num1 = HeightToCameraDistCurve.Evaluate(targetHeight);
 
-	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out RaycastHit hitInfo, num1, (int)layermask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
+	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out RaycastHit hitInfo, num1, (int)layerMask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
 		        moveInstant = true;
 
 	        if (moveInstant)
@@ -479,7 +483,7 @@ namespace XLObjectDropper.Controllers
 
 		private float objectRotationX = 0.0f;
 		private float objectRotationY = 0.0f;
-
+		
 		private void HandleDPadRotation(Player player)
 		{
 			float rotationIncrement = 0.0f;
@@ -579,7 +583,7 @@ namespace XLObjectDropper.Controllers
 			bool flag = false;
 			RaycastHit raycastHit = new RaycastHit();
 			ref RaycastHit local = ref raycastHit;
-			int layermask = (int)this.layermask;
+			int layermask = (int)this.layerMask;
 			if (Physics.Raycast(ray1, out local, 10000f, layermask))
 			{
 				groundLevel = raycastHit.point.y;
