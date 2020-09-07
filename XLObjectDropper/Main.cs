@@ -40,6 +40,7 @@ namespace XLObjectDropper
 				Harmony.PatchAll(Assembly.GetExecutingAssembly());
 
 				UserInterfaceHelper.CreateObjectDropperButton();
+				UserInterfaceHelper.LoadUserInterface();
 				AssetBundleHelper.LoadDefaultBundles();
 				AssetBundleHelper.LoadUserBundles();
 			}

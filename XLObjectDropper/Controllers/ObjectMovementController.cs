@@ -92,7 +92,8 @@ namespace XLObjectDropper.Controllers
 
 			CreateCharacterController();
 
-			UserInterfaceHelper.LoadUserInterface();
+			UserInterfaceHelper.UserInterface.SetActive(true);
+			//UserInterfaceHelper.LoadUserInterface();
 
 			
 

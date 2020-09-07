@@ -22,6 +22,8 @@ namespace XLObjectDropper.UserInterface
 			{
 				AssetBundleHelper.LoadUIBundle();
 				UserInterface = Object.Instantiate(AssetBundleHelper.UIPrefab);
+				UserInterface.SetActive(false);
+
 				UIManager.Instance.Player = PlayerController.Instance.inputController.player;
 
 				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>(true);

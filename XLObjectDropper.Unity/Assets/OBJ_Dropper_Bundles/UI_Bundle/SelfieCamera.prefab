@@ -135,7 +135,7 @@ MonoBehaviour:
       enableBigTilePrepass: 0
       isFptlEnabled: 0
   clearColorMode: 1
-  backgroundColorHDR: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 0}
+  backgroundColorHDR: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
@@ -157,7 +157,7 @@ MonoBehaviour:
   flipYMode: 0
   fullscreenPassthrough: 0
   allowDynamicResolution: 0
-  customRenderingSettings: 0
+  customRenderingSettings: 1
   invertFaceCulling: 0
   probeLayerMask:
     serializedVersion: 2
@@ -165,8 +165,8 @@ MonoBehaviour:
   hasPersistentHistory: 0
   m_RenderingPathCustomFrameSettings:
     bitDatas:
-      data1: 70297877217101
-      data2: 4539628425463136256
+      data1: 70160438230861
+      data2: 4539628425462087680
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -176,6 +176,6 @@ MonoBehaviour:
     materialQuality: 0
   renderingPathCustomFrameSettingsOverrideMask:
     mask:
-      data1: 0
-      data2: 0
+      data1: 137438986240
+      data2: 1048576
   defaultFrameSettings: 0

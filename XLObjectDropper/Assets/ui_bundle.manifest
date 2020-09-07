@@ -1,17 +1,19 @@
 ManifestFileVersion: 0
-CRC: 3704688996
+CRC: 4016128869
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 24adfd71d69dedbbff704aa43d20ee39
+    Hash: d465cd8720e1f76360b1e915f8154365
   TypeTreeHash:
     serializedVersion: 2
-    Hash: d9c8f36680ca95a33465b995321f5f3f
+    Hash: a823150ca9efae99c9f9833b347658db
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
+  Script: {instanceID: 0}
+- Class: 20
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
@@ -58,6 +60,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 114
   Script: {fileID: 2040033396, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
@@ -90,6 +94,7 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 Assets:
+- Assets/OBJ_Dropper_Bundles/UI_Bundle/SelfieCamera.prefab
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/Custom Pass.prefab
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/Outline Custom Pass.prefab

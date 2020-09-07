@@ -21,6 +21,8 @@ namespace XLObjectDropper.Controllers
 
 		private List<SpawnableType> Categories;
 
+		public GameObject PreviewObject { get; set; }
+
 		private void Awake()
 		{
 			Categories = new List<SpawnableType>();
@@ -152,6 +154,13 @@ namespace XLObjectDropper.Controllers
 
 		private void ListItemSelected(Spawnable spawnable)
 		{
+			//PreviewObject = Instantiate(spawnable.Prefab);
+
+			//PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
+
+			//PreviewObject.transform.position = transform.position;
+			//PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
+
 			if (enabled)
 			{
 				if (ObjectMovementController.Instance.PreviewObject != null && ObjectMovementController.Instance.PreviewObject.activeInHierarchy)

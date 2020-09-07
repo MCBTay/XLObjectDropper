@@ -15,6 +15,8 @@ namespace XLObjectDropper
 	public static class AssetBundleHelper
 	{
 		public static Dictionary<SpawnableType, List<Spawnable>> LoadedSpawnables { get; private set; }
+		public static string ImagesPath;
+		public static string AssetPacksPath;
 
 		static AssetBundleHelper()
 		{
@@ -23,21 +25,34 @@ namespace XLObjectDropper
 
 		public static void LoadDefaultBundles()
 		{
+			ImagesPath = Path.Combine(Main.ModPath, "Images");
+
+			if (!Directory.Exists(ImagesPath))
+			{
+				Directory.CreateDirectory(ImagesPath);
+			}
+
 			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.object_testbundle", true));
 		}
 
 		public static void LoadUserBundles()
 		{
-			var assetPackDirectory = Path.Combine(Main.ModPath, "AssetPacks");
+			AssetPacksPath = Path.Combine(Main.ModPath, "AssetPacks");
 
-			if (!Directory.Exists(assetPackDirectory))
+			if (!Directory.Exists(AssetPacksPath))
 			{
-				Directory.CreateDirectory(assetPackDirectory);
+				Directory.CreateDirectory(AssetPacksPath);
 			}
 
-			foreach (var assetPack in Directory.GetFiles(assetPackDirectory, "*", SearchOption.AllDirectories))
+			foreach (var assetPack in Directory.GetFiles(AssetPacksPath, "*", SearchOption.AllDirectories))
 			{
 				if (Path.HasExtension(assetPack)) continue;
+
+				var bundlePath = Path.Combine(ImagesPath, Path.GetFileName(assetPack));
+				if (!Directory.Exists(bundlePath))
+				{
+					Directory.CreateDirectory(bundlePath);
+				}
 
 				try
 				{
@@ -97,12 +112,15 @@ namespace XLObjectDropper
 				LoadedSpawnables[isEmbedded ? SpawnableType.Rails : SpawnableType.Packs].Add(new Spawnable(asset as GameObject, bundle));
 			}
 
+			SelfieCamera.enabled = false;
+
 			bundle.Unload(false);
 		}
 
 		public static GameObject UIPrefab { get; set; }
 		public static GameObject ListItemPrefab { get; set; }
 		public static GameObject CustomPassPrefab { get; set; }
+		public static Camera SelfieCamera { get; set; }
 
 		public static void LoadUIBundle()
 		{
@@ -111,6 +129,8 @@ namespace XLObjectDropper
 			UIPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab");
 			ListItemPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ListItem.prefab");
 			CustomPassPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/Outline Custom Pass.prefab");
+
+			SelfieCamera = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/SelfieCamera.prefab").GetComponent<Camera>();
 
 			bundle.Unload(false);
 		}
