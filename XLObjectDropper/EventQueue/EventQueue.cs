@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using XLObjectDropper.EventQueue.Events;
 
 namespace XLObjectDropper.EventQueue
 {
