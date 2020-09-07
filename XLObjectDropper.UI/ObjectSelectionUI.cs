@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace XLObjectDropper.UI
 {
@@ -10,21 +11,16 @@ namespace XLObjectDropper.UI
 		[Header("Options Menu Elements")] 
 		public GameObject MainUI;
 
-		[Header("Categories")] 
-		public GameObject BasicCategory;
-		public GameObject OtherCategory;
-		public GameObject MoreCategory;
-		public GameObject StuffCategory;
-		public GameObject TiredCategory;
-		public GameObject PacksCategory;
+		[Header("ListContent")] 
+		public GameObject ListContent;
 
-		[Header("Categories List Content")]
-		public GameObject BasicCategoryListContent;
-		public GameObject OtherCategoryListContent;
-		public GameObject MoreCategoryListContent;
-		public GameObject StuffCategoryListContent;
-		public GameObject TiredCategoryListContent;
-		public GameObject PacksCategoryListContent;
+		[Header("Categories")]
+		public GameObject RailsCategory;
+		public GameObject RampsCategory;
+		public GameObject SplinesCategory;
+		public GameObject PropsCategory;
+		public GameObject ParkCategory;
+		public GameObject PacksCategory;
 
 		[HideInInspector]
 		public Dictionary<SpawnableType, GameObject> Categories;
@@ -40,12 +36,11 @@ namespace XLObjectDropper.UI
 		private void Awake()
 		{
 			Categories = new Dictionary<SpawnableType, GameObject>();
-
-			Categories.Add(SpawnableType.Basic, BasicCategory);
-			Categories.Add(SpawnableType.Other, OtherCategory);
-			Categories.Add(SpawnableType.More, MoreCategory);
-			Categories.Add(SpawnableType.Stuff, StuffCategory);
-			Categories.Add(SpawnableType.Tired, TiredCategory);
+			Categories.Add(SpawnableType.Rails, RailsCategory);
+			Categories.Add(SpawnableType.Ramps, RampsCategory);
+			Categories.Add(SpawnableType.Splines, SplinesCategory);
+			Categories.Add(SpawnableType.Props, PropsCategory);
+			Categories.Add(SpawnableType.Park, ParkCategory);
 			Categories.Add(SpawnableType.Packs, PacksCategory);
 
 			CurrentCategoryIndex = 0;
@@ -113,30 +108,18 @@ namespace XLObjectDropper.UI
 
 			foreach (var category in Categories)
 			{
-				category.Value.SetActive(false);
+				if (category.Key == (SpawnableType)CurrentCategoryIndex)
+				{
+					category.Value.GetComponent<Image>().color = new Color(0.196078f, 0.525490f, 0.925490f, 1.0f);
+				}
+				else
+				{
+					category.Value.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.392156f);
+				}
 			}
 
-			var activeCategory = Categories.ElementAt(CurrentCategoryIndex);
-			activeCategory.Value.SetActive(true);
-
-			var activeList = GetListByType(activeCategory.Key);
-			if (activeList.transform.childCount > 0)
-				EventSystem.current.SetSelectedGameObject(activeList.transform.GetChild(0).gameObject);
-		}
-
-		public GameObject GetListByType(SpawnableType type)
-		{
-			switch (type)
-			{
-				case SpawnableType.Other: return OtherCategoryListContent;
-				case SpawnableType.More: return MoreCategoryListContent;
-				case SpawnableType.Stuff: return StuffCategoryListContent;
-				case SpawnableType.Tired: return TiredCategoryListContent;
-				case SpawnableType.Packs: return PacksCategoryListContent;
-				case SpawnableType.Basic:
-				default:
-					return BasicCategoryListContent;
-			}
+			if (ListContent.transform.childCount > 0)
+				EventSystem.current.SetSelectedGameObject(ListContent.transform.GetChild(0).gameObject);
 		}
 	}
 }

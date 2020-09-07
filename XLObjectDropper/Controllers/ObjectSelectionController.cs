@@ -1,4 +1,9 @@
-﻿using TMPro;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Rewired;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -14,46 +19,134 @@ namespace XLObjectDropper.Controllers
 		public static GameObject ListItemPrefab { get; set; }
 		public event UnityAction<Spawnable> ObjectClickedEvent = (x) => { };
 
+		private List<SpawnableType> Categories;
+
 		private void Awake()
 		{
-
+			Categories = new List<SpawnableType>();
+			Categories.Add(SpawnableType.Rails);
+			Categories.Add(SpawnableType.Ramps);
+			Categories.Add(SpawnableType.Splines);
+			Categories.Add(SpawnableType.Props);
+			Categories.Add(SpawnableType.Park);
+			Categories.Add(SpawnableType.Packs);
 		}
 
 		private void OnEnable()
 		{
-			ClearLists();
+			ClearList();
 
 			// Populate List
-			foreach (var item in AssetBundleHelper.LoadedSpawnables)
+			StartCoroutine(PopulateList());
+		}
+
+		private int CurrentCategoryIndex;
+
+		private void Update()
+		{
+			var player = PlayerController.Instance.inputController.player;
+
+			if (player.GetButtonDown("RB"))
 			{
-				foreach (var spawnable in item.Value)
-				{
-					var listItem = Object.Instantiate(ListItemPrefab, ObjectSelection.GetListByType(item.Key).transform);
-					listItem.GetComponentInChildren<TMP_Text>().SetText(spawnable.Prefab.name.Replace('_', ' '));
-					listItem.GetComponent<Button>().onClick.AddListener(() => ObjectClicked(spawnable));
-					listItem.GetComponent<ObjectSelectionListItem>().ListItemSelected += () => ListItemSelected(spawnable);
-					listItem.SetActive(true);
-				}
+				SetActiveCategory(true);
+			}
+
+			if (player.GetButtonDown("LB"))
+			{
+				SetActiveCategory(false);
 			}
 		}
 
-		private void OnDisable()
+		private void SetActiveCategory(bool increment)
 		{
-			ClearLists();
+			ClearList();
+
+			if (increment) CurrentCategoryIndex++;
+			else CurrentCategoryIndex--;
+
+			if (CurrentCategoryIndex > Categories.Count - 1)
+			{
+				CurrentCategoryIndex = 0;
+			}
+
+			if (CurrentCategoryIndex < 0)
+			{
+				CurrentCategoryIndex = Categories.Count - 1;
+			}
+
+			if (AssetBundleHelper.LoadedSpawnables.ContainsKey((SpawnableType)CurrentCategoryIndex))
+			{
+				StartCoroutine(PopulateList());
+			}
 		}
 
-		private void ClearLists()
+		private IEnumerator PopulateList()
 		{
-			foreach (var item in AssetBundleHelper.LoadedSpawnables)
-			{
-				var listContent = ObjectSelection.GetListByType(item.Key);
+			ClearList();
 
-				for (var i = listContent.transform.childCount - 1; i >= 0; i--)
+			foreach (var spawnable in AssetBundleHelper.LoadedSpawnables[(SpawnableType)CurrentCategoryIndex])
+			{
+				var listItem = Object.Instantiate(ListItemPrefab, ObjectSelection.ListContent.transform);
+				listItem.GetComponentInChildren<TMP_Text>().SetText(spawnable.Prefab.name.Replace('_', ' '));
+				listItem.GetComponent<Button>().onClick.AddListener(() => ObjectClicked(spawnable));
+				listItem.GetComponent<ObjectSelectionListItem>().ListItemSelected += () => ListItemSelected(spawnable);
+
+				var image = listItem.GetComponentInChildren<RawImage>();
+				if (image != null)
 				{
-					var objectA = listContent.transform.GetChild(i);
-					objectA.transform.parent = null;
-					// Optionally destroy the objectA if not longer needed
+					image.texture = spawnable.PreviewTexture;
 				}
+				
+				listItem.SetActive(true);
+			}
+
+			yield break;
+		}
+
+		//private IEnumerator GetPreviewImage(Spawnable spawnable, RawImage image)
+		//{
+		//	var filePath = Path.Combine(Main.ModPath, spawnable.Prefab.name + ".png");
+
+		//	Texture2D texture;
+
+		//	if (File.Exists(filePath))
+		//	{
+		//		var fileData = File.ReadAllBytes(filePath);
+		//		yield return fileData;
+
+		//		texture = new Texture2D(2, 2);
+		//		texture.LoadImage(fileData);
+		//		yield return texture;
+
+		//		image.texture = texture;
+
+		//		yield break;
+		//	}
+
+		//	texture = RuntimePreviewGenerator.GenerateModelPreview(spawnable.Prefab.transform, 128, 128);
+		//	yield return texture;
+
+		//	image.texture = texture;
+
+		//	File.WriteAllBytes(Path.Combine(Main.ModPath, spawnable.Prefab.name + ".png"), texture.EncodeToPNG());
+
+		//	DestroyImmediate(texture);
+		//}
+
+		private void OnDisable()
+		{
+			ClearList();
+		}
+
+		private void ClearList()
+		{
+			var listContent = ObjectSelection.ListContent;
+
+			for (var i = listContent.transform.childCount - 1; i >= 0; i--)
+			{
+				var objectA = listContent.transform.GetChild(i);
+				objectA.transform.parent = null;
+				// Optionally destroy the objectA if not longer needed
 			}
 		}
 

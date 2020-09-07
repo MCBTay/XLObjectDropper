@@ -31,5 +31,15 @@ namespace XLObjectDropper.UI
 		{
 			ListItemSelected.Invoke();
 		}
+
+		public void Update()
+		{
+			GetComponent<Outline>().enabled = false;
+
+			if (ListItem == EventSystem.current.currentSelectedGameObject)
+			{
+				GetComponent<Outline>().enabled = true;
+			}
+		}
 	}
 }

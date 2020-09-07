@@ -10,11 +10,11 @@
 
 	public enum SpawnableType
 	{
-		Basic,
-		Other,
-		More,
-		Stuff,
-		Tired,
+		Rails,
+		Ramps,
+		Splines,
+		Props,
+		Park,
 		Packs
 	}
 

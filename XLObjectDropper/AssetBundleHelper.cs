@@ -90,11 +90,11 @@ namespace XLObjectDropper
 
 			foreach (var asset in assets)
 			{
-				if (!LoadedSpawnables.ContainsKey(isEmbedded ? SpawnableType.Basic : SpawnableType.Packs))
+				if (!LoadedSpawnables.ContainsKey(isEmbedded ? SpawnableType.Rails : SpawnableType.Packs))
 				{
-					LoadedSpawnables.Add(isEmbedded ? SpawnableType.Basic : SpawnableType.Packs, new List<Spawnable>());
+					LoadedSpawnables.Add(isEmbedded ? SpawnableType.Rails : SpawnableType.Packs, new List<Spawnable>());
 				}
-				LoadedSpawnables[isEmbedded ? SpawnableType.Basic : SpawnableType.Packs].Add(new Spawnable { Prefab = asset as GameObject });
+				LoadedSpawnables[isEmbedded ? SpawnableType.Rails : SpawnableType.Packs].Add(new Spawnable(asset as GameObject, bundle));
 			}
 
 			bundle.Unload(false);
@@ -110,7 +110,7 @@ namespace XLObjectDropper
 
 			UIPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab");
 			ListItemPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ListItem.prefab");
-			CustomPassPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/Custom Pass.prefab");
+			CustomPassPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/Outline Custom Pass.prefab");
 
 			bundle.Unload(false);
 		}
