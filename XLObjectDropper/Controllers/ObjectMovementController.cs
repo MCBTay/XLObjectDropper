@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
 using XLObjectDropper.EventQueue;
+using XLObjectDropper.EventQueue.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
