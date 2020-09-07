@@ -11,7 +11,8 @@ namespace XLObjectDropper.Controllers
 
 		private void Awake()
 		{
-			
+			OptionsMenu.Snapping.GetComponent<Toggle>().isOn = Settings.Instance.Snapping;
+			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
 		}
 
 		private void OnEnable()
@@ -19,17 +20,25 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.Snapping.GetComponent<Toggle>().isOn = Settings.Instance.Snapping;
 			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
 			
+			AddListeners();
+
+			OptionsMenu.EnableUndoButton(EventQueue.EventQueue.Instance.UndoQueue.Count > 0);
+			OptionsMenu.EnableRedoButton(EventQueue.EventQueue.Instance.RedoQueue.Count > 0);
+		}
+
+		private void AddListeners()
+		{
+			RemoveListeners();
+
 			OptionsMenu.SnappingValueChanged += SnappingValueChanged;
 			OptionsMenu.SensitivityValueChanged += SensitivityValueChanged;
 			OptionsMenu.UndoClicked += UndoClicked;
 			OptionsMenu.RedoClicked += RedoClicked;
 			OptionsMenu.SaveClicked += SaveClicked;
 			OptionsMenu.LoadClicked += LoadClicked;
-
-			OptionsMenu.gameObject?.SetActive(true);
 		}
 
-		private void OnDisable()
+		private void RemoveListeners()
 		{
 			OptionsMenu.SnappingValueChanged -= SnappingValueChanged;
 			OptionsMenu.SensitivityValueChanged -= SensitivityValueChanged;
@@ -37,13 +46,11 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.RedoClicked -= RedoClicked;
 			OptionsMenu.SaveClicked -= SaveClicked;
 			OptionsMenu.LoadClicked -= LoadClicked;
-
-			OptionsMenu.gameObject?.SetActive(false);
 		}
 
-		private void Update()
+		private void OnDisable()
 		{
-
+			RemoveListeners();
 		}
 
 		private static void SnappingValueChanged(bool value)
@@ -60,12 +67,22 @@ namespace XLObjectDropper.Controllers
 
 		private static void UndoClicked()
 		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Undo clicked.");
+			EventQueue.EventQueue.Instance.UndoAction();
+
+			OptionsMenu.EnableUndoButton(EventQueue.EventQueue.Instance.UndoQueue.Count > 0);
+			OptionsMenu.EnableRedoButton(EventQueue.EventQueue.Instance.RedoQueue.Count > 0);
+
+			UnityModManager.Logger.Log("Undo clicked!");
 		}
 
 		private static void RedoClicked()
 		{
-			UnityModManager.Logger.Log("XLObjectDropper.UserInterfaceHelper: Redo clicked.");
+			EventQueue.EventQueue.Instance.RedoAction();
+
+			OptionsMenu.EnableUndoButton(EventQueue.EventQueue.Instance.UndoQueue.Count > 0);
+			OptionsMenu.EnableRedoButton(EventQueue.EventQueue.Instance.RedoQueue.Count > 0);
+
+			UnityModManager.Logger.Log("Redo clicked!");
 		}
 
 		private static void SaveClicked()

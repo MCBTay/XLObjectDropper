@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityModManagerNet;
 
 namespace XLObjectDropper.UI
 {
@@ -19,7 +20,7 @@ namespace XLObjectDropper.UI
 
 		[HideInInspector] public event UnityAction<bool> SnappingValueChanged = (x) => { };
 		[HideInInspector] public event UnityAction<float> SensitivityValueChanged = (x) => { };
-		[HideInInspector] public event UnityAction UndoClicked = () => { };
+		[HideInInspector] public event UnityAction UndoClicked = () => { UnityModManager.Logger.Log("UI: Undo clicked!"); };
 		[HideInInspector] public event UnityAction RedoClicked = () => { };
 		[HideInInspector] public event UnityAction SaveClicked = () => { };
 		[HideInInspector] public event UnityAction LoadClicked = () => { };
@@ -37,6 +38,13 @@ namespace XLObjectDropper.UI
 
 		private void SetDefaultState(bool enabled)
 		{
+			Snapping.GetComponent<Toggle>().onValueChanged.RemoveAllListeners();
+			Sensitivity.GetComponent<Slider>().onValueChanged.RemoveAllListeners();
+			UndoButton.GetComponent<Button>().onClick.RemoveAllListeners();
+			RedoButton.GetComponent<Button>().onClick.RemoveAllListeners();
+			SaveButton.GetComponent<Button>().onClick.RemoveAllListeners();
+			LoadButton.GetComponent<Button>().onClick.RemoveAllListeners();
+
 			Snapping.SetActive(enabled);
 			Sensitivity.SetActive(enabled);
 			UndoButton.SetActive(enabled);
@@ -52,15 +60,6 @@ namespace XLObjectDropper.UI
 				RedoButton.GetComponent<Button>().onClick.AddListener(delegate { RedoClicked.Invoke(); });
 				SaveButton.GetComponent<Button>().onClick.AddListener(delegate { SaveClicked.Invoke(); });
 				LoadButton.GetComponent<Button>().onClick.AddListener(delegate { LoadClicked.Invoke(); });
-			}
-			else
-			{
-				Snapping.GetComponent<Toggle>().onValueChanged.RemoveListener(delegate { SnappingValueChanged.Invoke(Snapping.GetComponent<Toggle>().isOn); });
-				Sensitivity.GetComponent<Slider>().onValueChanged.RemoveListener(delegate { SensitivityValueChanged.Invoke(Sensitivity.GetComponent<Slider>().value); });
-				UndoButton.GetComponent<Button>().onClick.RemoveListener(delegate { UndoClicked.Invoke(); });
-				RedoButton.GetComponent<Button>().onClick.RemoveListener(delegate { RedoClicked.Invoke(); });
-				SaveButton.GetComponent<Button>().onClick.RemoveListener(delegate { SaveClicked.Invoke(); });
-				LoadButton.GetComponent<Button>().onClick.RemoveListener(delegate { LoadClicked.Invoke(); });
 			}
 		}
 

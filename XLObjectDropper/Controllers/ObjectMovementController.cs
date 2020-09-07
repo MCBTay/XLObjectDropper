@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
+using XLObjectDropper.EventQueue;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
@@ -408,7 +409,9 @@ namespace XLObjectDropper.Controllers
 
 	        SpawnedObjects.Add(newObject);
 
-	        if (disablePreview)
+			EventQueue.EventQueue.Instance.AddNewAction(new ObjectPlacedEvent(PreviewObject, newObject));
+
+			if (disablePreview)
 	        {
 		        PreviewObject.SetActive(false);
 		        UserInterfaceHelper.CustomPassVolume.enabled = false;
@@ -629,7 +632,7 @@ namespace XLObjectDropper.Controllers
 		{
 			OptionsMenuGameObject = new GameObject();
 			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
-
+			
 			OptionsMenuGameObject.SetActive(true);
 		}
 

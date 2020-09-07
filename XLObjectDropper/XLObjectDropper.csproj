@@ -165,6 +165,9 @@
   <ItemGroup>
     <Compile Include="AssetBundleHelper.cs" />
     <Compile Include="Controllers\OptionsMenuController.cs" />
+    <Compile Include="EventQueue\EventQueue.cs" />
+    <Compile Include="EventQueue\Events\ObjectDropperEvent.cs" />
+    <Compile Include="EventQueue\Events\ObjectPlacedEvent.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="RuntimePreviewGenerator.cs" />
     <Compile Include="SaveManager.cs" />
