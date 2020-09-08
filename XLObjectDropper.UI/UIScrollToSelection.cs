@@ -170,7 +170,7 @@ namespace UnityEngine.UI.Extensions
         private void UpdateVerticalScrollPosition(RectTransform selection)
         {
             // move the current scroll rect to correct position
-            float selectionPosition = -selection.anchoredPosition.y - (selection.rect.height * (1 - selection.pivot.y));
+            float selectionPosition = -selection.anchoredPosition.y;// - (selection.rect.height * (1 - selection.pivot.y));
 
             float elementHeight = selection.rect.height;
             float maskHeight = ScrollWindow.rect.height;
