@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityModManagerNet;
 
 namespace XLObjectDropper.UI
 {
@@ -20,7 +19,7 @@ namespace XLObjectDropper.UI
 
 		[HideInInspector] public event UnityAction<bool> SnappingValueChanged = (x) => { };
 		[HideInInspector] public event UnityAction<float> SensitivityValueChanged = (x) => { };
-		[HideInInspector] public event UnityAction UndoClicked = () => { UnityModManager.Logger.Log("UI: Undo clicked!"); };
+		[HideInInspector] public event UnityAction UndoClicked = () => { };
 		[HideInInspector] public event UnityAction RedoClicked = () => { };
 		[HideInInspector] public event UnityAction SaveClicked = () => { };
 		[HideInInspector] public event UnityAction LoadClicked = () => { };
