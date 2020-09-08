@@ -105,11 +105,29 @@ namespace XLObjectDropper
 
 			foreach (var asset in assets)
 			{
-				if (!LoadedSpawnables.ContainsKey(isEmbedded ? SpawnableType.Rails : SpawnableType.Packs))
+				var type = SpawnableType.Rails;
+
+				if (!isEmbedded)
 				{
-					LoadedSpawnables.Add(isEmbedded ? SpawnableType.Rails : SpawnableType.Packs, new List<Spawnable>());
+					type = SpawnableType.Packs;
 				}
-				LoadedSpawnables[isEmbedded ? SpawnableType.Rails : SpawnableType.Packs].Add(new Spawnable(asset as GameObject, bundle));
+				else
+				{
+					if (asset.name.StartsWith("grind", StringComparison.InvariantCultureIgnoreCase) || asset.name.StartsWith("coping", StringComparison.InvariantCultureIgnoreCase))
+					{
+						type = SpawnableType.Splines;
+					}
+					else
+					{
+						type = SpawnableType.Rails;
+					}
+				}
+
+				if (!LoadedSpawnables.ContainsKey(type))
+				{
+					LoadedSpawnables.Add(type, new List<Spawnable>());
+				}
+				LoadedSpawnables[type].Add(new Spawnable(asset as GameObject, bundle));
 			}
 
 			SelfieCamera.enabled = false;
