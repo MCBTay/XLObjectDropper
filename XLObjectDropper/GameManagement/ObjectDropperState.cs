@@ -41,14 +41,5 @@ namespace XLObjectDropper.GameManagement
 			GameStateMachine.Instance.PlayObject.SetActive(true);
 			PlayerController.Instance.EnablePuppetMaster(true, false);
 		}
-
-		public override void OnUpdate()
-		{
-			// TODO: Consider moving this out of here and let the controller handle it.  Currently a bug exists where holding the LB and pressing B still exits the state.
-			if (!PlayerController.Instance.inputController.player.GetButtonDown("B"))
-				return;
-
-			RequestTransitionBack();
-		}
 	}
 }

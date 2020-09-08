@@ -7350,7 +7350,7 @@ PrefabInstance:
     - target: {fileID: 7921227295082655782, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 9
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295082655782, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
@@ -7375,7 +7375,7 @@ PrefabInstance:
     - target: {fileID: 7921227295082655782, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_text
-      value: DUPLICATE
+      value: null
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295311306794, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
@@ -8099,12 +8099,12 @@ PrefabInstance:
     - target: {fileID: 7921227295082655782, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_text
-      value: PLACE
+      value: Select
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295082655782, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295082655782, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
@@ -8191,24 +8191,24 @@ PrefabInstance:
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_text
-      value: 'QUICK MENU
+      value: '
 
 '
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}

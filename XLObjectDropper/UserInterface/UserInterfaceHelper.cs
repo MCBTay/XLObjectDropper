@@ -26,6 +26,8 @@ namespace XLObjectDropper.UserInterface
 
 				UIManager.Instance.Player = PlayerController.Instance.inputController.player;
 
+				ObjectMovementController.MovementUI = UserInterface.GetComponentInChildren<ObjectPlacementUI>(true);
+
 				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>(true);
 
 				ObjectSelectionController.ObjectSelection = UserInterface.GetComponentInChildren<ObjectSelectionUI>(true);

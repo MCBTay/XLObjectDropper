@@ -10,12 +10,14 @@ using XLObjectDropper.EventQueue.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
+using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Controllers
 {
 	public class ObjectMovementController : MonoBehaviour
 	{
 		public static ObjectMovementController Instance { get; set; }
+		public static ObjectPlacementUI MovementUI { get; set; }
 
 		//TODO: Cleanup this lastprefab/selectedobject shit, it's a bad implementation
 		private GameObject LastPrefab;
@@ -190,6 +192,11 @@ namespace XLObjectDropper.Controllers
 			        DestroyOptionsMenu();
 		        }
 
+		        if (player.GetButtonDown("B"))
+		        {
+					DestroyOptionsMenu();
+		        }
+
 		        return;
 	        }
 
@@ -200,7 +207,12 @@ namespace XLObjectDropper.Controllers
 			        DestroyObjectSelection();
 		        }
 
-		        return;
+		        if (player.GetButtonDown("B"))
+		        {
+			        DestroyObjectSelection();
+		        }
+
+				return;
 	        }
 
 	  //      if (TempSelectedObject != null)
@@ -226,6 +238,8 @@ namespace XLObjectDropper.Controllers
 			//	}
 		        
 	  //      }
+
+			UpdateAXBYLabels();
 
 		    if (player.GetButton("LB"))
 			{
@@ -267,14 +281,30 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonDown("X"))
 				{
-					// if x, open new object selection menu
-					UISounds.Instance?.PlayOneShotSelectMinor();
+					if (PreviewObject != null && PreviewObject.activeInHierarchy)
+					{
+						// if x, open new object selection menu
+						UISounds.Instance?.PlayOneShotSelectMajor();
+						PlaceObject(false);
+					}
 				}
 				
 				if (player.GetButtonDown("Y"))
 		        {
 					// if y, delete highlighted object (if any)
 		        }
+
+				if (player.GetButtonDown("B"))
+				{
+					if (PreviewObject != null && PreviewObject.activeInHierarchy)
+					{
+						Destroy(PreviewObject);
+					}
+					else
+					{
+						GameStateMachine.Instance.RequestPauseState();
+					}
+				}
 				
 				if (player.GetButtonDown("Right Stick Button"))
 				{
@@ -301,6 +331,17 @@ namespace XLObjectDropper.Controllers
         private void LateUpdate()
         {
 	        UpdateGroundLevel();
+        }
+
+        private void UpdateAXBYLabels()
+        {
+			var buttonController = MovementUI.MainScreen_UI.GetComponentInChildren<AXYBController>();
+			if (buttonController != null)
+			{
+				buttonController.SetXButtonLabelText(PreviewObject != null && PreviewObject.activeInHierarchy ? "Duplicate" : string.Empty);
+				buttonController.SetAButtonLabelText(PreviewObject != null && PreviewObject.activeInHierarchy ? "Place" : "Select");
+				buttonController.SetBButtonLabelText(PreviewObject != null && PreviewObject.activeInHierarchy ? "Cancel" : "Exit");
+			}
         }
 
         private void HandleStickAndTriggerInput(Player player)
@@ -429,11 +470,6 @@ namespace XLObjectDropper.Controllers
 	        HandleScaleModeSwitching(player);
 	        HandleRotation(player);
 	        HandleScaling(player);
-
-	        if (player.GetButtonDown("A"))
-	        {
-		        PlaceObject(false);
-	        }
 
 			HandleRotationSnappingModeSwitching(player);
 

@@ -66,6 +66,21 @@ namespace XLObjectDropper.UI
             }
 			#endregion
 
+			if (Player.GetButtonDown("B"))
+			{
+				if (OptionsMenuUI.activeInHierarchy)
+				{
+					OptionsMenuUI.SetActive(false);
+					ObjectPlacementUI.SetActive(true);
+                }
+
+				if (ObjectSelectionUI.activeInHierarchy)
+				{
+					ObjectSelectionUI.SetActive(false);
+					ObjectPlacementUI.SetActive(true);
+                }
+			}
+
             if (Player.GetButtonDown("Start"))
             {
 	            if (!ObjectSelectionUI.activeInHierarchy)
