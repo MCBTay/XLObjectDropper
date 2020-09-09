@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
@@ -19,11 +20,14 @@ namespace XLObjectDropper.Controllers
 		{
 			OptionsMenu.Snapping.GetComponent<Toggle>().isOn = Settings.Instance.Snapping;
 			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
-			
+
 			AddListeners();
 
 			OptionsMenu.EnableUndoButton(EventQueue.EventQueue.Instance.UndoQueue.Count > 0);
 			OptionsMenu.EnableRedoButton(EventQueue.EventQueue.Instance.RedoQueue.Count > 0);
+
+			EventSystem.current.SetSelectedGameObject(OptionsMenu.Snapping);
+			OptionsMenu.Snapping.GetComponent<Toggle>().OnSelect(null);
 		}
 
 		private void AddListeners()
