@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
-using XLObjectDropper.EventQueue;
-using XLObjectDropper.EventQueue.Events;
+using XLObjectDropper.EventStack;
+using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
@@ -451,7 +451,7 @@ namespace XLObjectDropper.Controllers
 
 	        SpawnedObjects.Add(newObject);
 
-			EventQueue.EventQueue.Instance.AddNewAction(new ObjectPlacedEvent(PreviewObject, newObject));
+	        EventStack.EventStack.Instance.AddNewAction(new ObjectPlacedEvent(PreviewObject, newObject));
 
 			if (disablePreview)
 	        {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace XLObjectDropper.EventQueue.Events
+namespace XLObjectDropper.EventStack.Events
 {
 	public abstract class ObjectDropperEvent
 	{

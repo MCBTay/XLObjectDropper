@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
+using XLObjectDropper.EventStack;
 
 namespace XLObjectDropper.Controllers
 {
@@ -23,8 +24,8 @@ namespace XLObjectDropper.Controllers
 
 			AddListeners();
 
-			OptionsMenu.EnableUndoButton(EventQueue.EventQueue.Instance.UndoQueue.Count > 0);
-			OptionsMenu.EnableRedoButton(EventQueue.EventQueue.Instance.RedoQueue.Count > 0);
+			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
+			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 
 			EventSystem.current.SetSelectedGameObject(OptionsMenu.Snapping);
 			OptionsMenu.Snapping.GetComponent<Toggle>().OnSelect(null);
@@ -71,22 +72,18 @@ namespace XLObjectDropper.Controllers
 
 		private static void UndoClicked()
 		{
-			EventQueue.EventQueue.Instance.UndoAction();
+			EventStack.EventStack.Instance.UndoAction();
 
-			OptionsMenu.EnableUndoButton(EventQueue.EventQueue.Instance.UndoQueue.Count > 0);
-			OptionsMenu.EnableRedoButton(EventQueue.EventQueue.Instance.RedoQueue.Count > 0);
-
-			UnityModManager.Logger.Log("Undo clicked!");
+			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
+			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 		}
 
 		private static void RedoClicked()
 		{
-			EventQueue.EventQueue.Instance.RedoAction();
+			EventStack.EventStack.Instance.RedoAction();
 
-			OptionsMenu.EnableUndoButton(EventQueue.EventQueue.Instance.UndoQueue.Count > 0);
-			OptionsMenu.EnableRedoButton(EventQueue.EventQueue.Instance.RedoQueue.Count > 0);
-
-			UnityModManager.Logger.Log("Redo clicked!");
+			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
+			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 		}
 
 		private static void SaveClicked()
