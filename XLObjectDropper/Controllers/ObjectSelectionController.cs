@@ -76,7 +76,7 @@ namespace XLObjectDropper.Controllers
 				CurrentCategoryIndex = Categories.Count - 1;
 			}
 
-			if (AssetBundleHelper.LoadedSpawnables.ContainsKey((SpawnableType)CurrentCategoryIndex))
+			if (AssetBundleHelper.LoadedSpawnables.Any(x => x.Type == (SpawnableType)CurrentCategoryIndex))
 			{
 				StartCoroutine(PopulateList());
 			}
@@ -86,7 +86,7 @@ namespace XLObjectDropper.Controllers
 		{
 			ClearList();
 
-			foreach (var spawnable in AssetBundleHelper.LoadedSpawnables[(SpawnableType)CurrentCategoryIndex])
+			foreach (var spawnable in AssetBundleHelper.LoadedSpawnables.Where(x => x.Type == (SpawnableType)CurrentCategoryIndex))
 			{
 				var listItem = Object.Instantiate(ListItemPrefab, ObjectSelection.ListContent.transform);
 				listItem.GetComponentInChildren<TMP_Text>().SetText(spawnable.Prefab.name.Replace('_', ' '));

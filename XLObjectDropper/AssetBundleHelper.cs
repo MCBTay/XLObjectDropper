@@ -14,13 +14,13 @@ namespace XLObjectDropper
 {
 	public static class AssetBundleHelper
 	{
-		public static Dictionary<SpawnableType, List<Spawnable>> LoadedSpawnables { get; private set; }
+		public static List<Spawnable> LoadedSpawnables { get; private set; }
 		public static string ImagesPath;
 		public static string AssetPacksPath;
 
 		static AssetBundleHelper()
 		{
-			LoadedSpawnables = new Dictionary<SpawnableType, List<Spawnable>>();
+			LoadedSpawnables = new List<Spawnable>();
 		}
 
 		public static void LoadDefaultBundles()
@@ -67,13 +67,10 @@ namespace XLObjectDropper
 
 		public static void DisposeLoadedAssets()
 		{
-			foreach (var type in LoadedSpawnables)
+			foreach (var spawnable in LoadedSpawnables)
 			{
-				foreach (var spawnable in type.Value)
-				{
-					spawnable.Prefab.SetActive(false);
-					Object.Destroy(spawnable.Prefab);
-				}
+				spawnable.Prefab.SetActive(false);
+				Object.Destroy(spawnable.Prefab);
 			}
 
 			LoadedSpawnables.Clear();
@@ -123,11 +120,7 @@ namespace XLObjectDropper
 					}
 				}
 
-				if (!LoadedSpawnables.ContainsKey(type))
-				{
-					LoadedSpawnables.Add(type, new List<Spawnable>());
-				}
-				LoadedSpawnables[type].Add(new Spawnable(asset as GameObject, bundle));
+				LoadedSpawnables.Add(new Spawnable(type, asset as GameObject, bundle));
 			}
 
 			SelfieCamera.enabled = false;

@@ -168,8 +168,9 @@
     <Compile Include="EventStack\EventStack.cs" />
     <Compile Include="EventStack\Events\ObjectDropperEvent.cs" />
     <Compile Include="EventStack\Events\ObjectPlacedEvent.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="RuntimePreviewGenerator.cs" />
+    <Compile Include="Utilities\Extensions.cs" />
+    <Compile Include="Utilities\LayerHelper.cs" />
+    <Compile Include="Utilities\RuntimePreviewGenerator.cs" />
     <Compile Include="SaveManager.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Spawnable.cs" />

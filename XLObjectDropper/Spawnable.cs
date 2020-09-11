@@ -1,20 +1,22 @@
 ﻿using System.Collections;
 using System.IO;
 using System.Threading.Tasks;
-using RealisticEyeMovements;
 using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
+using XLObjectDropper.UI;
+using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper
 {
 	public class Spawnable
 	{
+		public SpawnableType Type;
 		public GameObject Prefab;
 		public Texture2D PreviewTexture;
 		public string BundleName { get; set; }
 
-		public Spawnable(GameObject prefab, AssetBundle bundle)
+		public Spawnable(SpawnableType type, GameObject prefab, AssetBundle bundle)
 		{
+			Type = type;
 			Prefab = prefab;
 			BundleName = bundle.name;
 
@@ -73,15 +75,19 @@ namespace XLObjectDropper
 		{
 			yield return new WaitForEndOfFrame();
 
+			//RuntimePreviewGenerator.PreviewRenderCamera = Camera.Instantiate(Camera.main);
+
 			RuntimePreviewGenerator.PreviewRenderCamera = Object.Instantiate(AssetBundleHelper.SelfieCamera);
+			RuntimePreviewGenerator.PreviewRenderCamera.enabled = true;
+
 			RuntimePreviewGenerator.MarkTextureNonReadable = false;
 			RuntimePreviewGenerator.OrthographicMode = true;
-			RuntimePreviewGenerator.BackgroundColor = new Color(0.3f, 0.3f, 0.3f, 1);
 
 			PreviewTexture = RuntimePreviewGenerator.GenerateModelPreview(Prefab.transform, 128, 128);
 
 			RuntimePreviewGenerator.PreviewRenderCamera.enabled = false;
 			Object.DestroyImmediate(RuntimePreviewGenerator.PreviewRenderCamera.gameObject, true);
+
 			//File.WriteAllBytes(Path.Combine(Main.ModPath, Prefab.name + ".png"), PreviewTexture.EncodeToPNG());
 			WriteImage(Path.Combine(Main.ModPath, Prefab.name + ".png"), PreviewTexture);
 		}

@@ -2,27 +2,27 @@
 using Rewired;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
-using XLObjectDropper.EventStack;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
-using Object = UnityEngine.Object;
+using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Controllers
 {
 	public class ObjectMovementController : MonoBehaviour
 	{
+		#region Fields
 		public static ObjectMovementController Instance { get; set; }
 		public static ObjectPlacementUI MovementUI { get; set; }
 
 		//TODO: Cleanup this lastprefab/selectedobject shit, it's a bad implementation
 		private GameObject LastPrefab;
 		public GameObject PreviewObject { get; set; }
-		private static Spawnable SelectedObject { get; set; }
+		private Spawnable SelectedObject { get; set; }
 		public List<GameObject> SpawnedObjects { get; set; }
 
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
@@ -80,10 +80,13 @@ namespace XLObjectDropper.Controllers
 		private int CurrentScaleMode { get; set; }
 		private int CurrentRotationSnappingMode { get; set; }
 		private bool LockCameraMovement { get; set; }
+		#endregion
 
 		private void Awake()
 		{
 			Instance = this;
+
+			gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 
 			mainCam = Camera.main;
 
@@ -97,10 +100,7 @@ namespace XLObjectDropper.Controllers
 			CreateCharacterController();
 
 			UserInterfaceHelper.UserInterface.SetActive(true);
-			//UserInterfaceHelper.LoadUserInterface();
-
 			
-
 			CurrentScaleMode = (int)ScalingMode.Uniform;
 			
 
@@ -170,22 +170,57 @@ namespace XLObjectDropper.Controllers
 			mainCam.nearClipPlane = originalNearClipDist;
 		}
 
+        private GameObject HighlightedObject;
+        private LayerInfo HighlightedObjectLayerInfo;
+
+        private LayerInfo PreviewObjectLayerInfo;
+
+        void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 100f)
+        {
+	        GameObject myLine = new GameObject();
+	        myLine.transform.position = start;
+	        myLine.AddComponent<LineRenderer>();
+	        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+	        lr.material = new Material(Shader.Find("HDRP/Lit"));
+	        lr.startColor = lr.endColor = color;
+	        lr.startWidth = lr.endWidth = 0.1f;
+	        lr.SetPosition(0, start);
+	        lr.SetPosition(1, end);
+	        GameObject.Destroy(myLine, duration);
+        }
+
+        void DrawRay(Ray ray, float distance, Color color, float duration = 100f)
+        {
+	        GameObject myLine = new GameObject();
+	        myLine.transform.position = ray.origin;
+	        myLine.AddComponent<LineRenderer>();
+	        LineRenderer lr = myLine.GetComponent<LineRenderer>();
+	        lr.material = new Material(Shader.Find("HDRP/Lit"));
+	        lr.startColor = lr.endColor = color;
+	        lr.startWidth = lr.endWidth = 0.1f;
+	        lr.SetPosition(0, ray.origin);
+	        lr.SetPosition(1, ray.origin + (ray.direction * distance));
+	        GameObject.Destroy(myLine, duration);
+        }
+
 		private void Update()
         {
-	        Time.timeScale = OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy || ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy ? 0.0f : 1.0f;
+	        Time.timeScale = OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy || 
+	                         ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy ? 
+		        0.0f : 1.0f;
 
 	        Player player = PlayerController.Instance.inputController.player;
 
 	        if (SelectedObject != null)
 	        {
 		        Time.timeScale = 1.0f;
-				DestroyObjectSelection();
+		        DestroyObjectSelection();
 
-				LastPrefab = SelectedObject.Prefab;
+		        LastPrefab = SelectedObject.Prefab;
 		        SelectedObject = null;
 		        return;
 	        }
-	        if (OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy)
+			if (OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy)
 	        {
 		        if (player.GetButtonDown("Select"))
 		        {
@@ -215,29 +250,29 @@ namespace XLObjectDropper.Controllers
 				return;
 	        }
 
-	  //      if (TempSelectedObject != null)
-	  //      {
-		 //       TempSelectedObject.transform.ChangeLayersRecursively(TempSelectedObjectCopy);
-		 //       TempSelectedObjectCopy = null;
-		 //       TempSelectedObject = null;
-			//}
-			
+			if (HighlightedObject != null)
+			{
+				HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
+				HighlightedObject = null;
+			}
 
-			//Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
-	  //      if (Physics.Raycast(ray, out RaycastHit hit))
-	  //      {
-		 //       if (hit.collider != null)
-		 //       {
-			//        TempSelectedObject = TempSelectedObjectCopy = hit.transform.gameObject;
+			if (PreviewObject == null || !PreviewObject.activeInHierarchy)
+			{
+				Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+				if (Physics.Raycast(ray, out RaycastHit hit, 15f))
+				{
+					var parent = hit.transform.GetTopMostParent();
 
-			//		//PreviewObject = TempSelectedObject;
-			//		TempSelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
-			//		CustomPassVolume.enabled = true;
-			        
-			//        UnityModManager.Logger.Log("XLObjectDropper: Ray hit " + hit.transform.name);
-			//	}
-		        
-	  //      }
+					if (hit.collider != null && parent != null)
+					{
+						HighlightedObject = parent.gameObject;
+						HighlightedObjectLayerInfo = parent.GetObjectLayers();
+
+						HighlightedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+						UserInterfaceHelper.CustomPassVolume.enabled = true;
+					}
+				}
+			}
 
 			UpdateAXBYLabels();
 
@@ -265,7 +300,16 @@ namespace XLObjectDropper.Controllers
 					if (player.GetButtonDown("Left Stick Button"))
 					{
 						PreviewObject.transform.localScale = Vector3.one;
-						PreviewObject.transform.rotation = LastPrefab.transform.rotation;
+						//TODO: Come back to this, get the rotation from LoadedPrefabs
+						//PreviewObject.transform.rotation = LastPrefab.transform.rotation;
+					}
+				}
+				else if (HighlightedObject != null)
+				{
+					if (player.GetButtonDown("A"))
+					{
+						UISounds.Instance?.PlayOneShotSelectMajor();
+						PreviewObject = HighlightedObject;
 					}
 				}
 
@@ -447,7 +491,7 @@ namespace XLObjectDropper.Controllers
 	        var newObject = Instantiate(PreviewObject, PreviewObject.transform.position, PreviewObject.transform.rotation);
 	        newObject.SetActive(true);
 
-	        newObject.transform.ChangeLayersRecursively(LastPrefab);
+	        newObject.transform.ChangeLayersRecursively(PreviewObjectLayerInfo);
 
 	        SpawnedObjects.Add(newObject);
 
@@ -629,6 +673,7 @@ namespace XLObjectDropper.Controllers
 		public void InstantiatePreviewObject(Spawnable spawnable)
         {
 			PreviewObject = Instantiate(spawnable.Prefab);
+			PreviewObject.name = spawnable.Prefab.name;
 
 			PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
 
@@ -660,6 +705,7 @@ namespace XLObjectDropper.Controllers
 		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
 		{
 			SelectedObject = spawnable;
+			PreviewObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
 			DestroyObjectSelection();
 		}
 		#endregion

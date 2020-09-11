@@ -61,8 +61,7 @@ namespace XLObjectDropper
 				var position = new Vector3(spawnable.positionX, spawnable.positionY, spawnable.positionZ);
 				var rotation = new Quaternion(spawnable.rotationX, spawnable.rotationY, spawnable.rotationZ, spawnable.rotationW);
 
-				var prefab = AssetBundleHelper.LoadedSpawnables.FirstOrDefault(x =>
-					x.Value.FirstOrDefault(y => spawnable.Id.StartsWith(y.Prefab.name)) != null).Value.FirstOrDefault();
+				var prefab = AssetBundleHelper.LoadedSpawnables.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name));
 
 				if (prefab == null) continue;
 

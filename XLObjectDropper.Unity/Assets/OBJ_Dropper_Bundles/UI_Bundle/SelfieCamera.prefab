@@ -134,12 +134,12 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
-  clearColorMode: 1
+  clearColorMode: 0
   backgroundColorHDR: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4294967295
   volumeAnchorOverride: {fileID: 0}
   antialiasing: 1
   SMAAQuality: 2
@@ -165,7 +165,7 @@ MonoBehaviour:
   hasPersistentHistory: 0
   m_RenderingPathCustomFrameSettings:
     bitDatas:
-      data1: 70160438230861
+      data1: 70297877217101
       data2: 4539628425462087680
     lodBias: 1
     lodBiasMode: 0
