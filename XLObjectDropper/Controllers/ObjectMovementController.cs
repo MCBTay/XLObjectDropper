@@ -9,6 +9,7 @@ using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
+using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Controllers
 {
@@ -185,14 +186,14 @@ namespace XLObjectDropper.Controllers
 	        mainCam.nearClipPlane = originalNearClipDist;
 		}
 
-        
 
+        private bool OptionsMenuOpen => OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy;
+		private bool ObjectSelectionOpen => ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy;
+		private bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
 
 		private void Update()
         {
-	        Time.timeScale = OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy || 
-	                         ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy ? 
-		        0.0f : 1.0f;
+	        Time.timeScale = OptionsMenuOpen || ObjectSelectionOpen ? 0.0f : 1.0f;
 
 	        Player player = PlayerController.Instance.inputController.player;
 
@@ -203,34 +204,17 @@ namespace XLObjectDropper.Controllers
 		        ItemWasSelected = false;
 		        return;
 	        }
-	        if (OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy)
+
+	        if (OptionsMenuOpen && (player.GetButtonDown("Select") || player.GetButtonDown("B")))
 	        {
-		        if (player.GetButtonDown("Select"))
-		        {
-			        DestroyOptionsMenu();
-		        }
-
-		        if (player.GetButtonDown("B"))
-		        {
-					DestroyOptionsMenu();
-		        }
-
+		        DestroyOptionsMenu();
 		        return;
 	        }
 
-	        if (ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy)
+	        if (ObjectSelectionOpen && (player.GetButtonDown("Start") || player.GetButtonDown("B")))
 	        {
-		        if (player.GetButtonDown("Start"))
-		        {
-			        DestroyObjectSelection();
-		        }
-
-		        if (player.GetButtonDown("B"))
-		        {
-			        DestroyObjectSelection();
-		        }
-
-				return;
+		        DestroyObjectSelection();
+			    return;
 	        }
 
 			if (HighlightedObject != null)
@@ -239,7 +223,7 @@ namespace XLObjectDropper.Controllers
 				HighlightedObject = null;
 			}
 
-			if (SelectedObject == null || !SelectedObject.activeInHierarchy)
+			if (!SelectedObjectActive)
 			{
 				Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
 				if (Physics.Raycast(ray, out RaycastHit hit, 5f))
@@ -294,6 +278,14 @@ namespace XLObjectDropper.Controllers
 						UISounds.Instance?.PlayOneShotSelectMajor();
 						SelectedObject = HighlightedObject;
 					}
+
+					if (player.GetButtonDown("Y"))
+					{
+						//TODO: Add event here
+
+						UISounds.Instance?.PlayOneShotSelectMajor();
+						DestroyImmediate(HighlightedObject);
+					}
 				}
 
 				// If dpad up/down, move object up/down
@@ -315,11 +307,6 @@ namespace XLObjectDropper.Controllers
 						PlaceObject(false);
 					}
 				}
-				
-				if (player.GetButtonDown("Y"))
-		        {
-					// if y, delete highlighted object (if any)
-		        }
 
 				if (player.GetButtonDown("B"))
 				{

@@ -2,7 +2,7 @@
 
 namespace XLObjectDropper.Utilities
 {
-	public static class DebugUtitlities
+	public static class DebugUtilities
 	{
 		public static void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 100f)
 		{
