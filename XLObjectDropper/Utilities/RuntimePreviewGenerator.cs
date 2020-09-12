@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Utilities
@@ -426,9 +427,21 @@ namespace XLObjectDropper.Utilities
 			else
 				renderCamera = InternalCamera;
 
-			renderCamera.backgroundColor = m_backgroundColor;
+			var hdAddtData = renderCamera.GetComponent<HDAdditionalCameraData>();
+			if (hdAddtData != null)
+			{
+				hdAddtData.backgroundColorHDR = m_backgroundColor;
+				hdAddtData.clearColorMode = HDAdditionalCameraData.ClearColorMode.Sky;
+			}
+			else
+			{
+				renderCamera.backgroundColor = m_backgroundColor;
+				renderCamera.clearFlags = m_backgroundColor.a < 1f ? CameraClearFlags.Depth : CameraClearFlags.Color;
+			}
+
+			
 			renderCamera.orthographic = m_orthographicMode;
-			renderCamera.clearFlags = m_backgroundColor.a < 1f ? CameraClearFlags.Depth : CameraClearFlags.Color;
+			
 		}
 
 		private static void ProjectBoundingBoxMinMax(Vector3 point)
