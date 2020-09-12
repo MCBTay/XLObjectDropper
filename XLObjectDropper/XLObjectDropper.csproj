@@ -168,6 +168,7 @@
     <Compile Include="EventStack\EventStack.cs" />
     <Compile Include="EventStack\Events\ObjectDropperEvent.cs" />
     <Compile Include="EventStack\Events\ObjectPlacedEvent.cs" />
+    <Compile Include="Utilities\DebugUtitlities.cs" />
     <Compile Include="Utilities\Extensions.cs" />
     <Compile Include="Utilities\LayerHelper.cs" />
     <Compile Include="Utilities\RuntimePreviewGenerator.cs" />

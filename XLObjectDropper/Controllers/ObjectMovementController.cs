@@ -19,6 +19,11 @@ namespace XLObjectDropper.Controllers
 		public static ObjectPlacementUI MovementUI { get; set; }
 
 		public GameObject SelectedObject { get; set; }
+		private LayerInfo SelectedObjectLayerInfo;
+
+		private GameObject HighlightedObject;
+		private LayerInfo HighlightedObjectLayerInfo;
+		
 		public List<GameObject> SpawnedObjects { get; set; }
 
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
@@ -180,38 +185,8 @@ namespace XLObjectDropper.Controllers
 	        mainCam.nearClipPlane = originalNearClipDist;
 		}
 
-        private GameObject HighlightedObject;
-        private LayerInfo HighlightedObjectLayerInfo;
+        
 
-        private LayerInfo SelectedObjectLayerInfo;
-
-        void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 100f)
-        {
-	        GameObject myLine = new GameObject();
-	        myLine.transform.position = start;
-	        myLine.AddComponent<LineRenderer>();
-	        LineRenderer lr = myLine.GetComponent<LineRenderer>();
-	        lr.material = new Material(Shader.Find("HDRP/Lit"));
-	        lr.startColor = lr.endColor = color;
-	        lr.startWidth = lr.endWidth = 0.1f;
-	        lr.SetPosition(0, start);
-	        lr.SetPosition(1, end);
-	        GameObject.Destroy(myLine, duration);
-        }
-
-        void DrawRay(Ray ray, float distance, Color color, float duration = 100f)
-        {
-	        GameObject myLine = new GameObject();
-	        myLine.transform.position = ray.origin;
-	        myLine.AddComponent<LineRenderer>();
-	        LineRenderer lr = myLine.GetComponent<LineRenderer>();
-	        lr.material = new Material(Shader.Find("HDRP/Lit"));
-	        lr.startColor = lr.endColor = color;
-	        lr.startWidth = lr.endWidth = 0.1f;
-	        lr.SetPosition(0, ray.origin);
-	        lr.SetPosition(1, ray.origin + (ray.direction * distance));
-	        GameObject.Destroy(myLine, duration);
-        }
 
 		private void Update()
         {
