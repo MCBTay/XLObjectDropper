@@ -1,16 +1,13 @@
 ManifestFileVersion: 0
-CRC: 1416890501
+CRC: 4250588347
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: object_testbundle
       Dependencies: {}
     Info_1:
-      Name: ausbundle
-      Dependencies: {}
-    Info_2:
       Name: ui_bundle
       Dependencies: {}
-    Info_3:
+    Info_2:
       Name: bundledemo
       Dependencies: {}

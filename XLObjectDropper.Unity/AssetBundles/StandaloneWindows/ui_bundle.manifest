@@ -1,17 +1,19 @@
 ManifestFileVersion: 0
-CRC: 904006220
+CRC: 2671295718
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 324b434f65fa1e709758d1fc3ba6afe4
+    Hash: 01e3ab6447202115a3f7ac40414fea35
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 3bc0dce5c96e9cfa18e70b5ee3cba6bd
+    Hash: 41f483cb2fa3f497102ed8d178e6aaf7
 HashAppended: 0
 ClassTypes:
 - Class: 1
   Script: {instanceID: 0}
 - Class: 4
+  Script: {instanceID: 0}
+- Class: 20
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
@@ -22,15 +24,15 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
@@ -50,7 +52,7 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 2040033396, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
 - Class: 114
-  Script: {fileID: -538635808, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  Script: {fileID: -1637002040, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
@@ -64,13 +66,19 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 26d6499a6bd256e47b859377446493a1, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
 - Class: 114
+  Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
 - Class: 115
@@ -86,7 +94,9 @@ ClassTypes:
 - Class: 224
   Script: {instanceID: 0}
 Assets:
+- Assets/OBJ_Dropper_Bundles/UI_Bundle/SelfieCamera.prefab
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/Custom Pass.prefab
+- Assets/OBJ_Dropper_Bundles/UI_Bundle/Outline Custom Pass.prefab
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/ListItem.prefab
 Dependencies: []
