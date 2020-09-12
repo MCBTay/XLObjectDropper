@@ -166,6 +166,7 @@
     <Compile Include="AssetBundleHelper.cs" />
     <Compile Include="Controllers\OptionsMenuController.cs" />
     <Compile Include="EventStack\EventStack.cs" />
+    <Compile Include="EventStack\Events\ObjectDeletedEvent.cs" />
     <Compile Include="EventStack\Events\ObjectDropperEvent.cs" />
     <Compile Include="EventStack\Events\ObjectPlacedEvent.cs" />
     <Compile Include="Utilities\DebugUtilities.cs" />

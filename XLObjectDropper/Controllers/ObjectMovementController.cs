@@ -2,14 +2,13 @@
 using Rewired;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityModManagerNet;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
-using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Controllers
 {
@@ -281,7 +280,7 @@ namespace XLObjectDropper.Controllers
 
 					if (player.GetButtonDown("Y"))
 					{
-						//TODO: Add event here
+						EventStack.EventStack.Instance.AddNewAction(new ObjectDeletedEvent(HighlightedObject.GetPrefab(), HighlightedObject));
 
 						UISounds.Instance?.PlayOneShotSelectMajor();
 						DestroyImmediate(HighlightedObject);

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using UnityEngine;
-using UnityModManagerNet;
 using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper
@@ -69,6 +68,15 @@ namespace XLObjectDropper
 			}
 
 			return layerInfo;
+		}
+		#endregion
+
+		#region GameObject extensions
+		public static GameObject GetPrefab(this GameObject gameObject)
+		{
+			var name = gameObject.name.Replace("(Clone)", string.Empty);
+
+			return AssetBundleHelper.LoadedSpawnables.FirstOrDefault(x => name.Equals(x.Prefab.name))?.Prefab;
 		}
 		#endregion
 	}
