@@ -3,9 +3,8 @@ using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 using XLObjectDropper.UI;
-using XLObjectDropper.Utilities;
 
-namespace XLObjectDropper
+namespace XLObjectDropper.Utilities
 {
 	public class Spawnable
 	{

@@ -7,7 +7,7 @@ using UnityModManagerNet;
 using XLObjectDropper.Controllers;
 using Object = UnityEngine.Object;
 
-namespace XLObjectDropper
+namespace XLObjectDropper.Utilities
 {
 	public class SaveManager
 	{

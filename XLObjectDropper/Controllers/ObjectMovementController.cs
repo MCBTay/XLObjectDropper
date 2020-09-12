@@ -383,7 +383,9 @@ namespace XLObjectDropper.Controllers
 
 			currentHeight = transform.position.y - groundLevel;
 			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
-			collisionFlags = characterController.Move(cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime);
+
+			var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
+			collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
 			currentHeight = transform.position.y - groundLevel;
 			if (!Mathf.Approximately(a, 0.0f))
 			{
@@ -655,21 +657,6 @@ namespace XLObjectDropper.Controllers
 			hasGround = flag;
 		}
 
-		
-
-		public void InstantiateSelectedObject(Spawnable spawnable)
-        {
-			SelectedObject = Instantiate(spawnable.Prefab);
-			SelectedObject.name = spawnable.Prefab.name;
-
-			SelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
-
-	        SelectedObject.transform.position = transform.position;
-	        SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
-
-	        UserInterfaceHelper.CustomPassVolume.enabled = true;
-        }
-
 		#region Object Selection 
 		private void CreateObjectSelection()
 		{
@@ -699,6 +686,19 @@ namespace XLObjectDropper.Controllers
 			SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
 
 			DestroyObjectSelection();
+		}
+
+		public void InstantiateSelectedObject(Spawnable spawnable)
+		{
+			SelectedObject = Instantiate(spawnable.Prefab);
+			SelectedObject.name = spawnable.Prefab.name;
+
+			SelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+
+			SelectedObject.transform.position = transform.position;
+			SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
+
+			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
 		#endregion
 
