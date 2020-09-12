@@ -39,42 +39,9 @@ namespace XLObjectDropper.Utilities
 			}
 		}
 
-		private void LoadPreviewImageSync()
-		{
-			var imagesPath = Path.Combine(Main.ModPath, "Images");
-
-			if (!Directory.Exists(imagesPath)) Directory.CreateDirectory(imagesPath);
-
-			var bundlePath = Path.Combine(imagesPath, BundleName);
-			if (!Directory.Exists(bundlePath)) Directory.CreateDirectory(bundlePath);
-
-			var filePath = Path.Combine(bundlePath, Prefab.name + ".png");
-
-			Texture2D texture;
-
-			if (File.Exists(filePath))
-			{
-				var fileData = File.ReadAllBytes(filePath);
-
-				texture = new Texture2D(2, 2);
-				texture.LoadImage(fileData);
-			}
-
-
-			RuntimePreviewGenerator.MarkTextureNonReadable = false;
-			RuntimePreviewGenerator.OrthographicMode = true;
-			//RuntimePreviewGenerator.BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-			//RuntimePreviewGenerator.PreviewRenderCamera = Camera.Instantiate(AssetBundleHelper.SelfieCamera);
-			PreviewTexture = RuntimePreviewGenerator.GenerateModelPreview(Prefab.transform, 128, 128, true);
-
-			File.WriteAllBytes(Path.Combine(Main.ModPath, Prefab.name + ".png"), PreviewTexture.EncodeToPNG());
-		}
-
 		private IEnumerator GeneratePreviewImage()
 		{
 			yield return new WaitForEndOfFrame();
-
-			//RuntimePreviewGenerator.PreviewRenderCamera = Camera.Instantiate(Camera.main);
 
 			RuntimePreviewGenerator.PreviewRenderCamera = Object.Instantiate(AssetBundleHelper.SelfieCamera);
 			RuntimePreviewGenerator.PreviewRenderCamera.enabled = true;
@@ -87,8 +54,16 @@ namespace XLObjectDropper.Utilities
 			RuntimePreviewGenerator.PreviewRenderCamera.enabled = false;
 			Object.DestroyImmediate(RuntimePreviewGenerator.PreviewRenderCamera.gameObject, true);
 
-			//File.WriteAllBytes(Path.Combine(Main.ModPath, Prefab.name + ".png"), PreviewTexture.EncodeToPNG());
-			WriteImage(Path.Combine(Main.ModPath, Prefab.name + ".png"), PreviewTexture);
+			var imagesPath = Path.Combine(Main.ModPath, "Images");
+
+			if (!Directory.Exists(imagesPath)) Directory.CreateDirectory(imagesPath);
+
+			var bundlePath = Path.Combine(imagesPath, BundleName);
+			if (!Directory.Exists(bundlePath)) Directory.CreateDirectory(bundlePath);
+
+			var filePath = Path.Combine(bundlePath, Prefab.name + ".png");
+
+			WriteImage(filePath, PreviewTexture);
 		}
 
 		async Task WriteImage(string filePath, Texture2D texture)
@@ -101,6 +76,8 @@ namespace XLObjectDropper.Utilities
 			{
 				await sourceStream.WriteAsync(image, 0, image.Length);
 			};
+
+			
 		}
 	}
 }
