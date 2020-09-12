@@ -30,8 +30,8 @@ namespace XLObjectDropper.Utilities
 			{
 				var fileData = File.ReadAllBytes(filePath);
 
-				var texture = new Texture2D(2, 2);
-				texture.LoadImage(fileData);
+				PreviewTexture = new Texture2D(2, 2);
+				PreviewTexture.LoadImage(fileData);
 			}
 			else
 			{
