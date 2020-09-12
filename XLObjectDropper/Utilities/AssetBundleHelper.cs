@@ -136,11 +136,13 @@ namespace XLObjectDropper.Utilities
 		{
 			AssetBundle bundle = AssetBundle.LoadFromMemory(ExtractResource("XLObjectDropper.Assets.ui_bundle"));
 
-			UIPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab");
-			ListItemPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/ListItem.prefab");
-			CustomPassPrefab = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/Outline Custom Pass.prefab");
+			var prefabPath = "Assets/OBJ_Dropper_Bundles/UI_Bundle/";
 
-			SelfieCamera = bundle.LoadAsset<GameObject>("Assets/OBJ_Dropper_Bundles/UI_Bundle/SelfieCamera.prefab").GetComponent<Camera>();
+			UIPrefab = bundle.LoadAsset<GameObject>(prefabPath + "ObjDrop_UI.prefab");
+			ListItemPrefab = bundle.LoadAsset<GameObject>(prefabPath + "ListItem.prefab");
+			CustomPassPrefab = bundle.LoadAsset<GameObject>(prefabPath + "Outline Custom Pass.prefab");
+
+			SelfieCamera = bundle.LoadAsset<GameObject>(prefabPath + "SelfieCamera.prefab").GetComponent<Camera>();
 
 			bundle.Unload(false);
 		}
