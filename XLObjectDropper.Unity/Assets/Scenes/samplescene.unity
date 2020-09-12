@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168218571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019999983, y: 1.196, z: 1.8100562}
+  m_LocalPosition: {x: 0.019999983, y: 1.196, z: 1.8100567}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405591765}
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: a123fc0ac58cb774e8592c925f167e7c, type: 2}
   m_StaticLightingSkyUniqueID: 1
-  m_SkySettings: {fileID: 849827108}
+  m_SkySettings: {fileID: 1058613217}
   m_SkySettingsFromProfile: {fileID: -1658960478407648048, guid: a123fc0ac58cb774e8592c925f167e7c,
     type: 2}
 --- !u!4 &313761475
@@ -780,107 +780,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &849827108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  rotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  skyIntensityMode:
-    m_OverrideState: 0
-    m_Value: 0
-  exposure:
-    m_OverrideState: 0
-    m_Value: 10
-  multiplier:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxValue:
-    m_OverrideState: 0
-    m_Value: 1
-    min: 0
-  upperHemisphereLuxColor:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0, z: 0}
-  desiredLuxValue:
-    m_OverrideState: 0
-    m_Value: 20000
-  updateMode:
-    m_OverrideState: 0
-    m_Value: 0
-  updatePeriod:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-  includeSunInBaking:
-    m_OverrideState: 0
-    m_Value: 0
-  hdriSky:
-    m_OverrideState: 0
-    m_Value: {fileID: 8900000, guid: 54a3a0570aebe8949bec4966f1376581, type: 3}
-  enableBackplate:
-    m_OverrideState: 0
-    m_Value: 0
-  backplateType:
-    m_OverrideState: 0
-    m_Value: 0
-  groundLevel:
-    m_OverrideState: 0
-    m_Value: 0
-  scale:
-    m_OverrideState: 0
-    m_Value: {x: 32, y: 32}
-  projectionDistance:
-    m_OverrideState: 0
-    m_Value: 16
-    min: 0.0000001
-  plateRotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  plateTexRotation:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 360
-  plateTexOffset:
-    m_OverrideState: 0
-    m_Value: {x: 0, y: 0}
-  blendAmount:
-    m_OverrideState: 0
-    m_Value: 0
-    min: 0
-    max: 100
-  shadowTint:
-    m_OverrideState: 0
-    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    hdr: 0
-    showAlpha: 1
-    showEyeDropper: 1
-  pointLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
-  dirLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
-  rectLightShadow:
-    m_OverrideState: 0
-    m_Value: 0
 --- !u!1 &1037846703
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,7 +810,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037846703}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019999983, y: 1.196, z: -0.6870136}
+  m_LocalPosition: {x: 0.019999983, y: 1.196, z: -0.68701375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405591765}
@@ -1360,6 +1259,107 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037846703}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1058613217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b6606ef2548734bb6d11b9d160bc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  rotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  skyIntensityMode:
+    m_OverrideState: 0
+    m_Value: 0
+  exposure:
+    m_OverrideState: 0
+    m_Value: 10
+  multiplier:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxValue:
+    m_OverrideState: 0
+    m_Value: 1
+    min: 0
+  upperHemisphereLuxColor:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0, z: 0}
+  desiredLuxValue:
+    m_OverrideState: 0
+    m_Value: 20000
+  updateMode:
+    m_OverrideState: 0
+    m_Value: 0
+  updatePeriod:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+  includeSunInBaking:
+    m_OverrideState: 0
+    m_Value: 0
+  hdriSky:
+    m_OverrideState: 0
+    m_Value: {fileID: 8900000, guid: 54a3a0570aebe8949bec4966f1376581, type: 3}
+  enableBackplate:
+    m_OverrideState: 0
+    m_Value: 0
+  backplateType:
+    m_OverrideState: 0
+    m_Value: 0
+  groundLevel:
+    m_OverrideState: 0
+    m_Value: 0
+  scale:
+    m_OverrideState: 0
+    m_Value: {x: 32, y: 32}
+  projectionDistance:
+    m_OverrideState: 0
+    m_Value: 16
+    min: 0.0000001
+  plateRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexRotation:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 360
+  plateTexOffset:
+    m_OverrideState: 0
+    m_Value: {x: 0, y: 0}
+  blendAmount:
+    m_OverrideState: 0
+    m_Value: 0
+    min: 0
+    max: 100
+  shadowTint:
+    m_OverrideState: 0
+    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    hdr: 0
+    showAlpha: 1
+    showEyeDropper: 1
+  pointLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  dirLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
+  rectLightShadow:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!1001 &1275443619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1426,7 +1426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1297650281
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2058,7 +2058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059789766}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.510056, y: 1.196, z: 1.1760281}
+  m_LocalPosition: {x: 2.5100565, y: 1.196, z: 1.1760284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 405591765}
@@ -2834,6 +2834,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Custom Pass
       objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998960, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1137172830388998966, guid: 78293496d372e8941857f1ded49bf9a8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2888,6 +2893,216 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].passNames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].passFoldout
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[1].passFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[1].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2]
+      value: Unity.RenderPipelines.HighDefinition.Runtime UnityEngine.Rendering.HighDefinition.DrawRenderersCustomPass
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].m_Name
+      value: Overlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].targetColorBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].targetDepthBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].clearFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].passFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].m_Version
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].filterFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].rendererFoldout
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].renderQueueType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].passNames.Array.data[0]
+      value: Forward
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].layerMask.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].sortingCriteria
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].overrideMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].overrideMaterialPassIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].overrideMaterialPassName
+      value: Forward
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].overrideDepthState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].depthCompareFunction
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].depthWrite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[2].shaderPass
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].m_Name
+      value: Custom Pass
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].layerMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].overrideMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ab555148cd2111c4587de24c5cd1f58e, type: 2}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].overrideMaterialPassName
+      value: ForwardOnly
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].overrideDepthState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].depthWrite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[1].m_Name
+      value: Glowy Outline
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[1].rendererFoldout
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[1].overrideMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 9ce504275f83c4648a800f0f5beffaa7, type: 2}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[1].overrideDepthState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[1].depthWrite
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: injectionPoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].sortingCriteria
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 1137172830388998967, guid: 78293496d372e8941857f1ded49bf9a8,
+        type: 3}
+      propertyPath: customPasses.Array.data[0].depthCompareFunction
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78293496d372e8941857f1ded49bf9a8, type: 3}
