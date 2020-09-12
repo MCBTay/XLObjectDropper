@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityModManagerNet;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
@@ -190,6 +191,8 @@ namespace XLObjectDropper.Controllers
 		private bool ObjectSelectionOpen => ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy;
 		private bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
 
+		private ObjectScaleAndRotateEvent ScaleAndRotateEvent;
+
 		private void Update()
         {
 	        Time.timeScale = OptionsMenuOpen || ObjectSelectionOpen ? 0.0f : 1.0f;
@@ -242,7 +245,20 @@ namespace XLObjectDropper.Controllers
 
 			UpdateAXBYLabels();
 
-		    if (player.GetButton("LB"))
+			if (player.GetButtonDown("LB"))
+			{
+				ScaleAndRotateEvent = new ObjectScaleAndRotateEvent(SelectedObject);
+			}
+			if (player.GetButtonUp("LB"))
+			{
+				ScaleAndRotateEvent.newRotation = SelectedObject.transform.rotation;
+				ScaleAndRotateEvent.newLocalScale = SelectedObject.transform.localScale;
+				ScaleAndRotateEvent.AddToUndoStack();
+
+				ScaleAndRotateEvent = null;
+			}
+
+			if (player.GetButton("LB"))
 			{
 				HandleRotationAndScalingInput(player);
 			}
@@ -280,7 +296,8 @@ namespace XLObjectDropper.Controllers
 
 					if (player.GetButtonDown("Y"))
 					{
-						EventStack.EventStack.Instance.AddNewAction(new ObjectDeletedEvent(HighlightedObject.GetPrefab(), HighlightedObject));
+						var objDeletedEvent = new ObjectDeletedEvent(HighlightedObject.GetPrefab(), HighlightedObject);
+						objDeletedEvent.AddToUndoStack();
 
 						UISounds.Instance?.PlayOneShotSelectMajor();
 						DestroyImmediate(HighlightedObject);
@@ -464,7 +481,8 @@ namespace XLObjectDropper.Controllers
 
 	        SpawnedObjects.Add(newObject);
 
-	        EventStack.EventStack.Instance.AddNewAction(new ObjectPlacedEvent(SelectedObject, newObject));
+			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
+			objPlaceEvent.AddToUndoStack();
 
 			if (disablePreview)
 	        {

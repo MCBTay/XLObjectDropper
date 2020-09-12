@@ -169,6 +169,7 @@
     <Compile Include="EventStack\Events\ObjectDeletedEvent.cs" />
     <Compile Include="EventStack\Events\ObjectDropperEvent.cs" />
     <Compile Include="EventStack\Events\ObjectPlacedEvent.cs" />
+    <Compile Include="EventStack\Events\ObjectScaleAndRotateEvent.cs" />
     <Compile Include="Utilities\DebugUtilities.cs" />
     <Compile Include="Utilities\Extensions.cs" />
     <Compile Include="Utilities\LayerHelper.cs" />
