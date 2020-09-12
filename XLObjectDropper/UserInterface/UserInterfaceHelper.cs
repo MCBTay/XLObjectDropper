@@ -1,4 +1,5 @@
-﻿using GameManagement;
+﻿using System.Collections.Generic;
+using GameManagement;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,6 +7,7 @@ using UnityEngine.Rendering.HighDefinition;
 using XLObjectDropper.Controllers;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
+using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.UserInterface
 {
@@ -15,6 +17,7 @@ namespace XLObjectDropper.UserInterface
 
 		private static GameObject CustomPass;
 		public static CustomPassVolume CustomPassVolume;
+		public static List<CustomPass> CustomPasses;
 
 		public static void LoadUserInterface()
 		{

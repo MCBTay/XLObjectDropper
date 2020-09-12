@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
 using XLObjectDropper.EventStack;
+using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Controllers
 {
@@ -61,13 +62,13 @@ namespace XLObjectDropper.Controllers
 		private static void SnappingValueChanged(bool value)
 		{
 			Settings.Instance.Snapping = value;
-			SaveManager.Instance.SaveSettings();
+			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
 		private static void SensitivityValueChanged(float value)
 		{
 			Settings.Instance.Sensitivity = value;
-			SaveManager.Instance.SaveSettings();
+			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
 		private static void UndoClicked()
@@ -88,12 +89,12 @@ namespace XLObjectDropper.Controllers
 
 		private static void SaveClicked()
 		{
-			SaveManager.Instance.SaveCurrentSpawnables();
+			Utilities.SaveManager.Instance.SaveCurrentSpawnables();
 		}
 
 		private static void LoadClicked()
 		{
-			SaveManager.Instance.LoadSpawnables();
+			Utilities.SaveManager.Instance.LoadSpawnables();
 		}
 	}
 }

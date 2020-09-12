@@ -163,7 +163,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssetBundleHelper.cs" />
+    <Compile Include="Utilities\AssetBundleHelper.cs" />
     <Compile Include="Controllers\OptionsMenuController.cs" />
     <Compile Include="EventStack\EventStack.cs" />
     <Compile Include="EventStack\Events\ObjectDeletedEvent.cs" />
@@ -172,11 +172,11 @@
     <Compile Include="EventStack\Events\ObjectScaleAndRotateEvent.cs" />
     <Compile Include="Utilities\DebugUtilities.cs" />
     <Compile Include="Utilities\Extensions.cs" />
-    <Compile Include="Utilities\LayerHelper.cs" />
+    <Compile Include="Utilities\LayerInfo.cs" />
     <Compile Include="Utilities\RuntimePreviewGenerator.cs" />
-    <Compile Include="SaveManager.cs" />
+    <Compile Include="Utilities\SaveManager.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Spawnable.cs" />
+    <Compile Include="Utilities\Spawnable.cs" />
     <Compile Include="UserInterface\ControllerButtonHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="GameManagement\ObjectDropperState.cs" />

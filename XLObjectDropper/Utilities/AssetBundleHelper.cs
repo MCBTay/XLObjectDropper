@@ -5,12 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
 using Object = UnityEngine.Object;
 
-namespace XLObjectDropper
+namespace XLObjectDropper.Utilities
 {
 	public static class AssetBundleHelper
 	{

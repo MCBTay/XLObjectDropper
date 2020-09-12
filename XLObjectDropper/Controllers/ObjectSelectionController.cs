@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using XLObjectDropper.UI;
+using XLObjectDropper.Utilities;
 using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Controllers

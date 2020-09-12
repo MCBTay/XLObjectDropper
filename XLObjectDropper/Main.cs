@@ -2,6 +2,7 @@
 using System.Reflection;
 using UnityModManagerNet;
 using XLObjectDropper.UserInterface;
+using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper
 {
@@ -19,7 +20,7 @@ namespace XLObjectDropper
 			Settings.Instance = UnityModManager.ModSettings.Load<Settings>(modEntry);
 
 			ModPath = modEntry.Path;
-			SaveManager.Instance.ModEntry = modEntry;
+			Utilities.SaveManager.Instance.ModEntry = modEntry;
 
 			modEntry.OnToggle = OnToggle;
 #if DEBUG
