@@ -2,7 +2,6 @@
 using Rewired;
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityModManagerNet;
 using XLObjectDropper.EventStack.Events;
@@ -19,10 +18,7 @@ namespace XLObjectDropper.Controllers
 		public static ObjectMovementController Instance { get; set; }
 		public static ObjectPlacementUI MovementUI { get; set; }
 
-		//TODO: Cleanup this lastprefab/selectedobject shit, it's a bad implementation
-		private GameObject LastPrefab;
-		public GameObject PreviewObject { get; set; }
-		private Spawnable SelectedObject { get; set; }
+		public GameObject SelectedObject { get; set; }
 		public List<GameObject> SpawnedObjects { get; set; }
 
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
@@ -165,15 +161,29 @@ namespace XLObjectDropper.Controllers
         private void OnDisable()
         {
 	        UserInterfaceHelper.UserInterface?.SetActive(false);
-			PreviewObject?.SetActive(false);
 
-			mainCam.nearClipPlane = originalNearClipDist;
+	        if (SelectedObject != null)
+	        {
+		        SelectedObject.SetActive(false);
+		        DestroyImmediate(SelectedObject);
+
+		        SelectedObjectLayerInfo = null;
+	        }
+
+	        if (HighlightedObject != null)
+	        {
+		        HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
+		        HighlightedObjectLayerInfo = null;
+		        HighlightedObject = null;
+			}
+
+	        mainCam.nearClipPlane = originalNearClipDist;
 		}
 
         private GameObject HighlightedObject;
         private LayerInfo HighlightedObjectLayerInfo;
 
-        private LayerInfo PreviewObjectLayerInfo;
+        private LayerInfo SelectedObjectLayerInfo;
 
         void DrawLine(Vector3 start, Vector3 end, Color color, float duration = 100f)
         {
@@ -211,16 +221,14 @@ namespace XLObjectDropper.Controllers
 
 	        Player player = PlayerController.Instance.inputController.player;
 
-	        if (SelectedObject != null)
+			// I have to do this to prevent pressing A on object selection placing the item here.  Perhaps theres
+			// a better way to manage object selection being open, like a coroutine?
+	        if (ItemWasSelected)
 	        {
-		        Time.timeScale = 1.0f;
-		        DestroyObjectSelection();
-
-		        LastPrefab = SelectedObject.Prefab;
-		        SelectedObject = null;
+		        ItemWasSelected = false;
 		        return;
 	        }
-			if (OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy)
+	        if (OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy)
 	        {
 		        if (player.GetButtonDown("Select"))
 		        {
@@ -256,10 +264,10 @@ namespace XLObjectDropper.Controllers
 				HighlightedObject = null;
 			}
 
-			if (PreviewObject == null || !PreviewObject.activeInHierarchy)
+			if (SelectedObject == null || !SelectedObject.activeInHierarchy)
 			{
 				Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
-				if (Physics.Raycast(ray, out RaycastHit hit, 15f))
+				if (Physics.Raycast(ray, out RaycastHit hit, 5f))
 				{
 					var parent = hit.transform.GetTopMostParent();
 
@@ -289,7 +297,7 @@ namespace XLObjectDropper.Controllers
 				HandleStickAndTriggerInput(player);
 
 				
-				if (PreviewObject != null && PreviewObject.activeInHierarchy)
+				if (SelectedObject != null && SelectedObject.activeInHierarchy)
 				{
 					if (player.GetButtonDown("A"))
 					{
@@ -299,9 +307,9 @@ namespace XLObjectDropper.Controllers
 
 					if (player.GetButtonDown("Left Stick Button"))
 					{
-						PreviewObject.transform.localScale = Vector3.one;
+						SelectedObject.transform.localScale = Vector3.one;
 						//TODO: Come back to this, get the rotation from LoadedPrefabs
-						//PreviewObject.transform.rotation = LastPrefab.transform.rotation;
+						//SelectedObject.transform.rotation = LastPrefab.transform.rotation;
 					}
 				}
 				else if (HighlightedObject != null)
@@ -309,7 +317,7 @@ namespace XLObjectDropper.Controllers
 					if (player.GetButtonDown("A"))
 					{
 						UISounds.Instance?.PlayOneShotSelectMajor();
-						PreviewObject = HighlightedObject;
+						SelectedObject = HighlightedObject;
 					}
 				}
 
@@ -325,7 +333,7 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonDown("X"))
 				{
-					if (PreviewObject != null && PreviewObject.activeInHierarchy)
+					if (SelectedObject != null && SelectedObject.activeInHierarchy)
 					{
 						// if x, open new object selection menu
 						UISounds.Instance?.PlayOneShotSelectMajor();
@@ -340,9 +348,9 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonDown("B"))
 				{
-					if (PreviewObject != null && PreviewObject.activeInHierarchy)
+					if (SelectedObject != null && SelectedObject.activeInHierarchy)
 					{
-						Destroy(PreviewObject);
+						Destroy(SelectedObject);
 					}
 					else
 					{
@@ -382,9 +390,9 @@ namespace XLObjectDropper.Controllers
 			var buttonController = MovementUI.MainScreen_UI.GetComponentInChildren<AXYBController>();
 			if (buttonController != null)
 			{
-				buttonController.SetXButtonLabelText(PreviewObject != null && PreviewObject.activeInHierarchy ? "Duplicate" : string.Empty);
-				buttonController.SetAButtonLabelText(PreviewObject != null && PreviewObject.activeInHierarchy ? "Place" : "Select");
-				buttonController.SetBButtonLabelText(PreviewObject != null && PreviewObject.activeInHierarchy ? "Cancel" : "Exit");
+				buttonController.SetXButtonLabelText(SelectedObject != null && SelectedObject.activeInHierarchy ? "Duplicate" : string.Empty);
+				buttonController.SetAButtonLabelText(SelectedObject != null && SelectedObject.activeInHierarchy ? "Place" : "Select");
+				buttonController.SetBButtonLabelText(SelectedObject != null && SelectedObject.activeInHierarchy ? "Cancel" : "Exit");
 			}
         }
 
@@ -437,9 +445,9 @@ namespace XLObjectDropper.Controllers
 			cameraPivot.rotation = rotation;
 			cameraNode.position = position;
 
-			if (PreviewObject != null)
+			if (SelectedObject != null)
 			{
-				PreviewObject.transform.position = cameraPivot.position;
+				SelectedObject.transform.position = cameraPivot.position;
 			}
 			#endregion
 
@@ -488,18 +496,18 @@ namespace XLObjectDropper.Controllers
 
 		private void PlaceObject(bool disablePreview = true)
         {
-	        var newObject = Instantiate(PreviewObject, PreviewObject.transform.position, PreviewObject.transform.rotation);
+	        var newObject = Instantiate(SelectedObject, SelectedObject.transform.position, SelectedObject.transform.rotation);
 	        newObject.SetActive(true);
 
-	        newObject.transform.ChangeLayersRecursively(PreviewObjectLayerInfo);
+	        newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
 
 	        SpawnedObjects.Add(newObject);
 
-	        EventStack.EventStack.Instance.AddNewAction(new ObjectPlacedEvent(PreviewObject, newObject));
+	        EventStack.EventStack.Instance.AddNewAction(new ObjectPlacedEvent(SelectedObject, newObject));
 
 			if (disablePreview)
 	        {
-		        PreviewObject.SetActive(false);
+		        SelectedObject.SetActive(false);
 		        UserInterfaceHelper.CustomPassVolume.enabled = false;
 	        }
         }
@@ -509,7 +517,7 @@ namespace XLObjectDropper.Controllers
         {
 	        Time.timeScale = 0.0f;
 
-	        if (PreviewObject == null || !PreviewObject.activeInHierarchy) return;
+	        if (SelectedObject == null || !SelectedObject.activeInHierarchy) return;
 
 	        HandleScaleModeSwitching(player);
 	        HandleRotation(player);
@@ -519,12 +527,12 @@ namespace XLObjectDropper.Controllers
 
 			if (player.GetButtonDown("Left Stick Button"))
 	        {
-		        PreviewObject.transform.rotation = transform.rotation;
+		        SelectedObject.transform.rotation = transform.rotation;
 	        }
 	        
 	        if (player.GetButtonDown("Right Stick Button"))
 	        {
-		        PreviewObject.transform.localScale = Vector3.one;
+		        SelectedObject.transform.localScale = Vector3.one;
 	        }
 		}
 
@@ -551,11 +559,11 @@ namespace XLObjectDropper.Controllers
 		{
 			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-			PreviewObject?.transform.RotateAround(PreviewObject.transform.position, cameraPivot.right, leftStick.y * ObjectRotateSpeed);
+			SelectedObject?.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, leftStick.y * ObjectRotateSpeed);
 			
 			//TODO: In the future, we'll have a toggle for local/global rotation axis
-			//PreviewObject?.transform.RotateAround(PreviewObject.transform.position, cameraPivot.up, leftStick.x * ObjectRotateSpeed);
-			PreviewObject?.transform.Rotate(0, leftStick.x * ObjectRotateSpeed, 0);
+			//SelectedObject?.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, leftStick.x * ObjectRotateSpeed);
+			SelectedObject?.transform.Rotate(0, leftStick.x * ObjectRotateSpeed, 0);
 		}
 
 		private void HandleDPadRotation(Player player)
@@ -580,22 +588,22 @@ namespace XLObjectDropper.Controllers
 
 			if (player.GetButtonDown("DPadX"))
 			{
-				PreviewObject.transform.Rotate(new Vector3(0, rotationIncrement, 0));
+				SelectedObject.transform.Rotate(new Vector3(0, rotationIncrement, 0));
 			}
 
 			if (player.GetNegativeButtonDown("DPadX"))
 			{
-				PreviewObject.transform.Rotate(new Vector3(0, -rotationIncrement, 0));
+				SelectedObject.transform.Rotate(new Vector3(0, -rotationIncrement, 0));
 			}
 
 			if (player.GetButtonDown("DPadY"))
 			{
-				PreviewObject.transform.RotateAround(PreviewObject.transform.position, cameraPivot.right, rotationIncrement);
+				SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, rotationIncrement);
 			}
 
 			if (player.GetNegativeButtonDown("DPadY"))
 			{
-				PreviewObject.transform.RotateAround(PreviewObject.transform.position, cameraPivot.right, -rotationIncrement);
+				SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, -rotationIncrement);
 			}
 		}
 
@@ -611,16 +619,16 @@ namespace XLObjectDropper.Controllers
 	        switch (CurrentScaleMode)
 	        {
 		        case (int)ScalingMode.Uniform:
-			        PreviewObject.transform.localScale += new Vector3(scale, scale, scale);
+			        SelectedObject.transform.localScale += new Vector3(scale, scale, scale);
 			        break;
 		        case (int)ScalingMode.Width:
-			        PreviewObject.transform.localScale += new Vector3(scale, 0, 0);
+			        SelectedObject.transform.localScale += new Vector3(scale, 0, 0);
 			        break;
 		        case (int)ScalingMode.Height:
-			        PreviewObject.transform.localScale += new Vector3(0, scale, 0);
+			        SelectedObject.transform.localScale += new Vector3(0, scale, 0);
 			        break;
 		        case (int)ScalingMode.Depth:
-			        PreviewObject.transform.localScale += new Vector3(0, 0, scale);
+			        SelectedObject.transform.localScale += new Vector3(0, 0, scale);
 			        break;
 	        }
 		}
@@ -670,15 +678,15 @@ namespace XLObjectDropper.Controllers
 
 		
 
-		public void InstantiatePreviewObject(Spawnable spawnable)
+		public void InstantiateSelectedObject(Spawnable spawnable)
         {
-			PreviewObject = Instantiate(spawnable.Prefab);
-			PreviewObject.name = spawnable.Prefab.name;
+			SelectedObject = Instantiate(spawnable.Prefab);
+			SelectedObject.name = spawnable.Prefab.name;
 
-			PreviewObject.transform.ChangeLayersRecursively("Ignore Raycast");
+			SelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
 
-	        PreviewObject.transform.position = transform.position;
-	        PreviewObject.transform.rotation = spawnable.Prefab.transform.rotation;
+	        SelectedObject.transform.position = transform.position;
+	        SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
 
 	        UserInterfaceHelper.CustomPassVolume.enabled = true;
         }
@@ -702,10 +710,15 @@ namespace XLObjectDropper.Controllers
 			Destroy(ObjectSelectionMenuGameObject);
 		}
 
+		private bool ItemWasSelected;
+
 		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
 		{
-			SelectedObject = spawnable;
-			PreviewObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
+			ItemWasSelected = true;
+
+			InstantiateSelectedObject(spawnable);
+			SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
+
 			DestroyObjectSelection();
 		}
 		#endregion
