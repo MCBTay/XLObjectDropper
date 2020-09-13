@@ -19,6 +19,10 @@ namespace XLObjectDropper.Controllers
 		private ObjectSelectionController ObjectSelectionController;
 		private bool ObjectSelectionOpen => ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy;
 
+		private GameObject QuickMenuGameObject;
+		private QuickMenuController QuickMenuController;
+		private bool QuickMenuOpen => QuickMenuGameObject != null && QuickMenuGameObject.activeInHierarchy;
+
 		private void Awake()
 		{
 			Instance = this;
@@ -38,41 +42,62 @@ namespace XLObjectDropper.Controllers
 			DestroyObjectSelection();
 			DestroyOptionsMenu();
 			DestroyObjectMovement();
+			DestroyQuickMenu();
 		}
 
 		private void Update()
 		{
 			var player = PlayerController.Instance.inputController.player;
 
-			Time.timeScale = OptionsMenuOpen || ObjectSelectionOpen ? 0.0f : 1.0f;
+			Time.timeScale = OptionsMenuOpen || ObjectSelectionOpen || QuickMenuOpen ? 0.0f : 1.0f;
 
-			if (player.GetButtonDown("Select"))
+			if (player.GetButton("LB"))
 			{
-				if (OptionsMenuOpen)
+				if (player.GetButtonDown("Start"))
 				{
-					DestroyOptionsMenu();
-					ObjectMovementController.enabled = true;
+					if (QuickMenuOpen)
+					{
+						DestroyQuickMenu();
+						ObjectMovementController.enabled = true;
+					}
+					else
+					{
+						ObjectMovementController.enabled = false;
+						CreateQuickMenu();
+					}
 				}
-				else
+			}
+			else
+			{
+				if (player.GetButtonDown("Select"))
 				{
-					ObjectMovementController.enabled = false;
-					CreateOptionsMenu();
+					if (OptionsMenuOpen)
+					{
+						DestroyOptionsMenu();
+						ObjectMovementController.enabled = true;
+					}
+					else
+					{
+						ObjectMovementController.enabled = false;
+						CreateOptionsMenu();
+					}
+				}
+
+				if (player.GetButtonDown("Start"))
+				{
+					if (ObjectSelectionOpen)
+					{
+						DestroyObjectSelection();
+						ObjectMovementController.enabled = true;
+					}
+					else
+					{
+						ObjectMovementController.enabled = false;
+						CreateObjectSelection();
+					}
 				}
 			}
 
-			if (player.GetButtonDown("Start"))
-			{
-				if (ObjectSelectionOpen)
-				{
-					DestroyObjectSelection();
-					ObjectMovementController.enabled = true;
-				}
-				else
-				{
-					ObjectMovementController.enabled = false;
-					CreateObjectSelection();
-				}
-			}
 
 			if (player.GetButtonDown("B"))
 			{
@@ -85,6 +110,12 @@ namespace XLObjectDropper.Controllers
 				if (ObjectSelectionOpen)
 				{
 					DestroyObjectSelection();
+					ObjectMovementController.enabled = true;
+				}
+
+				if (QuickMenuOpen)
+				{
+					DestroyQuickMenu();
 					ObjectMovementController.enabled = true;
 				}
 			}
@@ -157,6 +188,26 @@ namespace XLObjectDropper.Controllers
 
 			DestroyImmediate(OptionsMenuController);
 			DestroyImmediate(OptionsMenuGameObject);
+		}
+		#endregion
+
+		#region Quick Menu
+		private void CreateQuickMenu()
+		{
+			QuickMenuGameObject = new GameObject();
+			QuickMenuController = QuickMenuGameObject.AddComponent<QuickMenuController>();
+
+			QuickMenuGameObject.SetActive(true);
+		}
+
+		private void DestroyQuickMenu()
+		{
+			if (QuickMenuGameObject == null || QuickMenuController == null) return;
+
+			QuickMenuGameObject.SetActive(false);
+
+			DestroyImmediate(QuickMenuController);
+			DestroyImmediate(QuickMenuGameObject);
 		}
 		#endregion
 	}

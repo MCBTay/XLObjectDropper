@@ -10,6 +10,7 @@ namespace XLObjectDropper.Utilities
 	{
 		public SpawnableType Type;
 		public GameObject Prefab;
+		public GameObject SpawnedInstance;
 		public Texture2D PreviewTexture;
 		public string BundleName { get; set; }
 
@@ -20,6 +21,13 @@ namespace XLObjectDropper.Utilities
 			BundleName = bundle.name;
 
 			LoadPreviewImage();
+		}
+
+		public Spawnable(GameObject prefab, GameObject spawnedInstance, Texture2D previewTexture)
+		{
+			Prefab = prefab;
+			SpawnedInstance = spawnedInstance;
+			PreviewTexture = previewTexture;
 		}
 
 		private void LoadPreviewImage()

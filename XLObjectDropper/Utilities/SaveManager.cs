@@ -29,17 +29,17 @@ namespace XLObjectDropper.Utilities
 			{
 				levelConfigToSave.gameObjects.Add(new GameObjectSaveData
 				{
-					Id = spawnable.name,
-					positionX = spawnable.transform.position.x,
-					positionY = spawnable.transform.position.y,
-					positionZ = spawnable.transform.position.z,
-					rotationX = spawnable.transform.rotation.x,
-					rotationY = spawnable.transform.rotation.y,
-					rotationZ = spawnable.transform.rotation.z,
-					rotationW = spawnable.transform.rotation.w,
-					scaleX = spawnable.transform.localScale.x,
-					scaleY = spawnable.transform.localScale.y,
-					scaleZ = spawnable.transform.localScale.z,
+					Id = spawnable.SpawnedInstance.name,
+					positionX = spawnable.SpawnedInstance.transform.position.x,
+					positionY = spawnable.SpawnedInstance.transform.position.y,
+					positionZ = spawnable.SpawnedInstance.transform.position.z,
+					rotationX = spawnable.SpawnedInstance.transform.rotation.x,
+					rotationY = spawnable.SpawnedInstance.transform.rotation.y,
+					rotationZ = spawnable.SpawnedInstance.transform.rotation.z,
+					rotationW = spawnable.SpawnedInstance.transform.rotation.w,
+					scaleX = spawnable.SpawnedInstance.transform.localScale.x,
+					scaleY = spawnable.SpawnedInstance.transform.localScale.y,
+					scaleZ = spawnable.SpawnedInstance.transform.localScale.z,
 				});
 			}
 
@@ -70,7 +70,7 @@ namespace XLObjectDropper.Utilities
 
 				newObject.transform.ChangeLayersRecursively("Default");
 
-				ObjectMovementController.Instance.SpawnedObjects.Add(newObject);
+				ObjectMovementController.Instance.SpawnedObjects.Add(new Spawnable(prefab.Prefab, newObject, prefab.PreviewTexture));
 			}
 		}
 

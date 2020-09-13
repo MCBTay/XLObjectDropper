@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ObjectDropperController.cs" />
+    <Compile Include="Controllers\QuickMenuController.cs" />
     <Compile Include="Utilities\AssetBundleHelper.cs" />
     <Compile Include="Controllers\OptionsMenuController.cs" />
     <Compile Include="EventStack\EventStack.cs" />

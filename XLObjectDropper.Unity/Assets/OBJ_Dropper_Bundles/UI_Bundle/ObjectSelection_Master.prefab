@@ -1276,6 +1276,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainUI: {fileID: 337049632585416219}
   ListContent: {fileID: 5613589587888566871}
+  ListItemPrefab: {fileID: 4693846912459679585, guid: b7d3316d2cf504e4db57e87e358173c2,
+    type: 3}
   UIButton_LB: {fileID: 1731626569001382338}
   UIButton_LB_Pressed: {fileID: 7684247847323969707}
   UIButton_RB: {fileID: 6882083582785151219}

@@ -27,7 +27,6 @@ namespace XLObjectDropper.UI.Menus
 		[HideInInspector] public event UnityAction SaveClicked = () => { };
 		[HideInInspector] public event UnityAction LoadClicked = () => { };
 
-
 		private void OnEnable()
 		{
 			SetDefaultState(true);

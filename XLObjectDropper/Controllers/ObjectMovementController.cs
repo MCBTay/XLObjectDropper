@@ -20,12 +20,13 @@ namespace XLObjectDropper.Controllers
 		public static ObjectPlacementUI MovementUI { get; set; }
 
 		public GameObject SelectedObject { get; set; }
+		private Spawnable SelectedObjectSpawnable;
 		private LayerInfo SelectedObjectLayerInfo;
 
 		private GameObject HighlightedObject;
 		private LayerInfo HighlightedObjectLayerInfo;
 		
-		public List<GameObject> SpawnedObjects { get; set; }
+		public List<Spawnable> SpawnedObjects { get; set; }
 
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
 		public float minHeight = 0.0f;
@@ -88,7 +89,7 @@ namespace XLObjectDropper.Controllers
 
 			mainCam = Camera.main;
 
-			SpawnedObjects = new List<GameObject>();
+			SpawnedObjects = new List<Spawnable>();
 
 			HeightToCameraDistCurve = PlayerController.Instance.pinMover.HeightToCameraDistCurve;
 
@@ -452,7 +453,7 @@ namespace XLObjectDropper.Controllers
 
 	        newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
 
-	        SpawnedObjects.Add(newObject);
+	        SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
 
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
@@ -644,6 +645,7 @@ namespace XLObjectDropper.Controllers
 			SelectedObject.transform.position = transform.position;
 			SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
 
+			SelectedObjectSpawnable = spawnable;
 			SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
 
 			if (Settings.Instance.ShowGrid)

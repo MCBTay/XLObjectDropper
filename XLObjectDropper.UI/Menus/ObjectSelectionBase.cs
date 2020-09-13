@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using XLObjectDropper.UI.Controls;
+using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.UI.Menus
 {
@@ -10,12 +14,11 @@ namespace XLObjectDropper.UI.Menus
 	{
 		public GameObject MainUI;
 		public GameObject ListContent;
+		public GameObject ListItemPrefab;
 
-		[HideInInspector]
-		public Dictionary<T, GameObject> Categories;
-
-		[HideInInspector]
-		protected int CurrentCategoryIndex;
+		[HideInInspector] public Dictionary<T, GameObject> Categories;
+		[HideInInspector] public int CurrentCategoryIndex;
+		[HideInInspector] public UnityAction CategoryChanged = () => { };
 
 		[Header("User Interface")]
 		public GameObject UIButton_LB;
@@ -41,7 +44,7 @@ namespace XLObjectDropper.UI.Menus
 			UIButton_RB_Pressed.SetActive(false);
 		}
 
-		protected virtual void SetActiveCategory(bool increment)
+		public virtual void SetActiveCategory(bool increment)
 		{
 			if (increment) CurrentCategoryIndex++;
 			else CurrentCategoryIndex--;
@@ -67,6 +70,8 @@ namespace XLObjectDropper.UI.Menus
 					category.Value.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.392156f);
 				}
 			}
+
+			CategoryChanged.Invoke();
 
 			if (ListContent.transform.childCount > 0)
 				EventSystem.current.SetSelectedGameObject(ListContent.transform.GetChild(0).gameObject);
@@ -103,6 +108,36 @@ namespace XLObjectDropper.UI.Menus
 				UIButton_LB_Pressed.SetActive(false);
 			}
 			#endregion
+		}
+
+		public virtual void ClearList()
+		{
+			for (var i = ListContent.transform.childCount - 1; i >= 0; i--)
+			{
+				var objectA = ListContent.transform.GetChild(i);
+				objectA.transform.parent = null;
+
+				// Optionally destroy the objectA if not longer needed
+			}
+		}
+
+		public virtual GameObject AddToList(string name, Texture2D previewTexture, UnityAction objectClicked, UnityAction objectSelected = null)
+		{
+			var listItem = Instantiate(ListItemPrefab, ListContent.transform);
+			
+			listItem.GetComponentInChildren<TMP_Text>().SetText(name.Replace('_', ' '));
+			listItem.GetComponent<Button>().onClick.AddListener(objectClicked);
+			
+			if (objectSelected != null)
+			{
+				listItem.GetComponent<ObjectSelectionListItem>().ListItemSelected += objectSelected;
+			}
+			
+			listItem.GetComponentInChildren<RawImage>().texture = previewTexture;
+
+			listItem.SetActive(true);
+
+			return listItem;
 		}
 	}
 }

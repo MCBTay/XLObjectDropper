@@ -128,7 +128,6 @@ namespace XLObjectDropper.Utilities
 		}
 
 		public static GameObject UIPrefab { get; set; }
-		public static GameObject ListItemPrefab { get; set; }
 		public static GameObject CustomPassPrefab { get; set; }
 		public static Camera SelfieCamera { get; set; }
 		public static GameObject GridOverlayPrefab { get; set; }
@@ -140,7 +139,6 @@ namespace XLObjectDropper.Utilities
 			var prefabPath = "Assets/OBJ_Dropper_Bundles/UI_Bundle/";
 
 			UIPrefab = bundle.LoadAsset<GameObject>(prefabPath + "ObjDrop_UI.prefab");
-			ListItemPrefab = bundle.LoadAsset<GameObject>(prefabPath + "ListItem.prefab");
 			CustomPassPrefab = bundle.LoadAsset<GameObject>(prefabPath + "Outline Custom Pass.prefab");
 			GridOverlayPrefab = bundle.LoadAsset<GameObject>("Assets/GridLayout/Grid_Overlay.prefab");
 
