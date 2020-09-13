@@ -142,7 +142,7 @@ namespace XLObjectDropper.Utilities
 			UIPrefab = bundle.LoadAsset<GameObject>(prefabPath + "ObjDrop_UI.prefab");
 			ListItemPrefab = bundle.LoadAsset<GameObject>(prefabPath + "ListItem.prefab");
 			CustomPassPrefab = bundle.LoadAsset<GameObject>(prefabPath + "Outline Custom Pass.prefab");
-			GridOverlayPrefab = bundle.LoadAsset<GameObject>(prefabPath + "Grid_Overlay.prefab");
+			GridOverlayPrefab = bundle.LoadAsset<GameObject>("Assets/GridLayout/Grid_Overlay.prefab");
 
 			SelfieCamera = bundle.LoadAsset<GameObject>(prefabPath + "SelfieCamera.prefab").GetComponent<Camera>();
 

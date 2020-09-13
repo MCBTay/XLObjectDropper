@@ -386,6 +386,12 @@ namespace XLObjectDropper.Controllers
 
 			var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
 			collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
+
+			if (GridOverlay != null && GridOverlay.activeInHierarchy)
+			{
+				GridOverlay.transform.position = transform.position;
+			}
+
 			currentHeight = transform.position.y - groundLevel;
 			if (!Mathf.Approximately(a, 0.0f))
 			{
@@ -688,6 +694,8 @@ namespace XLObjectDropper.Controllers
 			DestroyObjectSelection();
 		}
 
+		private GameObject GridOverlay;
+
 		public void InstantiateSelectedObject(Spawnable spawnable)
 		{
 			SelectedObject = Instantiate(spawnable.Prefab);
@@ -697,6 +705,10 @@ namespace XLObjectDropper.Controllers
 
 			SelectedObject.transform.position = transform.position;
 			SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
+
+			// TODO: Check setting here
+			GridOverlay = Instantiate(AssetBundleHelper.GridOverlayPrefab);
+			GridOverlay.transform.position = SelectedObject.transform.position;
 
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
