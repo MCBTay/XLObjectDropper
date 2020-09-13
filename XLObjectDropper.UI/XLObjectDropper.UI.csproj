@@ -123,11 +123,13 @@
     <Compile Include="AXYBController.cs" />
     <Compile Include="DirectionalPadController.cs" />
     <Compile Include="Enumerations.cs" />
+    <Compile Include="ObjectSelectionBase.cs" />
     <Compile Include="ObjectSelectionListItem.cs" />
     <Compile Include="ObjectPlacementUI.cs" />
     <Compile Include="ObjectSelectionUI.cs" />
     <Compile Include="OptionsMenuUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickMenuUI.cs" />
     <Compile Include="RotationAndScaleUI.cs" />
     <Compile Include="UIManager.cs" />
     <Compile Include="UIScrollToSelection.cs" />

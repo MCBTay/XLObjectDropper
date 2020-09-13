@@ -9,11 +9,10 @@ namespace XLObjectDropper.UI
         [HideInInspector] public Player Player { get; set; }
 
         [Header("Master Elements")]
-        // Master Elements
         public GameObject ObjectPlacementUI;
         public GameObject ObjectSelectionUI;
         public GameObject OptionsMenuUI;
-
+        public GameObject QuickMenuUI;
 
         public static UIManager Instance { get; private set; }
 
@@ -28,11 +27,6 @@ namespace XLObjectDropper.UI
             Debug.Log("[XLObjectDropper.UI] UIManager version 0.1.7");
             
             SetDefaultState();
-
-            //if (Application.isEditor)
-            //{
-            //    Player = new Player()
-            //}
         }
 
         private void OnEnable()
@@ -93,6 +87,20 @@ namespace XLObjectDropper.UI
 		            ObjectSelectionUI.SetActive(false);
 		            ObjectPlacementUI.SetActive(true);
 	            }
+            }
+
+            if (Player.GetButton("LB") && Player.GetButtonDown("Start"))
+            {
+	            if (!QuickMenuUI.activeInHierarchy)
+	            {
+		            ObjectPlacementUI.SetActive(false);
+		            QuickMenuUI.SetActive(true);
+				}
+	            else
+	            {
+		            QuickMenuUI.SetActive(false);
+					ObjectPlacementUI.SetActive(true);
+				}
             }
         }
     }

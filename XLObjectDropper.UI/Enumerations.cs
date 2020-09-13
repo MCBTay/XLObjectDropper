@@ -25,4 +25,10 @@
 		Degrees45,
 		Degrees90
 	}
+
+	public enum QuickMenuType
+	{
+		Placed,
+		Recent
+	}
 }

@@ -1054,6 +1054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1184538062}
+  - component: {fileID: 7415864813734954828}
   m_Layer: 5
   m_Name: QuickMenu_Master
   m_TagString: Untagged
@@ -1081,6 +1082,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7415864813734954828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184538061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1715258574, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainUI: {fileID: 1417745848}
+  ListContent: {fileID: 347108403}
+  UIButton_LB: {fileID: 1280281399}
+  UIButton_LB_Pressed: {fileID: 346191611}
+  UIButton_RB: {fileID: 1828367939}
+  UIButton_RB_Pressed: {fileID: 1905937318}
+  PlacedCategory: {fileID: 1238791262}
+  RecentCategory: {fileID: 2015421693}
 --- !u!1 &1235012937
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,6 +4627,7 @@ MonoBehaviour:
   ObjectPlacementUI: {fileID: 340680728499805806}
   ObjectSelectionUI: {fileID: 8985870798134668066}
   OptionsMenuUI: {fileID: 5116232537531008389}
+  QuickMenuUI: {fileID: 1184538061}
 --- !u!1 &1751118475277177027
 GameObject:
   m_ObjectHideFlags: 0
@@ -10467,15 +10489,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e83e38ab8d3cb854182ddae6b55918d0, type: 3}
---- !u!224 &3050764356168261894 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1933048796716561703, guid: e83e38ab8d3cb854182ddae6b55918d0,
-    type: 3}
-  m_PrefabInstance: {fileID: 3496464186850694177}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8985870798134668066 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5490405019482275587, guid: e83e38ab8d3cb854182ddae6b55918d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3496464186850694177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &3050764356168261894 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1933048796716561703, guid: e83e38ab8d3cb854182ddae6b55918d0,
     type: 3}
   m_PrefabInstance: {fileID: 3496464186850694177}
   m_PrefabAsset: {fileID: 0}
