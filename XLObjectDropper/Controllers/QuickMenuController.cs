@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using XLObjectDropper.UI.Menus;
@@ -24,20 +25,33 @@ namespace XLObjectDropper.Controllers
 		{
 			QuickMenu.ClearList();
 
+			List<Spawnable> objectList = new List<Spawnable>();
+
 			switch (QuickMenu.CurrentCategoryIndex)
 			{
 				case (int)QuickMenuType.Recent:
+					objectList = ObjectMovementController.Instance.SpawnedObjects.GroupBy(x => x.Prefab).Select(x => x.First()).ToList();
 					break;
 				case (int)QuickMenuType.Placed:
 				default:
-					if (ObjectMovementController.Instance.SpawnedObjects.Any())
-					{
-						foreach (var spawnedObject in ObjectMovementController.Instance.SpawnedObjects)
-						{
-							QuickMenu.AddToList(spawnedObject.Prefab.name, spawnedObject.PreviewTexture, () => ObjectClicked(spawnedObject));
-						}
-					}
+					objectList = ObjectMovementController.Instance.SpawnedObjects;
 					break;
+			}
+
+			if (objectList != null && objectList.Any())
+			{
+				// oldest first
+				//foreach (var spawnedObject in ObjectMovementController.Instance.SpawnedObjects)
+				//{
+				//QuickMenu.AddToList(spawnedObject.Prefab.name, spawnedObject.PreviewTexture, () => ObjectClicked(spawnedObject));
+				//}
+
+				// newest first
+				for (int i = objectList.Count - 1; i >= 0; i--)
+				{
+					var spawnable = objectList[i];
+					QuickMenu.AddToList(spawnable.Prefab.name, spawnable.PreviewTexture, () => ObjectClicked(spawnable));
+				}
 			}
 		}
 

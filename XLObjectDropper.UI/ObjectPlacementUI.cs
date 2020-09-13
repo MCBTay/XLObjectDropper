@@ -18,6 +18,28 @@ namespace XLObjectDropper.UI
 
 		public GameObject Cursor;
 
+		private void OnEnable()
+		{
+			MainScreen_UI.SetActive(true);
+
+			// Object Placement
+			RB_UI.SetActive(false);
+			LB_UI.SetActive(false);
+			RT_UI.SetActive(false);
+			LT_UI.SetActive(false);
+        }
+
+		private void OnDisable()
+		{
+			MainScreen_UI.SetActive(false);
+
+			// Object Placement
+			RB_UI.SetActive(false);
+			LB_UI.SetActive(false);
+			RT_UI.SetActive(false);
+			LT_UI.SetActive(false);
+        }
+
 		private void Start()
 		{
             MainScreen_UI.SetActive(true);

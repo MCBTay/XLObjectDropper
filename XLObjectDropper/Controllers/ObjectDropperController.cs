@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
 
@@ -196,6 +197,7 @@ namespace XLObjectDropper.Controllers
 		{
 			QuickMenuGameObject = new GameObject();
 			QuickMenuController = QuickMenuGameObject.AddComponent<QuickMenuController>();
+			QuickMenuController.ObjectClickedEvent += QuickMenuControllerOnObjectClickedEvent;
 
 			QuickMenuGameObject.SetActive(true);
 		}
@@ -205,9 +207,28 @@ namespace XLObjectDropper.Controllers
 			if (QuickMenuGameObject == null || QuickMenuController == null) return;
 
 			QuickMenuGameObject.SetActive(false);
+			QuickMenuController.ObjectClickedEvent -= QuickMenuControllerOnObjectClickedEvent;
 
 			DestroyImmediate(QuickMenuController);
 			DestroyImmediate(QuickMenuGameObject);
+		}
+
+		private void QuickMenuControllerOnObjectClickedEvent(Spawnable spawnable)
+		{
+			switch (QuickMenuController.QuickMenu.CurrentCategoryIndex)
+			{
+				case (int)QuickMenuType.Recent:
+					ObjectMovementController.InstantiateSelectedObject(spawnable);
+					break;
+				case (int)QuickMenuType.Placed:
+				default:
+					ObjectMovementController.cameraPivot.position = spawnable.SpawnedInstance.transform.position;
+					ObjectMovementController.MoveCamera(true);
+					break;
+			}
+
+			DestroyQuickMenu();
+			ObjectMovementController.enabled = true;
 		}
 		#endregion
 	}

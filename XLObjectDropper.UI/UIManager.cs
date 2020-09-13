@@ -1,10 +1,9 @@
 ﻿using Rewired;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace XLObjectDropper.UI
 {
-    public class UIManager : MonoBehaviour
+	public class UIManager : MonoBehaviour
     {
         [HideInInspector] public Player Player { get; set; }
 
@@ -39,12 +38,34 @@ namespace XLObjectDropper.UI
 	        ObjectPlacementUI.SetActive(true);
 	        ObjectSelectionUI.SetActive(false);
 	        OptionsMenuUI.SetActive(false);
+			QuickMenuUI.SetActive(false);
         }
 
         // Update is called once per frame
         private void Update()
         {
-	        if (Player.GetButton("LB"))
+	        if (Player.GetButtonDown("B"))
+	        {
+		        if (OptionsMenuUI.activeInHierarchy)
+		        {
+			        OptionsMenuUI.SetActive(false);
+			        ObjectPlacementUI.SetActive(true);
+		        }
+
+		        if (ObjectSelectionUI.activeInHierarchy)
+		        {
+			        ObjectSelectionUI.SetActive(false);
+			        ObjectPlacementUI.SetActive(true);
+		        }
+
+		        if (QuickMenuUI.activeInHierarchy)
+		        {
+			        QuickMenuUI.SetActive(false);
+			        ObjectPlacementUI.SetActive(true);
+		        }
+			}
+
+			if (Player.GetButton("LB"))
 	        {
 		        if (Player.GetButtonDown("Start"))
 		        {
@@ -62,8 +83,7 @@ namespace XLObjectDropper.UI
 	        }
 	        else
 	        {
-				#region OptionsMenu
-				if (Player.GetButtonDown("Select"))
+		        if (Player.GetButtonDown("Select"))
 				{
 					if (!OptionsMenuUI.activeInHierarchy)
 					{
@@ -73,22 +93,6 @@ namespace XLObjectDropper.UI
 					else
 					{
 						OptionsMenuUI.SetActive(false);
-						ObjectPlacementUI.SetActive(true);
-					}
-				}
-				#endregion
-
-				if (Player.GetButtonDown("B"))
-				{
-					if (OptionsMenuUI.activeInHierarchy)
-					{
-						OptionsMenuUI.SetActive(false);
-						ObjectPlacementUI.SetActive(true);
-					}
-
-					if (ObjectSelectionUI.activeInHierarchy)
-					{
-						ObjectSelectionUI.SetActive(false);
 						ObjectPlacementUI.SetActive(true);
 					}
 				}

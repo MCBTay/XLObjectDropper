@@ -6,7 +6,6 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XLObjectDropper.UI.Controls;
-using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.UI.Menus
 {
@@ -121,13 +120,17 @@ namespace XLObjectDropper.UI.Menus
 			}
 		}
 
-		public virtual GameObject AddToList(string name, Texture2D previewTexture, UnityAction objectClicked, UnityAction objectSelected = null)
+		public virtual GameObject AddToList(string name, Texture2D previewTexture, UnityAction objectClicked = null, UnityAction objectSelected = null)
 		{
 			var listItem = Instantiate(ListItemPrefab, ListContent.transform);
 			
 			listItem.GetComponentInChildren<TMP_Text>().SetText(name.Replace('_', ' '));
-			listItem.GetComponent<Button>().onClick.AddListener(objectClicked);
-			
+
+			if (objectClicked != null)
+			{
+				listItem.GetComponent<Button>().onClick.AddListener(objectClicked);
+			}
+
 			if (objectSelected != null)
 			{
 				listItem.GetComponent<ObjectSelectionListItem>().ListItemSelected += objectSelected;

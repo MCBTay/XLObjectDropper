@@ -409,7 +409,7 @@ namespace XLObjectDropper.Controllers
 			}
 		}
 
-        private void MoveCamera(bool moveInstant = false)
+        public void MoveCamera(bool moveInstant = false)
         {
 	        Ray ray = new Ray(cameraPivot.position, -cameraPivot.forward);
 	        float num1 = targetDistance;

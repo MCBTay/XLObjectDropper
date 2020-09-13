@@ -18,7 +18,15 @@ namespace XLObjectDropper.UI.Controls
 
 		public void ListItemButtonClicked()
 		{
-			UIManager.Instance.ObjectSelectionUI.SetActive(false);
+			if (UIManager.Instance.ObjectSelectionUI != null && UIManager.Instance.ObjectSelectionUI.activeInHierarchy)
+			{
+				UIManager.Instance.ObjectSelectionUI.SetActive(false);
+			}
+			else if (UIManager.Instance.QuickMenuUI != null && UIManager.Instance.QuickMenuUI.activeInHierarchy)
+			{
+				UIManager.Instance.QuickMenuUI.SetActive(false);
+			}
+
 			UIManager.Instance.ObjectPlacementUI.SetActive(true);
 		}
 
