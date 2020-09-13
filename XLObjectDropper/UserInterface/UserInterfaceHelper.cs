@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using GameManagement;
+﻿using GameManagement;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +7,7 @@ using UnityEngine.Rendering.HighDefinition;
 using XLObjectDropper.Controllers;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
+using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.UserInterface

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using XLObjectDropper.UI;
+using XLObjectDropper.UI.Menus;
 
 namespace XLObjectDropper.Controllers
 {

@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace XLObjectDropper.UI
+namespace XLObjectDropper.UI.Controls
 {
 	public class DirectionalPadController : MonoBehaviour
 	{

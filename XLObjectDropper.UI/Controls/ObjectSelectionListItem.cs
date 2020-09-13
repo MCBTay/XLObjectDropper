@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace XLObjectDropper.UI
+namespace XLObjectDropper.UI.Controls
 {
 	public class ObjectSelectionListItem : MonoBehaviour, ISelectHandler
 	{

@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace XLObjectDropper.UI
+namespace XLObjectDropper.UI.Menus
 {
 	public class OptionsMenuUI : MonoBehaviour
 	{

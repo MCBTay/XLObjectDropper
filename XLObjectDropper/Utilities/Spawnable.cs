@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
-using XLObjectDropper.UI;
+using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.Utilities
 {

@@ -5,7 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using XLObjectDropper.UI;
+using XLObjectDropper.UI.Controls;
+using XLObjectDropper.UI.Menus;
+using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.Utilities;
 using Object = UnityEngine.Object;
 

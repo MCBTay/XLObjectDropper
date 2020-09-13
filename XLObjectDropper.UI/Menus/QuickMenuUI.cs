@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using XLObjectDropper.UI.Utilities;
 
-namespace XLObjectDropper.UI
+namespace XLObjectDropper.UI.Menus
 {
 	public class QuickMenuUI : ObjectSelectionBase<QuickMenuType>
 	{
@@ -8,8 +9,10 @@ namespace XLObjectDropper.UI
 		public GameObject PlacedCategory;
 		public GameObject RecentCategory;
 
-		private void Awake()
+		protected override void Awake()
 		{
+			base.Awake();
+
 			Categories.Add(QuickMenuType.Placed, PlacedCategory);
 			Categories.Add(QuickMenuType.Recent, RecentCategory);
 		}

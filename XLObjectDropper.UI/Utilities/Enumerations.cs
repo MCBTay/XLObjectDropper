@@ -1,4 +1,4 @@
-﻿namespace XLObjectDropper.UI
+﻿namespace XLObjectDropper.UI.Utilities
 {
 	public enum ScalingMode
 	{

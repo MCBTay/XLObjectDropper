@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace XLObjectDropper.UI
+namespace XLObjectDropper.UI.Menus
 {
 	public class ObjectSelectionBase<T> : MonoBehaviour where T : Enum
 	{
@@ -23,13 +23,13 @@ namespace XLObjectDropper.UI
 		public GameObject UIButton_RB;
 		public GameObject UIButton_RB_Pressed;
 
-		private void Awake()
+		protected virtual void Awake()
 		{
 			Categories = new Dictionary<T, GameObject>();
 			CurrentCategoryIndex = 0;
 		}
 
-		private void Start()
+		protected virtual void Start()
 		{
 			CurrentCategoryIndex = -1;
 			SetActiveCategory(true);
@@ -41,7 +41,7 @@ namespace XLObjectDropper.UI
 			UIButton_RB_Pressed.SetActive(false);
 		}
 
-		protected void SetActiveCategory(bool increment)
+		protected virtual void SetActiveCategory(bool increment)
 		{
 			if (increment) CurrentCategoryIndex++;
 			else CurrentCategoryIndex--;
@@ -72,7 +72,7 @@ namespace XLObjectDropper.UI
 				EventSystem.current.SetSelectedGameObject(ListContent.transform.GetChild(0).gameObject);
 		}
 
-		private void Update()
+		protected virtual void Update()
 		{
 			#region Right bumper
 			if (UIManager.Instance.Player.GetButtonDown("RB"))

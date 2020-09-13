@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityModManagerNet;
-using XLObjectDropper.UI;
+using XLObjectDropper.UI.Utilities;
 using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Utilities

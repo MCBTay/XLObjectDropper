@@ -3,10 +3,11 @@ using Rewired;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityModManagerNet;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
+using XLObjectDropper.UI.Controls;
+using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
 
@@ -210,11 +211,11 @@ namespace XLObjectDropper.Controllers
 
 			UpdateAXBYLabels();
 
-			if (player.GetButtonDown("LB"))
+			if (player.GetButtonDown("LB") && SelectedObjectActive)
 			{
 				ScaleAndRotateEvent = new ObjectScaleAndRotateEvent(SelectedObject);
 			}
-			if (player.GetButtonUp("LB"))
+			if (player.GetButtonUp("LB") && SelectedObjectActive)
 			{
 				ScaleAndRotateEvent.newRotation = SelectedObject.transform.rotation;
 				ScaleAndRotateEvent.newLocalScale = SelectedObject.transform.localScale;

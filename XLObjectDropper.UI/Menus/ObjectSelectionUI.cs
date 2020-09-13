@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using XLObjectDropper.UI.Utilities;
 
-namespace XLObjectDropper.UI
+namespace XLObjectDropper.UI.Menus
 {
 	public class ObjectSelectionUI : ObjectSelectionBase<SpawnableType>
 	{
@@ -12,9 +13,10 @@ namespace XLObjectDropper.UI
 		public GameObject ParkCategory;
 		public GameObject PacksCategory;
 
-		
-		private void Awake()
+		protected override void Awake()
 		{
+			base.Awake();
+
 			Categories.Add(SpawnableType.Rails, RailsCategory);
 			Categories.Add(SpawnableType.Ramps, RampsCategory);
 			Categories.Add(SpawnableType.Splines, SplinesCategory);
