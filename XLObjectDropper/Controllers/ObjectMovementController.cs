@@ -79,6 +79,7 @@ namespace XLObjectDropper.Controllers
 		private int CurrentScaleMode { get; set; }
 		private int CurrentRotationSnappingMode { get; set; }
 		private bool LockCameraMovement { get; set; }
+		private int CurrentPlacementSnappingMode { get; set; }
 		#endregion
 
 		private void Awake()
@@ -277,8 +278,18 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonDown("DPadX"))
 				{
-					UISounds.Instance?.PlayOneShotSelectMajor();
+					UISounds.Instance?.PlayOneShotSelectionChange();
 					LockCameraMovement = !LockCameraMovement;
+				}
+
+				if (player.GetNegativeButtonDown("DPadX"))
+				{
+					UISounds.Instance?.PlayOneShotSelectionChange();
+
+					CurrentPlacementSnappingMode++;
+
+					if (CurrentPlacementSnappingMode > Enum.GetValues(typeof(PlacementSnappingMode)).Length - 1)
+						CurrentPlacementSnappingMode = 0;
 				}
 
 				if (player.GetButtonDown("X"))
@@ -299,6 +310,7 @@ namespace XLObjectDropper.Controllers
 					}
 					else
 					{
+
 						GameStateMachine.Instance.RequestPauseState();
 					}
 				}
@@ -500,7 +512,7 @@ namespace XLObjectDropper.Controllers
 		{
 			if (player.GetButtonDown("Y"))
 			{
-				UISounds.Instance?.PlayOneShotSelectMajor();
+				UISounds.Instance?.PlayOneShotSelectionChange();
 
 				CurrentScaleMode++;
 
@@ -597,7 +609,7 @@ namespace XLObjectDropper.Controllers
         {
 	        if (player.GetButtonDown("X"))
 	        {
-		        UISounds.Instance?.PlayOneShotSelectMajor();
+		        UISounds.Instance?.PlayOneShotSelectionChange();
 
 				CurrentRotationSnappingMode++;
 
