@@ -10,6 +10,7 @@ using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
+using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Controllers
 {
@@ -78,6 +79,8 @@ namespace XLObjectDropper.Controllers
 
 		private GameObject ObjectSelectionMenuGameObject;
 		private ObjectSelectionController ObjectSelectionController { get; set; }
+
+		private GameObject GridOverlay;
 
 		private int CurrentScaleMode { get; set; }
 		private int CurrentRotationSnappingMode { get; set; }
@@ -387,7 +390,7 @@ namespace XLObjectDropper.Controllers
 			var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
 			collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
 
-			if (GridOverlay != null && GridOverlay.activeInHierarchy)
+			if (GridOverlay != null && GridOverlay.activeInHierarchy && Settings.Instance.ShowGrid)
 			{
 				GridOverlay.transform.position = transform.position;
 			}
@@ -416,7 +419,16 @@ namespace XLObjectDropper.Controllers
 			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
 			#region Camera rotation
 			rotationAngleX += rightStick.x * Time.deltaTime * CameraRotateSpeed;
-			rotationAngleY += rightStick.y * Time.deltaTime * CameraRotateSpeed;
+
+			if (Settings.Instance.InvertCamControl)
+			{
+				rotationAngleY -= rightStick.y * Time.deltaTime * CameraRotateSpeed;
+			}
+			else
+			{
+				rotationAngleY += rightStick.y * Time.deltaTime * CameraRotateSpeed;
+			}
+			
 
 			var maxAngle = 85f;
 
@@ -496,6 +508,12 @@ namespace XLObjectDropper.Controllers
 	        {
 		        SelectedObject.SetActive(false);
 		        UserInterfaceHelper.CustomPassVolume.enabled = false;
+
+		        if (GridOverlay != null && GridOverlay.activeInHierarchy)
+		        {
+					GridOverlay.SetActive(false);
+					DestroyImmediate(GridOverlay);
+		        }
 	        }
         }
 
@@ -694,7 +712,7 @@ namespace XLObjectDropper.Controllers
 			DestroyObjectSelection();
 		}
 
-		private GameObject GridOverlay;
+		
 
 		public void InstantiateSelectedObject(Spawnable spawnable)
 		{
@@ -706,9 +724,11 @@ namespace XLObjectDropper.Controllers
 			SelectedObject.transform.position = transform.position;
 			SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
 
-			// TODO: Check setting here
-			GridOverlay = Instantiate(AssetBundleHelper.GridOverlayPrefab);
-			GridOverlay.transform.position = SelectedObject.transform.position;
+			if (Settings.Instance.ShowGrid)
+			{
+				GridOverlay = Instantiate(AssetBundleHelper.GridOverlayPrefab);
+				GridOverlay.transform.position = SelectedObject.transform.position;
+			}
 
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}

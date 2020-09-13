@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityModManagerNet;
 using XLObjectDropper.UI;
-using XLObjectDropper.EventStack;
-using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Controllers
 {
@@ -14,30 +11,33 @@ namespace XLObjectDropper.Controllers
 
 		private void Awake()
 		{
-			OptionsMenu.Snapping.GetComponent<Toggle>().isOn = Settings.Instance.Snapping;
 			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
+			OptionsMenu.InvertCamControl.GetComponent<Toggle>().isOn = Settings.Instance.InvertCamControl;
+			OptionsMenu.ShowGrid.GetComponent<Toggle>().isOn = Settings.Instance.ShowGrid;
 		}
 
 		private void OnEnable()
 		{
-			OptionsMenu.Snapping.GetComponent<Toggle>().isOn = Settings.Instance.Snapping;
 			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
+			OptionsMenu.InvertCamControl.GetComponent<Toggle>().isOn = Settings.Instance.InvertCamControl;
+			OptionsMenu.ShowGrid.GetComponent<Toggle>().isOn = Settings.Instance.ShowGrid;
 
 			AddListeners();
 
 			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
 			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 
-			EventSystem.current.SetSelectedGameObject(OptionsMenu.Snapping);
-			OptionsMenu.Snapping.GetComponent<Toggle>().OnSelect(null);
+			EventSystem.current.SetSelectedGameObject(OptionsMenu.Sensitivity);
+			OptionsMenu.Sensitivity.GetComponent<Slider>().OnSelect(null);
 		}
 
 		private void AddListeners()
 		{
 			RemoveListeners();
 
-			OptionsMenu.SnappingValueChanged += SnappingValueChanged;
 			OptionsMenu.SensitivityValueChanged += SensitivityValueChanged;
+			OptionsMenu.InvertCamControlValueChanged += InvertCamControlValueChanged;
+			OptionsMenu.ShowGridValueChanged += ShowGridValueChanged;
 			OptionsMenu.UndoClicked += UndoClicked;
 			OptionsMenu.RedoClicked += RedoClicked;
 			OptionsMenu.SaveClicked += SaveClicked;
@@ -46,8 +46,9 @@ namespace XLObjectDropper.Controllers
 
 		private void RemoveListeners()
 		{
-			OptionsMenu.SnappingValueChanged -= SnappingValueChanged;
 			OptionsMenu.SensitivityValueChanged -= SensitivityValueChanged;
+			OptionsMenu.InvertCamControlValueChanged -= InvertCamControlValueChanged;
+			OptionsMenu.ShowGridValueChanged -= ShowGridValueChanged;
 			OptionsMenu.UndoClicked -= UndoClicked;
 			OptionsMenu.RedoClicked -= RedoClicked;
 			OptionsMenu.SaveClicked -= SaveClicked;
@@ -59,15 +60,21 @@ namespace XLObjectDropper.Controllers
 			RemoveListeners();
 		}
 
-		private static void SnappingValueChanged(bool value)
-		{
-			Settings.Instance.Snapping = value;
-			Utilities.SaveManager.Instance.SaveSettings();
-		}
-
 		private static void SensitivityValueChanged(float value)
 		{
 			Settings.Instance.Sensitivity = value;
+			Utilities.SaveManager.Instance.SaveSettings();
+		}
+
+		private static void InvertCamControlValueChanged(bool value)
+		{
+			Settings.Instance.InvertCamControl = value;
+			Utilities.SaveManager.Instance.SaveSettings();
+		}
+
+		private static void ShowGridValueChanged(bool value)
+		{
+			Settings.Instance.ShowGrid = value;
 			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
