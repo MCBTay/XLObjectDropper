@@ -6,8 +6,9 @@ namespace XLObjectDropper.GameManagement
 {
 	public class ObjectDropperState : GameState
 	{
-		private GameObject ObjectMovementControllerGameObject { get; set; }
-		public ObjectMovementController ObjectMovementController { get; set; }
+		private GameObject ObjectDropperControllerGameObject;
+		private ObjectDropperController ObjectDropperController;
+
 		public static ObjectDropperState Instance { get; private set; }
 
 		public ObjectDropperState()
@@ -22,14 +23,14 @@ namespace XLObjectDropper.GameManagement
 
 		public override void OnEnter()
 		{
-			ObjectMovementControllerGameObject = new GameObject();
-			ObjectMovementController = ObjectMovementControllerGameObject.AddComponent<ObjectMovementController>();
+			ObjectDropperControllerGameObject = new GameObject();
+			ObjectDropperController = ObjectDropperControllerGameObject.AddComponent<ObjectDropperController>();
 
 			Time.timeScale = 1.0f;
 
 			GameStateMachine.Instance.PauseObject.SetActive(false);
 			PlayerController.Instance.EnablePuppetMaster(false, true);
-			ObjectMovementControllerGameObject.SetActive(true);
+			ObjectDropperControllerGameObject.SetActive(true);
 			GameStateMachine.Instance.PlayObject.SetActive(false);
 		}
 
@@ -37,7 +38,7 @@ namespace XLObjectDropper.GameManagement
 		{
 			Time.timeScale = 0.0f;
 			GameStateMachine.Instance.PauseObject.SetActive(true);
-			ObjectMovementControllerGameObject.SetActive(false);
+			ObjectDropperControllerGameObject.SetActive(false);
 			GameStateMachine.Instance.PlayObject.SetActive(true);
 			PlayerController.Instance.EnablePuppetMaster(true, false);
 		}

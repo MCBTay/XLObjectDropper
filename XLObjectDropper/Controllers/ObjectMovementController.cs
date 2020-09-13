@@ -2,7 +2,6 @@
 using Rewired;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityModManagerNet;
 using XLObjectDropper.EventStack.Events;
@@ -10,7 +9,6 @@ using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
-using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Controllers
 {
@@ -74,12 +72,6 @@ namespace XLObjectDropper.Controllers
 		private float rotationAngleX;
 		private float rotationAngleY;
 
-		private GameObject OptionsMenuGameObject;
-		private OptionsMenuController OptionsMenuController { get; set; }
-
-		private GameObject ObjectSelectionMenuGameObject;
-		private ObjectSelectionController ObjectSelectionController { get; set; }
-
 		private GameObject GridOverlay;
 
 		private int CurrentScaleMode { get; set; }
@@ -107,37 +99,7 @@ namespace XLObjectDropper.Controllers
 			UserInterfaceHelper.UserInterface.SetActive(true);
 			
 			CurrentScaleMode = (int)ScalingMode.Uniform;
-			
-
-	        if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectDropperState)))
-				return;
-
-			enabled = false;
-        }
-
-		private void CreateCharacterController()
-		{
-			characterController = gameObject.AddComponent<CharacterController>();
-			characterController.center = transform.position;
-			characterController.detectCollisions = true;
-			characterController.enableOverlapRecovery = true;
-			characterController.height = 0.01f;
-			characterController.minMoveDistance = 0.001f;
-			characterController.radius = 0.25f;
-			characterController.skinWidth = 0.001f;
-			characterController.slopeLimit = 80f;
-			characterController.stepOffset = 0.01f;
-			characterController.enabled = true;
-		}
-
-		private void OnEnable()
-        {
-	        UserInterfaceHelper.UserInterface?.SetActive(true);
-
-	        CurrentScaleMode = (int)ScalingMode.Uniform;
 			LockCameraMovement = false;
-
-			HeightToCameraDistCurve = PlayerController.Instance.pinMover.HeightToCameraDistCurve;
 
 			#region from PinMovementController
 			originalNearClipDist = mainCam.nearClipPlane;
@@ -165,12 +127,36 @@ namespace XLObjectDropper.Controllers
 			rotationAngleY = cameraPivot.eulerAngles.y;
 
 			targetDistance = currentCameraDist;
+
+			if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectDropperState)))
+				return;
+
+			enabled = false;
+        }
+
+		private void CreateCharacterController()
+		{
+			characterController = gameObject.AddComponent<CharacterController>();
+			characterController.center = transform.position;
+			characterController.detectCollisions = true;
+			characterController.enableOverlapRecovery = true;
+			characterController.height = 0.01f;
+			characterController.minMoveDistance = 0.001f;
+			characterController.radius = 0.25f;
+			characterController.skinWidth = 0.001f;
+			characterController.slopeLimit = 80f;
+			characterController.stepOffset = 0.01f;
+			characterController.enabled = true;
 		}
+
+		private void OnEnable()
+        {
+	        CurrentScaleMode = (int)ScalingMode.Uniform;
+	        LockCameraMovement = false;
+        }
 
         private void OnDisable()
         {
-	        UserInterfaceHelper.UserInterface?.SetActive(false);
-
 	        if (SelectedObject != null)
 	        {
 		        SelectedObject.SetActive(false);
@@ -189,40 +175,16 @@ namespace XLObjectDropper.Controllers
 	        mainCam.nearClipPlane = originalNearClipDist;
 		}
 
-
-        private bool OptionsMenuOpen => OptionsMenuGameObject != null && OptionsMenuGameObject.activeInHierarchy;
-		private bool ObjectSelectionOpen => ObjectSelectionMenuGameObject != null && ObjectSelectionMenuGameObject.activeInHierarchy;
 		private bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
 
 		private ObjectScaleAndRotateEvent ScaleAndRotateEvent;
 
 		private void Update()
         {
-	        Time.timeScale = OptionsMenuOpen || ObjectSelectionOpen ? 0.0f : 1.0f;
-
 	        Player player = PlayerController.Instance.inputController.player;
 
-			// I have to do this to prevent pressing A on object selection placing the item here.  Perhaps theres
-			// a better way to manage object selection being open, like a coroutine?
-	        if (ItemWasSelected)
-	        {
-		        ItemWasSelected = false;
-		        return;
-	        }
 
-	        if (OptionsMenuOpen && (player.GetButtonDown("Select") || player.GetButtonDown("B")))
-	        {
-		        DestroyOptionsMenu();
-		        return;
-	        }
-
-	        if (ObjectSelectionOpen && (player.GetButtonDown("Start") || player.GetButtonDown("B")))
-	        {
-		        DestroyObjectSelection();
-			    return;
-	        }
-
-			if (HighlightedObject != null)
+	        if (HighlightedObject != null)
 			{
 				HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
 				HighlightedObject = null;
@@ -348,17 +310,7 @@ namespace XLObjectDropper.Controllers
 					rotationAngleY = 0;
 					MoveCamera(true);
 				}
-				
-				if (player.GetButtonDown("Select"))
-		        {
-					CreateOptionsMenu();
-		        }
-
-				if (player.GetButtonDown("Start"))
-		        {
-			        CreateObjectSelection();
-				}
-	        }
+			}
         }
 
         private void LateUpdate()
@@ -681,39 +633,6 @@ namespace XLObjectDropper.Controllers
 			hasGround = flag;
 		}
 
-		#region Object Selection 
-		private void CreateObjectSelection()
-		{
-			ObjectSelectionMenuGameObject = new GameObject();
-			ObjectSelectionController = ObjectSelectionMenuGameObject.AddComponent<ObjectSelectionController>();
-			ObjectSelectionController.ObjectClickedEvent += ObjectSelectionControllerOnObjectClickedEvent;
-
-			ObjectSelectionMenuGameObject.SetActive(true);
-		}
-
-		private void DestroyObjectSelection()
-		{
-			ObjectSelectionMenuGameObject.SetActive(false);
-			ObjectSelectionController.ObjectClickedEvent -= ObjectSelectionControllerOnObjectClickedEvent;
-
-			Destroy(ObjectSelectionController);
-			Destroy(ObjectSelectionMenuGameObject);
-		}
-
-		private bool ItemWasSelected;
-
-		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
-		{
-			ItemWasSelected = true;
-
-			InstantiateSelectedObject(spawnable);
-			SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
-
-			DestroyObjectSelection();
-		}
-
-		
-
 		public void InstantiateSelectedObject(Spawnable spawnable)
 		{
 			SelectedObject = Instantiate(spawnable.Prefab);
@@ -724,6 +643,8 @@ namespace XLObjectDropper.Controllers
 			SelectedObject.transform.position = transform.position;
 			SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
 
+			SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
+
 			if (Settings.Instance.ShowGrid)
 			{
 				GridOverlay = Instantiate(AssetBundleHelper.GridOverlayPrefab);
@@ -732,24 +653,5 @@ namespace XLObjectDropper.Controllers
 
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
-		#endregion
-
-		#region Options Menu
-		private void CreateOptionsMenu()
-		{
-			OptionsMenuGameObject = new GameObject();
-			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
-			
-			OptionsMenuGameObject.SetActive(true);
-		}
-
-		private void DestroyOptionsMenu()
-		{
-			OptionsMenuGameObject.SetActive(false);
-
-			Destroy(OptionsMenuController);
-			Destroy(OptionsMenuGameObject);
-		}
-		#endregion
 	}
 }
