@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5601095128738636516
 Transform:
   m_ObjectHideFlags: 0
@@ -51,6 +51,9 @@ MonoBehaviour:
   Model: {fileID: 114767379241590584, guid: adb919ab9b79d7f4baf715f244ee94c7, type: 3}
   m_targets: []
   BeforeDrag:
+    m_PersistentCalls:
+      m_Calls: []
+  Drag:
     m_PersistentCalls:
       m_Calls: []
   Drop:
