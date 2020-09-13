@@ -52,7 +52,7 @@ namespace XLObjectDropper.Controllers
 		private float currentMoveSpeed;
 		private float zoomSpeed = 10f;
 
-		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.5f, 0.5f, 15f, 5f);
+		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.0f, 0.5f, 15f, 3f);
 		public AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
 		public AnimationCurve HeightToCameraDistCurve;
 
