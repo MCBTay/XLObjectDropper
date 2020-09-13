@@ -1,5 +1,8 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
+using XLObjectDropper.UI.Controls;
+using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.UI
 {
@@ -16,7 +19,11 @@ namespace XLObjectDropper.UI
 		public GameObject RT_UI;
 		public GameObject LT_UI;
 
+		public GameObject DirectionalPad;
+
 		public GameObject Cursor;
+
+		[HideInInspector] private static int CurrentPlacementSnappingMode;
 
 		private void OnEnable()
 		{
@@ -53,15 +60,15 @@ namespace XLObjectDropper.UI
 
 		private void Update()
 		{
-			//var Player = PlayerController.Instance.inputController.Player;
+			var player = UIManager.Instance.Player;
 
-            #region Right bumper
-            if (UIManager.Instance.Player.GetButtonDown("RB"))
+			#region Right bumper
+            if (player.GetButtonDown("RB"))
             {
                 MainScreen_UI.SetActive(false);
                 RB_UI.SetActive(true);
             }
-            if (UIManager.Instance.Player.GetButtonUp("RB"))
+            if (player.GetButtonUp("RB"))
             {
                 MainScreen_UI.SetActive(true);
                 RB_UI.SetActive(false);
@@ -69,12 +76,12 @@ namespace XLObjectDropper.UI
             #endregion
 
             #region Left Bumper
-            if (UIManager.Instance.Player.GetButtonDown("LB"))
+            if (player.GetButtonDown("LB"))
             {
                 MainScreen_UI.SetActive(false);
                 LB_UI.SetActive(true);
             }
-            if (UIManager.Instance.Player.GetButtonUp("LB"))
+            if (player.GetButtonUp("LB"))
             {
                 MainScreen_UI.SetActive(true);
                 LB_UI.SetActive(false);
@@ -82,8 +89,7 @@ namespace XLObjectDropper.UI
             #endregion
 
             #region Right Trigger
-            var axisTest_RT = UIManager.Instance.Player.GetAxis("RT");
-            if (axisTest_RT > .1)
+            if (player.GetButton("RT"))
             {
                 if (LB_UI.activeInHierarchy == false)
                 {
@@ -97,8 +103,7 @@ namespace XLObjectDropper.UI
             #endregion
 
             #region Left Trigger
-            var axisTest_LT = UIManager.Instance.Player.GetAxis("LT");
-            if (axisTest_LT > .1)
+            if (player.GetButton("LT"))
             {
                 if (LB_UI.activeInHierarchy == false)
                 {
@@ -110,6 +115,36 @@ namespace XLObjectDropper.UI
                 LT_UI.SetActive(false);
             }
             #endregion
+
+            if (player.GetNegativeButtonDown("DPadX"))
+            {
+	            CurrentPlacementSnappingMode++;
+
+	            if (CurrentPlacementSnappingMode > Enum.GetValues(typeof(PlacementSnappingMode)).Length - 1)
+		            CurrentPlacementSnappingMode = 0;
+
+	            string placementSnapping = "OFF";
+	            switch (CurrentPlacementSnappingMode)
+	            {
+		            case (int)PlacementSnappingMode.Off:
+			            placementSnapping = "OFF";
+			            break;
+		            case (int)PlacementSnappingMode.Quarter:
+			            placementSnapping = "1/4m";
+			            break;
+		            case (int)PlacementSnappingMode.Half:
+			            placementSnapping = "1/2m";
+			            break;
+		            case (int)PlacementSnappingMode.Full:
+			            placementSnapping = "1m";
+			            break;
+					case (int)PlacementSnappingMode.Double:
+						placementSnapping = "2m";
+						break;
+	            }
+
+				DirectionalPad.GetComponent<DirectionalPadController>().LeftLabel.SetText($"SNAP PLACEMENT: <color=#3286EC>{placementSnapping}");
+            }
 		}
     }
 }

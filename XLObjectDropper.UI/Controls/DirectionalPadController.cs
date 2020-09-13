@@ -52,6 +52,7 @@ namespace XLObjectDropper.UI.Controls
 				RightPressed.SetActive(true);
 				LockCam = !LockCam;
 
+				// TODO: Why is this here?
 				if (!player.GetButton("LB"))
 				{
 					RightLabel.SetText($"LOCK CAM: <color=#3286EC>{(LockCam ? "ON" : "OFF")}");

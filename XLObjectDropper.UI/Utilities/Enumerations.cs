@@ -31,4 +31,13 @@
 		Placed,
 		Recent
 	}
+
+	public enum PlacementSnappingMode
+	{
+		Off,
+		Quarter,
+		Half,
+		Full,
+		Double
+	}
 }
