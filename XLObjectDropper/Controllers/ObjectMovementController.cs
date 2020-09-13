@@ -40,7 +40,7 @@ namespace XLObjectDropper.Controllers
 		private bool hasGround;
 
 		private float HorizontalAcceleration = 10f;
-		private float MaxCameraAcceleration = 5f;
+		private float MaxCameraAcceleration = 20f;
 		private float heightChangeSpeed = 2f;
 		private float VerticalAcceleration = 20f;
 		private float CameraRotateSpeed = 100f;
@@ -336,7 +336,7 @@ namespace XLObjectDropper.Controllers
 			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 			Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
 
-			float a = (player.GetAxis(9) - player.GetAxis(8)) * Time.deltaTime * zoomSpeed; //* HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
+			float a = (player.GetAxis("RT") - player.GetAxis("LT")) * Time.deltaTime * zoomSpeed; //* HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
 
 			currentHeight = transform.position.y - groundLevel;
 			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
@@ -412,25 +412,26 @@ namespace XLObjectDropper.Controllers
         public void MoveCamera(bool moveInstant = false)
         {
 	        Ray ray = new Ray(cameraPivot.position, -cameraPivot.forward);
-	        float num1 = targetDistance;
 
-	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out RaycastHit hitInfo, num1, (int)layerMask) && (double)(num1 = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
+	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out RaycastHit hitInfo, targetDistance, (int)layerMask) && (double)(targetDistance = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
 		        moveInstant = true;
 
 	        if (moveInstant)
 	        {
 		        lastCameraVelocity = 0.0f;
-		        currentCameraDist = num1;
+		        currentCameraDist = targetDistance;
 	        }
 	        else
 	        {
-		        float num2 = (float)(((double)num1 - (double)currentCameraDist) / 0.25);
+		        float newTargetDistance = targetDistance - currentCameraDist;
 
-		        float f = Mathf.Approximately(lastCameraVelocity, 0.0f) || (double)Mathf.Sign(num2) == (double)Mathf.Sign(lastCameraVelocity) ?
-			        ((double)Mathf.Abs(num2) <= (double)Mathf.Abs(lastCameraVelocity) ? num2 : Mathf.MoveTowards(lastCameraVelocity, num2, MaxCameraAcceleration * Time.deltaTime)) :
+		        float f = Mathf.Approximately(lastCameraVelocity, 0.0f) || (double)Mathf.Sign(newTargetDistance) == (double)Mathf.Sign(lastCameraVelocity) ?
+			        ((double)Mathf.Abs(newTargetDistance) <= (double)Mathf.Abs(lastCameraVelocity) ? 
+				        newTargetDistance : 
+				        Mathf.MoveTowards(lastCameraVelocity, newTargetDistance, MaxCameraAcceleration * Time.deltaTime)) :
 			        0.0f;
 
-				currentCameraDist = Mathf.MoveTowards(currentCameraDist, num1, Mathf.Abs(f) * Time.deltaTime);
+		        currentCameraDist = Mathf.MoveTowards(currentCameraDist, targetDistance, Mathf.Abs(f) * Time.deltaTime);
 		        currentCameraDist = Mathf.Clamp(currentCameraDist, minDistance, maxDistance);
 		        lastCameraVelocity = f;
 	        }
