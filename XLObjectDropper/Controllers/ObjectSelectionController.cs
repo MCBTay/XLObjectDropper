@@ -66,11 +66,13 @@ namespace XLObjectDropper.Controllers
 
 		private void ListItemSelected(Spawnable spawnable)
 		{
+			UISounds.Instance?.PlayOneShotSelectionChange();
 			PreviewObject = spawnable.Prefab;
 		}
 
 		private void ObjectClicked(Spawnable spawnable)
 		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
 			ObjectClickedEvent.Invoke(spawnable);
 		}
 	}

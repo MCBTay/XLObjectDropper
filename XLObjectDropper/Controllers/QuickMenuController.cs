@@ -50,7 +50,7 @@ namespace XLObjectDropper.Controllers
 				for (int i = objectList.Count - 1; i >= 0; i--)
 				{
 					var spawnable = objectList[i];
-					QuickMenu.AddToList(spawnable.Prefab.name, spawnable.PreviewTexture, () => ObjectClicked(spawnable));
+					QuickMenu.AddToList(spawnable.Prefab.name, spawnable.PreviewTexture, () => ObjectClicked(spawnable), () => ObjectSelected(spawnable));
 				}
 			}
 		}
@@ -67,8 +67,14 @@ namespace XLObjectDropper.Controllers
 			PopulateList();
 		}
 
+		private void ObjectSelected(Spawnable spawnable)
+		{
+			UISounds.Instance?.PlayOneShotSelectionChange();
+		}
+
 		private void ObjectClicked(Spawnable spawnable)
 		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
 			ObjectClickedEvent.Invoke(spawnable);
 		}
 	}
