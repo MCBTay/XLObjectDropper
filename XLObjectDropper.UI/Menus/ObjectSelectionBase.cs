@@ -116,8 +116,13 @@ namespace XLObjectDropper.UI.Menus
 				var objectA = ListContent.transform.GetChild(i);
 				objectA.transform.parent = null;
 
-				// Optionally destroy the objectA if not longer needed
+				objectA.gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
+				objectA.gameObject.GetComponent<ObjectSelectionListItem>().onSelect.RemoveAllListeners();
+				
+				Destroy(objectA.gameObject);
 			}
+
+			EventSystem.current.SetSelectedGameObject(null);
 		}
 
 		public virtual GameObject AddToList(string name, Texture2D previewTexture, UnityAction objectClicked = null, UnityAction objectSelected = null)
@@ -133,7 +138,7 @@ namespace XLObjectDropper.UI.Menus
 
 			if (objectSelected != null)
 			{
-				listItem.GetComponent<ObjectSelectionListItem>().ListItemSelected += objectSelected;
+				listItem.GetComponent<ObjectSelectionListItem>().onSelect.AddListener(objectSelected);
 			}
 			
 			listItem.GetComponentInChildren<RawImage>().texture = previewTexture;

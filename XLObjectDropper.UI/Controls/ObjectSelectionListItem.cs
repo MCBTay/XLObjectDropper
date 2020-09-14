@@ -8,8 +8,7 @@ namespace XLObjectDropper.UI.Controls
 	public class ObjectSelectionListItem : MonoBehaviour, ISelectHandler
 	{
 		public GameObject ListItem;
-
-		[HideInInspector] public event UnityAction ListItemSelected = () => { };
+		[HideInInspector] public UnityEvent onSelect;
 
 		public void OnEnable()
 		{
@@ -37,7 +36,7 @@ namespace XLObjectDropper.UI.Controls
 
 		public void OnSelect(BaseEventData eventData)
 		{
-			ListItemSelected.Invoke();
+			onSelect.Invoke();
 		}
 
 		public void Update()
