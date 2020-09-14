@@ -238,7 +238,6 @@ namespace XLObjectDropper.Controllers
 			{
 				HandleStickAndTriggerInput(player);
 
-				
 				if (SelectedObject != null && SelectedObject.activeInHierarchy)
 				{
 					if (player.GetButtonDown("A"))
@@ -272,9 +271,7 @@ namespace XLObjectDropper.Controllers
 					}
 				}
 
-				// If dpad up/down, move object up/down
-				float dpad = player.GetAxis("DPadY");
-				targetHeight = targetHeight + (dpad * Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
+				HandleDPadHeightAdjustment(player);
 
 				if (player.GetButtonDown("DPadX"))
 				{
@@ -345,17 +342,47 @@ namespace XLObjectDropper.Controllers
 
         private void HandleStickAndTriggerInput(Player player)
         {
-			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
-			Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
+	        Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
 
 			float a = (player.GetAxis("RT") - player.GetAxis("LT")) * Time.deltaTime * zoomSpeed; //* HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
 
 			currentHeight = transform.position.y - groundLevel;
 			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
 
-			var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
-			collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
+			float increment = GetCurrentPlacementSnappingModeIncrement();
+			if (increment > 0.0f)
+			{
+				var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
+				if (player.GetButtonDown("LeftStickX"))
+				{
+					collisionFlags = characterController.Move(new Vector3(increment, 0.0f, 0.0f));
+				}
+
+				if (player.GetNegativeButtonDown("LeftStickX"))
+				{
+					collisionFlags = characterController.Move(new Vector3(-increment, 0.0f, 0.0f));
+				}
+
+				if (player.GetButtonDown("LeftStickY"))
+				{
+					collisionFlags = characterController.Move(new Vector3(0.0f, 0.0f, increment));
+				}
+
+				if (player.GetNegativeButtonDown("LeftStickY"))
+				{
+					collisionFlags = characterController.Move(new Vector3(0.0f, 0.0f, -increment));
+				}
+
+				//TODO: Potentially add some code here to snap it to the grid if it's for some reason not on it?
+			}
+			else
+			{
+				var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
+				var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
+				collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
+			}
+			
 			if (GridOverlay != null && GridOverlay.activeInHierarchy && Settings.Instance.ShowGrid)
 			{
 				GridOverlay.transform.position = transform.position;
@@ -395,7 +422,6 @@ namespace XLObjectDropper.Controllers
 				rotationAngleY += rightStick.y * Time.deltaTime * CameraRotateSpeed;
 			}
 			
-
 			var maxAngle = 85f;
 
 			rotationAngleY = ClampAngle(rotationAngleY, -maxAngle, maxAngle);
@@ -483,6 +509,57 @@ namespace XLObjectDropper.Controllers
 		        }
 	        }
         }
+
+		private float GetCurrentPlacementSnappingModeIncrement()
+		{
+			float increment = 0.0f;
+
+			switch (CurrentPlacementSnappingMode)
+			{
+				case (int)PlacementSnappingMode.Quarter:
+					increment = 0.25f;
+					break;
+				case (int)PlacementSnappingMode.Half:
+					increment = 0.5f;
+					break;
+				case (int)PlacementSnappingMode.Full:
+					increment = 1.0f;
+					break;
+				case (int)PlacementSnappingMode.Double:
+					increment = 2.0f;
+					break;
+				case (int)PlacementSnappingMode.Off:
+				default:
+					increment = 0.0f;
+					break;
+			}
+
+			return increment;
+		}
+
+		private void HandleDPadHeightAdjustment(Player player)
+		{
+			var increment = GetCurrentPlacementSnappingModeIncrement();
+
+			if (increment > 0)
+			{
+				if (player.GetButtonDown("DPadY"))
+				{
+					targetHeight += increment;
+				}
+
+				if (player.GetNegativeButtonDown("DPadY"))
+				{
+					targetHeight -= increment;
+				}
+			}
+			else
+			{
+				// If dpad up/down, move object up/down
+				float dpad = player.GetAxis("DPadY");
+				targetHeight = targetHeight + (dpad * Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
+			}
+		}
 
 		#region Rotation and Scaling (holding LB)
 		private void HandleRotationAndScalingInput(Player player)
