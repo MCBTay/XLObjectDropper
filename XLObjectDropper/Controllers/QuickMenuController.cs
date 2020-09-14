@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.Utilities;
@@ -52,6 +53,9 @@ namespace XLObjectDropper.Controllers
 					var spawnable = objectList[i];
 					QuickMenu.AddToList(spawnable.Prefab.name, spawnable.PreviewTexture, () => ObjectClicked(spawnable), () => ObjectSelected(spawnable));
 				}
+
+				if (QuickMenu.ListContent.transform.childCount > 0)
+					EventSystem.current.SetSelectedGameObject(QuickMenu.ListContent.transform.GetChild(0).gameObject);
 			}
 		}
 
