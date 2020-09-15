@@ -24,6 +24,10 @@ namespace XLObjectDropper.Controllers
 		private QuickMenuController QuickMenuController;
 		private bool QuickMenuOpen => QuickMenuGameObject != null && QuickMenuGameObject.activeInHierarchy;
 
+		private GameObject RotationAndScaleGameObject;
+		private RotationAndScaleController RotationAndScaleController;
+		private bool RotationAndScaleOpen => RotationAndScaleGameObject != null && RotationAndScaleGameObject.activeInHierarchy;
+
 		private void Awake()
 		{
 			Instance = this;
@@ -44,6 +48,7 @@ namespace XLObjectDropper.Controllers
 			DestroyOptionsMenu();
 			DestroyObjectMovement();
 			DestroyQuickMenu();
+			DestroyRotationAndScaleUI();
 		}
 
 		private void Update()
@@ -51,6 +56,16 @@ namespace XLObjectDropper.Controllers
 			var player = PlayerController.Instance.inputController.player;
 
 			Time.timeScale = OptionsMenuOpen || ObjectSelectionOpen || QuickMenuOpen ? 0.0f : 1.0f;
+
+
+
+			if (player.GetButtonUp("LB"))
+			{
+				if (RotationAndScaleOpen)
+				{
+					DestroyRotationAndScaleUI();
+				}
+			}
 
 			if (player.GetButton("LB"))
 			{
@@ -65,6 +80,14 @@ namespace XLObjectDropper.Controllers
 					{
 						ObjectMovementController.enabled = false;
 						CreateQuickMenu();
+					}
+				}
+
+				if (!QuickMenuOpen)
+				{
+					if (!RotationAndScaleOpen)
+					{
+						CreateRotationAndScaleUI();
 					}
 				}
 			}
@@ -82,6 +105,12 @@ namespace XLObjectDropper.Controllers
 						ObjectMovementController.enabled = false;
 						CreateOptionsMenu();
 					}
+				}
+
+				if (player.GetButtonLongPressDown("Start"))
+				{
+					//UISounds.Instance.PlayOneShotSelectMajor();
+					UnityModManager.Logger.Log("XLObjectDropper: Long pressed start");
 				}
 
 				if (player.GetButtonDown("Start"))
@@ -229,6 +258,26 @@ namespace XLObjectDropper.Controllers
 
 			DestroyQuickMenu();
 			ObjectMovementController.enabled = true;
+		}
+		#endregion
+
+		#region Rotation And Scale UI
+		private void CreateRotationAndScaleUI()
+		{
+			RotationAndScaleGameObject = new GameObject();
+			RotationAndScaleController = RotationAndScaleGameObject.AddComponent<RotationAndScaleController>();
+
+			RotationAndScaleGameObject.SetActive(true);
+		}
+
+		private void DestroyRotationAndScaleUI()
+		{
+			if (RotationAndScaleGameObject == null || RotationAndScaleController == null) return;
+
+			RotationAndScaleGameObject.SetActive(false);
+
+			DestroyImmediate(RotationAndScaleController);
+			DestroyImmediate(RotationAndScaleGameObject);
 		}
 		#endregion
 	}
