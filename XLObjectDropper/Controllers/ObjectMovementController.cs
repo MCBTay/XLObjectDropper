@@ -75,6 +75,7 @@ namespace XLObjectDropper.Controllers
 		private float rotationAngleY;
 
 		private GameObject GridOverlay;
+		private bool GridOverlayActive => GridOverlay != null && GridOverlay.activeInHierarchy;
 
 		private int CurrentScaleMode { get; set; }
 		private int CurrentRotationSnappingMode { get; set; }
@@ -185,7 +186,6 @@ namespace XLObjectDropper.Controllers
 		private void Update()
         {
 	        Player player = PlayerController.Instance.inputController.player;
-
 
 	        if (HighlightedObject != null)
 			{
@@ -383,7 +383,7 @@ namespace XLObjectDropper.Controllers
 				collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
 			}
 			
-			if (GridOverlay != null && GridOverlay.activeInHierarchy && Settings.Instance.ShowGrid)
+			if (GridOverlayActive && Settings.Instance.ShowGrid)
 			{
 				GridOverlay.transform.position = transform.position;
 			}
@@ -699,7 +699,42 @@ namespace XLObjectDropper.Controllers
 		#region Axis Locking (holding RB)
 		private void HandleAxisLocking(Player player)
 		{
+			HandleDPadHeightAdjustment(player);
 
+			currentHeight = transform.position.y - groundLevel;
+
+			float num = (float)(((double)targetHeight - (double)currentHeight) / 0.25);
+			collisionFlags = characterController.Move((Mathf.Approximately(lastVerticalVelocity, 0.0f) || (double)Mathf.Sign(num) == (double)Mathf.Sign(lastVerticalVelocity) ? ((double)Mathf.Abs(num) <= (double)Mathf.Abs(lastVerticalVelocity) ? num : Mathf.MoveTowards(lastVerticalVelocity, num, VerticalAcceleration * Time.deltaTime)) : 0.0f) * Time.deltaTime * Vector3.up);
+			lastVerticalVelocity = characterController.velocity.y;
+
+			currentHeight = transform.position.y - groundLevel;
+
+
+			var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
+
+			Vector3 direction = Vector3.zero;
+
+			if (Mathf.Abs(leftStick.x) > Mathf.Abs(leftStick.y))
+			{
+				direction = new Vector3(Mathf.Sign(leftStick.x), 0.0f, 0.0f);
+			}
+			else if (Mathf.Abs(leftStick.x) < Mathf.Abs(leftStick.y))
+			{
+				direction = new Vector3(0.0f, 0.0f, Mathf.Sign(leftStick.y));
+			}
+
+			var motion = direction * currentMoveSpeed * Time.deltaTime;
+			collisionFlags = characterController.Move(new Vector3(motion.x, 0.0f, motion.z));
+
+			if (SelectedObjectActive)
+			{
+				SelectedObject.transform.position = cameraPivot.position;
+
+				if (GridOverlayActive && Settings.Instance.ShowGrid)
+				{
+					GridOverlay.transform.position = SelectedObject.transform.position;
+				}
+			}
 		}
 		#endregion
 
