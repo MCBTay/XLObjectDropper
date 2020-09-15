@@ -97,16 +97,37 @@ namespace XLObjectDropper.UI
 					}
 				}
 
-				if (Player.GetButtonDown("Start"))
+		        if (Player.GetButtonTimedPressUp("Start", 0.0f, 0.7f)) // tap
 				{
-					if (!ObjectSelectionUI.activeInHierarchy)
+					if (QuickMenuUI.activeInHierarchy)
 					{
-						ObjectPlacementUI.SetActive(false);
-						ObjectSelectionUI.SetActive(true);
+						QuickMenuUI.SetActive(false);
+						ObjectPlacementUI.SetActive(true);
 					}
 					else
 					{
-						ObjectSelectionUI.SetActive(false);
+						if (!ObjectSelectionUI.activeInHierarchy)
+						{
+							ObjectPlacementUI.SetActive(false);
+							ObjectSelectionUI.SetActive(true);
+						}
+						else
+						{
+							ObjectSelectionUI.SetActive(false);
+							ObjectPlacementUI.SetActive(true);
+						}
+					}
+				}
+				else if (Player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionUI.activeInHierarchy) //press
+				{
+					if (!QuickMenuUI.activeInHierarchy)
+					{
+						ObjectPlacementUI.SetActive(false);
+						QuickMenuUI.SetActive(true);
+					}
+					else
+					{
+						QuickMenuUI.SetActive(false);
 						ObjectPlacementUI.SetActive(true);
 					}
 				}

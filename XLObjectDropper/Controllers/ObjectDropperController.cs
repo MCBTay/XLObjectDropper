@@ -107,23 +107,42 @@ namespace XLObjectDropper.Controllers
 					}
 				}
 
-				if (player.GetButtonLongPressDown("Start"))
+				if (player.GetButtonTimedPressUp("Start", 0.0f, 0.7f)) // tap
 				{
-					//UISounds.Instance.PlayOneShotSelectMajor();
-					UnityModManager.Logger.Log("XLObjectDropper: Long pressed start");
-				}
+					UISounds.Instance.PlayOneShotSelectMajor();
 
-				if (player.GetButtonDown("Start"))
-				{
-					if (ObjectSelectionOpen)
+					if (QuickMenuOpen)
 					{
-						DestroyObjectSelection();
+						DestroyQuickMenu();
+						ObjectMovementController.enabled = true;
+					}
+					else
+					{
+						if (ObjectSelectionOpen)
+						{
+							DestroyObjectSelection();
+							ObjectMovementController.enabled = true;
+						}
+						else
+						{
+							ObjectMovementController.enabled = false;
+							CreateObjectSelection();
+						}
+					}
+				}
+				else if (player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionOpen) //press
+				{
+					UISounds.Instance.PlayOneShotSelectMajor();
+
+					if (QuickMenuOpen)
+					{
+						DestroyQuickMenu();
 						ObjectMovementController.enabled = true;
 					}
 					else
 					{
 						ObjectMovementController.enabled = false;
-						CreateObjectSelection();
+						CreateQuickMenu();
 					}
 				}
 			}
