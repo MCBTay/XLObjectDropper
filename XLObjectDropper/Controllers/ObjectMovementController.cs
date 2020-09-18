@@ -6,7 +6,6 @@ using UnityEngine;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
-using XLObjectDropper.UI.Controls;
 using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
@@ -24,6 +23,7 @@ namespace XLObjectDropper.Controllers
 		private LayerInfo SelectedObjectLayerInfo;
 
 		private GameObject HighlightedObject;
+		private bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
 		private LayerInfo HighlightedObjectLayerInfo;
 		
 		public List<Spawnable> SpawnedObjects { get; set; }
@@ -206,7 +206,8 @@ namespace XLObjectDropper.Controllers
 				}
 			}
 
-			UpdateAXBYLabels();
+			MovementUI.HasHighlightedObject = HighlightedObjectActive;
+			MovementUI.HasSelectedObject = SelectedObjectActive;
 
 			if (player.GetButtonDown("LB") && SelectedObjectActive)
 			{
@@ -321,17 +322,6 @@ namespace XLObjectDropper.Controllers
         private void LateUpdate()
         {
 	        UpdateGroundLevel();
-        }
-
-        private void UpdateAXBYLabels()
-        {
-			var buttonController = MovementUI.MainScreen_UI.GetComponentInChildren<AXYBController>();
-			if (buttonController != null)
-			{
-				buttonController.SetXButtonLabelText(SelectedObject != null && SelectedObject.activeInHierarchy ? "Duplicate" : string.Empty);
-				buttonController.SetAButtonLabelText(SelectedObject != null && SelectedObject.activeInHierarchy ? "Place" : "Select");
-				buttonController.SetBButtonLabelText(SelectedObject != null && SelectedObject.activeInHierarchy ? "Cancel" : "Exit");
-			}
         }
 
         private void HandleStickAndTriggerInput(Player player)
