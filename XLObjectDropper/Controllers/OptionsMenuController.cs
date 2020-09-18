@@ -14,6 +14,7 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
 			OptionsMenu.InvertCamControl.GetComponent<Toggle>().isOn = Settings.Instance.InvertCamControl;
 			OptionsMenu.ShowGrid.GetComponent<Toggle>().isOn = Settings.Instance.ShowGrid;
+			OptionsMenu.SnapToGround.GetComponent<Toggle>().isOn = Settings.Instance.SnapToGround;
 		}
 
 		private void OnEnable()
@@ -21,6 +22,7 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
 			OptionsMenu.InvertCamControl.GetComponent<Toggle>().isOn = Settings.Instance.InvertCamControl;
 			OptionsMenu.ShowGrid.GetComponent<Toggle>().isOn = Settings.Instance.ShowGrid;
+			OptionsMenu.SnapToGround.GetComponent<Toggle>().isOn = Settings.Instance.SnapToGround;
 
 			AddListeners();
 
@@ -38,6 +40,7 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.SensitivityValueChanged += SensitivityValueChanged;
 			OptionsMenu.InvertCamControlValueChanged += InvertCamControlValueChanged;
 			OptionsMenu.ShowGridValueChanged += ShowGridValueChanged;
+			OptionsMenu.SnapToGroundValueChanged += SnapToGroundValueChanged;
 			OptionsMenu.UndoClicked += UndoClicked;
 			OptionsMenu.RedoClicked += RedoClicked;
 			OptionsMenu.SaveClicked += SaveClicked;
@@ -49,6 +52,7 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.SensitivityValueChanged -= SensitivityValueChanged;
 			OptionsMenu.InvertCamControlValueChanged -= InvertCamControlValueChanged;
 			OptionsMenu.ShowGridValueChanged -= ShowGridValueChanged;
+			OptionsMenu.SnapToGroundValueChanged -= SnapToGroundValueChanged;
 			OptionsMenu.UndoClicked -= UndoClicked;
 			OptionsMenu.RedoClicked -= RedoClicked;
 			OptionsMenu.SaveClicked -= SaveClicked;
@@ -75,6 +79,12 @@ namespace XLObjectDropper.Controllers
 		private static void ShowGridValueChanged(bool value)
 		{
 			Settings.Instance.ShowGrid = value;
+			Utilities.SaveManager.Instance.SaveSettings();
+		}
+
+		private static void SnapToGroundValueChanged(bool value)
+		{
+			Settings.Instance.SnapToGround = value;
 			Utilities.SaveManager.Instance.SaveSettings();
 		}
 

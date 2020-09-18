@@ -9,6 +9,7 @@ namespace XLObjectDropper
 		public float Sensitivity { get; set; }
 		public bool InvertCamControl { get; set; }
 		public bool ShowGrid { get; set; }
+		public bool SnapToGround { get; set; }
 
 		public static Settings Instance { get; set; }
 
