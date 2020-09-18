@@ -20,6 +20,7 @@ namespace XLObjectDropper.UI
 		public GameObject LT_UI;
 
 		public GameObject DirectionalPad;
+		public GameObject AXYBButtons;
 
 		public GameObject Cursor;
 
