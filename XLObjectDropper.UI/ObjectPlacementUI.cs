@@ -152,21 +152,10 @@ namespace XLObjectDropper.UI
             var buttonController = AXYBButtons.GetComponentInChildren<AXYBController>();
             if (buttonController != null)
             {
-	            buttonController.SetXButtonLabelText(HasSelectedObject ? "Duplicate" : string.Empty);
-	            buttonController.SetAButtonLabelText(HasSelectedObject ? "Place" : "Select");
+	            buttonController.SetXButtonLabelText(HasSelectedObject ? "Duplicate" : string.Empty, HasSelectedObject || HasHighlightedObject);
+	            buttonController.SetAButtonLabelText(HasSelectedObject ? "Place" : "Select", HasSelectedObject || HasHighlightedObject);
 	            buttonController.SetBButtonLabelText(HasSelectedObject ? "Cancel" : "Exit");
-
-	            float alpha = HasSelectedObject || HasHighlightedObject ? 1.0f : 0.3f;
-
-	            buttonController.AButtonLabel.alpha = alpha;
-				buttonController.AButton.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, alpha);
-
-				buttonController.XButtonLabel.alpha = alpha;
-	            buttonController.XButton.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, alpha);
-
-	            buttonController.YButtonLabel.alpha = alpha;
-				buttonController.YButton.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, alpha);
-			}
+            }
 		}
     }
 }
