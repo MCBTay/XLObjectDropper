@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="Controls\AXYBController.cs" />
     <Compile Include="Controls\DirectionalPadController.cs" />
+    <Compile Include="Menus\UnsavedChangesDialog.cs" />
     <Compile Include="Utilities\Enumerations.cs" />
     <Compile Include="Menus\ObjectSelectionBase.cs" />
     <Compile Include="Controls\ObjectSelectionListItem.cs" />

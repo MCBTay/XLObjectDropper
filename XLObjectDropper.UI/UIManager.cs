@@ -12,6 +12,7 @@ namespace XLObjectDropper.UI
         public GameObject ObjectSelectionUI;
         public GameObject OptionsMenuUI;
         public GameObject QuickMenuUI;
+        public GameObject UnsavedChangesDialogUI;
 
         public static UIManager Instance { get; private set; }
 
