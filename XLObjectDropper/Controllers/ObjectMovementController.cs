@@ -58,6 +58,7 @@ namespace XLObjectDropper.Controllers
 		public Transform cameraNode;
 		public float CameraSphereCastRadius = 0.15f;
 		private float currentCameraDist;
+		private float defaultDistance = 5.0f;
 		private float minDistance = 2.5f;
 		private float maxDistance = 25f;
 		private float originalNearClipDist;
@@ -122,7 +123,7 @@ namespace XLObjectDropper.Controllers
 			rotationAngleX = cameraPivot.eulerAngles.x;
 			rotationAngleY = cameraPivot.eulerAngles.y;
 
-			targetDistance = 5f;
+			targetDistance = defaultDistance;
 
 			if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectDropperState)))
 				return;
@@ -313,11 +314,9 @@ namespace XLObjectDropper.Controllers
 				
 				if (player.GetButtonDown("Right Stick Button"))
 				{
-					transform.rotation = Quaternion.identity;
-					targetHeight = defaultHeight;
-					targetDistance = defaultHeight;
+					targetDistance = defaultDistance;
 					rotationAngleX = 0;
-					rotationAngleY = 0;
+					rotationAngleY = 20f;
 					MoveCamera(true);
 				}
 			}
