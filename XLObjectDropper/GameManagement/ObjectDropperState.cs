@@ -38,7 +38,11 @@ namespace XLObjectDropper.GameManagement
 		{
 			Time.timeScale = 0.0f;
 			GameStateMachine.Instance.PauseObject.SetActive(true);
+			
 			ObjectDropperControllerGameObject.SetActive(false);
+			ObjectDropperController.enabled = false;
+			Object.DestroyImmediate(ObjectDropperControllerGameObject);
+
 			GameStateMachine.Instance.PlayObject.SetActive(true);
 			PlayerController.Instance.EnablePuppetMaster(true, false);
 		}

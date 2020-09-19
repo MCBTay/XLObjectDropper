@@ -185,6 +185,8 @@ namespace XLObjectDropper.Controllers
 
 			ObjectMovementGameObject.SetActive(false);
 
+			ObjectMovementController.Instance.CleanUp();
+
 			DestroyImmediate(ObjectMovementController);
 			DestroyImmediate(ObjectMovementGameObject);
 		}

@@ -156,6 +156,11 @@ namespace XLObjectDropper.Controllers
 
         private void OnDisable()
         {
+	        mainCam.nearClipPlane = originalNearClipDist;
+		}
+
+        public void CleanUp()
+        {
 	        if (SelectedObject != null)
 	        {
 		        SelectedObject.SetActive(false);
@@ -169,9 +174,7 @@ namespace XLObjectDropper.Controllers
 		        HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
 		        HighlightedObjectLayerInfo = null;
 		        HighlightedObject = null;
-			}
-
-	        mainCam.nearClipPlane = originalNearClipDist;
+	        }
 		}
 
 		private bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
