@@ -21,7 +21,7 @@ namespace XLObjectDropper.Utilities
 			var levelConfigToSave = new LevelSaveData { levelHash = LevelManager.Instance.currentLevel.hash };
 			levelConfigToSave.gameObjects = new List<GameObjectSaveData>();
 			
-			var spawnedItems = ObjectMovementController.Instance.SpawnedObjects;
+			var spawnedItems = ObjectDropperController.SpawnedObjects;
 
 			if (spawnedItems == null || !spawnedItems.Any()) return;
 
@@ -70,7 +70,7 @@ namespace XLObjectDropper.Utilities
 
 				newObject.transform.ChangeLayersRecursively("Default");
 
-				ObjectMovementController.Instance.SpawnedObjects.Add(new Spawnable(prefab.Prefab, newObject, prefab.PreviewTexture));
+				ObjectDropperController.SpawnedObjects.Add(new Spawnable(prefab.Prefab, newObject, prefab.PreviewTexture));
 			}
 		}
 

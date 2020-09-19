@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 992100816
+CRC: 1406462496
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d3992c27e0805928cc6346ec8e61a426
+    Hash: 6780b665a1a780598571cf4f7fc334df
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 021976c7b6c6f6ff91ef36a8ee8b3453
+    Hash: ab0ce2638479037033d15368f4a57585
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -89,6 +89,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+- Class: 114
+  Script: {fileID: -2109343813, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -105,6 +107,7 @@ Assets:
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/SelfieCamera.prefab
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/ObjDrop_UI.prefab
 - Assets/GridLayout/Grid_Overlay.prefab
+- Assets/OBJ_Dropper_Bundles/UI_Bundle/UnsavedChangesDialog_Master.prefab
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/Outline Custom Pass.prefab
 - Assets/OBJ_Dropper_Bundles/UI_Bundle/ListItem.prefab
 Dependencies: []

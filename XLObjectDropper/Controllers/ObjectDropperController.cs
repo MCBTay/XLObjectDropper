@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
@@ -8,6 +9,8 @@ namespace XLObjectDropper.Controllers
 	public class ObjectDropperController : MonoBehaviour
 	{
 		public static ObjectDropperController Instance;
+
+		public static List<Spawnable> SpawnedObjects;
 
 		private GameObject ObjectMovementGameObject;
 		private ObjectMovementController ObjectMovementController;
@@ -31,6 +34,8 @@ namespace XLObjectDropper.Controllers
 		private void Awake()
 		{
 			Instance = this;
+
+			SpawnedObjects = new List<Spawnable>();
 		}
 
 		private void OnEnable()
@@ -301,5 +306,17 @@ namespace XLObjectDropper.Controllers
 			DestroyImmediate(RotationAndScaleGameObject);
 		}
 		#endregion
+
+		public static void DeleteSpawnedObjects()
+		{
+			foreach (var spawnedObject in SpawnedObjects)
+			{
+				DestroyImmediate(spawnedObject.Prefab);
+				DestroyImmediate(spawnedObject.SpawnedInstance);
+				DestroyImmediate(spawnedObject.PreviewTexture);
+			}
+
+			SpawnedObjects.Clear();
+		}
 	}
 }

@@ -131,6 +131,7 @@ namespace XLObjectDropper.Utilities
 		public static GameObject CustomPassPrefab { get; set; }
 		public static Camera SelfieCamera { get; set; }
 		public static GameObject GridOverlayPrefab { get; set; }
+		public static GameObject UnsavedChangesDialogPrefab { get; set; }
 
 		public static void LoadUIBundle()
 		{
@@ -140,6 +141,8 @@ namespace XLObjectDropper.Utilities
 
 			UIPrefab = bundle.LoadAsset<GameObject>(prefabPath + "ObjDrop_UI.prefab");
 			CustomPassPrefab = bundle.LoadAsset<GameObject>(prefabPath + "Outline Custom Pass.prefab");
+			UnsavedChangesDialogPrefab = bundle.LoadAsset<GameObject>(prefabPath + "UnsavedChangesDialog_Master.prefab");
+
 			GridOverlayPrefab = bundle.LoadAsset<GameObject>("Assets/GridLayout/Grid_Overlay.prefab");
 
 			SelfieCamera = bundle.LoadAsset<GameObject>(prefabPath + "SelfieCamera.prefab").GetComponent<Camera>();

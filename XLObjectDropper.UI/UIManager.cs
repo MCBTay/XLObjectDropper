@@ -40,6 +40,7 @@ namespace XLObjectDropper.UI
 	        ObjectSelectionUI.SetActive(false);
 	        OptionsMenuUI.SetActive(false);
 			QuickMenuUI.SetActive(false);
+			UnsavedChangesDialogUI.SetActive(false);
         }
 
         // Update is called once per frame

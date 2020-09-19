@@ -25,8 +25,6 @@ namespace XLObjectDropper.Controllers
 		private GameObject HighlightedObject;
 		private bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
 		private LayerInfo HighlightedObjectLayerInfo;
-		
-		public List<Spawnable> SpawnedObjects { get; set; }
 
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
 		public float minHeight = 0.0f;
@@ -87,8 +85,6 @@ namespace XLObjectDropper.Controllers
 			gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 
 			mainCam = Camera.main;
-
-			SpawnedObjects = new List<Spawnable>();
 
 			HeightToCameraDistCurve = PlayerController.Instance.pinMover.HeightToCameraDistCurve;
 
@@ -485,7 +481,7 @@ namespace XLObjectDropper.Controllers
 
 	        newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
 
-	        SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
+	        ObjectDropperController.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
 
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();

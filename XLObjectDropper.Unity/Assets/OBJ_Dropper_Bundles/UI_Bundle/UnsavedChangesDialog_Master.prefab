@@ -829,6 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: -2109343813, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  YesButton: {fileID: 2032834746667483799}
+  NoButton: {fileID: 179699218230356151}
 --- !u!1 &6642326852653560010
 GameObject:
   m_ObjectHideFlags: 0

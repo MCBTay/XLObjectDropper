@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ObjectDropperController.cs" />
     <Compile Include="Controllers\QuickMenuController.cs" />
     <Compile Include="Controllers\RotationAndScaleController.cs" />
+    <Compile Include="Patches\LevelManagerPatch.cs" />
     <Compile Include="Utilities\AssetBundleHelper.cs" />
     <Compile Include="Controllers\OptionsMenuController.cs" />
     <Compile Include="EventStack\EventStack.cs" />
