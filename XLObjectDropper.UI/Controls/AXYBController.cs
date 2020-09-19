@@ -77,6 +77,12 @@ namespace XLObjectDropper.UI.Controls
 					AButtonPressed.SetActive(false);
 				}
 			}
+			else
+			{
+				AButton.SetActive(true);
+				AButtonPressed.SetActive(false);
+			}
+			
 			#endregion
 
 			#region X Button
@@ -93,6 +99,11 @@ namespace XLObjectDropper.UI.Controls
 					XButton.SetActive(true);
 					XButtonPressed.SetActive(false);
 				}
+			}
+			else
+			{
+				XButton.SetActive(true);
+				XButtonPressed.SetActive(false);
 			}
 			#endregion
 
@@ -111,6 +122,11 @@ namespace XLObjectDropper.UI.Controls
 					YButtonPressed.SetActive(false);
 				}
 			}
+			else
+			{
+				YButton.SetActive(true);
+				YButtonPressed.SetActive(false);
+			}
 			#endregion
 
 			#region B Button
@@ -127,6 +143,11 @@ namespace XLObjectDropper.UI.Controls
 					BButton.SetActive(true);
 					BButtonPressed.SetActive(false);
 				}
+			}
+			else
+			{
+				BButton.SetActive(true);
+				BButtonPressed.SetActive(false);
 			}
 			#endregion
 		}
