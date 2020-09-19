@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>References\0Harmony.dll</HintPath>
@@ -222,7 +225,7 @@ copy /Y "$(TargetDir)XLObjectDropper.dll" "$(TargetDir)XLObjectDropper\XLObjectD
 copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.UI.dll"
 copy /Y "$(TargetDir)Info.json" "$(TargetDir)XLObjectDropper\Info.json"
 
-powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-0-0-2.zip' -Force
+powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-0-0-3.zip' -Force
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>
