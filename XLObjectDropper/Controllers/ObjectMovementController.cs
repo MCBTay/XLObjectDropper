@@ -1,7 +1,6 @@
 ﻿using GameManagement;
 using Rewired;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
@@ -20,6 +19,7 @@ namespace XLObjectDropper.Controllers
 
 		public GameObject SelectedObject { get; set; }
 		private Spawnable SelectedObjectSpawnable;
+		private bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
 		private LayerInfo SelectedObjectLayerInfo;
 
 		private GameObject HighlightedObject;
@@ -173,9 +173,7 @@ namespace XLObjectDropper.Controllers
 	        }
 		}
 
-		private bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
-
-		private ObjectScaleAndRotateEvent ScaleAndRotateEvent;
+        private ObjectScaleAndRotateEvent ScaleAndRotateEvent;
 
 		private void Update()
         {
@@ -231,8 +229,8 @@ namespace XLObjectDropper.Controllers
 			else
 			{
 				HandleLeftStick(player);
-				HandleTriggers(player);
 				HandleRightStick(player);
+				HandleTriggers(player);
 
 				if (!LockCameraMovement)
 				{
@@ -438,11 +436,6 @@ namespace XLObjectDropper.Controllers
 
         public void MoveCamera(bool moveInstant = false)
         {
-	        Ray ray = new Ray(cameraPivot.position, -cameraPivot.forward);
-
-	        if (Physics.SphereCast(ray, CameraSphereCastRadius, out RaycastHit hitInfo, targetDistance, (int)layerMask) && (double)(targetDistance = Mathf.Max(0.02f, hitInfo.distance - CameraSphereCastRadius)) < (double)currentCameraDist)
-		        moveInstant = true;
-
 	        if (moveInstant)
 	        {
 		        lastCameraVelocity = 0.0f;
@@ -595,7 +588,7 @@ namespace XLObjectDropper.Controllers
 		private void UpdateGroundLevel()
 		{
 			Ray ray1 = new Ray(transform.position, Vector3.down);
-			Ray ray2 = new Ray(transform.position, Vector3.down);
+			
 			bool flag = false;
 			RaycastHit raycastHit = new RaycastHit();
 			ref RaycastHit local = ref raycastHit;
