@@ -153,6 +153,7 @@ namespace XLObjectDropper.UI
             if (buttonController != null)
             {
 	            buttonController.SetXButtonLabelText(HasSelectedObject ? "Duplicate" : string.Empty, HasSelectedObject || HasHighlightedObject);
+				buttonController.SetYButtonLabelText("Delete", HasSelectedObject || HasHighlightedObject);
 	            buttonController.SetAButtonLabelText(HasSelectedObject ? "Place" : "Select", HasSelectedObject || HasHighlightedObject);
 	            buttonController.SetBButtonLabelText(HasSelectedObject ? "Cancel" : "Exit");
             }

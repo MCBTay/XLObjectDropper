@@ -126,7 +126,7 @@ namespace XLObjectDropper.Controllers
 			rotationAngleX = cameraPivot.eulerAngles.x;
 			rotationAngleY = cameraPivot.eulerAngles.y;
 
-			targetDistance = currentCameraDist;
+			targetDistance = 5f;
 
 			if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectDropperState)))
 				return;
