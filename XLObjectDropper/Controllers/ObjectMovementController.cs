@@ -234,7 +234,14 @@ namespace XLObjectDropper.Controllers
 			}
 			else
 			{
-				HandleStickAndTriggerInput(player);
+				HandleLeftStick(player);
+				HandleTriggers(player);
+				HandleRightStick(player);
+
+				if (!LockCameraMovement)
+				{
+					MoveCamera();
+				}
 
 				if (SelectedObject != null && SelectedObject.activeInHierarchy)
 				{
@@ -327,111 +334,110 @@ namespace XLObjectDropper.Controllers
 	        UpdateGroundLevel();
         }
 
-        private void HandleStickAndTriggerInput(Player player)
+        private void HandleLeftStick(Player player)
         {
-	        Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
+	        float increment = GetCurrentPlacementSnappingModeIncrement();
+	        if (increment > 0.0f)
+	        {
+		        var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-			float a = (player.GetAxis("RT") - player.GetAxis("LT")) * Time.deltaTime * zoomSpeed; //* HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
+		        if (player.GetButtonDown("LeftStickX"))
+		        {
+			        collisionFlags = characterController.Move(new Vector3(increment, 0.0f, 0.0f));
+		        }
+
+		        if (player.GetNegativeButtonDown("LeftStickX"))
+		        {
+			        collisionFlags = characterController.Move(new Vector3(-increment, 0.0f, 0.0f));
+		        }
+
+		        if (player.GetButtonDown("LeftStickY"))
+		        {
+			        collisionFlags = characterController.Move(new Vector3(0.0f, 0.0f, increment));
+		        }
+
+		        if (player.GetNegativeButtonDown("LeftStickY"))
+		        {
+			        collisionFlags = characterController.Move(new Vector3(0.0f, 0.0f, -increment));
+		        }
+
+		        //TODO: Potentially add some code here to snap it to the grid if it's for some reason not on it?
+	        }
+	        else
+	        {
+		        var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
+		        var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
+		        collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
+	        }
+
+	        if (GridOverlayActive && Settings.Instance.ShowGrid)
+	        {
+		        GridOverlay.transform.position = transform.position;
+	        }
+		}
+
+        private void HandleRightStick(Player player)
+        {
+	        //TODO: Something about this new rotation method fucks up the default angle of the object dropper
+
+			Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
+	        rotationAngleX += rightStick.x * Time.deltaTime * CameraRotateSpeed;
+
+	        if (Settings.Instance.InvertCamControl)
+	        {
+		        rotationAngleY -= rightStick.y * Time.deltaTime * CameraRotateSpeed;
+	        }
+	        else
+	        {
+		        rotationAngleY += rightStick.y * Time.deltaTime * CameraRotateSpeed;
+	        }
+
+	        var maxAngle = 85f;
+
+	        rotationAngleY = ClampAngle(rotationAngleY, -maxAngle, maxAngle);
+
+	        var rotation = Quaternion.Euler(rotationAngleY, rotationAngleX, 0);
+
+	        Vector3 negDistance = new Vector3(0, 0, -currentCameraDist);
+
+	        var position = rotation * negDistance + Vector3.zero;
+
+	        cameraPivot.rotation = rotation;
+	        cameraNode.position = position;
+
+	        if (SelectedObject != null)
+	        {
+		        SelectedObject.transform.position = cameraPivot.position;
+	        }
+		}
+
+        private void HandleTriggers(Player player)
+        {
+	        float triggers = (player.GetAxis("RT") - player.GetAxis("LT")) * Time.deltaTime * zoomSpeed; //* HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
+
+	        currentHeight = transform.position.y - groundLevel;
+	        currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
 
 			currentHeight = transform.position.y - groundLevel;
-			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
+	        if (!Mathf.Approximately(triggers, 0.0f))
+	        {
+		        if ((double)currentCameraDist < (double)maxDistance && (double)triggers > 0.0 ||
+		            (double)currentCameraDist > (double)minDistance && (double)triggers < 0.0)
+		        {
+			        targetDistance += triggers;
+		        }
 
-			float increment = GetCurrentPlacementSnappingModeIncrement();
-			if (increment > 0.0f)
-			{
-				var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
+		        currentHeight = transform.position.y - groundLevel;
+		        targetHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
+	        }
+	        else
+	        {
+		        float num = (float)(((double)targetHeight - (double)currentHeight) / 0.25);
+		        collisionFlags = characterController.Move((Mathf.Approximately(lastVerticalVelocity, 0.0f) || (double)Mathf.Sign(num) == (double)Mathf.Sign(lastVerticalVelocity) ? ((double)Mathf.Abs(num) <= (double)Mathf.Abs(lastVerticalVelocity) ? num : Mathf.MoveTowards(lastVerticalVelocity, num, VerticalAcceleration * Time.deltaTime)) : 0.0f) * Time.deltaTime * Vector3.up);
+		        lastVerticalVelocity = characterController.velocity.y;
+	        }
 
-				if (player.GetButtonDown("LeftStickX"))
-				{
-					collisionFlags = characterController.Move(new Vector3(increment, 0.0f, 0.0f));
-				}
-
-				if (player.GetNegativeButtonDown("LeftStickX"))
-				{
-					collisionFlags = characterController.Move(new Vector3(-increment, 0.0f, 0.0f));
-				}
-
-				if (player.GetButtonDown("LeftStickY"))
-				{
-					collisionFlags = characterController.Move(new Vector3(0.0f, 0.0f, increment));
-				}
-
-				if (player.GetNegativeButtonDown("LeftStickY"))
-				{
-					collisionFlags = characterController.Move(new Vector3(0.0f, 0.0f, -increment));
-				}
-
-				//TODO: Potentially add some code here to snap it to the grid if it's for some reason not on it?
-			}
-			else
-			{
-				var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
-				var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
-				collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
-			}
-			
-			if (GridOverlayActive && Settings.Instance.ShowGrid)
-			{
-				GridOverlay.transform.position = transform.position;
-			}
-
-			currentHeight = transform.position.y - groundLevel;
-			if (!Mathf.Approximately(a, 0.0f))
-			{
-				if ((double)currentCameraDist < (double)maxDistance && (double)a > 0.0 ||
-					(double)currentCameraDist > (double)minDistance && (double)a < 0.0)
-				{
-					targetDistance += a;
-				}
-
-				currentHeight = transform.position.y - groundLevel;
-				targetHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
-			}
-			else
-			{
-				float num = (float)(((double)targetHeight - (double)currentHeight) / 0.25);
-				collisionFlags = characterController.Move((Mathf.Approximately(lastVerticalVelocity, 0.0f) || (double)Mathf.Sign(num) == (double)Mathf.Sign(lastVerticalVelocity) ? ((double)Mathf.Abs(num) <= (double)Mathf.Abs(lastVerticalVelocity) ? num : Mathf.MoveTowards(lastVerticalVelocity, num, VerticalAcceleration * Time.deltaTime)) : 0.0f) * Time.deltaTime * Vector3.up);
-				lastVerticalVelocity = characterController.velocity.y;
-			}
-
-			currentHeight = transform.position.y - groundLevel;
-
-			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
-			#region Camera rotation
-			rotationAngleX += rightStick.x * Time.deltaTime * CameraRotateSpeed;
-
-			if (Settings.Instance.InvertCamControl)
-			{
-				rotationAngleY -= rightStick.y * Time.deltaTime * CameraRotateSpeed;
-			}
-			else
-			{
-				rotationAngleY += rightStick.y * Time.deltaTime * CameraRotateSpeed;
-			}
-			
-			var maxAngle = 85f;
-
-			rotationAngleY = ClampAngle(rotationAngleY, -maxAngle, maxAngle);
-
-			var rotation = Quaternion.Euler(rotationAngleY, rotationAngleX, 0);
-
-			Vector3 negDistance = new Vector3(0, 0, -currentCameraDist);
-
-			var position = rotation * negDistance + Vector3.zero;
-
-			cameraPivot.rotation = rotation;
-			cameraNode.position = position;
-
-			if (SelectedObject != null)
-			{
-				SelectedObject.transform.position = cameraPivot.position;
-			}
-			#endregion
-
-			if (!LockCameraMovement)
-			{
-				MoveCamera();
-			}
+	        currentHeight = transform.position.y - groundLevel;
 		}
 
         public void MoveCamera(bool moveInstant = false)
