@@ -1,3 +1,21 @@
+----- 2.03 -----
+FIX: Fixed the the inverted (180) rotation of the Path Generator, Tube Generator and the Spline Renderer
+FIX: The Rounded caps of the Tube Generator now properly react to the UV Rotation parameter
+FIX: The Extrusion properties of the Surface Generator can now properly be set through the inspector
+FIX: Deleting points with Nodes in the inspector no longer throws exceptions
+FIX: SplineTracer onEndReached and onBeginningReached events not being called in some cases
+FIX: When using Mesh Generators, setting the spline points to 1 or 0 (removing all points) now properly clears the mesh
+FIX: Fixed SVG import issues and added support for importing arcs thanks to Thycon (community member)
+FIX: Setting the clip range of the Spline Mesh to 0-0 when "auto count" is enabled no longer causes a Stack Overflow
+
+FEATURE: Added a UV Twist feature to the Tube Generator
+
+API: Added the onPostBuild event to the SplineUser which is called after the user has finished updating. Useful when multithreading is enabled.
+
+SUPPORT: Official 2019.4 support
+SUPPORT: Official 2020.1 support
+SUPPORT: Minimum supported Unity version is now 2017.4
+
 ----- 2.02 -----
 FIX: Fixed editor freeze when selecting splines in projects with an extensive folder amount
 FIX: Set the default Append mode for the point creation tool to "Ending" so that splines are not created reversed by default

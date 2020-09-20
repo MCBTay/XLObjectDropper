@@ -399,7 +399,7 @@ public enum UVMode { Clip, UniformClip, Clamp, UniformClamp }
         protected override void Build()
         {
             base.Build();
-            if (sampleCount > 0) BuildMesh();
+            BuildMesh();
         }
 
         protected override void PostBuild()
@@ -449,6 +449,14 @@ public enum UVMode { Clip, UniformClip, Clamp, UniformClamp }
 
         protected virtual void AllocateMesh(int vertexCount, int trisCount)
         {
+            if(trisCount < 0)
+            {
+                trisCount = 0;
+            }
+            if(vertexCount < 0)
+            {
+                vertexCount = 0;
+            }
             if (_doubleSided)
             {
                 vertexCount *= 2;
@@ -462,7 +470,10 @@ public enum UVMode { Clip, UniformClip, Clamp, UniformClamp }
                 tsMesh.colors = new Color[vertexCount];
                 tsMesh.uv = new Vector2[vertexCount];
             }
-            if (tsMesh.triangles.Length != trisCount) tsMesh.triangles = new int[trisCount];
+            if (tsMesh.triangles.Length != trisCount)
+            {
+                tsMesh.triangles = new int[trisCount];
+            }
         }
 
         protected void ResetUVDistance()

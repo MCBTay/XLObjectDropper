@@ -221,7 +221,17 @@ namespace Dreamteck.Splines {
         private float animClipTo = 1f;
 
         private bool rebuild = false, getSamples = false, postBuild = false;
-        protected Transform trs = null;
+        private Transform _trs = null;
+        private bool _hasTransform = false;
+
+        protected Transform trs
+        {
+            get {  return _trs;  }
+        }
+        protected bool hasTransform
+        {
+            get { return _hasTransform; }
+        }
         public int sampleCount
         {
             get { return _sampleCount; }
@@ -242,6 +252,7 @@ namespace Dreamteck.Splines {
         [HideInInspector]
         public bool buildOnEnable = false;
 
+        public event EmptySplineHandler onPostBuild;
         /// <summary>
         /// Used for migrating the clip range properties from 2.00 and 2.01 to 2.02 and up
         /// </summary>
@@ -259,11 +270,15 @@ namespace Dreamteck.Splines {
             Awake();
             RebuildImmediate();
             GetSamples();
+            if (spline)
+            {
+                spline.Subscribe(this);
+            }
         }
 #endif
 
         protected virtual void Awake() {
-            trs = transform;
+            CacheTransform();
             if (spline == null)
             {
                 spline = GetComponent<SplineComputer>();
@@ -272,6 +287,12 @@ namespace Dreamteck.Splines {
             {
                 RebuildImmediate();
             }
+        }
+
+        protected void CacheTransform()
+        {
+            _trs = transform;
+            _hasTransform = true;
         }
 
         protected virtual void Reset()
@@ -366,7 +387,11 @@ namespace Dreamteck.Splines {
         public virtual void Rebuild()
         {
 #if UNITY_EDITOR
-            if (trs == null) trs = transform;
+            if (!_hasTransform)
+            {
+                CacheTransform();
+            }
+
             //If it's the editor and it's not playing, then rebuild immediate
             if (Application.isPlaying)
             {
@@ -386,7 +411,10 @@ namespace Dreamteck.Splines {
         public virtual void RebuildImmediate()
         {
 #if UNITY_EDITOR
-            if (trs == null) trs = transform;
+            if (!_hasTransform)
+            {
+                CacheTransform();
+            }
 #if !UNITY_2018_3_OR_NEWER
             if (PrefabUtility.GetPrefabType(gameObject) == PrefabType.Prefab) return;
 #endif
@@ -467,6 +495,10 @@ namespace Dreamteck.Splines {
             if (postBuild)
             {
                 PostBuild();
+                if(onPostBuild != null)
+                {
+                    onPostBuild();
+                }
                 postBuild = false;
             }
         }

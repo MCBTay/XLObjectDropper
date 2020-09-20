@@ -100,8 +100,8 @@ namespace Dreamteck.Splines.Editor
                 newPoint.color = evalResult.color;
                 newPoint.normal = evalResult.up;
                 SplinePoint[] newPoints = new SplinePoint[points.Length + 1];
-                double floatIndex = (points.Length - 1) * percent;
-                int pointIndex = Mathf.Clamp(DMath.FloorInt(floatIndex), 0, points.Length - 2);
+                
+                int pointIndex = dsEditor.spline.PercentToPointIndex(percent);
                 for (int i = 0; i < newPoints.Length; i++)
                 {
                     if (i <= pointIndex) newPoints[i] = points[i];

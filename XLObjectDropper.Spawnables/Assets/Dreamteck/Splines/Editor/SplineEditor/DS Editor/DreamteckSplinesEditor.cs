@@ -56,15 +56,18 @@ namespace Dreamteck.Splines.Editor
             List <Node> deleteNodes = new List<Node>();
             for (int i = 0; i < selectedPoints.Count; i++)
             {
-                spline.DisconnectNode(selectedPoints[i]);
                 Node node = spline.GetNode(selectedPoints[i]);
-                if (node != null && node.GetConnections().Length == 0)
+                if (node)
                 {
-                    deleteNodes.Add(node);
-                    if (nodeString != "") nodeString += ", ";
-                    string trimmed = node.name.Trim();
-                    if (nodeString.Length + trimmed.Length > 80) nodeString += "...";
-                    else nodeString += node.name.Trim();
+                    spline.DisconnectNode(selectedPoints[i]);
+                    if (node.GetConnections().Length == 0)
+                    {
+                        deleteNodes.Add(node);
+                        if (nodeString != "") nodeString += ", ";
+                        string trimmed = node.name.Trim();
+                        if (nodeString.Length + trimmed.Length > 80) nodeString += "...";
+                        else nodeString += node.name.Trim();
+                    }
                 }
             }
 
@@ -73,26 +76,34 @@ namespace Dreamteck.Splines.Editor
                 string message = "The following nodes:\r\n" + nodeString + "\r\n were only connected to the currently selected points. Would you like to remove them from the scene?";
                 if (EditorUtility.DisplayDialog("Remove nodes?", message, "Yes", "No"))
                 {
-                    for (int i = 0; i < deleteNodes.Count; i++) Undo.DestroyObjectImmediate(deleteNodes[i].gameObject);
+                    for (int i = 0; i < deleteNodes.Count; i++)
+                    {
+                        Undo.DestroyObjectImmediate(deleteNodes[i].gameObject);
+                    }
                 }
             }
 
             int min = spline.pointCount - 1;
             for (int i = 0; i < selectedPoints.Count; i++)
             {
-                if (selectedPoints[i] < min) min = selectedPoints[i];
-            }
-            for (int i = min+1; i < spline.pointCount; i++)
-            {
-                Node node = spline.GetNode(i);
-                if(node != null)
+                if (selectedPoints[i] < min)
                 {
-                    int pointsDeletedBefore = 0;
-                    for (int j = 0; j < selectedPoints.Count; j++)
-                    {
-                        if (selectedPoints[j] >= min) pointsDeletedBefore++;
-                    }
-                    spline.ShiftNodes(i, spline.pointCount-1, -pointsDeletedBefore);
+                    min = selectedPoints[i];
+                }
+            }
+
+            int pointsDeletedBefore = 0;
+            for (int i = 0; i < spline.pointCount; i++)
+            {
+                if (selectedPoints.Contains(i))
+                {
+                    pointsDeletedBefore++;
+                    continue;
+                }
+                Node node = spline.GetNode(i);
+                if (pointsDeletedBefore > 0 && node)
+                {
+                    spline.TransferNode(i, i - pointsDeletedBefore);
                 }
             }
         }

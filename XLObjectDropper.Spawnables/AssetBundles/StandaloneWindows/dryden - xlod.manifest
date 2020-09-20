@@ -1,0 +1,92 @@
+ManifestFileVersion: 0
+CRC: 37323477
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1f8bc87d7efc3872733f960fc0e84c71
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 19d9aba9b57afe4ff74fa190661d52fa
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+Assets:
+- Assets/Dryden - XLOD/Textures/Wood040_2K_Color.jpg
+- Assets/Dryden - XLOD/DIY Ramp Prefabs/DIY_MiniRamp.prefab
+- Assets/Dryden - XLOD/Textures/Mini Ramp.mat
+- Assets/Dryden - XLOD/Textures/trim_Wood_Normal_0000_trim_Wood_MaskMap.png
+- Assets/Dryden - XLOD/Textures/DIY_MiniRamp_NoCols_DefaultMaterial_Normal.png
+- Assets/Dryden - XLOD/Textures/PaintedMetal009_2K_Color.jpg
+- Assets/Dryden - XLOD/Textures/WaxHDRP19.shadergraph
+- Assets/Dryden - XLOD/Textures/Concrete.mat
+- Assets/Dryden - XLOD/Models/CinderBlock Ledges.blend
+- Assets/Dryden - XLOD/Textures/Metal029_2K_Normal.jpg
+- Assets/Dryden - XLOD/Textures/trim_Wood_Normal_0002_Background.png
+- Assets/Dryden - XLOD/Textures/DIY_MiniRamp_NoCols_DefaultMaterial_MaskMap.png
+- Assets/Dryden - XLOD/Cinder Block Ledges/Medium Cinder Block Ledge.prefab
+- Assets/Dryden - XLOD/Yellow Post Prefabs/ParkingGate.prefab
+- Assets/Dryden - XLOD/Textures/Wood40.mat
+- Assets/Dryden - XLOD/Textures/Concrete002_2K_Color.jpg
+- Assets/Dryden - XLOD/Textures/Spine.mat
+- Assets/Dryden - XLOD/Textures/trim_Wood_Normal_0001_trim_Wood_BaseColor.png
+- Assets/Dryden - XLOD/Textures/DIY_Spine_DefaultMaterial_Normal.png
+- Assets/Dryden - XLOD/Textures/Wooden Panels.mat
+- Assets/Dryden - XLOD/Textures/DIY_Spine_DefaultMaterial_BaseMap.png
+- Assets/Dryden - XLOD/Textures/Portable Box_DefaultMaterial_MaskMap.png
+- Assets/Dryden - XLOD/Textures/PaintedMetal009_2K_Normal.jpg
+- Assets/Dryden - XLOD/DIY Ramp Prefabs/DIY_Spine.prefab
+- Assets/Dryden - XLOD/Models/Modular Ramps.blend
+- Assets/Dryden - XLOD/Cinder Block Ledges/Short Cinder Block Ledge.prefab
+- Assets/Dryden - XLOD/Textures/Deck.mat
+- Assets/Dryden - XLOD/Models/Yellow Posts.blend
+- Assets/Dryden - XLOD/Models/DIY_MiniRamp.fbx
+- Assets/Dryden - XLOD/DIY Ramp Prefabs/DIY_Box.prefab
+- Assets/Dryden - XLOD/Textures/panel.png
+- Assets/Dryden - XLOD/Yellow Post Prefabs/Circular Barrier.prefab
+- Assets/Dryden - XLOD/Yellow Post Prefabs/RoundPoleJam.prefab
+- Assets/Dryden - XLOD/Textures/WaxTrim_Base_Color.png
+- Assets/Dryden - XLOD/Textures/Box.mat
+- Assets/Dryden - XLOD/Textures/Siding.mat
+- Assets/Dryden - XLOD/Textures/Metal029_2K_Color.jpg
+- Assets/Dryden - XLOD/Textures/Portable Box_DefaultMaterial_BaseMap.png
+- Assets/Dryden - XLOD/Textures/Portable Box_DefaultMaterial_Normal.png
+- Assets/Dryden - XLOD/Skateboard Polejam.prefab
+- Assets/Dryden - XLOD/Models/Skateboard Polejam.blend
+- Assets/Dryden - XLOD/Textures/Metal29.mat
+- Assets/Dryden - XLOD/Textures/Deck_HoodlumThreat_Anders_Oct.png
+- Assets/Dryden - XLOD/Textures/Yellow Metal.mat
+- Assets/Dryden - XLOD/Yellow Post Prefabs/SquarePoleJam.prefab
+- Assets/Dryden - XLOD/Textures/Concrete002_2K_Normal.jpg
+- Assets/Dryden - XLOD/Textures/Wood040_2K_Normal.jpg
+- Assets/Dryden - XLOD/Cinder Block Ledges/Long Cinder Block Ledge.prefab
+- Assets/Dryden - XLOD/Textures/DIY_MiniRamp_NoCols_DefaultMaterial_BaseMap.png
+- Assets/Dryden - XLOD/Yellow Post Prefabs/Straight Up.prefab
+- Assets/Dryden - XLOD/Models/DIY_Spine.fbx
+- Assets/Dryden - XLOD/Models/DIY_Box.fbx
+- Assets/Dryden - XLOD/Textures/DIY_Spine_DefaultMaterial_MaskMap.png
+Dependencies: []

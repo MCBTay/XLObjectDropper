@@ -24,7 +24,7 @@ namespace Dreamteck.Splines.Primitives
             for (int i = 0; i < sides * 2; i++)
             {
                 float percent = (float)i / (float)(sides * 2);
-                Vector3 pos = Quaternion.AngleAxis(180 + 360f * percent, Vector3.up) * Vector3.forward * ((float)i % 2f == 0 ? radius : innerRadius);
+                Vector3 pos = Quaternion.AngleAxis(180 + 360f * percent, Vector3.forward) * Vector3.up * ((float)i % 2f == 0 ? radius : innerRadius);
                 points[i].SetPosition(pos);
             }
             points[points.Length - 1] = points[0];

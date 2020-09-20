@@ -342,7 +342,10 @@ namespace Dreamteck.Splines
 #endif
 
 #endif
-            trs = transform;
+            if (!hasTransform)
+            {
+                CacheTransform();
+            }
             if (_bend)
             {
                 for (int i = 0; i < bendProperties.Length; i++) bendProperties[i].Revert();

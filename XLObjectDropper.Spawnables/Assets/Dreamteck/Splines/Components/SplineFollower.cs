@@ -112,7 +112,6 @@ namespace Dreamteck.Splines
         protected override void PostBuild()
         {
             base.PostBuild();
-            if (sampleCount == 0) return;
             Evaluate(_result.percent, _result);
             if (follow && !autoStartPosition) ApplyMotion();
         }
@@ -197,7 +196,8 @@ namespace Dreamteck.Splines
                         _direction = Spline.Direction.Backward;
                         break;
                 }
-            } else if(_direction == Spline.Direction.Backward && p <= 0.0)
+            } 
+            else if(_direction == Spline.Direction.Backward && p <= 0.0)
             {
                 if (onBeginningReached != null && startPercent > 0.0) callOnBeginningReached = true;
                 switch (wrapMode)
@@ -245,56 +245,55 @@ namespace Dreamteck.Splines
                 CheckTriggers(startPercent, _result.percent);
                 CheckNodes(startPercent, _result.percent);
             }
-            if (moved < distance)
+
+            if(direction == Spline.Direction.Forward)
             {
-                if(direction == Spline.Direction.Forward)
+                if (_result.percent >= 1.0)
                 {
-                    if(_result.percent >= 1.0)
+                    if (startPercent < 1.0)
                     {
-                        if (startPercent < _result.percent)
-                        {
-                            endReached = true;
-                        }
-                        switch (wrapMode)
-                        {
-                            case Wrap.Loop:
-                                _result.percent = DoTravel(0.0, distance - moved, out moved);
-                                CheckTriggers(0.0, _result.percent);
-                                CheckNodes(0.0, _result.percent);
-                                break;
-                            case Wrap.PingPong:
-                                _direction = Spline.Direction.Backward;
-                                _result.percent = DoTravel(1.0, distance - moved, out moved);
-                                CheckTriggers(1.0, _result.percent);
-                                CheckNodes(1.0, _result.percent);
-                                break;
-                        }
+                        endReached = true;
                     }
-                } else
-                {
-                    if(_result.percent <= 0.0)
+                    switch (wrapMode)
                     {
-                        if (startPercent > _result.percent)
-                        {
-                            beginningReached = true;
-                        }
-                        switch (wrapMode)
-                        {
-                            case Wrap.Loop:
-                                _result.percent = DoTravel(1.0, distance - moved, out moved);
-                                CheckTriggers(1.0, _result.percent);
-                                CheckNodes(1.0, _result.percent);
-                                break;
-                            case Wrap.PingPong:
-                                _direction = Spline.Direction.Forward;
-                                _result.percent = DoTravel(0.0, distance - moved, out moved);
-                                CheckTriggers(0.0, _result.percent);
-                                CheckNodes(0.0, _result.percent);
-                                break;
-                        }
+                        case Wrap.Loop:
+                            _result.percent = DoTravel(0.0, distance - moved, out moved);
+                            CheckTriggers(0.0, _result.percent);
+                            CheckNodes(0.0, _result.percent);
+                            break;
+                        case Wrap.PingPong:
+                            _direction = Spline.Direction.Backward;
+                            _result.percent = DoTravel(1.0, distance - moved, out moved);
+                            CheckTriggers(1.0, _result.percent);
+                            CheckNodes(1.0, _result.percent);
+                            break;
+                    }
+                }
+            } else
+            {
+                if(_result.percent <= 0.0)
+                {
+                    if (startPercent > 0.0)
+                    {
+                        beginningReached = true;
+                    }
+                    switch (wrapMode)
+                    {
+                        case Wrap.Loop:
+                            _result.percent = DoTravel(1.0, distance - moved, out moved);
+                            CheckTriggers(1.0, _result.percent);
+                            CheckNodes(1.0, _result.percent);
+                            break;
+                        case Wrap.PingPong:
+                            _direction = Spline.Direction.Forward;
+                            _result.percent = DoTravel(0.0, distance - moved, out moved);
+                            CheckTriggers(0.0, _result.percent);
+                            CheckNodes(0.0, _result.percent);
+                            break;
                     }
                 }
             }
+            
             Evaluate(_result.percent, _result);
             ApplyMotion();
             if (endReached && onEndReached != null)

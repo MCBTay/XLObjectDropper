@@ -33,7 +33,9 @@ namespace Dreamteck.Splines.Editor
             if (EditorGUI.EndChangeCheck()) serializedObject.ApplyModifiedProperties();
 
             UVControls(tubeGenerator);
-            if(capMode.intValue != 0)
+            SerializedProperty uvTwist = serializedObject.FindProperty("_uvTwist");
+            EditorGUILayout.PropertyField(uvTwist, new GUIContent("UV Twist"));
+            if (capMode.intValue != 0)
             {
                 SerializedProperty capUVScale = serializedObject.FindProperty("_capUVScale");
                 EditorGUILayout.PropertyField(capUVScale, new GUIContent("Cap UV Scale"));

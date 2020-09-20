@@ -262,7 +262,7 @@ namespace Dreamteck.Splines
         {
             get
             {
-                return subscribers.Length;
+                return _subscribers.Length;
             }
         }
 
@@ -306,7 +306,7 @@ namespace Dreamteck.Splines
         private SampleMode _sampleMode = SampleMode.Default;
         [HideInInspector]
         [SerializeField]
-        private SplineUser[] subscribers = new SplineUser[0];
+        private SplineUser[] _subscribers = new SplineUser[0];
         [HideInInspector]
         [SerializeField]
         [UnityEngine.Serialization.FormerlySerializedAs("_nodeLinks")]
@@ -419,7 +419,6 @@ namespace Dreamteck.Splines
                 if (useMultithreading) SplineThreading.Run(TransformSamplesThreaded);
                 else TransformSamples(true);
             }
-
             if (!useMultithreading)
             {
                 //If not multithreaded, rebuild users here
@@ -492,7 +491,7 @@ namespace Dreamteck.Splines
         {
             if (!IsSubscribed(input))
             {
-                ArrayUtility.Add(ref subscribers, input);
+                ArrayUtility.Add(ref _subscribers, input);
             }
         }
 
@@ -502,11 +501,11 @@ namespace Dreamteck.Splines
         /// <param name="input">The SplineUser to unsubscribe</param>
         public void Unsubscribe(SplineUser input)
         {
-            for (int i = 0; i < subscribers.Length; i++)
+            for (int i = 0; i < _subscribers.Length; i++)
             {
-                if (subscribers[i] == input)
+                if (_subscribers[i] == input)
                 {
-                    ArrayUtility.RemoveAt(ref subscribers, i);
+                    ArrayUtility.RemoveAt(ref _subscribers, i);
                     return;
                 }
             }
@@ -519,9 +518,9 @@ namespace Dreamteck.Splines
         /// <returns></returns>
         public bool IsSubscribed(SplineUser user)
         {
-            for (int i = 0; i < subscribers.Length; i++)
+            for (int i = 0; i < _subscribers.Length; i++)
             {
-                if (subscribers[i] == user)
+                if (_subscribers[i] == user)
                 {
                     return true;
                 }
@@ -535,8 +534,8 @@ namespace Dreamteck.Splines
         /// <returns></returns>
         public SplineUser[] GetSubscribers()
         {
-            SplineUser[] subs = new SplineUser[subscribers.Length];
-            subscribers.CopyTo(subs, 0);
+            SplineUser[] subs = new SplineUser[_subscribers.Length];
+            _subscribers.CopyTo(subs, 0);
             return subs;
         }
 
@@ -1066,22 +1065,22 @@ namespace Dreamteck.Splines
 
         private void RebuildUsers()
         {
-            for (int i = subscribers.Length - 1; i >= 0; i--)
+            for (int i = _subscribers.Length - 1; i >= 0; i--)
             {
-                if (subscribers[i] != null)
+                if (_subscribers[i] != null)
                 {
-                    if (subscribers[i].spline != this)
+                    if (_subscribers[i].spline != this)
                     {
-                        ArrayUtility.RemoveAt(ref subscribers, i);
+                        ArrayUtility.RemoveAt(ref _subscribers, i);
                     }
-                    else if(subscribers[i].isActiveAndEnabled)
+                    else if(_subscribers[i].isActiveAndEnabled)
                     {
-                        subscribers[i].Rebuild();
+                        _subscribers[i].Rebuild();
                     }
                 }
                 else
                 {
-                    ArrayUtility.RemoveAt(ref subscribers, i);
+                    ArrayUtility.RemoveAt(ref _subscribers, i);
                 }
             }
             if (onRebuild != null) onRebuild();

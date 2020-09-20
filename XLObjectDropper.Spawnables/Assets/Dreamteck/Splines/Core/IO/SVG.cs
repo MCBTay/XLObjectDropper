@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using Dreamteck.Splines.Primitives;
+using System;
 
 namespace Dreamteck.Splines.IO
 {
@@ -58,7 +59,8 @@ namespace Dreamteck.Splines.IO
                 try
                 {
                     doc.Load(filePath);
-                } catch (XmlException ex)
+                }
+                catch (XmlException ex)
                 {
                     Debug.LogError(ex.Message);
                     return;
@@ -85,11 +87,11 @@ namespace Dreamteck.Splines.IO
         {
             XmlDocument doc = new XmlDocument();
             XmlElement svg = doc.CreateElement("svg");
-            foreach(SplineDefinition path in paths)
+            foreach (SplineDefinition path in paths)
             {
                 string elementName = "path";
                 string attributeName = "d";
-                if(path.type == Spline.Type.Linear)
+                if (path.type == Spline.Type.Linear)
                 {
                     attributeName = "points";
                     if (path.closed) elementName = "polygon";
@@ -135,7 +137,7 @@ namespace Dreamteck.Splines.IO
             return original;
         }
 
-        void Read(XmlDocument doc)
+        private void Read(XmlDocument doc)
         {
             transformBuffer.Clear();
             Traverse(doc.ChildNodes);
@@ -214,7 +216,7 @@ namespace Dreamteck.Splines.IO
             return splines;
         }
 
-        int ReadRectangle(XmlNode rectNode)
+        private int ReadRectangle(XmlNode rectNode)
         {
             float x = 0f, y = 0f, w = 0f, h = 0f, rx = -1f, ry = -1f;
             string attribute = GetAttributeContent(rectNode, "x");
@@ -243,7 +245,8 @@ namespace Dreamteck.Splines.IO
                 rect.size = new Vector2(w, h);
                 if (elementName == "ERROR") elementName = fileName + "_rectangle" + (rectangles.Count + 1);
                 buffer = new SplineDefinition(elementName, rect.CreateSpline());
-            } else
+            }
+            else
             {
                 RoundedRectangle rect = new RoundedRectangle();
                 rect.offset = new Vector2(x + w / 2f, -y - h / 2f);
@@ -258,7 +261,7 @@ namespace Dreamteck.Splines.IO
             return addedTransforms;
         }
 
-        int ReadLine(XmlNode lineNode)
+        private int ReadLine(XmlNode lineNode)
         {
             float startX = 0f, startY = 0f, endX = 0f, endY = 0f;
             string attribute = GetAttributeContent(lineNode, "x1");
@@ -285,7 +288,7 @@ namespace Dreamteck.Splines.IO
             return addedTransforms;
         }
 
-        int ReadEllipse(XmlNode ellipseNode)
+        private int ReadEllipse(XmlNode ellipseNode)
         {
             float x = 0f, y = 0f, rx = 0f, ry = 0f;
             string attribute = GetAttributeContent(ellipseNode, "cx");
@@ -304,7 +307,8 @@ namespace Dreamteck.Splines.IO
                 float.TryParse(attribute, out rx);
                 attribute = GetAttributeContent(ellipseNode, "ry");
                 if (attribute == "ERROR") return 0;
-            } else //Nope, it's a circle
+            }
+            else //Nope, it's a circle
             {
                 float.TryParse(attribute, out rx);
                 ry = rx;
@@ -323,7 +327,7 @@ namespace Dreamteck.Splines.IO
             return addedTransforms;
         }
 
-        int ReadPolygon(XmlNode polyNode, bool closed)
+        private int ReadPolygon(XmlNode polyNode, bool closed)
         {
             string contents = GetAttributeContent(polyNode, "points");
             if (contents == "ERROR") return 0;
@@ -352,7 +356,7 @@ namespace Dreamteck.Splines.IO
             return addedTransforms;
         }
 
-        int ParseTransformation(XmlNode node)
+        private int ParseTransformation(XmlNode node)
         {
             string transformAttribute = GetAttributeContent(node, "transform");
             if (transformAttribute == "ERROR") return 0;
@@ -361,10 +365,10 @@ namespace Dreamteck.Splines.IO
             return trs.Count;
         }
 
-        List<Transformation> ParseTransformations(string transformContent)
+        private List<Transformation> ParseTransformations(string transformContent)
         {
             List<Transformation> trs = new List<Transformation>();
-            MatchCollection matches = Regex.Matches(transformContent.ToLower(), @"(?<function>translate|rotate|scale|skewx|skewy|matrix)\s*\((\s*(?<param>-?\s*\d+(\.\d+)?)\s*\,*\s*)+\)"); 
+            MatchCollection matches = Regex.Matches(transformContent.ToLower(), @"(?<function>translate|rotate|scale|skewx|skewy|matrix)\s*\((\s*(?<param>-?\s*\d+(\.\d+)?)\s*\,*\s*)+\)");
             foreach (Match match in matches)
             {
                 if (match.Groups["function"].Success)
@@ -402,13 +406,14 @@ namespace Dreamteck.Splines.IO
             return trs;
         }
 
-        int ReadPath(XmlNode pathNode)
+        private int ReadPath(XmlNode pathNode)
         {
             string contents = GetAttributeContent(pathNode, "d");
             if (contents == "ERROR") return 0;
             string elementName = GetAttributeContent(pathNode, "id");
-            if (elementName == "ERROR") elementName = fileName + "_path " + (paths.Count+1);
+            if (elementName == "ERROR") elementName = fileName + "_path " + (paths.Count + 1);
             IEnumerable<string> tokens = Regex.Split(contents, @"(?=[A-Za-z])").Where(t => !string.IsNullOrEmpty(t));
+            int numSplines = 0;
             foreach (string token in tokens)
             {
                 char cmd = token.Substring(0, 1).Single();
@@ -416,9 +421,11 @@ namespace Dreamteck.Splines.IO
                 {
                     case 'M':
                         PathStart(elementName, token, false);
+                        ++numSplines;
                         break;
                     case 'm':
                         PathStart(elementName, token, true);
+                        ++numSplines;
                         break;
                     case 'Z':
                         PathClose();
@@ -468,17 +475,25 @@ namespace Dreamteck.Splines.IO
                     case 't':
                         PathCurveTo(token, PathSegment.Type.QuadraticShort, true);
                         break;
+                    case 'A':
+                        PathArcTo(token, false);
+                        break;
+                    case 'a':
+                        PathArcTo(token, true);
+                        break;
                 }
             }
-            int addedTransforms = ParseTransformation(pathNode);
             if (buffer != null) WriteBufferTo(paths);
+            int addedTransforms = ParseTransformation(pathNode);
+            for (int i = paths.Count - 1; i >= paths.Count - numSplines; --i) paths[i].Transform(transformBuffer);
             return addedTransforms;
         }
 
-        void PathStart(string name, string coords, bool relative)
+        private void PathStart(string name, string coords, bool relative)
         {
             if (buffer != null) WriteBufferTo(paths);
             buffer = new SplineDefinition(name, Spline.Type.Bezier);
+            if (relative) buffer.position = paths.Last().GetLastPoint().position;
             Vector2[] vectors = ParseVector2(coords);
             foreach (Vector3 vector in vectors)
             {
@@ -488,12 +503,13 @@ namespace Dreamteck.Splines.IO
             }
         }
 
-        void PathClose()
+        private void PathClose()
         {
+            buffer.CreateClosingPoint();
             buffer.closed = true;
         }
 
-        void PathLineTo(string coords, bool relative)
+        private void PathLineTo(string coords, bool relative)
         {
             Vector2[] vectors = ParseVector2(coords);
             foreach (Vector3 vector in vectors)
@@ -504,7 +520,7 @@ namespace Dreamteck.Splines.IO
             }
         }
 
-        void PathHorizontalLineTo(string coords, bool relative)
+        private void PathHorizontalLineTo(string coords, bool relative)
         {
             float[] floats = ParseFloat(coords);
             foreach (float f in floats)
@@ -515,7 +531,7 @@ namespace Dreamteck.Splines.IO
             }
         }
 
-        void PathVerticalLineTo(string coords, bool relative)
+        private void PathVerticalLineTo(string coords, bool relative)
         {
             float[] floats = ParseFloat(coords);
             foreach (float f in floats)
@@ -526,7 +542,7 @@ namespace Dreamteck.Splines.IO
             }
         }
 
-        void PathCurveTo(string coords, PathSegment.Type type, bool relative)
+        private void PathCurveTo(string coords, PathSegment.Type type, bool relative)
         {
             PathSegment[] segment = ParsePathSegment(coords, type);
             for (int i = 0; i < segment.Length; i++)
@@ -576,14 +592,226 @@ namespace Dreamteck.Splines.IO
             }
         }
 
-        void WriteBufferTo(List<SplineDefinition> list)
+        private void PathArcTo(string coords, bool relative)
         {
-            buffer.Transform(transformBuffer); 
+            // Get Arc Arguments
+            float[] floats = ParseFloat(coords);
+            float rx = floats[0];
+            float ry = floats[1];
+            float rotation = floats[2] * Mathf.Deg2Rad;
+            bool largeArc = floats[3] > 0.5f;
+            bool sweep = floats[4] > 0.5f;
+            float x = floats[5];
+            float y = floats[6];
+
+            // Set the last buffer point to broken
+            SplinePoint p = buffer.GetLastPoint();
+            p.type = SplinePoint.Type.Broken;
+
+            // Get the start and end point. Note: Flip Y, as the Ellipse Parameters calculation assumes positive Y values
+            Vector3 sp = p.position;
+            sp.y *= -1;
+            Vector3 ep = new Vector3(x, y, 0);
+            if (relative) ep += sp;
+
+            Vector2 c;
+            float theta1;
+            float sweepTheta;
+            float adjustedRx;
+            float adjustedRy;
+
+            // Get the Ellipse Parameters
+            CalculateEllipseParams(sp, ep, rotation, rx, ry, largeArc, sweep,
+                out c, out theta1, out sweepTheta, out adjustedRx, out adjustedRy);
+
+            // Flip the center Y back
+            c.y *= -1;
+
+            // Generate the ellipse primitive. Note: Rotated by -90 degrees and flipped, so first point starts at +X and goes clockwise
+            Ellipse ellipse = new Ellipse();
+            ellipse.offset = c;
+            ellipse.rotation = new Vector3(0, 0, -90 - rotation * Mathf.Rad2Deg);
+            ellipse.xRadius = adjustedRx;
+            ellipse.yRadius = adjustedRy;
+            var ellipseSpline = ellipse.CreateSpline();
+            var esp = ellipseSpline.points;
+
+            
+            var tmpp = esp[1];
+            esp[1] = esp[3];
+            esp[3] = tmpp;
+            for (int i = 0; i < esp.Length; i++)
+            {
+                FlipTangents(ref esp[i]);
+            }
+
+            // Find the percentages to sample the ellipse at
+            var startP = theta1 / (Mathf.PI * 2);
+            startP = ModP(startP, 1f);
+            var sweepP = sweepTheta / (Mathf.PI * 2);
+            var endP = startP + sweepP;
+
+            var percentages = GetArcSegmentPercentages(startP, endP);
+
+            // Sample the ellipse and add points to buffer
+            for (int i = 1; i < percentages.Length; ++i)
+            {
+                double pp = percentages[i - 1];
+                double pc = percentages[i];
+                double pr = pc - pp;
+                int sgn = Math.Sign(pr); // This sign indicates a reversed range if < 0; The sampled tangents need to be flipped if this is the case
+                pr *= sgn;
+                if (pr < 0.0001d) continue; // Sample error margin
+                double d = 0.75d / pr;
+                pc = ModP(pc, 1d);
+                pp = ModP(pp, 1d);
+
+                // New point in buffer
+                Vector3 posc = Vector3.zero, tanc = Vector3.zero, tanp = Vector3.zero;
+                ellipseSpline.EvaluatePosition(ref posc, pc);
+                ellipseSpline.EvaluateTangent(ref tanc, pc);
+                tanc *= sgn;
+                tanc /= (float)d;
+                buffer.position = posc;
+                buffer.tangent = posc - tanc; 
+
+                // Modify tangent2 of last point in buffer
+                ellipseSpline.EvaluateTangent(ref tanp, pp);
+                tanp *= sgn;
+                tanp /= (float)d;
+                p = buffer.GetLastPoint();
+                p.type = SplinePoint.Type.Broken;
+                p.SetTangent2Position(p.position + tanp);
+                buffer.SetLastPoint(p);
+
+                buffer.CreateBroken();
+            }
+        }
+
+        private void FlipTangents(ref SplinePoint point)
+        {
+            var tmpt = point.tangent;
+            point.tangent = point.tangent2;
+            point.tangent2 = tmpt;
+        }
+
+        private void CalculateEllipseParams(Vector2 p0, Vector2 p1, float phi, float rx, float ry, bool fa, bool fs, out Vector2 c, out float theta1, out float sweepTheta, out float adjustedRx, out float adjustedRy)
+        {
+            // From https://observablehq.com/@toja/ellipse-and-elliptical-arc-conversion
+            float sinPhi = Mathf.Sin(phi);
+            float cosPhi = Mathf.Cos(phi);
+
+            float x = cosPhi * (p0.x - p1.x) / 2 + sinPhi * (p0.y - p1.y) / 2;
+            float y = -sinPhi * (p0.x - p1.x) / 2 + cosPhi * (p0.y - p1.y) / 2;
+
+            float px = x * x, py = y * y, prx = rx * rx, pry = ry * ry;
+
+            rx = Mathf.Abs(rx);
+            ry = Mathf.Abs(ry);
+            float l = px / prx + py / pry;
+            if (l > 1)
+            {
+                float sqrtl = Mathf.Sqrt(l);
+                rx = sqrtl * rx;
+                ry = sqrtl * ry;
+                prx = rx * rx;
+                pry = ry * ry;
+            }
+            adjustedRx = rx;
+            adjustedRy = ry;
+
+            float sign = fa == fs ? -1 : 1;
+            float m = Mathf.Sqrt((prx * pry - prx * py - pry * px) / (prx * py + pry * px)) * sign;
+
+            float ccx = m * (rx * y) / ry;
+            float ccy = m * (-ry * x) / rx;
+
+            c = new Vector2(
+                cosPhi * ccx - sinPhi * ccy + (p0.x + p1.x) / 2,
+                sinPhi * ccx + cosPhi * ccy + (p0.y + p1.y) / 2
+            );
+
+            theta1 = VectorAngle(new Vector2(1, 0), new Vector2((x - ccx) / rx, (y - ccy) / ry));
+            sweepTheta = VectorAngle(new Vector2((x - ccx) / rx, (y - ccy) / ry), new Vector2((-x - ccx) / rx, (-y - ccy) / ry));
+            sweepTheta *= Mathf.Rad2Deg;
+            sweepTheta %= 360;
+
+            if (!fs && sweepTheta > 0) sweepTheta -= 360;
+            if (fs && sweepTheta < 0) sweepTheta += 360;
+            sweepTheta *= Mathf.Deg2Rad;
+        }
+
+        private double[] GetArcSegmentPercentages(double start, double end)
+        {
+            List<double> percentages = new List<double>();
+            bool swap = start > end;
+            if (swap) { double tmp = start; start = end; end = tmp; }
+
+            percentages.Add(start);
+            double rsM = Math.Ceiling(start * 4d) * 0.25d;
+            if (rsM > end)
+            {
+                percentages.Add(end);
+                return ReturnPercentage(swap, percentages);
+            }
+            else if (start < rsM)
+            {
+                percentages.Add(rsM);
+            }
+
+            double rem = rsM + 0.25d;
+            for (; rem <= end; rem += 0.25d)
+            {
+                percentages.Add(rem);
+            }
+            rem -= 0.25d;
+            if (rem < end)
+            {
+                percentages.Add(end);
+            }
+
+            return ReturnPercentage(swap, percentages);
+        }
+
+        private double[] ReturnPercentage(bool swap, List<double> percentages)
+        {
+            var ret = new double[percentages.Count];
+            for (int i = 0; i < percentages.Count; ++i)
+            {
+                var r = swap ? percentages.Count - 1 - i : i;
+                var p = percentages[r];
+                ret[i] = p;
+            }
+            return ret;
+        }
+
+        private float VectorAngle(Vector2 u, Vector2 v)
+        {
+            float sign = u.x * v.y - u.y * v.x < 0 ? -1 : 1;
+            float ua = Mathf.Sqrt(u.x * u.x + u.y * u.y);
+            float va = Mathf.Sqrt(v.x * v.x + v.y * v.y);
+            float dot = u.x * v.x + u.y * v.y;
+            return sign * Mathf.Acos(dot / (ua * va));
+        }
+
+        private float ModP(float f, float div)
+        {
+            return ((f % div) + div) % div;
+        }
+
+        private double ModP(double d, double div)
+        {
+            return ((d % div) + div) % div;
+        }
+
+        private void WriteBufferTo(List<SplineDefinition> list)
+        {
+            buffer.Transform(transformBuffer);
             list.Add(buffer);
             buffer = null;
         }
 
-        PathSegment[] ParsePathSegment(string coord, PathSegment.Type type)
+        private PathSegment[] ParsePathSegment(string coord, PathSegment.Type type)
         {
             List<float> list = ParseFloatArray(coord.Substring(1));
             int count = 0;
@@ -614,7 +842,7 @@ namespace Dreamteck.Splines.IO
             return data;
         }
 
-        string EncodePath(SplineDefinition definition, Axis ax)
+        private string EncodePath(SplineDefinition definition, Axis ax)
         {
             string text = "M";
             for (int i = 0; i < definition.pointCount; i++)
@@ -634,7 +862,7 @@ namespace Dreamteck.Splines.IO
             return text;
         }
 
-        string EncodePolygon(SplineDefinition definition, Axis ax)
+        private string EncodePolygon(SplineDefinition definition, Axis ax)
         {
             string text = "";
             for (int i = 0; i < definition.pointCount; i++)
@@ -646,11 +874,11 @@ namespace Dreamteck.Splines.IO
             return text;
         }
 
-        string GetAttributeContent(XmlNode node, string attributeName)
+        private string GetAttributeContent(XmlNode node, string attributeName)
         {
             for (int j = 0; j < node.Attributes.Count; j++)
             {
-                if (node.Attributes[j].Name == attributeName)  return node.Attributes[j].InnerText;
+                if (node.Attributes[j].Name == attributeName) return node.Attributes[j].InnerText;
             }
             return "ERROR";
         }

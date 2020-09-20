@@ -39,7 +39,6 @@ namespace Dreamteck.Splines
         protected override void LateRun()
         {
             if (_particleSystem == null) return;
-            if (sampleCount == 0) return;
             int maxParticles = _particleSystem.main.maxParticles;
             if (particles.Length != maxParticles)
             {
