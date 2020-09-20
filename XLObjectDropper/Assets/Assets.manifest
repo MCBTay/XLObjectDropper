@@ -1,13 +1,16 @@
 ManifestFileVersion: 0
-CRC: 3769557344
+CRC: 2900429494
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: object_testbundle
+      Name: sdt - ausbundle
       Dependencies: {}
     Info_1:
-      Name: ui_bundle
+      Name: ezdayprops
       Dependencies: {}
     Info_2:
-      Name: bundledemo
+      Name: dryden - prop asset bundle
+      Dependencies: {}
+    Info_3:
+      Name: dryden - xlod
       Dependencies: {}
