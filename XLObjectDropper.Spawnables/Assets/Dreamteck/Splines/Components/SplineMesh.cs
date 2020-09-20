@@ -87,7 +87,6 @@ namespace Dreamteck.Splines
 
         protected override void BuildMesh()
         {
-            if (sampleCount == 0) return;
             base.BuildMesh();
             Generate();
         }
@@ -120,8 +119,9 @@ namespace Dreamteck.Splines
                     if(avgBounds > 0f)
                     {
                         float length = CalculateLength(channels[i].clipFrom, channels[i].clipTo);
-                        channels[i].count = Mathf.RoundToInt(length / avgBounds);
-                        if (channels[i].count < 1) channels[i].count = 1;
+                        int newCount = Mathf.RoundToInt(length / avgBounds);
+                        if (newCount < 1) newCount = 1;
+                        channels[i].count = newCount;
                     }
                 }
                 channels[i].ResetIteration();

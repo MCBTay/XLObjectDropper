@@ -19,14 +19,14 @@ namespace Dreamteck.Splines.Primitives
             base.Generate();
             closed = true;
             CreatePoints(5, SplinePoint.Type.SmoothMirrored);
-            points[0].position = Vector3.forward * yRadius;
+            points[0].position = Vector3.up * yRadius;
             points[0].SetTangentPosition(points[0].position + Vector3.right * 2 * (Mathf.Sqrt(2f) - 1f) / 1.5f * xRadius);
             points[1].position = Vector3.left * xRadius;
-            points[1].SetTangentPosition(points[1].position + Vector3.forward * 2 * (Mathf.Sqrt(2f) - 1f) / 1.5f * yRadius);
-            points[2].position = Vector3.back * yRadius;
+            points[1].SetTangentPosition(points[1].position + Vector3.up * 2 * (Mathf.Sqrt(2f) - 1f) / 1.5f * yRadius);
+            points[2].position = Vector3.down * yRadius;
             points[2].SetTangentPosition(points[2].position + Vector3.left * 2 * (Mathf.Sqrt(2f) - 1f) / 1.5f * xRadius);
             points[3].position = Vector3.right * xRadius;
-            points[3].SetTangentPosition(points[3].position + Vector3.back * 2 * (Mathf.Sqrt(2f) - 1f) / 1.5f * yRadius);
+            points[3].SetTangentPosition(points[3].position + Vector3.down * 2 * (Mathf.Sqrt(2f) - 1f) / 1.5f * yRadius);
             points[4] = points[0];
         }
     }

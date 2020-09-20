@@ -294,7 +294,7 @@ namespace Dreamteck.Splines.IO
             List<float> list = new List<float>();
             foreach (char c in content)
             {
-                if (c == ',' || c == '-' || char.IsWhiteSpace(c))
+                if (c == ',' || c == '-' || char.IsWhiteSpace(c) || (accumulated.Contains(".") && c == '.'))
                 {
                     if (!IsWHiteSpace(accumulated))
                     {
@@ -303,6 +303,7 @@ namespace Dreamteck.Splines.IO
                         list.Add(parsed);
                         accumulated = "";
                         if (c == '-') accumulated = "-";
+                        if (c == '.') accumulated = "0.";
                         continue;
                     }
                 }

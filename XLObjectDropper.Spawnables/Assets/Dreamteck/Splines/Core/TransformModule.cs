@@ -167,14 +167,21 @@ namespace Dreamteck.Splines
             input.transform.localScale = GetScale(input.transform.localScale);
             input.MovePosition(GetPosition(input.position));
             input.velocity = HandleVelocity(input.velocity);
-            Vector3 velocity = input.velocity;
-            input.velocity = velocity;
             input.MoveRotation(GetRotation(input.rotation));
-            velocity = input.angularVelocity;
-            if (applyRotationX) velocity.x = 0f;
-            if (applyRotationY) velocity.y = 0f;
-            if (applyRotationZ) velocity.z = 0f;
-            input.angularVelocity = velocity;
+            Vector3 angularVelocity = input.angularVelocity;
+            if (applyRotationX)
+            {
+                angularVelocity.x = 0f;
+            }
+            if (applyRotationY)
+            {
+                angularVelocity.y = 0f;
+            }
+            if (applyRotationZ)
+            {
+                angularVelocity.z = 0f;
+            }
+            input.angularVelocity = angularVelocity;
         }
 
         public void ApplyRigidbody2D(Rigidbody2D input)
@@ -183,7 +190,10 @@ namespace Dreamteck.Splines
             input.position = GetPosition(input.position);
             input.velocity = HandleVelocity(input.velocity);
             input.rotation = -GetRotation(Quaternion.Euler(0f, 0f, input.rotation)).eulerAngles.z;
-            if (applyRotationX) input.angularVelocity = 0f;
+            if (applyRotationX)
+            {
+                input.angularVelocity = 0f;
+            }
         }
 
         Vector3 HandleVelocity(Vector3 velocity)
@@ -223,16 +233,24 @@ namespace Dreamteck.Splines
         private Quaternion GetRotation(Quaternion inputRotation)
         {
             rotation = Quaternion.LookRotation(_splineResult.forward * (direction == Spline.Direction.Forward ? 1f : -1f), _splineResult.up);
-            if (_rotationOffset != Vector3.zero) rotation = rotation * Quaternion.Euler(_rotationOffset);
-            if (!applyRotationX || !applyRotationY)
+            if (_rotationOffset != Vector3.zero)
             {
-                Vector3 euler = rotation.eulerAngles;
-                if (!applyRotationX) euler.x = inputRotation.eulerAngles.x;
-                if (!applyRotationY) euler.y = inputRotation.eulerAngles.y;
-                if (!applyRotationZ) euler.z = inputRotation.eulerAngles.z;
-                inputRotation.eulerAngles = euler;
+                rotation = rotation * Quaternion.Euler(_rotationOffset);
             }
-            else inputRotation = rotation;
+
+            if (!applyRotationX || !applyRotationY || !applyRotationZ)
+            {
+                Vector3 targetEuler = rotation.eulerAngles;
+                Vector3 sourceEuler = inputRotation.eulerAngles;
+                if (!applyRotationX) targetEuler.x = sourceEuler.x;
+                if (!applyRotationY) targetEuler.y = sourceEuler.y;
+                if (!applyRotationZ) targetEuler.z = sourceEuler.z;
+                inputRotation.eulerAngles = targetEuler;
+            }
+            else
+            {
+                inputRotation = rotation;
+            }
             return inputRotation;
         }
 

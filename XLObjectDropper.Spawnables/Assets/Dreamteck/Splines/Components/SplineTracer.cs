@@ -109,9 +109,6 @@ namespace Dreamteck.Splines
         [HideInInspector]
         protected SplineSample _finalResult = new SplineSample();
 
-        private bool setPercentOnRebuild = false;
-        private double targetPercentOnRebuild = 0.0;
-
         public delegate void JunctionHandler(List<NodeConnection> passed);
 
         public event JunctionHandler onNode;
@@ -135,7 +132,6 @@ namespace Dreamteck.Splines
 
         public virtual void SetPercent(double percent, bool checkTriggers = false, bool handleJunctions = false)
         {
-            if (sampleCount == 0) return;
             double lastPercent = _result.percent;
             Evaluate(percent, _result);
             ApplyMotion();
@@ -152,7 +148,6 @@ namespace Dreamteck.Splines
 
         public virtual void SetDistance(float distance, bool checkTriggers = false, bool handleJunctions = false)
         {
-            if (sampleCount == 0) return;
             double lastPercent = _result.percent;
             Evaluate(Travel(0.0, distance, Spline.Direction.Forward), _result);
             ApplyMotion();
@@ -164,15 +159,6 @@ namespace Dreamteck.Splines
             if (handleJunctions)
             {
                 CheckNodes(lastPercent, _result.percent);
-            }
-        }
-
-        protected override void PostBuild()
-        {
-            if (setPercentOnRebuild)
-            {
-                SetPercent(targetPercentOnRebuild);
-                setPercentOnRebuild = false;
             }
         }
 

@@ -339,7 +339,7 @@ namespace Dreamteck.Splines
         private void RemoveConnection(int index)
         {
             Connection[] newConnections = new Connection[connections.Length - 1];
-            SplineComputer computer = connections[index].spline;
+            SplineComputer spline = connections[index].spline;
             int pointIndex = connections[index].pointIndex;
             for (int i = 0; i < connections.Length; i++)
             {

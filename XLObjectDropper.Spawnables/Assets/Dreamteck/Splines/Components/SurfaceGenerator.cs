@@ -179,7 +179,13 @@ namespace Dreamteck.Splines
             if (spline.isClosed) surfaceVertexCount--;
             int vertexCount = surfaceVertexCount;
 
-            if (_extrudeSpline) _extrudeSpline.Evaluate(ref extrudeResults, _extrudeFrom, _extrudeTo);
+            if (_extrudeSpline != null)
+            {
+                _extrudeSpline.Evaluate(ref extrudeResults, _extrudeFrom, _extrudeTo);
+            } else if(extrudeResults.Length > 0)
+            {
+                extrudeResults = new SplineSample[0];
+            }
             bool pathExtrude = _extrudeSpline && extrudeResults.Length > 0;
             bool simpleExtrude = !pathExtrude && _extrude != 0f;
 
@@ -218,7 +224,6 @@ namespace Dreamteck.Splines
                 totalTrisCount *= 2;
                 totalTrisCount += extrudeResults .Length * sampleCount * 2 * 3;
             }
-
             AllocateMesh(vertexCount, totalTrisCount);
             Vector3 off = trs.right * offset.x + trs.up * offset.y + trs.forward * offset.z;
             for (int i = 0; i < surfaceVertexCount; i++)

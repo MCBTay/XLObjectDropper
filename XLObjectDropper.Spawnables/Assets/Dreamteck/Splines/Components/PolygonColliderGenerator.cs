@@ -128,7 +128,6 @@ namespace Dreamteck.Splines
         protected override void Build()
         {
             base.Build();
-            if (sampleCount == 0) return;
             switch(type){
                 case Type.Path:
                 GeneratePath();

@@ -71,7 +71,6 @@ namespace Dreamteck.Splines
 
         public void RenderWithCamera(Camera cam)
         {
-            if (sampleCount == 0) return;
             orthographic = true;
             if (cam != null)
             {
@@ -123,7 +122,7 @@ namespace Dreamteck.Splines
                     float slicePercent = ((float)n / _slices);
                     tsMesh.vertices[vertexIndex] = center - vertexRight * evalResult.size * 0.5f * size + vertexRight * evalResult.size * slicePercent * size;
                     CalculateUVs(evalResult.percent, slicePercent);
-                    tsMesh.uv[vertexIndex] = Vector2.one * 0.5f + (Vector2)(Quaternion.AngleAxis(uvRotation, Vector3.forward) * (Vector2.one * 0.5f - uvs));
+                    tsMesh.uv[vertexIndex] = Vector2.one * 0.5f + (Vector2)(Quaternion.AngleAxis(uvRotation + 180f, Vector3.forward) * (Vector2.one * 0.5f - uvs));
                     tsMesh.normals[vertexIndex] = vertexNormal;
                     tsMesh.colors[vertexIndex] = vertexColor;
                     vertexIndex++;

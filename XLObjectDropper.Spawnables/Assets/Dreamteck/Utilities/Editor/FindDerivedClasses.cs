@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
-using System;
-using System.Reflection;
-using System.Collections.Generic;
-
-namespace Dreamteck
+﻿namespace Dreamteck
 {
+    using UnityEngine;
+    using System.Collections;
+    using System;
+    using System.Reflection;
+    using System.Collections.Generic;
     public static class FindDerivedClasses
     {
         public static List<Type> GetAllDerivedClasses(this Type aBaseClass, string[] aExcludeAssemblies)
@@ -13,7 +12,6 @@ namespace Dreamteck
             List<Type> result = new List<Type>();
             foreach (Assembly A in AppDomain.CurrentDomain.GetAssemblies())
             {
-                if (A is System.Reflection.Emit.AssemblyBuilder) continue;
                 bool exclude = false;
                 foreach (string S in aExcludeAssemblies)
                 {

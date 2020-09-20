@@ -119,7 +119,6 @@ namespace Dreamteck.Splines
 
         protected override void BuildMesh()
         {
-           if (sampleCount == 0) return;
            base.BuildMesh();
            GenerateVertices();
            MeshUtility.GeneratePlaneTriangles(ref tsMesh.triangles, _slices, sampleCount, false);
@@ -158,7 +157,7 @@ namespace Dreamteck.Splines
                     if (_useShapeCurve) shapeEval = _shape.Evaluate(slicePercent);
                     tsMesh.vertices[vertexIndex] = center + rot * right * fullSize * 0.5f - rot * right * fullSize * slicePercent + rot * evalResult.up * shapeEval * _shapeExposure;
                     CalculateUVs(evalResult.percent, 1f - slicePercent);
-                    tsMesh.uv[vertexIndex] = Vector2.one * 0.5f + (Vector2)(Quaternion.AngleAxis(uvRotation, Vector3.forward) * (Vector2.one * 0.5f - uvs));
+                    tsMesh.uv[vertexIndex] = Vector2.one * 0.5f + (Vector2)(Quaternion.AngleAxis(uvRotation + 180f, Vector3.forward) * (Vector2.one * 0.5f - uvs));
                     if (_slices > 1)
                     {
                         if (n < _slices)

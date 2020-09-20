@@ -200,10 +200,17 @@ namespace Dreamteck.Splines.Editor
 
         protected void DeleteSelectedPoints()
         {
-            if (onBeforeDeleteSelectedPoints != null) onBeforeDeleteSelectedPoints();
+            if (onBeforeDeleteSelectedPoints != null)
+            {
+                onBeforeDeleteSelectedPoints();
+            }
+
             if (isClosed && selectedPoints.Count == points.Length - 1)
             {
-                for (int i = points.Length - 1; i >= 0; i--) DeletePoint(i);
+                for (int i = points.Length - 1; i >= 0; i--)
+                {
+                    DeletePoint(i);
+                }
             }
             else
             {

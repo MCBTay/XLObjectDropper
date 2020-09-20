@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 3435268071
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: ezdayprops
+      Dependencies: {}
+    Info_1:
+      Name: dryden - prop asset bundle
+      Dependencies: {}
+    Info_2:
+      Name: dryden - xlod
+      Dependencies: {}
+    Info_3:
+      Name: sdt - ausbundle
+      Dependencies: {}

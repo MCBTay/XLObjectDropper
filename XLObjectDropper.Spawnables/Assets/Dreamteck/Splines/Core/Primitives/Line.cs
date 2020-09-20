@@ -21,10 +21,10 @@ namespace Dreamteck.Splines.Primitives
             closed = false;
             CreatePoints(segments + 1, SplinePoint.Type.SmoothMirrored);
             Vector3 origin = Vector3.zero;
-            if (mirror) origin = -Vector3.forward * length * 0.5f;
+            if (mirror) origin = -Vector3.up * length * 0.5f;
             for (int i = 0; i < points.Length; i++)
             {
-                points[i].position = origin + Vector3.forward * length * ((float)i / (points.Length - 1));
+                points[i].position = origin + Vector3.up * length * ((float)i / (points.Length - 1));
             }
         }
     }

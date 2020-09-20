@@ -48,6 +48,7 @@ namespace Dreamteck.Splines.Editor
             if (EditorGUI.EndChangeCheck())
             {
                 change = true;
+                serializedObject.ApplyModifiedProperties();
             }
 
             UVControls(user);
@@ -65,6 +66,7 @@ namespace Dreamteck.Splines.Editor
                 if (EditorGUI.EndChangeCheck())
                 {
                     change = true;
+                    serializedObject.ApplyModifiedProperties();
                 }
             }
 
@@ -74,7 +76,6 @@ namespace Dreamteck.Splines.Editor
                 {
                     users[i].Rebuild();
                 }
-                serializedObject.ApplyModifiedProperties();
             }
         }  
     }
