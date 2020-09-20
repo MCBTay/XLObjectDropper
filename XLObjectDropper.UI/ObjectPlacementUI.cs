@@ -13,8 +13,8 @@ namespace XLObjectDropper.UI
 		public GameObject MainScreen_UI;
 
 		[Space(10)]
-		public GameObject RB_UI;
-		public GameObject LB_UI;
+		public GameObject SnappingModeUI;
+		public GameObject RotateAndScaleModeUI;
 		[Space(10)]
 		public GameObject RT_UI;
 		public GameObject LT_UI;
@@ -33,8 +33,8 @@ namespace XLObjectDropper.UI
 			MainScreen_UI.SetActive(true);
 
 			// Object Placement
-			RB_UI.SetActive(false);
-			LB_UI.SetActive(false);
+			SnappingModeUI.SetActive(false);
+			RotateAndScaleModeUI.SetActive(false);
 			RT_UI.SetActive(false);
 			LT_UI.SetActive(false);
         }
@@ -44,8 +44,8 @@ namespace XLObjectDropper.UI
 			MainScreen_UI.SetActive(false);
 
 			// Object Placement
-			RB_UI.SetActive(false);
-			LB_UI.SetActive(false);
+			SnappingModeUI.SetActive(false);
+			RotateAndScaleModeUI.SetActive(false);
 			RT_UI.SetActive(false);
 			LT_UI.SetActive(false);
         }
@@ -55,8 +55,8 @@ namespace XLObjectDropper.UI
             MainScreen_UI.SetActive(true);
 
 			// Object Placement
-			RB_UI.SetActive(false);
-			LB_UI.SetActive(false);
+			SnappingModeUI.SetActive(false);
+			RotateAndScaleModeUI.SetActive(false);
 			RT_UI.SetActive(false);
 			LT_UI.SetActive(false);
 		}
@@ -69,12 +69,12 @@ namespace XLObjectDropper.UI
             if (player.GetButtonDown("RB"))
             {
                 MainScreen_UI.SetActive(false);
-                RB_UI.SetActive(true);
+                SnappingModeUI.SetActive(true);
             }
             if (player.GetButtonUp("RB"))
             {
                 MainScreen_UI.SetActive(true);
-                RB_UI.SetActive(false);
+                SnappingModeUI.SetActive(false);
             }
             #endregion
 
@@ -82,19 +82,19 @@ namespace XLObjectDropper.UI
             if (player.GetButtonDown("LB"))
             {
                 MainScreen_UI.SetActive(false);
-                LB_UI.SetActive(true);
+                RotateAndScaleModeUI.SetActive(true);
             }
             if (player.GetButtonUp("LB"))
             {
                 MainScreen_UI.SetActive(true);
-                LB_UI.SetActive(false);
+                RotateAndScaleModeUI.SetActive(false);
             }
             #endregion
 
             #region Right Trigger
             if (player.GetButton("RT"))
             {
-                if (LB_UI.activeInHierarchy == false)
+                if (RotateAndScaleModeUI.activeInHierarchy == false)
                 {
                     RT_UI.SetActive(true);
                 }
@@ -108,7 +108,7 @@ namespace XLObjectDropper.UI
             #region Left Trigger
             if (player.GetButton("LT"))
             {
-                if (LB_UI.activeInHierarchy == false)
+                if (RotateAndScaleModeUI.activeInHierarchy == false)
                 {
                     LT_UI.SetActive(true);
                 }
@@ -123,25 +123,25 @@ namespace XLObjectDropper.UI
             {
 	            CurrentPlacementSnappingMode++;
 
-	            if (CurrentPlacementSnappingMode > Enum.GetValues(typeof(PlacementSnappingMode)).Length - 1)
+	            if (CurrentPlacementSnappingMode > Enum.GetValues(typeof(MovementSnappingMode)).Length - 1)
 		            CurrentPlacementSnappingMode = 0;
 
 	            string placementSnapping = "OFF";
 	            switch (CurrentPlacementSnappingMode)
 	            {
-		            case (int)PlacementSnappingMode.Off:
+		            case (int)MovementSnappingMode.Off:
 			            placementSnapping = "OFF";
 			            break;
-		            case (int)PlacementSnappingMode.Quarter:
+		            case (int)MovementSnappingMode.Quarter:
 			            placementSnapping = "1/4m";
 			            break;
-		            case (int)PlacementSnappingMode.Half:
+		            case (int)MovementSnappingMode.Half:
 			            placementSnapping = "1/2m";
 			            break;
-		            case (int)PlacementSnappingMode.Full:
+		            case (int)MovementSnappingMode.Full:
 			            placementSnapping = "1m";
 			            break;
-					case (int)PlacementSnappingMode.Double:
+					case (int)MovementSnappingMode.Double:
 						placementSnapping = "2m";
 						break;
 	            }
