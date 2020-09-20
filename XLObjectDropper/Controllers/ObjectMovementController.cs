@@ -248,9 +248,11 @@ namespace XLObjectDropper.Controllers
 
 					if (player.GetButtonDown("Left Stick Button"))
 					{
-						SelectedObject.transform.localScale = Vector3.one;
-						//TODO: Come back to this, get the rotation from LoadedPrefabs
-						//SelectedObject.transform.rotation = LastPrefab.transform.rotation;
+						UISounds.Instance?.PlayOneShotSelectMajor();
+						var prefab = SelectedObject.GetPrefab();
+
+						SelectedObject.transform.localScale = prefab != null ? prefab.transform.localScale : Vector3.one;
+						SelectedObject.transform.rotation = prefab != null ? prefab.transform.rotation : Quaternion.identity;
 					}
 				}
 				else if (HighlightedObject != null)
@@ -314,6 +316,8 @@ namespace XLObjectDropper.Controllers
 				
 				if (player.GetButtonDown("Right Stick Button"))
 				{
+					UISounds.Instance?.PlayOneShotSelectMajor();
+
 					targetDistance = defaultDistance;
 					rotationAngleX = 0;
 					rotationAngleY = 20f;
