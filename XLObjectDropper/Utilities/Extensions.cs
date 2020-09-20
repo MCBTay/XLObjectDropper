@@ -70,14 +70,5 @@ namespace XLObjectDropper
 			return layerInfo;
 		}
 		#endregion
-
-		#region GameObject extensions
-		public static GameObject GetPrefab(this GameObject gameObject)
-		{
-			var name = gameObject.name.Replace("(Clone)", string.Empty);
-
-			return SpawnableManager.Prefabs.FirstOrDefault(x => name.Equals(x.Prefab.name))?.Prefab;
-		}
-		#endregion
 	}
 }

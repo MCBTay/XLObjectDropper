@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace XLObjectDropper.Utilities
@@ -36,5 +37,18 @@ namespace XLObjectDropper.Utilities
 
 			SpawnedObjects.Clear();
 		}
+
+		#region Extensions
+		public static GameObject GetPrefab(this GameObject gameObject)
+		{
+			return gameObject.GetSpawnable()?.Prefab;
+		}
+
+		public static Spawnable GetSpawnable(this GameObject gameObject)
+		{
+			var name = gameObject.name.Replace("(Clone)", string.Empty);
+			return Prefabs.FirstOrDefault(x => name.Equals(x.Prefab.name));
+		}
+		#endregion
 	}
 }

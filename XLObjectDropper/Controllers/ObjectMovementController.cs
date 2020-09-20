@@ -293,23 +293,27 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonDown("X"))
 				{
-					if (SelectedObject != null && SelectedObject.activeInHierarchy)
+					if (SelectedObjectActive)
 					{
-						// if x, open new object selection menu
 						UISounds.Instance?.PlayOneShotSelectMajor();
 						PlaceObject(false);
+					}
+
+					if (HighlightedObjectActive)
+					{
+						UISounds.Instance?.PlayOneShotSelectMajor();
+						DuplicateObject();
 					}
 				}
 
 				if (player.GetButtonDown("B"))
 				{
-					if (SelectedObject != null && SelectedObject.activeInHierarchy)
+					if (SelectedObjectActive)
 					{
 						Destroy(SelectedObject);
 					}
 					else
 					{
-
 						GameStateMachine.Instance.RequestPauseState();
 					}
 				}
@@ -470,30 +474,7 @@ namespace XLObjectDropper.Controllers
 			return Mathf.Clamp(angle, min, max);
 		}
 
-		private void PlaceObject(bool disablePreview = true)
-        {
-	        var newObject = Instantiate(SelectedObject, SelectedObject.transform.position, SelectedObject.transform.rotation);
-	        newObject.SetActive(true);
-
-	        newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
-
-	        SpawnableManager.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
-
-			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
-			objPlaceEvent.AddToUndoStack();
-
-			if (disablePreview)
-	        {
-		        SelectedObject.SetActive(false);
-		        UserInterfaceHelper.CustomPassVolume.enabled = false;
-
-		        if (GridOverlay != null && GridOverlay.activeInHierarchy)
-		        {
-					GridOverlay.SetActive(false);
-					DestroyImmediate(GridOverlay);
-		        }
-	        }
-        }
+		
 
 		private float GetCurrentPlacementSnappingModeIncrement()
 		{
@@ -630,6 +611,42 @@ namespace XLObjectDropper.Controllers
 			}
 
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
+		}
+
+		private void PlaceObject(bool disablePreview = true)
+		{
+			var newObject = Instantiate(SelectedObject, SelectedObject.transform.position, SelectedObject.transform.rotation);
+			newObject.SetActive(true);
+
+			newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
+
+			SpawnableManager.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
+
+			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
+			objPlaceEvent.AddToUndoStack();
+
+			if (disablePreview)
+			{
+				SelectedObject.SetActive(false);
+				UserInterfaceHelper.CustomPassVolume.enabled = false;
+
+				if (GridOverlay != null && GridOverlay.activeInHierarchy)
+				{
+					GridOverlay.SetActive(false);
+					DestroyImmediate(GridOverlay);
+				}
+			}
+		}
+
+		private void DuplicateObject()
+		{
+			if (!HighlightedObjectActive) return;
+
+			var spawnable = HighlightedObject.GetSpawnable();
+			if (spawnable != null)
+			{
+				InstantiateSelectedObject(spawnable);
+			}
 		}
 	}
 }
