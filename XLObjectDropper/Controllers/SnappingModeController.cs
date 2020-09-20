@@ -1,6 +1,7 @@
 ﻿using System;
 using Rewired;
 using UnityEngine;
+using UnityModManagerNet;
 using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.Controllers
@@ -133,7 +134,20 @@ namespace XLObjectDropper.Controllers
 
 		private void SnapToGrid()
 		{
-			//TODO: Implement me
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
+			var increment = GetCurrentPlacementSnappingModeIncrement();
+
+			if (Mathf.Approximately(increment, 0.0f)) increment = 1.0f;
+
+			var roundedX = Mathf.Round(ObjectMovementController.Instance.cameraPivot.position.x / increment) * increment;
+			var roundedY = Mathf.Round(ObjectMovementController.Instance.cameraPivot.position.y / increment) * increment;
+			var roundedZ = Mathf.Round(ObjectMovementController.Instance.cameraPivot.position.z / increment) * increment;
+
+			UnityModManager.Logger.Log("XLObjectDropper: Setting position from " + ObjectMovementController.Instance.cameraPivot.position + " to " + new Vector3(roundedX, roundedY, roundedZ));
+			ObjectMovementController.Instance.cameraPivot.position = new Vector3(roundedX, roundedY, roundedZ);
+
+			ObjectMovementController.Instance.UpdateSelectedObjectPosition();
 		}
 
 		private void SnapToGround()
