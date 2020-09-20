@@ -43,7 +43,7 @@ namespace XLObjectDropper.Controllers
 		{
 			ObjectSelection.ClearList();
 
-			var spawnablesByType = AssetBundleHelper.LoadedSpawnables.Where(x => x.Type == (SpawnableType)ObjectSelection.CurrentCategoryIndex).ToList();
+			var spawnablesByType = SpawnableManager.Prefabs.Where(x => x.Type == (SpawnableType)ObjectSelection.CurrentCategoryIndex).ToList();
 			if (spawnablesByType.Any())
 			{
 				foreach (var spawnable in spawnablesByType)

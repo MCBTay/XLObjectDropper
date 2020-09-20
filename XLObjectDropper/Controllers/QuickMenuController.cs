@@ -31,11 +31,11 @@ namespace XLObjectDropper.Controllers
 			switch (QuickMenu.CurrentCategoryIndex)
 			{
 				case (int)QuickMenuType.Recent:
-					objectList = ObjectDropperController.SpawnedObjects.GroupBy(x => x.Prefab).Select(x => x.First()).ToList();
+					objectList = SpawnableManager.SpawnedObjects.GroupBy(x => x.Prefab).Select(x => x.First()).ToList();
 					break;
 				case (int)QuickMenuType.Placed:
 				default:
-					objectList = ObjectDropperController.SpawnedObjects;
+					objectList = SpawnableManager.SpawnedObjects;
 					break;
 			}
 

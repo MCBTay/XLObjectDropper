@@ -1,6 +1,5 @@
 ﻿using GameManagement;
 using HarmonyLib;
-using XLObjectDropper.Controllers;
 using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Patches
@@ -23,7 +22,7 @@ namespace XLObjectDropper.Patches
 
 				//Utilities.SaveManager.Instance.SaveCurrentSpawnables();
 
-				ObjectDropperController.DeleteSpawnedObjects();
+				SpawnableManager.DeleteSpawnedObjects();
 
 				return;
 			}

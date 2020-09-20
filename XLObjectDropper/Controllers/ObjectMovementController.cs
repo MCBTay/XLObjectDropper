@@ -477,7 +477,7 @@ namespace XLObjectDropper.Controllers
 
 	        newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
 
-	        ObjectDropperController.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
+	        SpawnableManager.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
 
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();

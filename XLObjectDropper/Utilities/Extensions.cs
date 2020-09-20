@@ -49,7 +49,7 @@ namespace XLObjectDropper
 		{
 			var objectName = trans.gameObject.name.Replace("(Clone)", string.Empty);
 
-			var prefab = AssetBundleHelper.LoadedSpawnables.FirstOrDefault(x => objectName.Equals(x.Prefab.name));
+			var prefab = SpawnableManager.Prefabs.FirstOrDefault(x => objectName.Equals(x.Prefab.name));
 			if (prefab != null)
 			{
 				return trans;
@@ -76,7 +76,7 @@ namespace XLObjectDropper
 		{
 			var name = gameObject.name.Replace("(Clone)", string.Empty);
 
-			return AssetBundleHelper.LoadedSpawnables.FirstOrDefault(x => name.Equals(x.Prefab.name))?.Prefab;
+			return SpawnableManager.Prefabs.FirstOrDefault(x => name.Equals(x.Prefab.name))?.Prefab;
 		}
 		#endregion
 	}

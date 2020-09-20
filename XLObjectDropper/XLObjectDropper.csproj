@@ -192,6 +192,7 @@
     <Compile Include="Patches\GameManagement\PauseStatePatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInterface\UserInterfaceHelper.cs" />
+    <Compile Include="Utilities\SpawnableManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\object_testbundle" />
