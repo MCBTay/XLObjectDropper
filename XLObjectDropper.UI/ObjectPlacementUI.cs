@@ -152,10 +152,10 @@ namespace XLObjectDropper.UI
             var buttonController = AXYBButtons.GetComponentInChildren<AXYBController>();
             if (buttonController != null)
             {
-	            buttonController.SetXButtonLabelText("Duplicate", HasSelectedObject || HasHighlightedObject);
-				buttonController.SetYButtonLabelText("Delete", HasSelectedObject || HasHighlightedObject);
-	            buttonController.SetAButtonLabelText(HasSelectedObject ? "Place" : "Select", HasSelectedObject || HasHighlightedObject);
-	            buttonController.SetBButtonLabelText(HasSelectedObject ? "Cancel" : "Exit");
+				buttonController.XButton.UpdateButton("Duplicate", HasSelectedObject || HasHighlightedObject);
+				buttonController.YButton.UpdateButton("Delete", HasSelectedObject || HasHighlightedObject);
+	            buttonController.AButton.UpdateButton(HasSelectedObject ? "Place" : "Select", HasSelectedObject || HasHighlightedObject);
+	            buttonController.BButton.UpdateButton(HasSelectedObject ? "Cancel" : "Exit");
             }
 		}
     }

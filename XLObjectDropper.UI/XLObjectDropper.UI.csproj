@@ -123,6 +123,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\AXYBButton.cs" />
     <Compile Include="Controls\AXYBController.cs" />
     <Compile Include="Controls\DirectionalPadController.cs" />
     <Compile Include="Menus\UnsavedChangesDialog.cs" />
