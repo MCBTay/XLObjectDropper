@@ -138,7 +138,11 @@ namespace XLObjectDropper.Controllers
 
 		private void SnapToGround()
 		{
-			//TODO: Implement me
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
+			ObjectMovementController.Instance.targetHeight = 0;
+			ObjectMovementController.Instance.MoveObjectOnYAxis();
+			ObjectMovementController.Instance.UpdateSelectedObjectPosition();
 		}
 	}
 }
