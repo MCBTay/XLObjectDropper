@@ -166,6 +166,12 @@ namespace XLObjectDropper.Controllers
 		        SelectedObjectLayerInfo = null;
 	        }
 
+	        if (GridOverlay != null)
+	        {
+				GridOverlay.SetActive(false);
+				DestroyImmediate(GridOverlay);
+	        }
+
 	        if (HighlightedObject != null)
 	        {
 		        HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
