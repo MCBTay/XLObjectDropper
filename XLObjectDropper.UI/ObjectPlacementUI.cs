@@ -119,36 +119,6 @@ namespace XLObjectDropper.UI
             }
             #endregion
 
-            if (player.GetNegativeButtonDown("DPadX"))
-            {
-	            CurrentPlacementSnappingMode++;
-
-	            if (CurrentPlacementSnappingMode > Enum.GetValues(typeof(MovementSnappingMode)).Length - 1)
-		            CurrentPlacementSnappingMode = 0;
-
-	            string placementSnapping = "OFF";
-	            switch (CurrentPlacementSnappingMode)
-	            {
-		            case (int)MovementSnappingMode.Off:
-			            placementSnapping = "OFF";
-			            break;
-		            case (int)MovementSnappingMode.Quarter:
-			            placementSnapping = "1/4m";
-			            break;
-		            case (int)MovementSnappingMode.Half:
-			            placementSnapping = "1/2m";
-			            break;
-		            case (int)MovementSnappingMode.Full:
-			            placementSnapping = "1m";
-			            break;
-					case (int)MovementSnappingMode.Double:
-						placementSnapping = "2m";
-						break;
-	            }
-
-				DirectionalPad.GetComponent<DirectionalPadController>().LeftLabel.SetText($"SNAP PLACEMENT: <color=#3286EC>{placementSnapping}");
-            }
-
             var buttonController = AXYBButtons.GetComponentInChildren<AXYBController>();
             if (buttonController != null)
             {

@@ -29,6 +29,10 @@ namespace XLObjectDropper.Controllers
 		private RotationAndScaleController RotationAndScaleController;
 		private bool RotationAndScaleOpen => RotationAndScaleGameObject != null && RotationAndScaleGameObject.activeInHierarchy;
 
+		private GameObject SnappingModeGameObject;
+		private SnappingModeController SnappingModeController;
+		private bool SnappingModeOpen => SnappingModeGameObject != null && SnappingModeGameObject.activeInHierarchy;
+
 		private void Awake()
 		{
 			Instance = this;
@@ -50,6 +54,7 @@ namespace XLObjectDropper.Controllers
 			DestroyObjectMovement();
 			DestroyQuickMenu();
 			DestroyRotationAndScaleUI();
+			DestroySnappingModeUI();
 		}
 
 		private void Update()
@@ -58,14 +63,14 @@ namespace XLObjectDropper.Controllers
 
 			Time.timeScale = OptionsMenuOpen || ObjectSelectionOpen || QuickMenuOpen ? 0.0f : 1.0f;
 
-
-
-			if (player.GetButtonUp("LB"))
+			if (player.GetButtonUp("LB") && RotationAndScaleOpen)
 			{
-				if (RotationAndScaleOpen)
-				{
-					DestroyRotationAndScaleUI();
-				}
+				DestroyRotationAndScaleUI();
+			}
+
+			if (player.GetButtonUp("RB") && SnappingModeOpen)
+			{
+				DestroySnappingModeUI();
 			}
 
 			if (player.GetButton("LB"))
@@ -91,6 +96,10 @@ namespace XLObjectDropper.Controllers
 						CreateRotationAndScaleUI();
 					}
 				}
+			}
+			else if (player.GetButton("RB") && !SnappingModeOpen)
+			{
+				CreateSnappingModeUI();
 			}
 			else
 			{
@@ -300,6 +309,25 @@ namespace XLObjectDropper.Controllers
 
 			DestroyImmediate(RotationAndScaleController);
 			DestroyImmediate(RotationAndScaleGameObject);
+		}
+		#endregion
+
+		#region Snapping Mode UI
+		private void CreateSnappingModeUI() {
+			SnappingModeGameObject = new GameObject();
+			SnappingModeController = SnappingModeGameObject.AddComponent<SnappingModeController>();
+
+			SnappingModeGameObject.SetActive(true);
+		}
+
+		private void DestroySnappingModeUI()
+		{
+			if (SnappingModeGameObject == null || SnappingModeController == null) return;
+
+			SnappingModeGameObject.SetActive(false);
+
+			DestroyImmediate(SnappingModeController);
+			DestroyImmediate(SnappingModeGameObject);
 		}
 		#endregion
 	}

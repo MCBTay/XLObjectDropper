@@ -118,9 +118,6 @@
       <HintPath>..\XLObjectDropper\References\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityModManager">
-      <HintPath>..\XLObjectDropper\References\UnityModManager.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\AXYBButton.cs" />

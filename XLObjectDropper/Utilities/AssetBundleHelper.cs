@@ -71,7 +71,7 @@ namespace XLObjectDropper.Utilities
 
 			yield return abCreateRequest;
 
-			var bundle = abCreateRequest.assetBundle;
+			var bundle = abCreateRequest?.assetBundle;
 			if (bundle == null) yield break;
 
 			var assetLoadRequest = bundle.LoadAllAssetsAsync<GameObject>();
