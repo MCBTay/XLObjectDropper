@@ -186,31 +186,9 @@ namespace XLObjectDropper.Controllers
         {
 	        Player player = PlayerController.Instance.inputController.player;
 
-	        if (HighlightedObject != null)
-			{
-				HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
-				HighlightedObject = null;
-			}
+	        HandleObjectHighlight();
 
-			if (!SelectedObjectActive)
-			{
-				Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
-				if (Physics.Raycast(ray, out RaycastHit hit, 5f))
-				{
-					var parent = hit.transform.GetTopMostParent();
-
-					if (hit.collider != null && parent != null)
-					{
-						HighlightedObject = parent.gameObject;
-						HighlightedObjectLayerInfo = parent.GetObjectLayers();
-
-						HighlightedObject.transform.ChangeLayersRecursively("Ignore Raycast");
-						UserInterfaceHelper.CustomPassVolume.enabled = true;
-					}
-				}
-			}
-
-			MovementUI.HasHighlightedObject = HighlightedObjectActive;
+	        MovementUI.HasHighlightedObject = HighlightedObjectActive;
 			MovementUI.HasSelectedObject = SelectedObjectActive;
 
 			if (player.GetButtonDown("LB") && SelectedObjectActive)
@@ -229,10 +207,7 @@ namespace XLObjectDropper.Controllers
 			// "Pause" this controller while the rotation and scale menu is open.
 			if (player.GetButton("LB")) return;
 
-			if (player.GetButton("RB"))
-			{
-				HandleAxisLocking(player);
-			}
+			if (player.GetButton("RB")) HandleAxisLocking(player);
 			else
 			{
 				HandleLeftStick(player);
@@ -244,95 +219,29 @@ namespace XLObjectDropper.Controllers
 					MoveCamera();
 				}
 
-				if (SelectedObject != null && SelectedObject.activeInHierarchy)
+				if (SelectedObjectActive)
 				{
-					if (player.GetButtonDown("A"))
-					{
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						PlaceObject();
-					}
-
-					if (player.GetButtonDown("Left Stick Button"))
-					{
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						var prefab = SelectedObject.GetPrefab();
-
-						SelectedObject.transform.localScale = prefab != null ? prefab.transform.localScale : Vector3.one;
-						SelectedObject.transform.rotation = prefab != null ? prefab.transform.rotation : Quaternion.identity;
-					}
+					if (player.GetButtonDown("A")) PlaceObject();
+					if (player.GetButtonDown("X")) PlaceObject(false);
+					if (player.GetButtonDown("B")) Destroy(SelectedObject);
+					if (player.GetButtonDown("Left Stick Button")) ResetObject();
 				}
 				else if (HighlightedObject != null)
 				{
-					if (player.GetButtonDown("A"))
-					{
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						SelectedObject = HighlightedObject;
-					}
-
-					if (player.GetButtonDown("Y"))
-					{
-						var objDeletedEvent = new ObjectDeletedEvent(HighlightedObject.GetPrefab(), HighlightedObject);
-						objDeletedEvent.AddToUndoStack();
-
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						DestroyImmediate(HighlightedObject);
-					}
+					if (player.GetButtonDown("A")) SelectObject();
+					if (player.GetButtonDown("X")) DuplicateObject();
+					if (player.GetButtonDown("Y")) DeleteObject();
+				}
+				else
+				{
+					if (player.GetButtonDown("B")) GameStateMachine.Instance.RequestPauseState();
 				}
 
 				HandleDPadHeightAdjustment(player);
 
-				if (player.GetButtonDown("DPadX"))
-				{
-					UISounds.Instance?.PlayOneShotSelectionChange();
-					LockCameraMovement = !LockCameraMovement;
-				}
-
-				if (player.GetNegativeButtonDown("DPadX"))
-				{
-					UISounds.Instance?.PlayOneShotSelectionChange();
-
-					CurrentPlacementSnappingMode++;
-
-					if (CurrentPlacementSnappingMode > Enum.GetValues(typeof(PlacementSnappingMode)).Length - 1)
-						CurrentPlacementSnappingMode = 0;
-				}
-
-				if (player.GetButtonDown("X"))
-				{
-					if (SelectedObjectActive)
-					{
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						PlaceObject(false);
-					}
-
-					if (HighlightedObjectActive)
-					{
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						DuplicateObject();
-					}
-				}
-
-				if (player.GetButtonDown("B"))
-				{
-					if (SelectedObjectActive)
-					{
-						Destroy(SelectedObject);
-					}
-					else
-					{
-						GameStateMachine.Instance.RequestPauseState();
-					}
-				}
-				
-				if (player.GetButtonDown("Right Stick Button"))
-				{
-					UISounds.Instance?.PlayOneShotSelectMajor();
-
-					targetDistance = defaultDistance;
-					rotationAngleX = 0;
-					rotationAngleY = 20f;
-					MoveCamera(true);
-				}
+				if (player.GetButtonDown("DPadX")) ToggleLockCameraMovement();
+				if (player.GetNegativeButtonDown("DPadX")) UpdatePlacementSnappingMode();
+				if (player.GetButtonDown("Right Stick Button")) ResetCamera();
 			}
         }
 
@@ -341,7 +250,11 @@ namespace XLObjectDropper.Controllers
 	        UpdateGroundLevel();
         }
 
-        private void HandleLeftStick(Player player)
+		#region Sticks
+		/// <summary>
+		/// Object movement
+		/// </summary>
+		private void HandleLeftStick(Player player)
         {
 	        float increment = GetCurrentPlacementSnappingModeIncrement();
 	        if (increment > 0.0f)
@@ -383,7 +296,10 @@ namespace XLObjectDropper.Controllers
 	        }
 		}
 
-        private void HandleRightStick(Player player)
+		/// <summary>
+		/// Camera movement
+		/// </summary>
+		private void HandleRightStick(Player player)
         {
 	        //TODO: Something about this new rotation method fucks up the default angle of the object dropper
 
@@ -417,8 +333,9 @@ namespace XLObjectDropper.Controllers
 		        SelectedObject.transform.position = cameraPivot.position;
 	        }
 		}
+		#endregion
 
-        private void HandleTriggers(Player player)
+		private void HandleTriggers(Player player)
         {
 	        float triggers = (player.GetAxis("RT") - player.GetAxis("LT")) * Time.deltaTime * zoomSpeed; //* HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
 
@@ -447,7 +364,18 @@ namespace XLObjectDropper.Controllers
 	        currentHeight = transform.position.y - groundLevel;
 		}
 
-        public void MoveCamera(bool moveInstant = false)
+        private void UpdatePlacementSnappingMode()
+        {
+	        UISounds.Instance?.PlayOneShotSelectionChange();
+
+	        CurrentPlacementSnappingMode++;
+
+	        if (CurrentPlacementSnappingMode > Enum.GetValues(typeof(PlacementSnappingMode)).Length - 1)
+		        CurrentPlacementSnappingMode = 0;
+		}
+
+		#region Camera movement methods
+		public void MoveCamera(bool moveInstant = false)
         {
 	        if (moveInstant)
 	        {
@@ -473,14 +401,29 @@ namespace XLObjectDropper.Controllers
 			PlayerController.Instance.cameraController.MoveCameraTo(cameraNode.position, cameraNode.rotation);
         }
 
-		private float ClampAngle(float angle, float min, float max)
+        private float ClampAngle(float angle, float min, float max)
 		{
 			if (angle < -360F) angle += 360F;
 			if (angle > 360F) angle -= 360F;
 			return Mathf.Clamp(angle, min, max);
 		}
 
-		
+        private void ToggleLockCameraMovement()
+        {
+	        UISounds.Instance?.PlayOneShotSelectionChange();
+	        LockCameraMovement = !LockCameraMovement;
+		}
+
+        private void ResetCamera()
+        {
+	        UISounds.Instance?.PlayOneShotSelectMajor();
+
+	        targetDistance = defaultDistance;
+	        rotationAngleX = 0;
+	        rotationAngleY = 20f;
+	        MoveCamera(true);
+		}
+		#endregion
 
 		private float GetCurrentPlacementSnappingModeIncrement()
 		{
@@ -597,6 +540,7 @@ namespace XLObjectDropper.Controllers
 			hasGround = flag;
 		}
 
+		#region Object creation, deletion, duplication, highlight methods
 		public void InstantiateSelectedObject(Spawnable spawnable)
 		{
 			SelectedObject = Instantiate(spawnable.Prefab);
@@ -621,6 +565,8 @@ namespace XLObjectDropper.Controllers
 
 		private void PlaceObject(bool disablePreview = true)
 		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
 			var newObject = Instantiate(SelectedObject, SelectedObject.transform.position, SelectedObject.transform.rotation);
 			newObject.SetActive(true);
 
@@ -648,11 +594,66 @@ namespace XLObjectDropper.Controllers
 		{
 			if (!HighlightedObjectActive) return;
 
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
 			var spawnable = HighlightedObject.GetSpawnable();
 			if (spawnable != null)
 			{
 				InstantiateSelectedObject(spawnable);
 			}
 		}
+
+		private void ResetObject()
+		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+			var prefab = SelectedObject.GetPrefab();
+
+			SelectedObject.transform.localScale = prefab != null ? prefab.transform.localScale : Vector3.one;
+			SelectedObject.transform.rotation = prefab != null ? prefab.transform.rotation : Quaternion.identity;
+		}
+
+		private void DeleteObject()
+		{
+			var objDeletedEvent = new ObjectDeletedEvent(HighlightedObject.GetPrefab(), HighlightedObject);
+			objDeletedEvent.AddToUndoStack();
+
+			UISounds.Instance?.PlayOneShotSelectMajor();
+			DestroyImmediate(HighlightedObject);
+		}
+
+		private void SelectObject()
+		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+			SelectedObject = HighlightedObject;
+		}
+
+		private void HandleObjectHighlight()
+		{
+			if (HighlightedObject != null)
+			{
+				HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
+				HighlightedObject = null;
+			}
+
+			if (!SelectedObjectActive)
+			{
+				Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+
+				if (Physics.Raycast(ray, out RaycastHit hit, 5f))
+				{
+					var parent = hit.transform.GetTopMostParent();
+
+					if (hit.collider != null && parent != null)
+					{
+						HighlightedObject = parent.gameObject;
+						HighlightedObjectLayerInfo = parent.GetObjectLayers();
+
+						HighlightedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+						UserInterfaceHelper.CustomPassVolume.enabled = true;
+					}
+				}
+			}
+		}
+		#endregion
 	}
 }
