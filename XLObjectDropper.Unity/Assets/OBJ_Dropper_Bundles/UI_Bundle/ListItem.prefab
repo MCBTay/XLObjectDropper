@@ -242,6 +242,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListItem: {fileID: 4693846912459679585}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4989849629632440616
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Item name
+  m_text: Item Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b790aeed1648a764ab67163dd5704955, type: 2}
   m_sharedMaterial: {fileID: -1470814966106991453, guid: b790aeed1648a764ab67163dd5704955,
@@ -416,7 +419,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 6
   m_fontSizeMax: 10
-  m_fontStyle: 16
+  m_fontStyle: 32
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
