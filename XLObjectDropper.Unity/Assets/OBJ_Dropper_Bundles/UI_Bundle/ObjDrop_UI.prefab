@@ -7891,7 +7891,6 @@ MonoBehaviour:
   Sensitivity: {fileID: 2977971448857450726}
   InvertCamControl: {fileID: 878207299611053656}
   ShowGrid: {fileID: 942455602356173378}
-  SnapToGround: {fileID: 0}
   UndoButton: {fileID: 2188239286991241918}
   RedoButton: {fileID: 8545717710833375052}
   SaveButton: {fileID: 5736723509841356107}
@@ -10336,12 +10335,12 @@ PrefabInstance:
     - target: {fileID: 6075670144135662470, guid: f2e1e9cc377397b4aae796ba1b23d15c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6626754518075646974, guid: f2e1e9cc377397b4aae796ba1b23d15c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7144748450009962714, guid: f2e1e9cc377397b4aae796ba1b23d15c,
         type: 3}
@@ -10376,12 +10375,12 @@ PrefabInstance:
     - target: {fileID: 8162092766408274637, guid: f2e1e9cc377397b4aae796ba1b23d15c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8272957628855749441, guid: f2e1e9cc377397b4aae796ba1b23d15c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2e1e9cc377397b4aae796ba1b23d15c, type: 3}
@@ -11844,6 +11843,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontStyle
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295690125026, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
