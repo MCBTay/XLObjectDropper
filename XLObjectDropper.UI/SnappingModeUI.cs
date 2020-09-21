@@ -31,11 +31,11 @@ namespace XLObjectDropper.UI
 			if (CurrentMovementSnappingMode > Enum.GetValues(typeof(MovementSnappingMode)).Length - 1)
 				CurrentMovementSnappingMode = 0;
 
-			string placementSnapping = "OFF";
+			string placementSnapping = "Off";
 			switch (CurrentMovementSnappingMode)
 			{
 				case (int)MovementSnappingMode.Off:
-					placementSnapping = "OFF";
+					placementSnapping = "Off";
 					break;
 				case (int)MovementSnappingMode.Quarter:
 					placementSnapping = "1/4m";
@@ -51,7 +51,7 @@ namespace XLObjectDropper.UI
 					break;
 			}
 
-			AXBYButtons.GetComponent<AXYBController>().XButton.SetLabelText($"MOVEMENT SNAPPING: <color=#3286EC>{placementSnapping}");
+			AXBYButtons.GetComponent<AXYBController>().XButton.SetLabelText($"Movement Snapping: <color=#3286EC>{placementSnapping}");
 		}
 	}
 }
