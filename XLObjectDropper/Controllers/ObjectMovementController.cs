@@ -90,7 +90,7 @@ namespace XLObjectDropper.Controllers
 			HeightToCameraDistCurve = PlayerController.Instance.pinMover.HeightToCameraDistCurve;
 
 			cameraPivot = transform;
-			cameraNode = Instantiate(mainCam.transform, cameraPivot);
+			cameraNode = mainCam.transform;
 
 			CreateCharacterController();
 
@@ -105,7 +105,7 @@ namespace XLObjectDropper.Controllers
 
 			Vector3 vector3_1 = PlayerController.Instance.skaterController.skaterRigidbody.position;
 
-			transform.rotation = Quaternion.Euler(0.0f, PlayerController.Instance.cameraController._actualCam.rotation.eulerAngles.y, 0.0f);
+			transform.rotation = Quaternion.Euler(0.0f, 20.0f, 0.0f);
 			transform.position = vector3_1;
 
 			UpdateGroundLevel();
