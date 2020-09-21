@@ -12,7 +12,6 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject Sensitivity;
 		public GameObject InvertCamControl;
 		public GameObject ShowGrid;
-		public GameObject SnapToGround;
 
 		[Space(10)]
 		public GameObject UndoButton;
@@ -23,7 +22,6 @@ namespace XLObjectDropper.UI.Menus
 		[HideInInspector] public event UnityAction<float> SensitivityValueChanged = (x) => { };
 		[HideInInspector] public event UnityAction<bool> InvertCamControlValueChanged = (x) => { };
 		[HideInInspector] public event UnityAction<bool> ShowGridValueChanged = (x) => { };
-		[HideInInspector] public event UnityAction<bool> SnapToGroundValueChanged = (x) => { };
 		[HideInInspector] public event UnityAction UndoClicked = () => { };
 		[HideInInspector] public event UnityAction RedoClicked = () => { };
 		[HideInInspector] public event UnityAction SaveClicked = () => { };
@@ -44,7 +42,6 @@ namespace XLObjectDropper.UI.Menus
 			Sensitivity.GetComponent<Slider>().onValueChanged.RemoveAllListeners();
 			InvertCamControl.GetComponent<Toggle>().onValueChanged.RemoveAllListeners();
 			ShowGrid.GetComponent<Toggle>().onValueChanged.RemoveAllListeners();
-			SnapToGround.GetComponent<Toggle>().onValueChanged.RemoveAllListeners();
 			UndoButton.GetComponent<Button>().onClick.RemoveAllListeners();
 			RedoButton.GetComponent<Button>().onClick.RemoveAllListeners();
 			SaveButton.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -53,7 +50,6 @@ namespace XLObjectDropper.UI.Menus
 			Sensitivity.SetActive(enabled);
 			InvertCamControl.SetActive(enabled);
 			ShowGrid.SetActive(enabled);
-			SnapToGround.SetActive(enabled);
 			UndoButton.SetActive(enabled);
 			RedoButton.SetActive(enabled);
 			SaveButton.SetActive(enabled);
@@ -64,7 +60,6 @@ namespace XLObjectDropper.UI.Menus
 				Sensitivity.GetComponent<Slider>().onValueChanged.AddListener(delegate { SensitivityValueChanged.Invoke(Sensitivity.GetComponent<Slider>().value); });
 				InvertCamControl.GetComponent<Toggle>().onValueChanged.AddListener(delegate { InvertCamControlValueChanged.Invoke(InvertCamControl.GetComponent<Toggle>().isOn); });
 				ShowGrid.GetComponent<Toggle>().onValueChanged.AddListener(delegate { ShowGridValueChanged.Invoke(ShowGrid.GetComponent<Toggle>().isOn); });
-				SnapToGround.GetComponent<Toggle>().onValueChanged.AddListener(delegate { SnapToGroundValueChanged.Invoke(ShowGrid.GetComponent<Toggle>().isOn); });
 				UndoButton.GetComponent<Button>().onClick.AddListener(delegate { UndoClicked.Invoke(); });
 				RedoButton.GetComponent<Button>().onClick.AddListener(delegate { RedoClicked.Invoke(); });
 				SaveButton.GetComponent<Button>().onClick.AddListener(delegate { SaveClicked.Invoke(); });
