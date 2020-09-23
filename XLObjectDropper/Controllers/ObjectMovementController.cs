@@ -44,7 +44,6 @@ namespace XLObjectDropper.Controllers
 		public float VerticalAcceleration = 20f;
 		private float CameraRotateSpeed = 100f;
 		private float MoveSpeed = 10f;
-		private float CameraDistMoveSpeed;
 		private float lastVerticalVelocity;
 		private float lastCameraVelocity;
 		public float currentMoveSpeed;
@@ -52,12 +51,11 @@ namespace XLObjectDropper.Controllers
 
 		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.0f, 0.5f, 15f, 3f);
 		public AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
-		public AnimationCurve HeightToCameraDistCurve;
 
 		private Camera mainCam;
 		public Transform cameraPivot;
 		public Transform cameraNode;
-		public float CameraSphereCastRadius = 0.15f;
+		public Transform originalCameraNodeParent;
 		private float currentCameraDist;
 		private float defaultDistance = 5.0f;
 		private float minDistance = 2.5f;
@@ -73,10 +71,7 @@ namespace XLObjectDropper.Controllers
 		private float rotationAngleX;
 		private float rotationAngleY;
 
-		
-
 		private bool LockCameraMovement { get; set; }
-
 		#endregion
 
 		private void Awake()
@@ -87,10 +82,10 @@ namespace XLObjectDropper.Controllers
 
 			mainCam = Camera.main;
 
-			HeightToCameraDistCurve = PlayerController.Instance.pinMover.HeightToCameraDistCurve;
-
 			cameraPivot = transform;
 			cameraNode = mainCam.transform;
+			originalCameraNodeParent = cameraNode.parent;
+			cameraNode.SetParent(cameraPivot);
 
 			CreateCharacterController();
 
@@ -98,13 +93,11 @@ namespace XLObjectDropper.Controllers
 			
 			LockCameraMovement = false;
 
-			#region from PinMovementController
 			originalNearClipDist = mainCam.nearClipPlane;
 			mainCam.nearClipPlane = 0.01f;
 			targetHeight = defaultHeight;
 
 			Vector3 vector3_1 = PlayerController.Instance.skaterController.skaterRigidbody.position;
-
 			transform.rotation = Quaternion.Euler(0.0f, 20.0f, 0.0f);
 			transform.position = vector3_1;
 
@@ -115,10 +108,10 @@ namespace XLObjectDropper.Controllers
 
 			transform.position = vector3_1;
 			MoveCamera(true);
-			#endregion
 
 			cameraPivot = transform;
-			cameraNode = Instantiate(mainCam.transform, cameraPivot);
+			cameraNode = mainCam.transform;
+			cameraNode.SetParent(cameraPivot);
 
 			rotationAngleX = cameraPivot.eulerAngles.x;
 			rotationAngleY = cameraPivot.eulerAngles.y;
@@ -154,7 +147,7 @@ namespace XLObjectDropper.Controllers
         private void OnDisable()
         {
 	        mainCam.nearClipPlane = originalNearClipDist;
-		}
+        }
 
         public void CleanUp()
         {
@@ -178,6 +171,8 @@ namespace XLObjectDropper.Controllers
 		        HighlightedObjectLayerInfo = null;
 		        HighlightedObject = null;
 	        }
+
+	        cameraNode.SetParent(originalCameraNodeParent, false);
 		}
 
         private ObjectScaleAndRotateEvent ScaleAndRotateEvent;
@@ -188,7 +183,7 @@ namespace XLObjectDropper.Controllers
 
 	        HandleObjectHighlight();
 
-	        MovementUI.HasHighlightedObject = HighlightedObjectActive;
+			MovementUI.HasHighlightedObject = HighlightedObjectActive;
 			MovementUI.HasSelectedObject = SelectedObjectActive;
 
 			if (player.GetButtonDown("LB") && SelectedObjectActive)
@@ -293,6 +288,7 @@ namespace XLObjectDropper.Controllers
 	        var position = rotation * negDistance + Vector3.zero;
 
 	        cameraPivot.rotation = rotation;
+			cameraNode.rotation = rotation;
 	        cameraNode.position = position;
 
 	        if (SelectedObject != null)
