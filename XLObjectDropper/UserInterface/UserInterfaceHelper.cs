@@ -25,7 +25,10 @@ namespace XLObjectDropper.UserInterface
 			if (UIManager.Instance == null)
 			{
 				AssetBundleHelper.LoadUIBundle();
+				
 				UserInterface = Object.Instantiate(AssetBundleHelper.UIPrefab);
+				Object.DontDestroyOnLoad(UserInterface);
+
 				UserInterface.SetActive(false);
 
 				UIManager.Instance.Player = PlayerController.Instance.inputController.player;
@@ -36,6 +39,8 @@ namespace XLObjectDropper.UserInterface
 				QuickMenuController.QuickMenu = UserInterface.GetComponentInChildren<QuickMenuUI>(true);
 
 				CustomPass = Object.Instantiate(AssetBundleHelper.CustomPassPrefab);
+				Object.DontDestroyOnLoad(CustomPass);
+
 				CustomPassVolume = CustomPass.GetComponent<CustomPassVolume>();
 			}
 		}
