@@ -38,10 +38,10 @@ namespace XLObjectDropper.UI
 					placementSnapping = "Off";
 					break;
 				case (int)MovementSnappingMode.Quarter:
-					placementSnapping = "1/4m";
+					placementSnapping = "¼m";
 					break;
 				case (int)MovementSnappingMode.Half:
-					placementSnapping = "1/2m";
+					placementSnapping = "½m";
 					break;
 				case (int)MovementSnappingMode.Full:
 					placementSnapping = "1m";

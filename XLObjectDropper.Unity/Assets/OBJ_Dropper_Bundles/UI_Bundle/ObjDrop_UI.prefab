@@ -2697,7 +2697,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866479789337852353}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -5793,7 +5793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1751118476377660056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6191,7 +6191,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1289619858472682120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8334,7 +8334,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5480815206225415279}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -11532,7 +11532,7 @@ PrefabInstance:
     - target: {fileID: 7921227295311306794, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_text
-      value: BACK
+      value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295311306794, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
@@ -11559,22 +11559,25 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7921227295311306794, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 7921227295500519598, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_text
-      value: 'DELETE
-
-'
+      value: Delete
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295500519598, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295500519598, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295500519598, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
@@ -11902,17 +11905,17 @@ PrefabInstance:
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 8
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
@@ -11922,7 +11925,12 @@ PrefabInstance:
     - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
       propertyPath: m_text
-      value: X Button
+      value: 'Movement Snapping: <color=#3286EC>Off'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921227295624715758, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
+        type: 3}
+      propertyPath: m_margin.x
+      value: -52.77383
       objectReference: {fileID: 0}
     - target: {fileID: 7921227295690125026, guid: 146bb1a8c0d38514484fa9ff2b154b1d,
         type: 3}
