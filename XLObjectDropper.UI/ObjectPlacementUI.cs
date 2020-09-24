@@ -12,19 +12,8 @@ namespace XLObjectDropper.UI
 		public GameObject SnappingModeUI;
 		public GameObject RotateAndScaleModeUI;
 		[Header("Bumpers and Triggers")]
-		public GameObject RightTrigger;
-		public GameObject RightTrigger_Pressed;
-		[Space(10)]
-		public GameObject RightBumper;
-		public TMP_Text RightBumperLabel;
-		[HideInInspector] private bool RightBumperEnabled;
-		[Space(10)]
-        public GameObject LeftTrigger;
-        public GameObject LeftTrigger_Pressed;
-        [Space(10)]
-		public GameObject LeftBumper;
-        public TMP_Text LeftBumperLabel;
-        [HideInInspector] private bool LeftBumperEnabled;
+		public GameObject Triggers;
+		public GameObject Bumpers;
         [Space(10)]
         public GameObject DirectionalPad;
 		public GameObject AXYBButtons;
@@ -46,9 +35,7 @@ namespace XLObjectDropper.UI
 			// Object Placement
 			SnappingModeUI.SetActive(false);
 			RotateAndScaleModeUI.SetActive(false);
-			RightTrigger.SetActive(false);
-			LeftTrigger.SetActive(false);
-        }
+		}
 
 		private void OnDisable()
 		{
@@ -57,9 +44,7 @@ namespace XLObjectDropper.UI
 			// Object Placement
 			SnappingModeUI.SetActive(false);
 			RotateAndScaleModeUI.SetActive(false);
-			RightTrigger.SetActive(false);
-			LeftTrigger.SetActive(false);
-        }
+		}
 
 		private void Start()
 		{
@@ -68,8 +53,6 @@ namespace XLObjectDropper.UI
 			// Object Placement
 			SnappingModeUI.SetActive(false);
 			RotateAndScaleModeUI.SetActive(false);
-			RightTrigger.SetActive(false);
-			LeftTrigger.SetActive(false);
 		}
 
 		private void Update()
@@ -77,7 +60,7 @@ namespace XLObjectDropper.UI
 			var player = UIManager.Instance.Player;
 
 			#region Right bumper
-			if (RightBumperEnabled)
+			if (HasSelectedObject)
 			{
 				if (player.GetButtonDown("RB"))
 				{
@@ -99,7 +82,7 @@ namespace XLObjectDropper.UI
 			#endregion
 
             #region Left Bumper
-            if (LeftBumperEnabled)
+            if (HasSelectedObject)
             {
 	            if (player.GetButtonDown("LB"))
 	            {
@@ -120,33 +103,7 @@ namespace XLObjectDropper.UI
 			}
             #endregion
 
-            #region Right Trigger
-            if (player.GetButton("RT"))
-            {
-                RightTrigger.SetActive(false);
-				RightTrigger_Pressed.SetActive(true);
-            }
-            else
-            {
-				RightTrigger.SetActive(true);
-				RightTrigger_Pressed.SetActive(false);
-			}
-            #endregion
-
-            #region Left Trigger
-            if (player.GetButton("LT"))
-			{
-				LeftTrigger.SetActive(false);
-				LeftTrigger_Pressed.SetActive(true);
-            }
-            else
-            {
-	            LeftTrigger.SetActive(true);
-	            LeftTrigger_Pressed.SetActive(false);
-            }
-            #endregion
-
-			if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
+            if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
 
             var buttonController = AXYBButtons.GetComponentInChildren<AXYBController>();
             if (buttonController != null)
@@ -163,25 +120,11 @@ namespace XLObjectDropper.UI
                 directionalPad.RightLabel.SetText($"Lock Cam: {Utilities.Color.ColorTag}{(LockCam ? "On" : "Off")}");
             }
 
-            EnableRightBumper(HasSelectedObject);
-            EnableLeftBumper(HasSelectedObject);
+			Bumpers.GetComponent<BumperController>().RightBumper.EnableBumper(HasSelectedObject);
+			Bumpers.GetComponent<BumperController>().LeftBumper.EnableBumper(HasSelectedObject);
 
 			RightStick.GetComponent<StickController>().EnableStickButton(true);
 			LeftStick.GetComponent<StickController>().EnableStickButton(HasSelectedObject);
 		}
-
-		public void EnableRightBumper(bool buttonEnabled)
-		{
-			RightBumperEnabled = buttonEnabled;
-			RightBumperLabel.alpha = Utilities.Color.GetAlpha(buttonEnabled);
-            RightBumper.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, Utilities.Color.GetAlpha(buttonEnabled));
-		}
-
-		public void EnableLeftBumper(bool buttonEnabled)
-		{
-			LeftBumperEnabled = buttonEnabled;
-			LeftBumperLabel.alpha = Utilities.Color.GetAlpha(buttonEnabled);
-			LeftBumper.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, Utilities.Color.GetAlpha(buttonEnabled));
-        }
 	}
 }
