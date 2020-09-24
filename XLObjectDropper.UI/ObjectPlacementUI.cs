@@ -27,8 +27,9 @@ namespace XLObjectDropper.UI
 		[HideInInspector] private static int CurrentPlacementSnappingMode;
 		[HideInInspector] public bool HasHighlightedObject;
 		[HideInInspector] public bool HasSelectedObject;
+		[HideInInspector] private bool LockCam;
 
-		private void OnEnable()
+        private void OnEnable()
 		{
 			MainScreen_UI.SetActive(true);
 
@@ -71,6 +72,7 @@ namespace XLObjectDropper.UI
                 MainScreen_UI.SetActive(false);
                 SnappingModeUI.SetActive(true);
             }
+            if (player.GetButton("RB")) return;
             if (player.GetButtonUp("RB"))
             {
                 MainScreen_UI.SetActive(true);
@@ -84,7 +86,8 @@ namespace XLObjectDropper.UI
                 MainScreen_UI.SetActive(false);
                 RotateAndScaleModeUI.SetActive(true);
             }
-            if (player.GetButtonUp("LB"))
+            if (player.GetButton("LB")) return;
+	        if (player.GetButtonUp("LB"))
             {
                 MainScreen_UI.SetActive(true);
                 RotateAndScaleModeUI.SetActive(false);
@@ -119,6 +122,8 @@ namespace XLObjectDropper.UI
             }
             #endregion
 
+            if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
+
             var buttonController = AXYBButtons.GetComponentInChildren<AXYBController>();
             if (buttonController != null)
             {
@@ -126,6 +131,12 @@ namespace XLObjectDropper.UI
 				buttonController.YButton.UpdateButton("Delete", HasSelectedObject || HasHighlightedObject);
 	            buttonController.AButton.UpdateButton(HasSelectedObject ? "Place" : "Select", HasSelectedObject || HasHighlightedObject);
 	            buttonController.BButton.UpdateButton(HasSelectedObject ? "Cancel" : "Exit");
+            }
+
+            var directionalPad = DirectionalPad.GetComponentInChildren<DirectionalPadController>();
+            if (directionalPad != null)
+            {
+                directionalPad.RightLabel.SetText($"Lock Cam: <color=#3286EC>{(LockCam ? "On" : "Off")}");
             }
 		}
     }
