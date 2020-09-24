@@ -62,39 +62,12 @@ namespace XLObjectDropper.Controllers
 
 			Time.timeScale = OptionsMenuOpen || ObjectSelectionOpen || QuickMenuOpen ? 0.0f : 1.0f;
 
-			if (player.GetButtonUp("LB") && RotationAndScaleOpen)
-			{
-				DestroyRotationAndScaleUI();
-			}
+			if (player.GetButtonUp("LB") && RotationAndScaleOpen) DestroyRotationAndScaleUI();
+			if (player.GetButtonUp("RB") && SnappingModeOpen) DestroySnappingModeUI();
 
-			if (player.GetButtonUp("RB") && SnappingModeOpen)
+			if (player.GetButton("LB") && !RotationAndScaleOpen && ObjectMovementController.SelectedObjectActive)
 			{
-				DestroySnappingModeUI();
-			}
-
-			if (player.GetButton("LB") && ObjectMovementController.SelectedObjectActive)
-			{
-				if (player.GetButtonDown("Start"))
-				{
-					if (QuickMenuOpen)
-					{
-						DestroyQuickMenu();
-						ObjectMovementController.enabled = true;
-					}
-					else
-					{
-						ObjectMovementController.enabled = false;
-						CreateQuickMenu();
-					}
-				}
-
-				if (!QuickMenuOpen)
-				{
-					if (!RotationAndScaleOpen)
-					{
-						CreateRotationAndScaleUI();
-					}
-				}
+				CreateRotationAndScaleUI();
 			}
 			else if (player.GetButton("RB") && !SnappingModeOpen && ObjectMovementController.SelectedObjectActive)
 			{

@@ -67,71 +67,52 @@ namespace XLObjectDropper.UI
 		        }
 			}
 
-			if (Player.GetButton("LB"))
-	        {
-		        if (Player.GetButtonDown("Start"))
-		        {
-			        if (!QuickMenuUI.activeInHierarchy)
-			        {
-				        ObjectPlacementUI.SetActive(false);
-				        QuickMenuUI.SetActive(true);
-			        }
-			        else
-			        {
-				        QuickMenuUI.SetActive(false);
-				        ObjectPlacementUI.SetActive(true);
-			        }
-				}
-	        }
-	        else
-	        {
-		        if (Player.GetButtonDown("Select"))
+	        if (Player.GetButtonDown("Select"))
+			{
+				if (!OptionsMenuUI.activeInHierarchy)
 				{
-					if (!OptionsMenuUI.activeInHierarchy)
-					{
-						ObjectPlacementUI.SetActive(false);
-						OptionsMenuUI.SetActive(true);
-					}
-					else
-					{
-						OptionsMenuUI.SetActive(false);
-						ObjectPlacementUI.SetActive(true);
-					}
+					ObjectPlacementUI.SetActive(false);
+					OptionsMenuUI.SetActive(true);
 				}
+				else
+				{
+					OptionsMenuUI.SetActive(false);
+					ObjectPlacementUI.SetActive(true);
+				}
+			}
 
-		        if (Player.GetButtonTimedPressUp("Start", 0.0f, 0.7f)) // tap
+	        if (Player.GetButtonTimedPressUp("Start", 0.0f, 0.7f)) // tap
+			{
+				if (QuickMenuUI.activeInHierarchy)
 				{
-					if (QuickMenuUI.activeInHierarchy)
-					{
-						QuickMenuUI.SetActive(false);
-						ObjectPlacementUI.SetActive(true);
-					}
-					else
-					{
-						if (!ObjectSelectionUI.activeInHierarchy)
-						{
-							ObjectPlacementUI.SetActive(false);
-							ObjectSelectionUI.SetActive(true);
-						}
-						else
-						{
-							ObjectSelectionUI.SetActive(false);
-							ObjectPlacementUI.SetActive(true);
-						}
-					}
+					QuickMenuUI.SetActive(false);
+					ObjectPlacementUI.SetActive(true);
 				}
-				else if (Player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionUI.activeInHierarchy) //press
+				else
 				{
-					if (!QuickMenuUI.activeInHierarchy)
+					if (!ObjectSelectionUI.activeInHierarchy)
 					{
 						ObjectPlacementUI.SetActive(false);
-						QuickMenuUI.SetActive(true);
+						ObjectSelectionUI.SetActive(true);
 					}
 					else
 					{
-						QuickMenuUI.SetActive(false);
+						ObjectSelectionUI.SetActive(false);
 						ObjectPlacementUI.SetActive(true);
 					}
+				}
+			}
+			else if (Player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionUI.activeInHierarchy) //press
+			{
+				if (!QuickMenuUI.activeInHierarchy)
+				{
+					ObjectPlacementUI.SetActive(false);
+					QuickMenuUI.SetActive(true);
+				}
+				else
+				{
+					QuickMenuUI.SetActive(false);
+					ObjectPlacementUI.SetActive(true);
 				}
 			}
         }
