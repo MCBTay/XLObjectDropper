@@ -126,6 +126,7 @@
     <Compile Include="Controls\StickController.cs" />
     <Compile Include="Menus\UnsavedChangesDialog.cs" />
     <Compile Include="SnappingModeUI.cs" />
+    <Compile Include="Utilities\Color.cs" />
     <Compile Include="Utilities\Enumerations.cs" />
     <Compile Include="Menus\ObjectSelectionBase.cs" />
     <Compile Include="Controls\ObjectSelectionListItem.cs" />

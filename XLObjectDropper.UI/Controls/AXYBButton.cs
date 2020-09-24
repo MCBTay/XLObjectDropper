@@ -50,8 +50,8 @@ namespace XLObjectDropper.UI.Controls
 		{
 			ButtonEnabled = buttonEnabled;
 
-			ButtonLabel.alpha = GetAlpha(buttonEnabled);
-			Button.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, GetAlpha(buttonEnabled));
+			ButtonLabel.alpha = Utilities.Color.GetAlpha(buttonEnabled);
+			Button.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, Utilities.Color.GetAlpha(buttonEnabled));
 		}
 
 		public void ToggleButtonSprite(bool pressed)
@@ -59,7 +59,5 @@ namespace XLObjectDropper.UI.Controls
 			Button.SetActive(!pressed);
 			ButtonPressed.SetActive(pressed);
 		}
-
-		private float GetAlpha(bool buttonEnabled) { return buttonEnabled ? 1.0f : 0.3f; }
 	}
 }

@@ -51,7 +51,7 @@ namespace XLObjectDropper.UI
 					break;
 			}
 
-			AXBYButtons.GetComponent<AXYBController>().XButton.SetLabelText($"Movement Snapping: <color=#3286EC>{placementSnapping}");
+			AXBYButtons.GetComponent<AXYBController>().XButton.SetLabelText($"Movement Snapping: {Utilities.Color.ColorTag}{placementSnapping}");
 		}
 	}
 }

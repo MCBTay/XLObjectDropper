@@ -56,7 +56,7 @@ namespace XLObjectDropper.UI
 					DPad.SetActive(false);
 				}
 
-				AXBYButtons.GetComponent<AXYBController>().XButton.SetLabelText($"Rotation Snapping: <color=#3286EC>{rotationSnapping}");
+				AXBYButtons.GetComponent<AXYBController>().XButton.SetLabelText($"Rotation Snapping: {Utilities.Color.ColorTag}{rotationSnapping}");
 			}
 
 			if (UIManager.Instance.Player.GetButtonDown("Y"))
@@ -83,7 +83,7 @@ namespace XLObjectDropper.UI
 						break;
 				}
 
-				AXBYButtons.GetComponent<AXYBController>().YButton.SetLabelText($"Scale: <color=#3286EC>{scalingMode}");
+				AXBYButtons.GetComponent<AXYBController>().YButton.SetLabelText($"Scale: {Utilities.Color.ColorTag}{scalingMode}");
 			}
 		}
 	}
