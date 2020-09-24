@@ -48,12 +48,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1777513688451483621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2000100022, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: 1217235042, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trigger: {fileID: 6624100286148866241}
-  TriggerPressed: {fileID: 4873089294306711635}
-  TriggerLabel: {fileID: 6624100286700436106}
+  Button: {fileID: 6624100286148866241}
+  ButtonPressed: {fileID: 4873089294306711635}
+  ButtonLabel: {fileID: 6624100286700436106}
   ButtonName: LT
 --- !u!1 &4873089294306711635
 GameObject:
@@ -769,10 +769,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8548558027541657755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2000100022, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: 1217235042, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trigger: {fileID: 6624100285069081797}
-  TriggerPressed: {fileID: 4873089294402941814}
-  TriggerLabel: {fileID: 6624100286838135045}
+  Button: {fileID: 6624100285069081797}
+  ButtonPressed: {fileID: 4873089294402941814}
+  ButtonLabel: {fileID: 6624100286838135045}
   ButtonName: RT

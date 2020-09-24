@@ -371,12 +371,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6362476285219536983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1995226, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: -1635497819, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bumper: {fileID: 6362476285219536983}
-  BumperPressed: {fileID: 6318041959317034525}
-  BumperLabel: {fileID: 6362476285059328470}
+  Button: {fileID: 6362476285219536983}
+  ButtonPressed: {fileID: 6318041959317034525}
+  ButtonLabel: {fileID: 6362476285059328470}
   ButtonName: LB
 --- !u!1 &6362476285993148557
 GameObject:
@@ -465,12 +465,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6362476285993148557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1995226, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: -1635497819, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bumper: {fileID: 6362476285993148557}
-  BumperPressed: {fileID: 8101353463895184427}
-  BumperLabel: {fileID: 6362476286117636422}
+  Button: {fileID: 6362476285993148557}
+  ButtonPressed: {fileID: 8101353463895184427}
+  ButtonLabel: {fileID: 6362476286117636422}
   ButtonName: RB
 --- !u!1 &6362476286117636416
 GameObject:

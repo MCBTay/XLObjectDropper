@@ -48,12 +48,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 594372528919252391}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1496858265, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: -1743936913, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 7921227296405610444}
-  ButtonLabel: {fileID: 7921227295624715758}
   ButtonPressed: {fileID: 6892813349796143544}
+  ButtonLabel: {fileID: 7921227295624715758}
+  ButtonName: X
 --- !u!1 &1550851174626302356
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,12 +328,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3205858085125616125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1496858265, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: -1743936913, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 7921227294577073778}
-  ButtonLabel: {fileID: 7921227295311306794}
   ButtonPressed: {fileID: 1833267733577461725}
+  ButtonLabel: {fileID: 7921227295311306794}
+  ButtonName: B
 --- !u!1 &4961445095926012532
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,12 +383,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4961445095926012532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1496858265, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: -1743936913, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 7921227295513742710}
-  ButtonLabel: {fileID: 7921227295082655782}
   ButtonPressed: {fileID: 1550851174626302356}
+  ButtonLabel: {fileID: 7921227295082655782}
+  ButtonName: A
 --- !u!1 &6892813349796143544
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,12 +513,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7720875427153410130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1496858265, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: -1743936913, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 7921227294999951674}
-  ButtonLabel: {fileID: 7921227295500519598}
   ButtonPressed: {fileID: 2773233337031610729}
+  ButtonLabel: {fileID: 7921227295500519598}
+  ButtonName: Y
 --- !u!1 &7921227294577073778
 GameObject:
   m_ObjectHideFlags: 0

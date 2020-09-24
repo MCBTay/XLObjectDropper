@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using XLObjectDropper.UI.Controls.Buttons;
 
 namespace XLObjectDropper.UI.Controls
 {
@@ -23,55 +24,6 @@ namespace XLObjectDropper.UI.Controls
 			XButton = XButtonGameObject.GetComponent<AXYBButton>();
 			YButton = YButtonGameObject.GetComponent<AXYBButton>();
 			BButton = BButtonGameObject.GetComponent<AXYBButton>();
-		}
-
-		private void OnEnable()
-		{
-			SetDefaultState();
-		}
-
-		private void OnDisable()
-		{
-			SetDefaultState();
-		}
-
-		private void Start()
-		{
-			SetDefaultState();
-		}
-
-		private void SetDefaultState()
-		{
-			AButton.SetDefaultState();
-			BButton.SetDefaultState();
-			XButton.SetDefaultState();
-			YButton.SetDefaultState();
-		}
-
-		private void Update()
-		{
-			HandleButton(AButton, "A");
-			HandleButton(BButton, "B");
-			HandleButton(XButton, "X");
-			HandleButton(YButton, "Y");
-		}
-
-		private void HandleButton(AXYBButton button, string inputButton)
-		{
-			var player = UIManager.Instance.Player;
-
-			if (button.ButtonEnabled)
-			{
-				if (player.GetButtonDown(inputButton))
-					button.ToggleButtonSprite(true);
-
-				if (player.GetButtonUp(inputButton))
-					button.ToggleButtonSprite(false);
-			}
-			else
-			{
-				button.ToggleButtonSprite(false);
-			}
 		}
 	}
 }

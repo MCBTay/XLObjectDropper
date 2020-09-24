@@ -120,8 +120,8 @@ namespace XLObjectDropper.UI
                 directionalPad.RightLabel.SetText($"Lock Cam: {Utilities.Color.ColorTag}{(LockCam ? "On" : "Off")}");
             }
 
-			Bumpers.GetComponent<BumperController>().RightBumper.EnableBumper(HasSelectedObject);
-			Bumpers.GetComponent<BumperController>().LeftBumper.EnableBumper(HasSelectedObject);
+			Bumpers.GetComponent<BumperController>().RightBumper.EnableButton(HasSelectedObject);
+			Bumpers.GetComponent<BumperController>().LeftBumper.EnableButton(HasSelectedObject);
 
 			RightStick.GetComponent<StickController>().EnableStickButton(true);
 			LeftStick.GetComponent<StickController>().EnableStickButton(HasSelectedObject);
