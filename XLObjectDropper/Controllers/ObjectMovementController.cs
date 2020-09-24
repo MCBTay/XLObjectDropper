@@ -200,7 +200,7 @@ namespace XLObjectDropper.Controllers
 			}
 
 			// "Pause" this controller while the rotation and scale menu or the snapping mode menu is open.
-			if (player.GetButton("LB") || player.GetButton("RB")) return;
+			if ((player.GetButton("LB") || player.GetButton("RB")) && SelectedObjectActive) return;
 
 
 			HandleLeftStick(player);

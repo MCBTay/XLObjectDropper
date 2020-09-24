@@ -72,7 +72,7 @@ namespace XLObjectDropper.Controllers
 				DestroySnappingModeUI();
 			}
 
-			if (player.GetButton("LB"))
+			if (player.GetButton("LB") && ObjectMovementController.SelectedObjectActive)
 			{
 				if (player.GetButtonDown("Start"))
 				{
@@ -96,7 +96,7 @@ namespace XLObjectDropper.Controllers
 					}
 				}
 			}
-			else if (player.GetButton("RB") && !SnappingModeOpen)
+			else if (player.GetButton("RB") && !SnappingModeOpen && ObjectMovementController.SelectedObjectActive)
 			{
 				CreateSnappingModeUI();
 			}

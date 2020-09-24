@@ -1,25 +1,31 @@
-﻿using System;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using XLObjectDropper.UI.Controls;
-using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.UI
 {
 	public class ObjectPlacementUI : MonoBehaviour
 	{
 		[Header("Object Placement Elements")]
-		// Object Placement
 		public GameObject MainScreen_UI;
 
 		[Space(10)]
 		public GameObject SnappingModeUI;
 		public GameObject RotateAndScaleModeUI;
 		[Space(10)]
-		public GameObject RT_UI;
-		public GameObject LT_UI;
-
-		public GameObject DirectionalPad;
+		public GameObject RightTrigger;
+		public GameObject RightTrigger_Pressed;
+		public GameObject RightBumper;
+		public TMP_Text RightBumperLabel;
+		[HideInInspector] private bool RightBumperEnabled;
+        public GameObject LeftTrigger;
+        public GameObject LeftTrigger_Pressed;
+		public GameObject LeftBumper;
+        public TMP_Text LeftBumperLabel;
+        [HideInInspector] private bool LeftBumperEnabled;
+        [Space(10)]
+        public GameObject DirectionalPad;
 		public GameObject AXYBButtons;
 
 		public GameObject Cursor;
@@ -36,8 +42,8 @@ namespace XLObjectDropper.UI
 			// Object Placement
 			SnappingModeUI.SetActive(false);
 			RotateAndScaleModeUI.SetActive(false);
-			RT_UI.SetActive(false);
-			LT_UI.SetActive(false);
+			RightTrigger.SetActive(false);
+			LeftTrigger.SetActive(false);
         }
 
 		private void OnDisable()
@@ -47,8 +53,8 @@ namespace XLObjectDropper.UI
 			// Object Placement
 			SnappingModeUI.SetActive(false);
 			RotateAndScaleModeUI.SetActive(false);
-			RT_UI.SetActive(false);
-			LT_UI.SetActive(false);
+			RightTrigger.SetActive(false);
+			LeftTrigger.SetActive(false);
         }
 
 		private void Start()
@@ -58,8 +64,8 @@ namespace XLObjectDropper.UI
 			// Object Placement
 			SnappingModeUI.SetActive(false);
 			RotateAndScaleModeUI.SetActive(false);
-			RT_UI.SetActive(false);
-			LT_UI.SetActive(false);
+			RightTrigger.SetActive(false);
+			LeftTrigger.SetActive(false);
 		}
 
 		private void Update()
@@ -67,62 +73,76 @@ namespace XLObjectDropper.UI
 			var player = UIManager.Instance.Player;
 
 			#region Right bumper
-            if (player.GetButtonDown("RB"))
-            {
-                MainScreen_UI.SetActive(false);
-                SnappingModeUI.SetActive(true);
-            }
-            if (player.GetButton("RB")) return;
-            if (player.GetButtonUp("RB"))
-            {
-                MainScreen_UI.SetActive(true);
-                SnappingModeUI.SetActive(false);
-            }
-            #endregion
+			if (RightBumperEnabled)
+			{
+				if (player.GetButtonDown("RB"))
+				{
+					MainScreen_UI.SetActive(false);
+					SnappingModeUI.SetActive(true);
+				}
+				if (player.GetButton("RB")) return;
+				if (player.GetButtonUp("RB"))
+				{
+					MainScreen_UI.SetActive(true);
+					SnappingModeUI.SetActive(false);
+				}
+			}
+			else
+			{
+				MainScreen_UI.SetActive(true);
+				SnappingModeUI.SetActive(false);
+			}
+			#endregion
 
             #region Left Bumper
-            if (player.GetButtonDown("LB"))
+            if (LeftBumperEnabled)
             {
-                MainScreen_UI.SetActive(false);
-                RotateAndScaleModeUI.SetActive(true);
+	            if (player.GetButtonDown("LB"))
+	            {
+		            MainScreen_UI.SetActive(false);
+		            RotateAndScaleModeUI.SetActive(true);
+	            }
+	            if (player.GetButton("LB")) return;
+	            if (player.GetButtonUp("LB"))
+	            {
+		            MainScreen_UI.SetActive(true);
+		            RotateAndScaleModeUI.SetActive(false);
+	            }
             }
-            if (player.GetButton("LB")) return;
-	        if (player.GetButtonUp("LB"))
+            else
             {
-                MainScreen_UI.SetActive(true);
-                RotateAndScaleModeUI.SetActive(false);
-            }
+				MainScreen_UI.SetActive(true);
+				RotateAndScaleModeUI.SetActive(false);
+			}
             #endregion
 
             #region Right Trigger
             if (player.GetButton("RT"))
             {
-                if (RotateAndScaleModeUI.activeInHierarchy == false)
-                {
-                    RT_UI.SetActive(true);
-                }
+                RightTrigger.SetActive(false);
+				RightTrigger_Pressed.SetActive(true);
             }
             else
             {
-                RT_UI.SetActive(false);
-            }
+				RightTrigger.SetActive(true);
+				RightTrigger_Pressed.SetActive(false);
+			}
             #endregion
 
             #region Left Trigger
             if (player.GetButton("LT"))
-            {
-                if (RotateAndScaleModeUI.activeInHierarchy == false)
-                {
-                    LT_UI.SetActive(true);
-                }
+			{
+				LeftTrigger.SetActive(false);
+				LeftTrigger_Pressed.SetActive(true);
             }
             else
             {
-                LT_UI.SetActive(false);
+	            LeftTrigger.SetActive(true);
+	            LeftTrigger_Pressed.SetActive(false);
             }
             #endregion
 
-            if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
+			if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
 
             var buttonController = AXYBButtons.GetComponentInChildren<AXYBController>();
             if (buttonController != null)
@@ -138,6 +158,25 @@ namespace XLObjectDropper.UI
             {
                 directionalPad.RightLabel.SetText($"Lock Cam: <color=#3286EC>{(LockCam ? "On" : "Off")}");
             }
+
+            EnableRightBumper(HasSelectedObject);
+            EnableLeftBumper(HasSelectedObject);
 		}
+
+		public void EnableRightBumper(bool buttonEnabled)
+		{
+			RightBumperEnabled = buttonEnabled;
+			RightBumperLabel.alpha = GetAlpha(buttonEnabled);
+            RightBumper.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, GetAlpha(buttonEnabled));
+		}
+
+		public void EnableLeftBumper(bool buttonEnabled)
+		{
+			LeftBumperEnabled = buttonEnabled;
+			LeftBumperLabel.alpha = GetAlpha(buttonEnabled);
+			LeftBumper.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, GetAlpha(buttonEnabled));
+        }
+
+        private float GetAlpha(bool buttonEnabled) { return buttonEnabled ? 1.0f : 0.3f; }
     }
 }
