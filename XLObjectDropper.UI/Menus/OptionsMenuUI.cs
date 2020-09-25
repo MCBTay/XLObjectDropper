@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using XLObjectDropper.UI.Controls;
 
 namespace XLObjectDropper.UI.Menus
 {
@@ -18,6 +19,9 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject RedoButton;
 		public GameObject SaveButton;
 		public GameObject LoadButton;
+
+		[Space(10)]
+		public BottomRowController BottomRow;
 
 		[HideInInspector] public event UnityAction<float> SensitivityValueChanged = (x) => { };
 		[HideInInspector] public event UnityAction<bool> InvertCamControlValueChanged = (x) => { };

@@ -12,16 +12,16 @@ namespace XLObjectDropper.UI
 		public GameObject SnappingModeUI;
 		public GameObject RotateAndScaleModeUI;
 		[Header("Bumpers and Triggers")]
-		public GameObject Triggers;
-		public GameObject Bumpers;
+		public TriggerController Triggers;
+		public BumperController Bumpers;
         [Space(10)]
-        public GameObject DirectionalPad;
-		public GameObject AXYBButtons;
+        public DirectionalPadController DirectionalPad;
+		public AXYBController AXYBButtons;
 		[Header("Sticks")]
-		public GameObject LeftStick;
-		public GameObject RightStick;
+		public StickController LeftStick;
+		public StickController RightStick;
 		[Space(10)]
-		public GameObject BottomRow;
+		public BottomRowController BottomRow;
 		public GameObject Cursor;
 
 		[HideInInspector] private static int CurrentPlacementSnappingMode;
@@ -106,29 +106,21 @@ namespace XLObjectDropper.UI
 
             if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
 
-            var buttonController = AXYBButtons.GetComponentInChildren<AXYBController>();
-            if (buttonController != null)
-            {
-				buttonController.XButton.UpdateButton("Duplicate", HasSelectedObject || HasHighlightedObject);
-				buttonController.YButton.UpdateButton("Delete", HasSelectedObject || HasHighlightedObject);
-	            buttonController.AButton.UpdateButton(HasSelectedObject ? "Place" : "Select", HasSelectedObject || HasHighlightedObject);
-	            buttonController.BButton.UpdateButton(HasSelectedObject ? "Cancel" : "Exit");
-            }
 
-            var directionalPad = DirectionalPad.GetComponentInChildren<DirectionalPadController>();
-            if (directionalPad != null)
-            {
-                directionalPad.RightLabel.SetText($"Lock Cam: {Utilities.Color.ColorTag}{(LockCam ? "On" : "Off")}");
-            }
+			AXYBButtons.XButton.UpdateButton("Duplicate", HasSelectedObject || HasHighlightedObject);
+			AXYBButtons.YButton.UpdateButton("Delete", HasSelectedObject || HasHighlightedObject);
+			AXYBButtons.AButton.UpdateButton(HasSelectedObject ? "Place" : "Select", HasSelectedObject || HasHighlightedObject);
+			AXYBButtons.BButton.UpdateButton(HasSelectedObject ? "Cancel" : "Exit");
 
-			Bumpers.GetComponent<BumperController>().RightBumper.EnableButton(HasSelectedObject);
-			Bumpers.GetComponent<BumperController>().LeftBumper.EnableButton(HasSelectedObject);
+			DirectionalPad.RightLabel.SetText($"Lock Cam: {Utilities.Color.ColorTag}{(LockCam ? "On" : "Off")}");
+			
+			Bumpers.RightBumper.EnableButton(HasSelectedObject);
+			Bumpers.LeftBumper.EnableButton(HasSelectedObject);
 
-			RightStick.GetComponent<StickController>().EnableStickButton(true);
-			LeftStick.GetComponent<StickController>().EnableStickButton(HasSelectedObject);
+			RightStick.EnableStickButton(true);
+			LeftStick.EnableStickButton(HasSelectedObject);
 
-			BottomRow.GetComponent<BottomRowController>().StartButton.EnableButton(true);
-			BottomRow.GetComponent<BottomRowController>().BackButton.EnableButton(true);
+			BottomRow.EnableSelectButton = BottomRow.EnableStartButton = true;
 		}
 	}
 }

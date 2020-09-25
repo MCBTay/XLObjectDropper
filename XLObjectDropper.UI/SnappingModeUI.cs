@@ -7,8 +7,8 @@ namespace XLObjectDropper.UI
 {
 	public class SnappingModeUI : MonoBehaviour
 	{
-		public GameObject AXBYButtons;
-		public GameObject DPad;
+		public AXYBController AXBYButtons;
+		public DirectionalPadController DPad;
 
 		[HideInInspector] private static int CurrentMovementSnappingMode;
 
@@ -51,7 +51,7 @@ namespace XLObjectDropper.UI
 					break;
 			}
 
-			AXBYButtons.GetComponent<AXYBController>().XButton.ButtonLabel.SetText($"Movement Snapping: {Utilities.Color.ColorTag}{placementSnapping}");
+			AXBYButtons.XButton.ButtonLabel.SetText($"Movement Snapping: {Utilities.Color.ColorTag}{placementSnapping}");
 		}
 	}
 }

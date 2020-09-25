@@ -7,11 +7,11 @@ namespace XLObjectDropper.UI
 {
 	public class RotationAndScaleUI : MonoBehaviour
 	{
-		public GameObject AXBYButtons;
-		public GameObject DPad;
+		public AXYBController AXBYButtons;
+		public DirectionalPadController DPad;
 		[Header("Sticks")]
-		public GameObject LeftStick;
-		public GameObject RightStick;
+		public StickController LeftStick;
+		public StickController RightStick;
 
 		[HideInInspector] private static int CurrentRotationSnappingMode;
 		[HideInInspector] private static int CurrentScaleMode;
@@ -22,10 +22,10 @@ namespace XLObjectDropper.UI
 			CurrentScaleMode = (int) ScalingMode.Uniform;
 			CurrentRotationSnappingMode = (int) RotationSnappingMode.Off;
 
-			DPad.SetActive(false);
+			DPad.gameObject.SetActive(false);
 
-			RightStick.GetComponent<StickController>().EnableStickButton(true);
-			LeftStick.GetComponent<StickController>().EnableStickButton(true);
+			RightStick.EnableStickButton(true);
+			LeftStick.EnableStickButton(true);
 		}
 
 		private void Update()
@@ -61,16 +61,9 @@ namespace XLObjectDropper.UI
 					break;
 			}
 
-			if (CurrentRotationSnappingMode > 0)
-			{
-				DPad.SetActive(true);
-			}
-			else
-			{
-				DPad.SetActive(false);
-			}
+			DPad.gameObject.SetActive(CurrentRotationSnappingMode > 0);
 
-			AXBYButtons.GetComponent<AXYBController>().XButton.ButtonLabel.SetText($"Rotation Snapping: {Utilities.Color.ColorTag}{rotationSnapping}");
+			AXBYButtons.XButton.ButtonLabel.SetText($"Rotation Snapping: {Utilities.Color.ColorTag}{rotationSnapping}");
 		}
 
 		private void UpdateScaleMode()
@@ -97,7 +90,7 @@ namespace XLObjectDropper.UI
 					break;
 			}
 
-			AXBYButtons.GetComponent<AXYBController>().YButton.ButtonLabel.SetText($"Scale: {Utilities.Color.ColorTag}{scalingMode}");
+			AXBYButtons.YButton.ButtonLabel.SetText($"Scale: {Utilities.Color.ColorTag}{scalingMode}");
 		}
 
 		private void UpdateScaleSnappingMode()
@@ -125,7 +118,7 @@ namespace XLObjectDropper.UI
 					break;
 			}
 
-			AXBYButtons.GetComponent<AXYBController>().AButton.ButtonLabel.SetText($"Scale Snapping: {Utilities.Color.ColorTag}{scalingMode}");
+			AXBYButtons.AButton.ButtonLabel.SetText($"Scale Snapping: {Utilities.Color.ColorTag}{scalingMode}");
 		}
 	}
 }
