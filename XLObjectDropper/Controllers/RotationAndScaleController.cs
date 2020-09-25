@@ -14,9 +14,9 @@ namespace XLObjectDropper.Controllers
 
 		private float ObjectRotateSpeed = 5f;
 
-		private int CurrentScaleMode;
-		private int CurrentRotationSnappingMode;
-		private int CurrentScaleSnappingMode;
+		private static int CurrentScaleMode;
+		private static int CurrentRotationSnappingMode;
+		private static int CurrentScaleSnappingMode;
 
 		private void Awake()
 		{
@@ -36,48 +36,54 @@ namespace XLObjectDropper.Controllers
 
 			if (SelectedObject == null || !SelectedObject.activeInHierarchy) return;
 
-			HandleScaleSnappingModeSwitching(player);
-			HandleScaleModeSwitching(player);
+			if (player.GetButtonDown("A")) HandleScaleSnappingModeSwitching();
+			if (player.GetButtonDown("Y")) HandleScaleModeSwitching();
+			if (player.GetButtonDown("X")) HandleRotationSnappingModeSwitching(player);
+
 			HandleRotation(player);
 			HandleScaling(player);
 
-			HandleRotationSnappingModeSwitching(player);
-
 			if (player.GetButtonDown("Left Stick Button"))
 			{
+				UISounds.Instance?.PlayOneShotSelectMajor();
 				SelectedObject.transform.rotation = transform.rotation;
 			}
 
 			if (player.GetButtonDown("Right Stick Button"))
 			{
+				UISounds.Instance?.PlayOneShotSelectMajor();
 				SelectedObject.transform.localScale = Vector3.one;
 			}
 		}
 
-		private void HandleScaleSnappingModeSwitching(Player player)
+		private void HandleScaleSnappingModeSwitching()
 		{
-			if (player.GetButtonDown("A"))
-			{
-				UISounds.Instance?.PlayOneShotSelectionChange();
+			UISounds.Instance?.PlayOneShotSelectionChange();
 
-				CurrentScaleSnappingMode++;
+			CurrentScaleSnappingMode++;
 
-				if (CurrentScaleSnappingMode > Enum.GetValues(typeof(ScaleSnappingMode)).Length - 1)
-					CurrentScaleSnappingMode = 0;
-			}
+			if (CurrentScaleSnappingMode > Enum.GetValues(typeof(ScaleSnappingMode)).Length - 1)
+				CurrentScaleSnappingMode = 0;
 		}
 
-		private void HandleScaleModeSwitching(Player player)
+		private void HandleScaleModeSwitching()
 		{
-			if (player.GetButtonDown("Y"))
-			{
-				UISounds.Instance?.PlayOneShotSelectionChange();
+			UISounds.Instance?.PlayOneShotSelectionChange();
 
-				CurrentScaleMode++;
+			CurrentScaleMode++;
 
-				if (CurrentScaleMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
-					CurrentScaleMode = 0;
-			}
+			if (CurrentScaleMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
+				CurrentScaleMode = 0;
+		}
+
+		private void HandleRotationSnappingModeSwitching(Player player)
+		{
+			UISounds.Instance?.PlayOneShotSelectionChange();
+
+			CurrentRotationSnappingMode++;
+
+			if (CurrentRotationSnappingMode > Enum.GetValues(typeof(RotationSnappingMode)).Length - 1)
+				CurrentRotationSnappingMode = 0;
 		}
 
 		private void HandleRotation(Player player)
@@ -117,23 +123,29 @@ namespace XLObjectDropper.Controllers
 					break;
 			}
 
+			if (Mathf.Approximately(rotationIncrement, 0.0f)) return;
+
 			if (player.GetButtonDown("DPadX"))
 			{
+				UISounds.Instance?.PlayOneShotSelectionChange();
 				SelectedObject.transform.Rotate(new Vector3(0, rotationIncrement, 0));
 			}
 
 			if (player.GetNegativeButtonDown("DPadX"))
 			{
+				UISounds.Instance?.PlayOneShotSelectionChange();
 				SelectedObject.transform.Rotate(new Vector3(0, -rotationIncrement, 0));
 			}
 
 			if (player.GetButtonDown("DPadY"))
 			{
+				UISounds.Instance?.PlayOneShotSelectionChange();
 				SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, rotationIncrement);
 			}
 
 			if (player.GetNegativeButtonDown("DPadY"))
 			{
+				UISounds.Instance?.PlayOneShotSelectionChange();
 				SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, -rotationIncrement);
 			}
 		}
@@ -206,19 +218,6 @@ namespace XLObjectDropper.Controllers
 			}
 
 			return increment;
-		}
-
-		private void HandleRotationSnappingModeSwitching(Player player)
-		{
-			if (player.GetButtonDown("X"))
-			{
-				UISounds.Instance?.PlayOneShotSelectionChange();
-
-				CurrentRotationSnappingMode++;
-
-				if (CurrentRotationSnappingMode > Enum.GetValues(typeof(RotationSnappingMode)).Length - 1)
-					CurrentRotationSnappingMode = 0;
-			}
 		}
 	}
 }

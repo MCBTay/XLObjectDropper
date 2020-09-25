@@ -9,6 +9,9 @@ namespace XLObjectDropper.UI
 	{
 		public GameObject AXBYButtons;
 		public GameObject DPad;
+		[Header("Sticks")]
+		public GameObject LeftStick;
+		public GameObject RightStick;
 
 		[HideInInspector] private static int CurrentRotationSnappingMode;
 		[HideInInspector] private static int CurrentScaleMode;
@@ -20,6 +23,9 @@ namespace XLObjectDropper.UI
 			CurrentRotationSnappingMode = (int) RotationSnappingMode.Off;
 
 			DPad.SetActive(false);
+
+			RightStick.GetComponent<StickController>().EnableStickButton(true);
+			LeftStick.GetComponent<StickController>().EnableStickButton(true);
 		}
 
 		private void Update()
