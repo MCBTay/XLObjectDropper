@@ -106,10 +106,9 @@ namespace XLObjectDropper.UI
 
             if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
 
-
-			AXYBButtons.XButton.UpdateButton("Duplicate", HasSelectedObject || HasHighlightedObject);
+            AXYBButtons.XButton.UpdateButton("Edit", HasSelectedObject || HasHighlightedObject);
 			AXYBButtons.YButton.UpdateButton("Delete", HasSelectedObject || HasHighlightedObject);
-			AXYBButtons.AButton.UpdateButton(HasSelectedObject ? "Place" : "Select", HasSelectedObject || HasHighlightedObject);
+			AXYBButtons.AButton.UpdateButton($"{(HasSelectedObject ? "Place" : "Select")}/Duplicate", HasSelectedObject || HasHighlightedObject);
 			AXYBButtons.BButton.UpdateButton(HasSelectedObject ? "Cancel" : "Exit");
 
 			DirectionalPad.RightLabel.SetText($"Lock Cam: {Utilities.Color.ColorTag}{(LockCam ? "On" : "Off")}");
