@@ -12,7 +12,7 @@ namespace XLObjectDropper.Controllers
 		public GameObject SelectedObject;
 		public Transform cameraPivot;
 
-		private float ObjectRotateSpeed = 10f;
+		private float ObjectRotateSpeed = 5f;
 
 		private int CurrentScaleMode;
 		private int CurrentRotationSnappingMode;
