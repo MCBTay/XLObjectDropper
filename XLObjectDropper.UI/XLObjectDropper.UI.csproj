@@ -120,6 +120,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\BottomRowController.cs" />
     <Compile Include="Controls\Buttons\AXYBButton.cs" />
     <Compile Include="Controls\AXYBController.cs" />
     <Compile Include="Controls\Buttons\BumperButton.cs" />

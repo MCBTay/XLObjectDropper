@@ -21,6 +21,7 @@ namespace XLObjectDropper.UI
 		public GameObject LeftStick;
 		public GameObject RightStick;
 		[Space(10)]
+		public GameObject BottomRow;
 		public GameObject Cursor;
 
 		[HideInInspector] private static int CurrentPlacementSnappingMode;
@@ -125,6 +126,9 @@ namespace XLObjectDropper.UI
 
 			RightStick.GetComponent<StickController>().EnableStickButton(true);
 			LeftStick.GetComponent<StickController>().EnableStickButton(HasSelectedObject);
+
+			BottomRow.GetComponent<BottomRowController>().StartButton.EnableButton(true);
+			BottomRow.GetComponent<BottomRowController>().BackButton.EnableButton(true);
 		}
 	}
 }
