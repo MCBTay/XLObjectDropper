@@ -16,6 +16,7 @@ namespace XLObjectDropper.Controllers
 
 		private int CurrentScaleMode;
 		private int CurrentRotationSnappingMode;
+		private int CurrentScaleSnappingMode;
 
 		private void Awake()
 		{
@@ -35,6 +36,7 @@ namespace XLObjectDropper.Controllers
 
 			if (SelectedObject == null || !SelectedObject.activeInHierarchy) return;
 
+			HandleScaleSnappingModeSwitching(player);
 			HandleScaleModeSwitching(player);
 			HandleRotation(player);
 			HandleScaling(player);
@@ -49,6 +51,19 @@ namespace XLObjectDropper.Controllers
 			if (player.GetButtonDown("Right Stick Button"))
 			{
 				SelectedObject.transform.localScale = Vector3.one;
+			}
+		}
+
+		private void HandleScaleSnappingModeSwitching(Player player)
+		{
+			if (player.GetButtonDown("A"))
+			{
+				UISounds.Instance?.PlayOneShotSelectionChange();
+
+				CurrentScaleSnappingMode++;
+
+				if (CurrentScaleSnappingMode > Enum.GetValues(typeof(ScaleSnappingMode)).Length - 1)
+					CurrentScaleSnappingMode = 0;
 			}
 		}
 
@@ -125,28 +140,72 @@ namespace XLObjectDropper.Controllers
 
 		private void HandleScaling(Player player)
 		{
-			var scaleFactor = 15f;
+			var scaleSpeed = 15f;
 			//   if (!Mathf.Approximately(Settings.Instance.Sensitivity, 1)) scaleFactor *= Settings.Instance.Sensitivity;
 			//else scaleFactor = 1;
 
-			Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
-			var scale = rightStick.y / scaleFactor;
+			var increment = GetScaleSnappingIncrement();
+
+			float scaleFactor = 0.0f;
+
+			if (Mathf.Approximately(increment, 0))
+			{
+				Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
+				scaleFactor = rightStick.y / scaleSpeed;
+			}
+			else
+			{
+				if (player.GetButtonDown("RightStickY")) scaleFactor = increment;
+				if (player.GetNegativeButtonDown("RightSTickY")) scaleFactor = -increment;
+			}
+
+			Vector3 scale = Vector3.zero;
 
 			switch (CurrentScaleMode)
 			{
 				case (int)ScalingMode.Uniform:
-					SelectedObject.transform.localScale += new Vector3(scale, scale, scale);
+					scale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
 					break;
 				case (int)ScalingMode.Width:
-					SelectedObject.transform.localScale += new Vector3(scale, 0, 0);
+					scale = new Vector3(scaleFactor, 0, 0);
 					break;
 				case (int)ScalingMode.Height:
-					SelectedObject.transform.localScale += new Vector3(0, scale, 0);
+					scale = new Vector3(0, scaleFactor, 0);
 					break;
 				case (int)ScalingMode.Depth:
-					SelectedObject.transform.localScale += new Vector3(0, 0, scale);
+					scale = new Vector3(0, 0, scaleFactor);
 					break;
 			}
+
+			var newLocalScale = SelectedObject.transform.localScale + scale;
+			newLocalScale.x = Mathf.Max(newLocalScale.x, 0.0f);
+			newLocalScale.y = Mathf.Max(newLocalScale.y, 0.0f);
+			newLocalScale.z = Mathf.Max(newLocalScale.z, 0.0f);
+
+			SelectedObject.transform.localScale = newLocalScale;
+		}
+
+		private float GetScaleSnappingIncrement()
+		{
+			float increment = 0.0f;
+
+			switch (CurrentScaleSnappingMode)
+			{
+				case (int)ScaleSnappingMode.Off:
+					increment = 0.0f;
+					break;
+				case (int)ScaleSnappingMode.Quarter:
+					increment = 0.25f;
+					break;
+				case (int)ScaleSnappingMode.Half:
+					increment = 0.5f;
+					break;
+				case (int)ScaleSnappingMode.Full:
+					increment = 1.0f;
+					break;
+			}
+
+			return increment;
 		}
 
 		private void HandleRotationSnappingModeSwitching(Player player)

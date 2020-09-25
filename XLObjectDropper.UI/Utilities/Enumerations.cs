@@ -46,7 +46,6 @@
 		Off,
 		Quarter,
 		Half,
-		Full,
-		Double
+		Full
 	}
 }

@@ -113,9 +113,6 @@ namespace XLObjectDropper.UI
 				case (int)ScaleSnappingMode.Half:
 					scalingMode = "½";
 					break;
-				case (int)ScaleSnappingMode.Double:
-					scalingMode = "2";
-					break;
 				case (int)ScaleSnappingMode.Full:
 				default:
 					scalingMode = "1";
