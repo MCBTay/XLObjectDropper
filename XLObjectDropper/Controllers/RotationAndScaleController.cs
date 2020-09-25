@@ -99,8 +99,8 @@ namespace XLObjectDropper.Controllers
 			SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, leftStick.y * ObjectRotateSpeed);
 
 			//TODO: In the future, we'll have a toggle for local/global rotation axis
-			SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, leftStick.x * ObjectRotateSpeed); //global
-			//SelectedObject.transform.Rotate(0, leftStick.x * ObjectRotateSpeed, 0); //local
+			//SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, leftStick.x * ObjectRotateSpeed); //global
+			SelectedObject.transform.Rotate(0, leftStick.x * ObjectRotateSpeed, 0); //local
 		}
 
 		private void HandleDPadRotation(Player player)
@@ -129,20 +129,18 @@ namespace XLObjectDropper.Controllers
 			{
 				UISounds.Instance?.PlayOneShotSelectionChange();
 
-
 				//TODO: In the future, we'll have a toggle for local/global rotation axis
-				SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, rotationIncrement); //global
-				//SelectedObject.transform.Rotate(new Vector3(0, rotationIncrement, 0)); //local
+				//SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, rotationIncrement); //global
+				SelectedObject.transform.Rotate(new Vector3(0, rotationIncrement, 0)); //local
 			}
 
 			if (player.GetNegativeButtonDown("DPadX"))
 			{
 				UISounds.Instance?.PlayOneShotSelectionChange();
 				
-
 				//TODO: In the future, we'll have a toggle for local/global rotation axis
-				SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, -rotationIncrement); //global
-				//SelectedObject.transform.Rotate(new Vector3(0, -rotationIncrement, 0)); //local
+				//SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, -rotationIncrement); //global
+				SelectedObject.transform.Rotate(new Vector3(0, -rotationIncrement, 0)); //local
 			}
 
 			if (player.GetButtonDown("DPadY"))
