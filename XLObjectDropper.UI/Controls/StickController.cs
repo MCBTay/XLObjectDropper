@@ -16,6 +16,7 @@ namespace XLObjectDropper.UI.Controls
 		public string XAxisName;
 		public string YAxisName;
 		public string ButtonName;
+		public bool HideStickButton;
 
 
 		private void OnEnable()
@@ -35,7 +36,7 @@ namespace XLObjectDropper.UI.Controls
 
 		private void SetDefaultState()
 		{
-			StickButton.SetActive(true);
+			StickButton.SetActive(!HideStickButton);
 			StickButtonPressed.SetActive(false);
 		}
 
@@ -64,7 +65,7 @@ namespace XLObjectDropper.UI.Controls
 			var scaleFactor = 2.0f;
 			StickAnimatedOverlay.transform.localPosition = new Vector3(stickX * scaleFactor, stickY * scaleFactor, 0.0f);
 
-			if (StickButtonEnabled)
+			if (StickButtonEnabled && !HideStickButton)
 			{
 				if (player.GetButtonDown(ButtonName))
 				{
@@ -80,7 +81,7 @@ namespace XLObjectDropper.UI.Controls
 			}
 			else
 			{
-				StickButton.SetActive(true);
+				StickButton.SetActive(!HideStickButton);
 				StickButtonPressed.SetActive(false);
 			}
 		}
