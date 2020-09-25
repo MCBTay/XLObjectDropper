@@ -10,15 +10,15 @@ namespace XLObjectDropper.UI.Menus
 		[Header("Options Menu Elements")]
 		public GameObject MainUI;
 		[Space(10)]
-		public GameObject Sensitivity;
-		public GameObject InvertCamControl;
-		public GameObject ShowGrid;
+		public Slider Sensitivity;
+		public Toggle InvertCamControl;
+		public Toggle ShowGrid;
 
 		[Space(10)]
-		public GameObject UndoButton;
-		public GameObject RedoButton;
-		public GameObject SaveButton;
-		public GameObject LoadButton;
+		public Button UndoButton;
+		public Button RedoButton;
+		public Button SaveButton;
+		public Button LoadButton;
 
 		[Space(10)]
 		public BottomRowController BottomRow;
@@ -43,31 +43,31 @@ namespace XLObjectDropper.UI.Menus
 
 		private void SetDefaultState(bool enabled)
 		{
-			Sensitivity.GetComponent<Slider>().onValueChanged.RemoveAllListeners();
-			InvertCamControl.GetComponent<Toggle>().onValueChanged.RemoveAllListeners();
-			ShowGrid.GetComponent<Toggle>().onValueChanged.RemoveAllListeners();
-			UndoButton.GetComponent<Button>().onClick.RemoveAllListeners();
-			RedoButton.GetComponent<Button>().onClick.RemoveAllListeners();
-			SaveButton.GetComponent<Button>().onClick.RemoveAllListeners();
-			LoadButton.GetComponent<Button>().onClick.RemoveAllListeners();
+			Sensitivity.onValueChanged.RemoveAllListeners();
+			InvertCamControl.onValueChanged.RemoveAllListeners();
+			ShowGrid.onValueChanged.RemoveAllListeners();
+			UndoButton.onClick.RemoveAllListeners();
+			RedoButton.onClick.RemoveAllListeners();
+			SaveButton.onClick.RemoveAllListeners();
+			LoadButton.onClick.RemoveAllListeners();
 
-			Sensitivity.SetActive(enabled);
-			InvertCamControl.SetActive(enabled);
-			ShowGrid.SetActive(enabled);
-			UndoButton.SetActive(enabled);
-			RedoButton.SetActive(enabled);
-			SaveButton.SetActive(enabled);
-			LoadButton.SetActive(enabled);
+			Sensitivity.gameObject.SetActive(enabled);
+			InvertCamControl.gameObject.SetActive(enabled);
+			ShowGrid.gameObject.SetActive(enabled);
+			UndoButton.gameObject.SetActive(enabled);
+			RedoButton.gameObject.SetActive(enabled);
+			SaveButton.gameObject.SetActive(enabled);
+			LoadButton.gameObject.SetActive(enabled);
 
 			if (enabled)
 			{
-				Sensitivity.GetComponent<Slider>().onValueChanged.AddListener(delegate { SensitivityValueChanged.Invoke(Sensitivity.GetComponent<Slider>().value); });
-				InvertCamControl.GetComponent<Toggle>().onValueChanged.AddListener(delegate { InvertCamControlValueChanged.Invoke(InvertCamControl.GetComponent<Toggle>().isOn); });
-				ShowGrid.GetComponent<Toggle>().onValueChanged.AddListener(delegate { ShowGridValueChanged.Invoke(ShowGrid.GetComponent<Toggle>().isOn); });
-				UndoButton.GetComponent<Button>().onClick.AddListener(delegate { UndoClicked.Invoke(); });
-				RedoButton.GetComponent<Button>().onClick.AddListener(delegate { RedoClicked.Invoke(); });
-				SaveButton.GetComponent<Button>().onClick.AddListener(delegate { SaveClicked.Invoke(); });
-				LoadButton.GetComponent<Button>().onClick.AddListener(delegate { LoadClicked.Invoke(); });
+				Sensitivity.onValueChanged.AddListener(delegate { SensitivityValueChanged.Invoke(Sensitivity.GetComponent<Slider>().value); });
+				InvertCamControl.onValueChanged.AddListener(delegate { InvertCamControlValueChanged.Invoke(InvertCamControl.GetComponent<Toggle>().isOn); });
+				ShowGrid.onValueChanged.AddListener(delegate { ShowGridValueChanged.Invoke(ShowGrid.GetComponent<Toggle>().isOn); });
+				UndoButton.onClick.AddListener(delegate { UndoClicked.Invoke(); });
+				RedoButton.onClick.AddListener(delegate { RedoClicked.Invoke(); });
+				SaveButton.onClick.AddListener(delegate { SaveClicked.Invoke(); });
+				LoadButton.onClick.AddListener(delegate { LoadClicked.Invoke(); });
 			}
 		}
 
@@ -78,22 +78,22 @@ namespace XLObjectDropper.UI.Menus
 
 		public void EnableUndoButton(bool enabled)
 		{
-			UndoButton.GetComponent<Button>().interactable = enabled;
+			UndoButton.interactable = enabled;
 		}
 
 		public void EnableRedoButton(bool enabled)
 		{
-			RedoButton.GetComponent<Button>().interactable = enabled;
+			RedoButton.interactable = enabled;
 		}
 
 		public void EnableSaveButton(bool enabled)
 		{
-			SaveButton.GetComponent<Button>().interactable = enabled;
+			SaveButton.interactable = enabled;
 		}
 
 		public void EnableLoadButton(bool enabled)
 		{
-			LoadButton.GetComponent<Button>().interactable = enabled;
+			LoadButton.interactable = enabled;
 		}
 	}
 }

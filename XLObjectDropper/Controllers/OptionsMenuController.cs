@@ -11,24 +11,24 @@ namespace XLObjectDropper.Controllers
 
 		private void Awake()
 		{
-			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
-			OptionsMenu.InvertCamControl.GetComponent<Toggle>().isOn = Settings.Instance.InvertCamControl;
-			OptionsMenu.ShowGrid.GetComponent<Toggle>().isOn = Settings.Instance.ShowGrid;
+			OptionsMenu.Sensitivity.value = Settings.Instance.Sensitivity;
+			OptionsMenu.InvertCamControl.isOn = Settings.Instance.InvertCamControl;
+			OptionsMenu.ShowGrid.isOn = Settings.Instance.ShowGrid;
 		}
 
 		private void OnEnable()
 		{
-			OptionsMenu.Sensitivity.GetComponent<Slider>().value = Settings.Instance.Sensitivity;
-			OptionsMenu.InvertCamControl.GetComponent<Toggle>().isOn = Settings.Instance.InvertCamControl;
-			OptionsMenu.ShowGrid.GetComponent<Toggle>().isOn = Settings.Instance.ShowGrid;
+			OptionsMenu.Sensitivity.value = Settings.Instance.Sensitivity;
+			OptionsMenu.InvertCamControl.isOn = Settings.Instance.InvertCamControl;
+			OptionsMenu.ShowGrid.isOn = Settings.Instance.ShowGrid;
 
 			AddListeners();
 
 			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
 			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 
-			EventSystem.current.SetSelectedGameObject(OptionsMenu.Sensitivity);
-			OptionsMenu.Sensitivity.GetComponent<Slider>().OnSelect(null);
+			EventSystem.current.SetSelectedGameObject(OptionsMenu.Sensitivity.gameObject);
+			OptionsMenu.Sensitivity.OnSelect(null);
 		}
 
 		private void AddListeners()
