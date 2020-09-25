@@ -43,9 +43,26 @@ namespace XLObjectDropper.UI.Controls
 		{
 			var player = UIManager.Instance.Player;
 
-			var stick = player.GetAxis2D(XAxisName, YAxisName);
+			float stickX = 0.0f;
+			float stickY = 0.0f;
+
+			if (!string.IsNullOrEmpty(XAxisName) && !string.IsNullOrEmpty(YAxisName))
+			{
+				var stick = player.GetAxis2D(XAxisName, YAxisName);
+				stickX = stick.x;
+				stickY = stick.y;
+			}
+			else if (!string.IsNullOrEmpty(XAxisName))
+			{
+				stickX = player.GetAxis(XAxisName);
+			}
+			else if (!string.IsNullOrEmpty(YAxisName))
+			{
+				stickY = player.GetAxis(YAxisName);
+			}
+			
 			var scaleFactor = 2.0f;
-			StickAnimatedOverlay.transform.localPosition = new Vector3(stick.x * scaleFactor, stick.y * scaleFactor, 0.0f);
+			StickAnimatedOverlay.transform.localPosition = new Vector3(stickX * scaleFactor, stickY * scaleFactor, 0.0f);
 
 			if (StickButtonEnabled)
 			{
