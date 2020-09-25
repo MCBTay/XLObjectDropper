@@ -96,11 +96,11 @@ namespace XLObjectDropper.Controllers
 		{
 			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-			SelectedObject?.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, leftStick.y * ObjectRotateSpeed);
+			SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, leftStick.y * ObjectRotateSpeed);
 
 			//TODO: In the future, we'll have a toggle for local/global rotation axis
-			//SelectedObject?.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, leftStick.x * ObjectRotateSpeed);
-			SelectedObject?.transform.Rotate(0, leftStick.x * ObjectRotateSpeed, 0);
+			SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, leftStick.x * ObjectRotateSpeed); //global
+			//SelectedObject.transform.Rotate(0, leftStick.x * ObjectRotateSpeed, 0); //local
 		}
 
 		private void HandleDPadRotation(Player player)
@@ -128,13 +128,21 @@ namespace XLObjectDropper.Controllers
 			if (player.GetButtonDown("DPadX"))
 			{
 				UISounds.Instance?.PlayOneShotSelectionChange();
-				SelectedObject.transform.Rotate(new Vector3(0, rotationIncrement, 0));
+
+
+				//TODO: In the future, we'll have a toggle for local/global rotation axis
+				SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, rotationIncrement); //global
+				//SelectedObject.transform.Rotate(new Vector3(0, rotationIncrement, 0)); //local
 			}
 
 			if (player.GetNegativeButtonDown("DPadX"))
 			{
 				UISounds.Instance?.PlayOneShotSelectionChange();
-				SelectedObject.transform.Rotate(new Vector3(0, -rotationIncrement, 0));
+				
+
+				//TODO: In the future, we'll have a toggle for local/global rotation axis
+				SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, -rotationIncrement); //global
+				//SelectedObject.transform.Rotate(new Vector3(0, -rotationIncrement, 0)); //local
 			}
 
 			if (player.GetButtonDown("DPadY"))
