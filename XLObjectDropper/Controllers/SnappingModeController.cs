@@ -10,7 +10,7 @@ namespace XLObjectDropper.Controllers
 	{
 		public static SnappingModeController Instance;
 
-		private int CurrentPlacementSnappingMode { get; set; }
+		private static int CurrentPlacementSnappingMode { get; set; }
 
 		private void Awake()
 		{
