@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="StyleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StyleGroupController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
