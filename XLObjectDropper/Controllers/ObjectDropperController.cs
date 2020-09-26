@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
@@ -9,8 +8,6 @@ namespace XLObjectDropper.Controllers
 	public class ObjectDropperController : MonoBehaviour
 	{
 		public static ObjectDropperController Instance;
-
-		public static List<Spawnable> SpawnedObjects;
 
 		private GameObject ObjectMovementGameObject;
 		private ObjectMovementController ObjectMovementController;
@@ -31,11 +28,13 @@ namespace XLObjectDropper.Controllers
 		private RotationAndScaleController RotationAndScaleController;
 		private bool RotationAndScaleOpen => RotationAndScaleGameObject != null && RotationAndScaleGameObject.activeInHierarchy;
 
+		private GameObject SnappingModeGameObject;
+		private SnappingModeController SnappingModeController;
+		private bool SnappingModeOpen => SnappingModeGameObject != null && SnappingModeGameObject.activeInHierarchy;
+
 		private void Awake()
 		{
 			Instance = this;
-
-			SpawnedObjects = new List<Spawnable>();
 		}
 
 		private void OnEnable()
@@ -54,6 +53,7 @@ namespace XLObjectDropper.Controllers
 			DestroyObjectMovement();
 			DestroyQuickMenu();
 			DestroyRotationAndScaleUI();
+			DestroySnappingModeUI();
 		}
 
 		private void Update()
@@ -62,39 +62,16 @@ namespace XLObjectDropper.Controllers
 
 			Time.timeScale = OptionsMenuOpen || ObjectSelectionOpen || QuickMenuOpen ? 0.0f : 1.0f;
 
+			if (player.GetButtonUp("LB") && RotationAndScaleOpen) DestroyRotationAndScaleUI();
+			if (player.GetButtonUp("RB") && SnappingModeOpen) DestroySnappingModeUI();
 
-
-			if (player.GetButtonUp("LB"))
+			if (player.GetButton("LB") && !RotationAndScaleOpen && ObjectMovementController.SelectedObjectActive)
 			{
-				if (RotationAndScaleOpen)
-				{
-					DestroyRotationAndScaleUI();
-				}
+				CreateRotationAndScaleUI();
 			}
-
-			if (player.GetButton("LB"))
+			else if (player.GetButton("RB") && !SnappingModeOpen && ObjectMovementController.SelectedObjectActive)
 			{
-				if (player.GetButtonDown("Start"))
-				{
-					if (QuickMenuOpen)
-					{
-						DestroyQuickMenu();
-						ObjectMovementController.enabled = true;
-					}
-					else
-					{
-						ObjectMovementController.enabled = false;
-						CreateQuickMenu();
-					}
-				}
-
-				if (!QuickMenuOpen)
-				{
-					if (!RotationAndScaleOpen)
-					{
-						CreateRotationAndScaleUI();
-					}
-				}
+				CreateSnappingModeUI();
 			}
 			else
 			{
@@ -178,22 +155,26 @@ namespace XLObjectDropper.Controllers
 		#region Object Movement
 		private void CreateObjectMovement()
 		{
-			ObjectMovementGameObject = new GameObject();
-			ObjectMovementController = ObjectMovementGameObject.AddComponent<ObjectMovementController>();
+			if (ObjectMovementGameObject == null)
+			{
+				ObjectMovementGameObject = new GameObject();
+				Object.DontDestroyOnLoad(ObjectMovementGameObject);
+			}
 
+			if (ObjectMovementController == null)
+			{
+				ObjectMovementController = ObjectMovementGameObject.AddComponent<ObjectMovementController>();
+			}
+			
 			ObjectMovementGameObject.SetActive(true);
 		}
 
 		private void DestroyObjectMovement()
 		{
-			if (ObjectMovementGameObject == null || ObjectMovementController == null) return;
+			if (ObjectMovementController == null) return;
 
-			ObjectMovementGameObject.SetActive(false);
-
-			ObjectMovementController.Instance.CleanUp();
-
-			DestroyImmediate(ObjectMovementController);
-			DestroyImmediate(ObjectMovementGameObject);
+			ObjectMovementController.enabled = false;
+			ObjectMovementController.CleanUp();
 		}
 		#endregion
 
@@ -307,16 +288,23 @@ namespace XLObjectDropper.Controllers
 		}
 		#endregion
 
-		public static void DeleteSpawnedObjects()
-		{
-			foreach (var spawnedObject in SpawnedObjects)
-			{
-				DestroyImmediate(spawnedObject.Prefab);
-				DestroyImmediate(spawnedObject.SpawnedInstance);
-				DestroyImmediate(spawnedObject.PreviewTexture);
-			}
+		#region Snapping Mode UI
+		private void CreateSnappingModeUI() {
+			SnappingModeGameObject = new GameObject();
+			SnappingModeController = SnappingModeGameObject.AddComponent<SnappingModeController>();
 
-			SpawnedObjects.Clear();
+			SnappingModeGameObject.SetActive(true);
 		}
+
+		private void DestroySnappingModeUI()
+		{
+			if (SnappingModeGameObject == null || SnappingModeController == null) return;
+
+			SnappingModeGameObject.SetActive(false);
+
+			DestroyImmediate(SnappingModeController);
+			DestroyImmediate(SnappingModeGameObject);
+		}
+		#endregion
 	}
 }

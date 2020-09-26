@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ObjectDropperController.cs" />
     <Compile Include="Controllers\QuickMenuController.cs" />
     <Compile Include="Controllers\RotationAndScaleController.cs" />
+    <Compile Include="Controllers\SnappingModeController.cs" />
     <Compile Include="Patches\LevelManagerPatch.cs" />
     <Compile Include="Utilities\AssetBundleHelper.cs" />
     <Compile Include="Controllers\OptionsMenuController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Patches\GameManagement\PauseStatePatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInterface\UserInterfaceHelper.cs" />
+    <Compile Include="Utilities\SpawnableManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\object_testbundle" />
@@ -226,7 +228,7 @@ copy /Y "$(TargetDir)XLObjectDropper.dll" "$(TargetDir)XLObjectDropper\XLObjectD
 copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.UI.dll"
 copy /Y "$(TargetDir)Info.json" "$(TargetDir)XLObjectDropper\Info.json"
 
-powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-0-0-3.zip' -Force
+powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-0-0-5.zip' -Force
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

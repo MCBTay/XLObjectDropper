@@ -1,11 +1,9 @@
 ﻿using GameManagement;
 using Rewired;
-using System;
 using UnityEngine;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
-using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
 
@@ -19,44 +17,45 @@ namespace XLObjectDropper.Controllers
 
 		public GameObject SelectedObject { get; set; }
 		private Spawnable SelectedObjectSpawnable;
-		private bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
+		public bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
 		private LayerInfo SelectedObjectLayerInfo;
 
 		private GameObject HighlightedObject;
 		private bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
 		private LayerInfo HighlightedObjectLayerInfo;
 
+		public GameObject GridOverlay;
+		private bool GridOverlayActive => GridOverlay != null && GridOverlay.activeInHierarchy;
+
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
 		public float minHeight = 0.0f;
 		public float maxHeight = 15f;
-		private float targetHeight;
+		public float targetHeight;
 		private float currentHeight;
 
 		private float MaxGroundAngle = 70f;
-		private float groundLevel;
+		public float groundLevel;
 		private Vector3 groundNormal;
 		private bool hasGround;
 
 		private float HorizontalAcceleration = 10f;
 		private float MaxCameraAcceleration = 20f;
-		private float heightChangeSpeed = 2f;
-		private float VerticalAcceleration = 20f;
+		public float heightChangeSpeed = 2f;
+		public float VerticalAcceleration = 20f;
 		private float CameraRotateSpeed = 100f;
 		private float MoveSpeed = 10f;
-		private float CameraDistMoveSpeed;
 		private float lastVerticalVelocity;
 		private float lastCameraVelocity;
-		private float currentMoveSpeed;
+		public float currentMoveSpeed;
 		private float zoomSpeed = 10f;
 
 		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.0f, 0.5f, 15f, 3f);
 		public AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
-		public AnimationCurve HeightToCameraDistCurve;
 
 		private Camera mainCam;
 		public Transform cameraPivot;
 		public Transform cameraNode;
-		public float CameraSphereCastRadius = 0.15f;
+		public Transform originalCameraNodeParent;
 		private float currentCameraDist;
 		private float defaultDistance = 5.0f;
 		private float minDistance = 2.5f;
@@ -64,7 +63,7 @@ namespace XLObjectDropper.Controllers
 		private float originalNearClipDist;
 
 		public CharacterController characterController;
-		private CollisionFlags collisionFlags;
+		public CollisionFlags collisionFlags;
 
 		private LayerMask layerMask = new LayerMask { value = 1118209 };
 
@@ -72,11 +71,7 @@ namespace XLObjectDropper.Controllers
 		private float rotationAngleX;
 		private float rotationAngleY;
 
-		private GameObject GridOverlay;
-		private bool GridOverlayActive => GridOverlay != null && GridOverlay.activeInHierarchy;
-
 		private bool LockCameraMovement { get; set; }
-		private int CurrentPlacementSnappingMode { get; set; }
 		#endregion
 
 		private void Awake()
@@ -87,10 +82,10 @@ namespace XLObjectDropper.Controllers
 
 			mainCam = Camera.main;
 
-			HeightToCameraDistCurve = PlayerController.Instance.pinMover.HeightToCameraDistCurve;
-
 			cameraPivot = transform;
-			cameraNode = Instantiate(mainCam.transform, cameraPivot);
+			cameraNode = mainCam.transform;
+			originalCameraNodeParent = cameraNode.parent;
+			cameraNode.SetParent(cameraPivot);
 
 			CreateCharacterController();
 
@@ -98,14 +93,12 @@ namespace XLObjectDropper.Controllers
 			
 			LockCameraMovement = false;
 
-			#region from PinMovementController
 			originalNearClipDist = mainCam.nearClipPlane;
 			mainCam.nearClipPlane = 0.01f;
 			targetHeight = defaultHeight;
 
 			Vector3 vector3_1 = PlayerController.Instance.skaterController.skaterRigidbody.position;
-
-			transform.rotation = Quaternion.Euler(0.0f, PlayerController.Instance.cameraController._actualCam.rotation.eulerAngles.y, 0.0f);
+			transform.rotation = Quaternion.Euler(0.0f, 20.0f, 0.0f);
 			transform.position = vector3_1;
 
 			UpdateGroundLevel();
@@ -115,10 +108,10 @@ namespace XLObjectDropper.Controllers
 
 			transform.position = vector3_1;
 			MoveCamera(true);
-			#endregion
 
 			cameraPivot = transform;
-			cameraNode = Instantiate(mainCam.transform, cameraPivot);
+			cameraNode = mainCam.transform;
+			cameraNode.SetParent(cameraPivot);
 
 			rotationAngleX = cameraPivot.eulerAngles.x;
 			rotationAngleY = cameraPivot.eulerAngles.y;
@@ -154,7 +147,7 @@ namespace XLObjectDropper.Controllers
         private void OnDisable()
         {
 	        mainCam.nearClipPlane = originalNearClipDist;
-		}
+        }
 
         public void CleanUp()
         {
@@ -166,12 +159,20 @@ namespace XLObjectDropper.Controllers
 		        SelectedObjectLayerInfo = null;
 	        }
 
+	        if (GridOverlay != null)
+	        {
+				GridOverlay.SetActive(false);
+				DestroyImmediate(GridOverlay);
+	        }
+
 	        if (HighlightedObject != null)
 	        {
 		        HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
 		        HighlightedObjectLayerInfo = null;
 		        HighlightedObject = null;
 	        }
+
+	        cameraNode.SetParent(originalCameraNodeParent, false);
 		}
 
         private ObjectScaleAndRotateEvent ScaleAndRotateEvent;
@@ -180,29 +181,7 @@ namespace XLObjectDropper.Controllers
         {
 	        Player player = PlayerController.Instance.inputController.player;
 
-	        if (HighlightedObject != null)
-			{
-				HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
-				HighlightedObject = null;
-			}
-
-			if (!SelectedObjectActive)
-			{
-				Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
-				if (Physics.Raycast(ray, out RaycastHit hit, 5f))
-				{
-					var parent = hit.transform.GetTopMostParent();
-
-					if (hit.collider != null && parent != null)
-					{
-						HighlightedObject = parent.gameObject;
-						HighlightedObjectLayerInfo = parent.GetObjectLayers();
-
-						HighlightedObject.transform.ChangeLayersRecursively("Ignore Raycast");
-						UserInterfaceHelper.CustomPassVolume.enabled = true;
-					}
-				}
-			}
+	        HandleObjectHighlight();
 
 			MovementUI.HasHighlightedObject = HighlightedObjectActive;
 			MovementUI.HasSelectedObject = SelectedObjectActive;
@@ -220,106 +199,41 @@ namespace XLObjectDropper.Controllers
 				ScaleAndRotateEvent = null;
 			}
 
-			// "Pause" this controller while the rotation and scale menu is open.
-			if (player.GetButton("LB")) return;
+			// "Pause" this controller while the rotation and scale menu or the snapping mode menu is open.
+			if ((player.GetButton("LB") || player.GetButton("RB")) && SelectedObjectActive) return;
 
-			if (player.GetButton("RB"))
+
+			HandleLeftStick(player);
+			HandleRightStick(player);
+			
+			HandleTriggers(player);
+
+			if (!LockCameraMovement)
 			{
-				HandleAxisLocking(player);
+				MoveCamera();
+			}
+
+			if (SelectedObjectActive)
+			{
+				if (player.GetButtonDown("A")) PlaceObject();
+				if (player.GetButtonDown("X")) PlaceObject(false);
+				if (player.GetButtonDown("B")) Destroy(SelectedObject);
+				if (player.GetButtonDown("Left Stick Button")) ResetObject();
+			}
+			else if (HighlightedObject != null)
+			{
+				if (player.GetButtonDown("A")) SelectObject();
+				if (player.GetButtonDown("X")) DuplicateObject();
+				if (player.GetButtonDown("Y")) DeleteObject();
 			}
 			else
 			{
-				HandleLeftStick(player);
-				HandleRightStick(player);
-				HandleTriggers(player);
-
-				if (!LockCameraMovement)
-				{
-					MoveCamera();
-				}
-
-				if (SelectedObject != null && SelectedObject.activeInHierarchy)
-				{
-					if (player.GetButtonDown("A"))
-					{
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						PlaceObject();
-					}
-
-					if (player.GetButtonDown("Left Stick Button"))
-					{
-						SelectedObject.transform.localScale = Vector3.one;
-						//TODO: Come back to this, get the rotation from LoadedPrefabs
-						//SelectedObject.transform.rotation = LastPrefab.transform.rotation;
-					}
-				}
-				else if (HighlightedObject != null)
-				{
-					if (player.GetButtonDown("A"))
-					{
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						SelectedObject = HighlightedObject;
-					}
-
-					if (player.GetButtonDown("Y"))
-					{
-						var objDeletedEvent = new ObjectDeletedEvent(HighlightedObject.GetPrefab(), HighlightedObject);
-						objDeletedEvent.AddToUndoStack();
-
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						DestroyImmediate(HighlightedObject);
-					}
-				}
-
-				HandleDPadHeightAdjustment(player);
-
-				if (player.GetButtonDown("DPadX"))
-				{
-					UISounds.Instance?.PlayOneShotSelectionChange();
-					LockCameraMovement = !LockCameraMovement;
-				}
-
-				if (player.GetNegativeButtonDown("DPadX"))
-				{
-					UISounds.Instance?.PlayOneShotSelectionChange();
-
-					CurrentPlacementSnappingMode++;
-
-					if (CurrentPlacementSnappingMode > Enum.GetValues(typeof(PlacementSnappingMode)).Length - 1)
-						CurrentPlacementSnappingMode = 0;
-				}
-
-				if (player.GetButtonDown("X"))
-				{
-					if (SelectedObject != null && SelectedObject.activeInHierarchy)
-					{
-						// if x, open new object selection menu
-						UISounds.Instance?.PlayOneShotSelectMajor();
-						PlaceObject(false);
-					}
-				}
-
-				if (player.GetButtonDown("B"))
-				{
-					if (SelectedObject != null && SelectedObject.activeInHierarchy)
-					{
-						Destroy(SelectedObject);
-					}
-					else
-					{
-
-						GameStateMachine.Instance.RequestPauseState();
-					}
-				}
-				
-				if (player.GetButtonDown("Right Stick Button"))
-				{
-					targetDistance = defaultDistance;
-					rotationAngleX = 0;
-					rotationAngleY = 20f;
-					MoveCamera(true);
-				}
+				if (player.GetButtonDown("B")) GameStateMachine.Instance.RequestPauseState();
 			}
+
+			HandleDPadHeightAdjustment(player);
+			if (player.GetButtonDown("DPadX")) ToggleLockCameraMovement();
+			if (player.GetButtonDown("Right Stick Button")) ResetCamera();
         }
 
         private void LateUpdate()
@@ -327,49 +241,27 @@ namespace XLObjectDropper.Controllers
 	        UpdateGroundLevel();
         }
 
-        private void HandleLeftStick(Player player)
+		#region Sticks
+		/// <summary>
+		/// Object movement
+		/// </summary>
+		private void HandleLeftStick(Player player)
         {
-	        float increment = GetCurrentPlacementSnappingModeIncrement();
-	        if (increment > 0.0f)
-	        {
-		        var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
+	        var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-		        if (player.GetButtonDown("LeftStickX"))
-		        {
-			        collisionFlags = characterController.Move(new Vector3(increment, 0.0f, 0.0f));
-		        }
+	        var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
+	        collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
 
-		        if (player.GetNegativeButtonDown("LeftStickX"))
-		        {
-			        collisionFlags = characterController.Move(new Vector3(-increment, 0.0f, 0.0f));
-		        }
-
-		        if (player.GetButtonDown("LeftStickY"))
-		        {
-			        collisionFlags = characterController.Move(new Vector3(0.0f, 0.0f, increment));
-		        }
-
-		        if (player.GetNegativeButtonDown("LeftStickY"))
-		        {
-			        collisionFlags = characterController.Move(new Vector3(0.0f, 0.0f, -increment));
-		        }
-
-		        //TODO: Potentially add some code here to snap it to the grid if it's for some reason not on it?
-	        }
-	        else
-	        {
-		        var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
-		        var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
-		        collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
-	        }
-
-	        if (GridOverlayActive && Settings.Instance.ShowGrid)
+		    if (GridOverlayActive && Settings.Instance.ShowGrid)
 	        {
 		        GridOverlay.transform.position = transform.position;
 	        }
 		}
 
-        private void HandleRightStick(Player player)
+		/// <summary>
+		/// Camera movement
+		/// </summary>
+		private void HandleRightStick(Player player)
         {
 	        //TODO: Something about this new rotation method fucks up the default angle of the object dropper
 
@@ -396,6 +288,7 @@ namespace XLObjectDropper.Controllers
 	        var position = rotation * negDistance + Vector3.zero;
 
 	        cameraPivot.rotation = rotation;
+			cameraNode.rotation = rotation;
 	        cameraNode.position = position;
 
 	        if (SelectedObject != null)
@@ -403,37 +296,24 @@ namespace XLObjectDropper.Controllers
 		        SelectedObject.transform.position = cameraPivot.position;
 	        }
 		}
+		#endregion
 
-        private void HandleTriggers(Player player)
-        {
-	        float triggers = (player.GetAxis("RT") - player.GetAxis("LT")) * Time.deltaTime * zoomSpeed; //* HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
+		private void HandleTriggers(Player player)
+		{
+			float triggers = (player.GetAxis("RT") - player.GetAxis("LT")) * Time.deltaTime * zoomSpeed; //* HeightToHeightChangeSpeedCurve.Evaluate(targetHeight);
 
-	        currentHeight = transform.position.y - groundLevel;
-	        currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
-
-			currentHeight = transform.position.y - groundLevel;
-	        if (!Mathf.Approximately(triggers, 0.0f))
-	        {
-		        if ((double)currentCameraDist < (double)maxDistance && (double)triggers > 0.0 ||
-		            (double)currentCameraDist > (double)minDistance && (double)triggers < 0.0)
-		        {
-			        targetDistance += triggers;
-		        }
-
-		        currentHeight = transform.position.y - groundLevel;
-		        targetHeight = Mathf.Clamp(currentHeight, minHeight, maxHeight);
-	        }
-	        else
-	        {
-		        float num = (float)(((double)targetHeight - (double)currentHeight) / 0.25);
-		        collisionFlags = characterController.Move((Mathf.Approximately(lastVerticalVelocity, 0.0f) || (double)Mathf.Sign(num) == (double)Mathf.Sign(lastVerticalVelocity) ? ((double)Mathf.Abs(num) <= (double)Mathf.Abs(lastVerticalVelocity) ? num : Mathf.MoveTowards(lastVerticalVelocity, num, VerticalAcceleration * Time.deltaTime)) : 0.0f) * Time.deltaTime * Vector3.up);
-		        lastVerticalVelocity = characterController.velocity.y;
-	        }
-
-	        currentHeight = transform.position.y - groundLevel;
+			if (!Mathf.Approximately(triggers, 0.0f))
+			{
+				if ((double) currentCameraDist < (double) maxDistance && (double) triggers > 0.0 ||
+				    (double) currentCameraDist > (double) minDistance && (double) triggers < 0.0)
+				{
+					targetDistance += triggers;
+				}
+			}
 		}
 
-        public void MoveCamera(bool moveInstant = false)
+		#region Camera movement methods
+		public void MoveCamera(bool moveInstant = false)
         {
 	        if (moveInstant)
 	        {
@@ -459,94 +339,44 @@ namespace XLObjectDropper.Controllers
 			PlayerController.Instance.cameraController.MoveCameraTo(cameraNode.position, cameraNode.rotation);
         }
 
-		private float ClampAngle(float angle, float min, float max)
+        private float ClampAngle(float angle, float min, float max)
 		{
 			if (angle < -360F) angle += 360F;
 			if (angle > 360F) angle -= 360F;
 			return Mathf.Clamp(angle, min, max);
 		}
 
-		private void PlaceObject(bool disablePreview = true)
+        private void ToggleLockCameraMovement()
         {
-	        var newObject = Instantiate(SelectedObject, SelectedObject.transform.position, SelectedObject.transform.rotation);
-	        newObject.SetActive(true);
-
-	        newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
-
-	        ObjectDropperController.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
-
-			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
-			objPlaceEvent.AddToUndoStack();
-
-			if (disablePreview)
-	        {
-		        SelectedObject.SetActive(false);
-		        UserInterfaceHelper.CustomPassVolume.enabled = false;
-
-		        if (GridOverlay != null && GridOverlay.activeInHierarchy)
-		        {
-					GridOverlay.SetActive(false);
-					DestroyImmediate(GridOverlay);
-		        }
-	        }
-        }
-
-		private float GetCurrentPlacementSnappingModeIncrement()
-		{
-			float increment = 0.0f;
-
-			switch (CurrentPlacementSnappingMode)
-			{
-				case (int)PlacementSnappingMode.Quarter:
-					increment = 0.25f;
-					break;
-				case (int)PlacementSnappingMode.Half:
-					increment = 0.5f;
-					break;
-				case (int)PlacementSnappingMode.Full:
-					increment = 1.0f;
-					break;
-				case (int)PlacementSnappingMode.Double:
-					increment = 2.0f;
-					break;
-				case (int)PlacementSnappingMode.Off:
-				default:
-					increment = 0.0f;
-					break;
-			}
-
-			return increment;
+	        UISounds.Instance?.PlayOneShotSelectionChange();
+	        LockCameraMovement = !LockCameraMovement;
 		}
 
-		private void HandleDPadHeightAdjustment(Player player)
+        private void ResetCamera()
+        {
+	        UISounds.Instance?.PlayOneShotSelectMajor();
+
+	        targetDistance = defaultDistance;
+	        rotationAngleX = 0;
+	        rotationAngleY = 20f;
+	        MoveCamera(true);
+		}
+		#endregion
+
+		public void HandleDPadHeightAdjustment(Player player)
 		{
-			var increment = GetCurrentPlacementSnappingModeIncrement();
+			float dpad = player.GetAxis("DPadY");
+			targetHeight = targetHeight + (dpad * Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
 
-			if (increment > 0)
-			{
-				if (player.GetButtonDown("DPadY"))
-				{
-					targetHeight += increment;
-				}
+			MoveObjectOnYAxis();
 
-				if (player.GetNegativeButtonDown("DPadY"))
-				{
-					targetHeight -= increment;
-				}
-			}
-			else
-			{
-				// If dpad up/down, move object up/down
-				float dpad = player.GetAxis("DPadY");
-				targetHeight = targetHeight + (dpad * Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
-			}
+			UpdateSelectedObjectPosition();
 		}
 
-		#region Axis Locking (holding RB)
-		private void HandleAxisLocking(Player player)
+		public void MoveObjectOnYAxis()
 		{
-			HandleDPadHeightAdjustment(player);
-
+			currentHeight = transform.position.y - groundLevel;
+			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
 			currentHeight = transform.position.y - groundLevel;
 
 			float num = (float)(((double)targetHeight - (double)currentHeight) / 0.25);
@@ -554,35 +384,7 @@ namespace XLObjectDropper.Controllers
 			lastVerticalVelocity = characterController.velocity.y;
 
 			currentHeight = transform.position.y - groundLevel;
-
-
-			var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
-
-			Vector3 direction = Vector3.zero;
-
-			if (Mathf.Abs(leftStick.x) > Mathf.Abs(leftStick.y))
-			{
-				direction = new Vector3(Mathf.Sign(leftStick.x), 0.0f, 0.0f);
-			}
-			else if (Mathf.Abs(leftStick.x) < Mathf.Abs(leftStick.y))
-			{
-				direction = new Vector3(0.0f, 0.0f, Mathf.Sign(leftStick.y));
-			}
-
-			var motion = direction * currentMoveSpeed * Time.deltaTime;
-			collisionFlags = characterController.Move(new Vector3(motion.x, 0.0f, motion.z));
-
-			if (SelectedObjectActive)
-			{
-				SelectedObject.transform.position = cameraPivot.position;
-
-				if (GridOverlayActive && Settings.Instance.ShowGrid)
-				{
-					GridOverlay.transform.position = SelectedObject.transform.position;
-				}
-			}
 		}
-		#endregion
 
 		private void UpdateGroundLevel()
 		{
@@ -606,6 +408,7 @@ namespace XLObjectDropper.Controllers
 			hasGround = flag;
 		}
 
+		#region Object creation, deletion, duplication, highlight methods
 		public void InstantiateSelectedObject(Spawnable spawnable)
 		{
 			SelectedObject = Instantiate(spawnable.Prefab);
@@ -627,5 +430,111 @@ namespace XLObjectDropper.Controllers
 
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
+
+		private void PlaceObject(bool disablePreview = true)
+		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
+			var newObject = Instantiate(SelectedObject, SelectedObject.transform.position, SelectedObject.transform.rotation);
+			newObject.SetActive(true);
+
+			newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
+
+			SpawnableManager.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
+
+			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
+			objPlaceEvent.AddToUndoStack();
+
+			if (disablePreview)
+			{
+				SelectedObject.SetActive(false);
+				UserInterfaceHelper.CustomPassVolume.enabled = false;
+
+				if (GridOverlay != null && GridOverlay.activeInHierarchy)
+				{
+					GridOverlay.SetActive(false);
+					DestroyImmediate(GridOverlay);
+				}
+			}
+		}
+
+		private void DuplicateObject()
+		{
+			if (!HighlightedObjectActive) return;
+
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
+			var spawnable = HighlightedObject.GetSpawnable();
+			if (spawnable != null)
+			{
+				InstantiateSelectedObject(spawnable);
+			}
+		}
+
+		public void UpdateSelectedObjectPosition()
+		{
+			if (SelectedObjectActive)
+			{
+				SelectedObject.transform.position = cameraPivot.position;
+
+				if (GridOverlayActive && Settings.Instance.ShowGrid)
+				{
+					GridOverlay.transform.position = SelectedObject.transform.position;
+				}
+			}
+		}
+
+		private void ResetObject()
+		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+			var prefab = SelectedObject.GetPrefab();
+
+			SelectedObject.transform.localScale = prefab != null ? prefab.transform.localScale : Vector3.one;
+			SelectedObject.transform.rotation = prefab != null ? prefab.transform.rotation : Quaternion.identity;
+		}
+
+		private void DeleteObject()
+		{
+			var objDeletedEvent = new ObjectDeletedEvent(HighlightedObject.GetPrefab(), HighlightedObject);
+			objDeletedEvent.AddToUndoStack();
+
+			UISounds.Instance?.PlayOneShotSelectMajor();
+			DestroyImmediate(HighlightedObject);
+		}
+
+		private void SelectObject()
+		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+			SelectedObject = HighlightedObject;
+		}
+
+		private void HandleObjectHighlight()
+		{
+			if (HighlightedObject != null)
+			{
+				HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
+				HighlightedObject = null;
+			}
+
+			if (!SelectedObjectActive)
+			{
+				Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+
+				if (Physics.Raycast(ray, out RaycastHit hit, 10f))
+				{
+					var parent = hit.transform.GetTopMostParent();
+
+					if (hit.collider != null && parent != null)
+					{
+						HighlightedObject = parent.gameObject;
+						HighlightedObjectLayerInfo = parent.GetObjectLayers();
+
+						HighlightedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+						UserInterfaceHelper.CustomPassVolume.enabled = true;
+					}
+				}
+			}
+		}
+		#endregion
 	}
 }

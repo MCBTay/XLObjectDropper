@@ -40,66 +40,29 @@ namespace XLObjectDropper.UI.Controls
 			RightPressed.SetActive(false);
 		}
 
-		private bool LockCam;
-
 		void Update()
+		{
+			UpdateDPadSprite(RightPressed, "DPadX", false);
+			UpdateDPadSprite(LeftPressed, "DPadX", true);
+
+			UpdateDPadSprite(UpPressed, "DPadY", false);
+			UpdateDPadSprite(DownPressed, "DPadY", true);
+		}
+
+		private void UpdateDPadSprite(GameObject gameObject, string dpadToUpdate, bool isNegative)
 		{
 			var player = UIManager.Instance.Player;
 
-			#region Right
-			if (player.GetButtonDown("DPadX"))
+			if (isNegative)
 			{
-				RightPressed.SetActive(true);
-				LockCam = !LockCam;
-
-				// TODO: Why is this here?
-				if (!player.GetButton("LB"))
-				{
-					RightLabel.SetText($"LOCK CAM: <color=#3286EC>{(LockCam ? "ON" : "OFF")}");
-				}
+				if (player.GetNegativeButtonDown(dpadToUpdate)) gameObject.SetActive(true);
+				if (player.GetNegativeButtonUp(dpadToUpdate)) gameObject.SetActive(false);
 			}
-
-			if (player.GetButtonUp("DPadX"))
+			else
 			{
-				RightPressed.SetActive(false);
+				if (player.GetButtonDown(dpadToUpdate)) gameObject.SetActive(true);
+				if (player.GetButtonUp(dpadToUpdate)) gameObject.SetActive(false);
 			}
-			#endregion
-
-			#region Left
-			if (player.GetNegativeButtonDown("DPadX"))
-			{
-				LeftPressed.SetActive(true);
-			}
-
-			if (player.GetNegativeButtonUp("DPadX"))
-			{
-				LeftPressed.SetActive(false);
-			}
-			#endregion
-
-			#region Up
-			if (player.GetButtonDown("DPadY"))
-			{
-				UpPressed.SetActive(true);
-			}
-
-			if (player.GetButtonUp("DPadY"))
-			{
-				UpPressed.SetActive(false);
-			}
-			#endregion
-
-			#region Down
-			if (player.GetNegativeButtonDown("DPadY"))
-			{
-				DownPressed.SetActive(true);
-			}
-
-			if (player.GetNegativeButtonUp("DPadY"))
-			{
-				DownPressed.SetActive(false);
-			}
-			#endregion
 		}
 	}
 }

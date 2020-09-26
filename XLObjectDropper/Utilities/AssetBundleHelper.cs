@@ -1,26 +1,18 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityModManagerNet;
 using XLObjectDropper.UI.Utilities;
-using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Utilities
 {
 	public static class AssetBundleHelper
 	{
-		public static List<Spawnable> LoadedSpawnables { get; private set; }
 		public static string ImagesPath;
 		public static string AssetPacksPath;
-
-		static AssetBundleHelper()
-		{
-			LoadedSpawnables = new List<Spawnable>();
-		}
 
 		public static void LoadDefaultBundles()
 		{
@@ -64,17 +56,6 @@ namespace XLObjectDropper.Utilities
 			}
 		}
 
-		public static void DisposeLoadedAssets()
-		{
-			foreach (var spawnable in LoadedSpawnables)
-			{
-				spawnable.Prefab.SetActive(false);
-				Object.Destroy(spawnable.Prefab);
-			}
-
-			LoadedSpawnables.Clear();
-		}
-
 		static IEnumerator LoadBundleAsync(string name, bool isEmbedded = false)
 		{
 			AssetBundleCreateRequest abCreateRequest;
@@ -90,7 +71,7 @@ namespace XLObjectDropper.Utilities
 
 			yield return abCreateRequest;
 
-			var bundle = abCreateRequest.assetBundle;
+			var bundle = abCreateRequest?.assetBundle;
 			if (bundle == null) yield break;
 
 			var assetLoadRequest = bundle.LoadAllAssetsAsync<GameObject>();
@@ -119,7 +100,7 @@ namespace XLObjectDropper.Utilities
 					}
 				}
 
-				LoadedSpawnables.Add(new Spawnable(type, asset as GameObject, bundle));
+				SpawnableManager.Prefabs.Add(new Spawnable(type, asset as GameObject, bundle));
 			}
 
 			SelfieCamera.enabled = false;

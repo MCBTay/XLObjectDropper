@@ -21,7 +21,7 @@ namespace XLObjectDropper.Utilities
 			var levelConfigToSave = new LevelSaveData { levelHash = LevelManager.Instance.currentLevel.hash };
 			levelConfigToSave.gameObjects = new List<GameObjectSaveData>();
 			
-			var spawnedItems = ObjectDropperController.SpawnedObjects;
+			var spawnedItems = SpawnableManager.SpawnedObjects;
 
 			if (spawnedItems == null || !spawnedItems.Any()) return;
 
@@ -61,7 +61,7 @@ namespace XLObjectDropper.Utilities
 				var position = new Vector3(spawnable.positionX, spawnable.positionY, spawnable.positionZ);
 				var rotation = new Quaternion(spawnable.rotationX, spawnable.rotationY, spawnable.rotationZ, spawnable.rotationW);
 
-				var prefab = AssetBundleHelper.LoadedSpawnables.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name));
+				var prefab = SpawnableManager.Prefabs.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name));
 
 				if (prefab == null) continue;
 
@@ -70,7 +70,7 @@ namespace XLObjectDropper.Utilities
 
 				newObject.transform.ChangeLayersRecursively("Default");
 
-				ObjectDropperController.SpawnedObjects.Add(new Spawnable(prefab.Prefab, newObject, prefab.PreviewTexture));
+				SpawnableManager.SpawnedObjects.Add(new Spawnable(prefab.Prefab, newObject, prefab.PreviewTexture));
 			}
 		}
 

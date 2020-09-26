@@ -32,12 +32,20 @@
 		Recent
 	}
 
-	public enum PlacementSnappingMode
+	public enum MovementSnappingMode
 	{
 		Off,
 		Quarter,
 		Half,
 		Full,
 		Double
+	}
+
+	public enum ScaleSnappingMode
+	{
+		Off,
+		Quarter,
+		Half,
+		Full
 	}
 }
