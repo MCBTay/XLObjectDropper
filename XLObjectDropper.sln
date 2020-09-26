@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLObjectDropper", "XLObject
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLObjectDropper.UI", "XLObjectDropper.UI\XLObjectDropper.UI.csproj", "{10A41930-F094-4C3C-B278-8FC9B95256B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLObjectDropper.SpawnableScripts", "XLObjectDropper.SpawnableScripts\XLObjectDropper.SpawnableScripts.csproj", "{D2673308-8E7B-4A23-81F7-2EB178D8FB9A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{10A41930-F094-4C3C-B278-8FC9B95256B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10A41930-F094-4C3C-B278-8FC9B95256B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10A41930-F094-4C3C-B278-8FC9B95256B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2673308-8E7B-4A23-81F7-2EB178D8FB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2673308-8E7B-4A23-81F7-2EB178D8FB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2673308-8E7B-4A23-81F7-2EB178D8FB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2673308-8E7B-4A23-81F7-2EB178D8FB9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
