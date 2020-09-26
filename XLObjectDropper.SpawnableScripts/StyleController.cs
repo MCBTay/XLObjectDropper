@@ -6,7 +6,7 @@ namespace XLObjectDropper.SpawnableScripts
 	{
 		public bool ShowInObjectSelection;
 		[Space(10)]
-		public Enumerations.Style Style;
-		public Enumerations.SubStyle SubStyle;
+		public string Style;
+		public string SubStyle;
 	}
 }
