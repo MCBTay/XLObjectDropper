@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2577013310
+CRC: 2621200872
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f4cdcf8dfa83d0bd569a3e51a9187fcf
+    Hash: 0b1d08811bd8935edf2179e76c774653
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 19d9aba9b57afe4ff74fa190661d52fa
+    Hash: 06ca255cbcbb0eeaa46b823748420119
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -31,12 +31,25 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 114
   Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+- Class: 114
+  Script: {fileID: 1516441529, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
+  Script: {fileID: -1691373624, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 136
   Script: {instanceID: 0}
 Assets:
+- Assets/SDT - Modular/Prefabs/Stair_3-1_x5.Grungy.prefab
+- Assets/SDT - Modular/Prefabs/StairCap_3-1_x5.Brick.Right.prefab
 - Assets/SDT - Modular/Prefabs/Polejam_Small.prefab
+- Assets/SDT - Modular/Prefabs/Stair_3-1_x5.Block.prefab
+- Assets/SDT - Modular/Prefabs/Stair_3-1_x5.Clean.prefab
+- Assets/SDT - Modular/Prefabs/Stair_3_1_x5.Brick.prefab
 - Assets/SDT - Modular/Prefabs/Pad_Low_2x4.prefab
+- Assets/SDT - Modular/Prefabs/Pad_Low_1x4.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_Stair_3-1_x5.prefab
 - Assets/SDT - Modular/Prefabs/Pad_Low_2x2.prefab
+- Assets/SDT - Modular/Prefabs/StairCap_3-1_x5.Brick.Left.prefab
+- Assets/SDT - Modular/Prefabs/Pad_Low_1x2.prefab
 Dependencies: []
