@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XLObjectDropper.UI.Controls;
 
@@ -31,6 +32,22 @@ namespace XLObjectDropper.UI.Menus
 			listItem.SetActive(true);
 
 			return listItem;
+		}
+
+		public virtual void ClearList()
+		{
+			for (var i = ListContent.transform.childCount - 1; i >= 0; i--)
+			{
+				var objectA = ListContent.transform.GetChild(i);
+				objectA.transform.parent = null;
+
+				objectA.gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
+				//objectA.gameObject.GetComponent<ObjectSelectionListItem>().onSelect.RemoveAllListeners();
+
+				Destroy(objectA.gameObject);
+			}
+
+			EventSystem.current.SetSelectedGameObject(null);
 		}
 	}
 }
