@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -17,6 +18,7 @@ namespace XLObjectDropper.UI.Controls
 
 		public GameObject SliderPrefab;
 		public GameObject TogglePrefab;
+		public GameObject Vector3SliderPrefab;
 
 		private void OnEnable()
 		{
@@ -41,7 +43,7 @@ namespace XLObjectDropper.UI.Controls
 			}
 		}
 
-		public void AddToggle(string text, bool isChecked)
+		public void AddToggle(string text, bool isChecked, UnityAction<bool> onValueChanged = null)
 		{
 			var toggle = Instantiate(TogglePrefab, Properties.transform);
 
@@ -50,10 +52,10 @@ namespace XLObjectDropper.UI.Controls
 			toggleControl.Label.SetText(text);
 			toggleControl.Toggle.isOn = isChecked;
 
-			//if (objectClicked != null)
-			//{
-			//	listItem.GetComponent<Button>().onClick.AddListener(objectClicked);
-			//}
+			if (onValueChanged != null)
+			{
+				toggleControl.Toggle.onValueChanged.AddListener(onValueChanged);
+			}
 
 			//if (objectSelected != null)
 			//{
@@ -91,20 +93,61 @@ namespace XLObjectDropper.UI.Controls
 			slider.SetActive(true);
 		}
 
+		public void AddVector3Slider(string text, string xText, string yText, string zText, Color value, UnityAction<Vector3> onValueChanged = null)
+		{
+			var slider = Instantiate(Vector3SliderPrefab, Properties.transform);
+
+			var sliderControl = slider.GetComponent<Vector3SliderControl>();
+
+			sliderControl.Label.SetText(text);
+
+			sliderControl.XSlider.Label.SetText(xText);
+			sliderControl.XSlider.Slider.value = value.r;
+
+			sliderControl.YSlider.Label.SetText(yText);
+			sliderControl.YSlider.Slider.value = value.g;
+
+			sliderControl.ZSlider.Label.SetText(zText);
+			sliderControl.ZSlider.Slider.value = value.b;
+
+			//if (objectClicked != null)
+			//{
+			//	listItem.GetComponent<Button>().onClick.AddListener(objectClicked);
+			//}
+
+			if (onValueChanged != null)
+			{
+				sliderControl.onValueChanged += onValueChanged;
+			}
+
+			slider.SetActive(true);
+		}
+
 		public void OnSelect(BaseEventData eventData)
 		{
+			//foreach (var anim in Animator.runtimeAnimatorController.animationClips)
+			//{
+			//	foreach (var animEvent in anim.events)
+			//	{
+					
+			//	}
+			//}
+
 			Animator.Play("Expand");
 
 			Expanded = true;
 			Properties.SetActive(true);
+
+			//if (Properties.transform.childCount > 0)
+			//	EventSystem.current.SetSelectedGameObject(Properties.transform.GetChild(0).gameObject);
 		}
 
 		public void OnDeselect(BaseEventData eventData)
 		{
-			Animator.Play("Collapse");
+			//Animator.Play("Collapse");
 
-			Expanded = false;
-			Properties.SetActive(false);
+			//Expanded = false;
+			//Properties.SetActive(false);
 		}
 	}
 }
