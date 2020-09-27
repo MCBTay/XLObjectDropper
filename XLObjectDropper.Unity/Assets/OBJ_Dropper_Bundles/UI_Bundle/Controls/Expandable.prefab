@@ -279,9 +279,14 @@ MonoBehaviour:
   Properties: {fileID: 3323296764632983370}
   Animator: {fileID: 8801418120544531797}
   Button: {fileID: 8984362707130516709}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
   SliderPrefab: {fileID: 6339646078253392734, guid: 9149a9d89cbc23444acb02e7a057c760,
     type: 3}
   TogglePrefab: {fileID: 8683892958759421435, guid: a43d326d27cbf2d449327e3138ba864b,
+    type: 3}
+  Vector3SliderPrefab: {fileID: 8993012550685366687, guid: a26688df80ed7f84f8fa2b68d97e1e86,
     type: 3}
 --- !u!222 &8173931651370159437
 CanvasRenderer:
