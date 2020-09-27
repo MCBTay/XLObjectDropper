@@ -167,6 +167,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ObjectDropperController.cs" />
+    <Compile Include="Controllers\ObjectEditController.cs" />
+    <Compile Include="Controllers\ObjectEdit\EditGrindablesController.cs" />
+    <Compile Include="Controllers\ObjectEdit\EditLightController.cs" />
+    <Compile Include="Controllers\ObjectEdit\EditStyleController.cs" />
     <Compile Include="Controllers\QuickMenuController.cs" />
     <Compile Include="Controllers\RotationAndScaleController.cs" />
     <Compile Include="Controllers\SnappingModeController.cs" />
