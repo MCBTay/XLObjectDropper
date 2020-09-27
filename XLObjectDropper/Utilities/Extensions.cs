@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using XLObjectDropper.Utilities;
 
@@ -60,7 +61,7 @@ namespace XLObjectDropper
 
 		public static LayerInfo GetObjectLayers(this Transform transform, LayerInfo parent = null)
 		{
-			var layerInfo = new LayerInfo { GameObjectName = transform.name, Layer = transform.gameObject.layer, Parent = parent };
+			var layerInfo = new LayerInfo { GameObjectName = transform.name, Layer = transform.gameObject.layer, Enabled = transform.gameObject.activeInHierarchy, Parent = parent };
 
 			foreach (Transform child in transform)
 			{
@@ -70,5 +71,22 @@ namespace XLObjectDropper
 			return layerInfo;
 		}
 		#endregion
+
+		public static List<GameObject> GetChildrenOnLayer(this GameObject gameObject, string layerName)
+		{
+			var results = new List<GameObject>();
+
+			if (gameObject.layer == LayerMask.NameToLayer(layerName))
+			{
+				results.Add(gameObject);
+			}
+
+			foreach (Transform child in gameObject.transform)
+			{
+				results.AddRange(GetChildrenOnLayer(child.gameObject, layerName));
+			}
+
+			return results;
+		}
 	}
 }

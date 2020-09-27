@@ -17,11 +17,12 @@ namespace XLObjectDropper.Controllers
 
 		private void OnEnable()
 		{
-
+			//ObjectEdit.ClearList();
 		}
 
 		private void OnDisable()
 		{
+			ObjectEdit.ClearList();
 			SelectedObject = null;
 		}
 
@@ -30,7 +31,6 @@ namespace XLObjectDropper.Controllers
 			EditStyleController.AddStyleOptions(SelectedObject, ObjectEdit);
 			EditLightController.AddLightOptions(SelectedObject, ObjectEdit);
 			EditGrindablesController.AddGrindablesOptions(SelectedObject, ObjectEdit);
-
 
 			if (ObjectEdit.ListContent.transform.childCount > 0)
 				EventSystem.current.SetSelectedGameObject(ObjectEdit.ListContent.transform.GetChild(0).gameObject);

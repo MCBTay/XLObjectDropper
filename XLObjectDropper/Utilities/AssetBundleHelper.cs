@@ -24,6 +24,7 @@ namespace XLObjectDropper.Utilities
 			}
 
 			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.object_testbundle", true));
+			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.sdt - modular", true));
 		}
 
 		public static void LoadUserBundles()

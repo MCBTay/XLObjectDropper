@@ -20,31 +20,31 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			if (!hasGrindables && !hasCoping) return;
 
-			var grindableExpandable = ObjectEdit.AddToList("Grindables");
+			var grindableExpandable = ObjectEdit.AddGrindableSettings();
 
 			var expandable = grindableExpandable.GetComponent<Expandable>();
 
-			if (hasGrindables)
-			{
-				expandable.AddToggle("Grindables Enabled", true, (isOn) =>
-				{
-					foreach (var grindable in grindables)
-					{
-						grindable.SetActive(isOn);
-					}
-				});
-			}
+			//if (hasGrindables)
+			//{
+			//	expandable.AddToggle("Grindables Enabled", true, (isOn) =>
+			//	{
+			//		foreach (var grindable in grindables)
+			//		{
+			//			grindable.SetActive(isOn);
+			//		}
+			//	});
+			//}
 
-			if (hasCoping)
-			{
-				expandable.AddToggle("Coping Enabled", true, (isOn) =>
-				{
-					foreach (var coping in copings)
-					{
-						coping.SetActive(isOn);
-					}
-				});
-			}
+			//if (hasCoping)
+			//{
+			//	expandable.AddToggle("Coping Enabled", true, (isOn) =>
+			//	{
+			//		foreach (var coping in copings)
+			//		{
+			//			coping.SetActive(isOn);
+			//		}
+			//	});
+			//}
 		}
 	}
 }

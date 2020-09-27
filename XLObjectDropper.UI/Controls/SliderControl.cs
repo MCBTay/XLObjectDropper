@@ -17,7 +17,6 @@ namespace XLObjectDropper.UI.Controls
 			Slider.onValueChanged.AddListener((value) =>
 			{
 				onValueChanged.Invoke(value);
-				Value.SetText(value.ToString("N"));
 			});
 		}
 
@@ -28,7 +27,6 @@ namespace XLObjectDropper.UI.Controls
 			Slider.onValueChanged.AddListener((value) =>
 			{
 				onValueChanged.Invoke(value);
-				Value.SetText(value.ToString("N"));
 			});
 		}
 

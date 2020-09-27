@@ -126,6 +126,8 @@
     <Compile Include="Controls\Buttons\BumperButton.cs" />
     <Compile Include="Controls\BumperController.cs" />
     <Compile Include="Controls\Buttons\ButtonBase.cs" />
+    <Compile Include="Controls\GrindableSettingsExpandable.cs" />
+    <Compile Include="Controls\LightSettingsExpandable.cs" />
     <Compile Include="Controls\DirectionalPadController.cs" />
     <Compile Include="Controls\Expandable.cs" />
     <Compile Include="Controls\SliderControl.cs" />

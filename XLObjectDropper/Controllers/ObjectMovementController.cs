@@ -18,9 +18,9 @@ namespace XLObjectDropper.Controllers
 		public GameObject SelectedObject { get; set; }
 		private Spawnable SelectedObjectSpawnable;
 		public bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
-		private LayerInfo SelectedObjectLayerInfo;
+		public LayerInfo SelectedObjectLayerInfo;
 
-		private GameObject HighlightedObject;
+		public GameObject HighlightedObject;
 		private bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
 		private LayerInfo HighlightedObjectLayerInfo;
 
@@ -216,7 +216,8 @@ namespace XLObjectDropper.Controllers
 			if (SelectedObjectActive)
 			{
 				if (player.GetButtonDown("A")) PlaceObject();
-				if (player.GetButtonDown("X")) PlaceObject(false);
+				//if (player.GetButtonDown("X")) PlaceObject(false);
+				if (player.GetButtonDown("X")) EditObject();
 				if (player.GetButtonDown("B")) Destroy(SelectedObject);
 				if (player.GetButtonDown("Left Stick Button")) ResetObject();
 			}
@@ -534,6 +535,11 @@ namespace XLObjectDropper.Controllers
 					}
 				}
 			}
+		}
+
+		private void EditObject()
+		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
 		}
 		#endregion
 	}

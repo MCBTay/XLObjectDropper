@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -10,7 +9,7 @@ namespace XLObjectDropper.UI.Controls
 	{
 		public Toggle Toggle;
 		public TMP_Text Label;
-		[HideInInspector] public UnityEvent<bool> onValueChanged;
+		[HideInInspector] public UnityAction<bool> onValueChanged = (x) => { };
 
 		private void OnEnable()
 		{

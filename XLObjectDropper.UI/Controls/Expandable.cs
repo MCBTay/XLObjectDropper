@@ -11,6 +11,7 @@ namespace XLObjectDropper.UI.Controls
 	{
 		public GameObject ExpandableItem;
 		public GameObject Properties;
+		public GameObject PropertiesListContent;
 		public Animator Animator;
 		public Button Button;
 		[HideInInspector] private bool Expanded;
@@ -22,30 +23,32 @@ namespace XLObjectDropper.UI.Controls
 
 		private void OnEnable()
 		{
-			//Button.onClick.AddListener(() =>
-			//{
-				
-			//});
+
 		}
 
 		private void OnDisable()
 		{
-			Button.onClick.RemoveAllListeners();
+
 		}
 
 		public void Update()
 		{
-			GetComponent<Outline>().enabled = false;
-
-			if (ExpandableItem == EventSystem.current.currentSelectedGameObject)
+			bool expandableSelected = ExpandableItem == EventSystem.current.currentSelectedGameObject;
+			bool childSelected = false;
+			foreach (Transform child in PropertiesListContent.transform)
 			{
-				GetComponent<Outline>().enabled = true;
+				if (child.gameObject == EventSystem.current.currentSelectedGameObject)
+				{
+					childSelected = true;
+				}
 			}
+
+			GetComponent<Outline>().enabled = expandableSelected || childSelected;
 		}
 
-		public void AddToggle(string text, bool isChecked, UnityAction<bool> onValueChanged = null)
+		public GameObject AddToggle(string text, bool isChecked, UnityAction<bool> onValueChanged = null)
 		{
-			var toggle = Instantiate(TogglePrefab, Properties.transform);
+			var toggle = Instantiate(TogglePrefab, PropertiesListContent.transform);
 
 			var toggleControl = toggle.GetComponent<ToggleControl>();
 
@@ -63,11 +66,13 @@ namespace XLObjectDropper.UI.Controls
 			//}
 
 			toggle.SetActive(true);
+
+			return toggle;
 		}
 
 		public void AddSlider(string text, float value, float minValue, float maxValue, bool wholeNumbers, UnityAction<float> onValueChanged = null)
 		{
-			var slider = Instantiate(SliderPrefab, Properties.transform);
+			var slider = Instantiate(SliderPrefab, PropertiesListContent.transform);
 
 			var sliderControl = slider.GetComponent<SliderControl>();
 
@@ -95,7 +100,7 @@ namespace XLObjectDropper.UI.Controls
 
 		public void AddVector3Slider(string text, string xText, string yText, string zText, Color value, UnityAction<Vector3> onValueChanged = null)
 		{
-			var slider = Instantiate(Vector3SliderPrefab, Properties.transform);
+			var slider = Instantiate(Vector3SliderPrefab, PropertiesListContent.transform);
 
 			var sliderControl = slider.GetComponent<Vector3SliderControl>();
 
@@ -127,10 +132,30 @@ namespace XLObjectDropper.UI.Controls
 		{
 			//foreach (var anim in Animator.runtimeAnimatorController.animationClips)
 			//{
-			//	foreach (var animEvent in anim.events)
+			//	float contentSize = (PropertiesListContent.transform as RectTransform).rect.height;
+			//	anim.legacy = true;
+
+			//	AnimationCurve newCurve;
+			//	AnimationClip newClip = new AnimationClip();
+			//	newClip.legacy = true;
+
+			//	Keyframe[] keys = new Keyframe[2];
+
+			//	if (anim.name.StartsWith("Expand"))
 			//	{
-					
+			//		keys[0] = new Keyframe(0.0f, 25.0f);
+			//		keys[1] = new Keyframe(10.0f, contentSize);
 			//	}
+			//	else
+			//	{
+			//		keys[0] = new Keyframe(0.0f, contentSize);
+			//		keys[1] = new Keyframe(10.0f, 25.0f);
+			//	}
+
+				
+			//	newCurve = new AnimationCurve(keys);
+
+			//	anim.SetCurve(string.Empty, typeof(RectTransform), "Size.Delta.y", newCurve);
 			//}
 
 			Animator.Play("Expand");
