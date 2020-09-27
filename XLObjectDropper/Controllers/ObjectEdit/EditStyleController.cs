@@ -14,13 +14,13 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			if (group == null || group.Objects == null || !group.Objects.Any()) return;
 
-			var styleExpandable = ObjectEdit.AddToList();
-			var expandable = styleExpandable.GetComponent<Expandable>();
+			//var styleExpandable = ObjectEdit.AddToList();
+			//var expandable = styleExpandable.GetComponent<Expandable>();
 
-			if (expandable != null)
-			{
+			//if (expandable != null)
+			//{
 				
-			}
+			//}
 		}
 	}
 }

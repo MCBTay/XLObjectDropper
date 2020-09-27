@@ -46,28 +46,6 @@ namespace XLObjectDropper.UI.Menus
 			return listItem;
 		}
 
-
-		public GameObject AddToList(UnityAction objectClicked = null, UnityAction objectSelected = null)
-		{
-			var listItem = Instantiate(ExpandablePrefab, ListContent.transform);
-
-			//listItem.GetComponentInChildren<TMP_Text>().SetText(name.Replace('_', ' '));
-
-			if (objectClicked != null)
-			{
-				listItem.GetComponent<Button>().onClick.AddListener(objectClicked);
-			}
-
-			if (objectSelected != null)
-			{
-				listItem.GetComponent<ObjectSelectionListItem>().onSelect.AddListener(objectSelected);
-			}
-
-			listItem.SetActive(true);
-
-			return listItem;
-		}
-
 		public virtual void ClearList()
 		{
 			for (var i = ListContent.transform.childCount - 1; i >= 0; i--)
