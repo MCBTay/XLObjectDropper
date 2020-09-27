@@ -133,6 +133,7 @@
     <Compile Include="Controls\Buttons\TriggerButton.cs" />
     <Compile Include="Controls\ToggleControl.cs" />
     <Compile Include="Controls\TriggerController.cs" />
+    <Compile Include="Controls\Vector3SliderControl.cs" />
     <Compile Include="Menus\ObjectEditUI.cs" />
     <Compile Include="Menus\UnsavedChangesDialog.cs" />
     <Compile Include="SnappingModeUI.cs" />
