@@ -104,14 +104,23 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				}
 
 				expandable.ColorSliders.XSlider.Slider.value = hdrpLight.color.r;
+				expandable.ColorSliders.XSlider.Value.SetText(hdrpLight.color.r.ToString("N"));
+
 				expandable.ColorSliders.YSlider.Slider.value = hdrpLight.color.g;
+				expandable.ColorSliders.YSlider.Value.SetText(hdrpLight.color.g.ToString("N"));
+
 				expandable.ColorSliders.ZSlider.Slider.value = hdrpLight.color.b;
+				expandable.ColorSliders.ZSlider.Value.SetText(hdrpLight.color.b.ToString("N"));
 
 				expandable.ColorSliders.onValueChanged += (color) =>
 				{
 					foreach (var lightToEdit in lights)
 					{
 						lightToEdit.GetComponent<HDAdditionalLightData>().color = new Color(color.x, color.y, color.z);
+
+						expandable.ColorSliders.XSlider.Value.SetText(color.x.ToString("N"));
+						expandable.ColorSliders.YSlider.Value.SetText(color.y.ToString("N"));
+						expandable.ColorSliders.ZSlider.Value.SetText(color.z.ToString("N"));
 					}
 				};
 
