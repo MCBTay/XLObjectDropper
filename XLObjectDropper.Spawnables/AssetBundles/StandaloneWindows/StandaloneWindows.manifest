@@ -1,7 +1,10 @@
 ManifestFileVersion: 0
-CRC: 678430935
+CRC: 2746604686
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: sdt - modular
+      Dependencies: {}
+    Info_1:
+      Name: randomtestshit
       Dependencies: {}

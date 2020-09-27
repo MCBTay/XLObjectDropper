@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 28378874
+CRC: 1982600477
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d203c49dd49a2423624efa6d3732c6e8
+    Hash: 743e3741d3723b2f8fd07efc1855775c
   TypeTreeHash:
     serializedVersion: 2
     Hash: 44f17ef19dbee9c4e5ad10f74656a9ad
@@ -43,6 +43,7 @@ Assets:
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Street.Asphalt.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Grungy.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Grungy.Right.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Hubba_low_.5x1.5.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Block.Right.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Brick.Right.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_1x1.prefab
