@@ -1,0 +1,106 @@
+ManifestFileVersion: 0
+CRC: 2298901715
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2656697db1e577f7726b01f21c87f2e5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 81e0d1cdc0e8cf3a1a3dbb3f7e841161
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+Assets:
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Pallet.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Hey Yall/Hey Y'all
+  Medium Crushed.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Broken Board 2 by STPN.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bong.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Trash Bags/Trashbag 1.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Spray Paint/Blue Spray Paint.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Spray Paint/Purple Spray Paint.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bikes by STPN/Yellow Worn Bike.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/BackPacks/Laptop Bag.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Duffel Bags/Yellow Duffle Bag.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Corona/Corona Highly
+  Crushed.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Cone.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Spray Paint/Green Spray Paint.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bikes by STPN/Blue Clean Bike.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Hey Yall/Hey Y'all
+  Highly Crushed.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Bud Light/Bud Light
+  Highly Crushed.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Trash Can.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bike Racks/Bike Rack 1.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/BackPacks/Tall Backpack.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Spray Paint/Yello Spray Paint.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Bud Light/Bud Light
+  Medium Crushed.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Open Pizza Box.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Broken Board 1 By STPN.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Big Mac Box.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Broken Bottle/Broken Bottle.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/McDonalds Cup With Straw.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Street Signs.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bench 1.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bikes by STPN/Green Clean Bike.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Corona/Corona Low
+  Crush.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/SkaterXL_Model.fbx
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Broken Bottle/Broken Bottle 2.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bike Racks/Bike Rack 2.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Tripod.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Corona/Corona Very
+  Crushed.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bikes by STPN/Yellow Clean Bike.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Skate Tool.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Duffel Bags/Red Duffle Bag.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/UE Boom Speaker.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Bud Light/Bud Light
+  Low Crush.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Hey Yall/Hey Y'all
+  Very Crushed.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Spray Paint/Red Spray Paint.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Bud Light/Bud Light
+  Very Crushed.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Corona/Corona Medium
+  Crushed.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bikes by STPN/Green Worn Bike.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Cigar Butt.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Marlboro Cigarette Pack.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bikes by STPN/Red Clean Bike.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Closed Pizza Box.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bikes by STPN/Red Worn Bike.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bench 2.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Water Bottle.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Bikes by STPN/Blue Worn Bike.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/VX 1000.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Assorted Beer Cans/Hey Yall/Hey Y'all
+  Low Crush.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/Trash Bags/Trashbag 2.prefab
+- Assets/Dryden - Prop Asset Bundle/Prefabs/BackPacks/Leather Backpack.prefab
+Dependencies: []
