@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2746604686
+CRC: 1195744868
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -7,4 +7,13 @@ AssetBundleManifest:
       Dependencies: {}
     Info_1:
       Name: randomtestshit
+      Dependencies: {}
+    Info_2:
+      Name: ezday - props
+      Dependencies: {}
+    Info_3:
+      Name: dryden - xlod
+      Dependencies: {}
+    Info_4:
+      Name: dryden - prop bundle
       Dependencies: {}
