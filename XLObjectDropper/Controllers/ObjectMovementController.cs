@@ -519,9 +519,7 @@ namespace XLObjectDropper.Controllers
 
 			if (!SelectedObjectActive)
 			{
-				Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
-
-				if (Physics.Raycast(ray, out RaycastHit hit, 10f))
+				if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out RaycastHit hit, 10.0f))
 				{
 					var parent = hit.transform.GetTopMostParent();
 
