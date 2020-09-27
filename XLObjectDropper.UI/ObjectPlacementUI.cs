@@ -119,7 +119,7 @@ namespace XLObjectDropper.UI
 			RightStick.EnableStickButton(true);
 			LeftStick.EnableStickButton(HasSelectedObject);
 
-			BottomRow.EnableSelectButton = BottomRow.EnableStartButton = true;
+			//BottomRow.EnableSelectButton = BottomRow.EnableStartButton = true;
 		}
 	}
 }
