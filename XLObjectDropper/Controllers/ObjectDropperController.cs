@@ -32,6 +32,10 @@ namespace XLObjectDropper.Controllers
 		private SnappingModeController SnappingModeController;
 		private bool SnappingModeOpen => SnappingModeGameObject != null && SnappingModeGameObject.activeInHierarchy;
 
+		private GameObject ObjectEditGameObject;
+		private ObjectEditController ObjectEditController;
+		private bool ObjectEditOpen => ObjectEditGameObject != null && ObjectEditGameObject.activeInHierarchy;
+
 		private void Awake()
 		{
 			Instance = this;
@@ -86,6 +90,20 @@ namespace XLObjectDropper.Controllers
 					{
 						ObjectMovementController.enabled = false;
 						CreateOptionsMenu();
+					}
+				}
+
+				if (player.GetButtonDown("X") && (ObjectMovementController.SelectedObject != null || ObjectMovementController.HighlightedObject != null))
+				{
+					if (ObjectEditOpen)
+					{
+						DestroyObjectEdit();
+						ObjectMovementController.enabled = true;
+					}
+					else
+					{
+						ObjectMovementController.enabled = false;
+						CreateObjectEdit(ObjectMovementController.SelectedObject ?? ObjectMovementController.HighlightedObject);
 					}
 				}
 
@@ -304,6 +322,27 @@ namespace XLObjectDropper.Controllers
 
 			DestroyImmediate(SnappingModeController);
 			DestroyImmediate(SnappingModeGameObject);
+		}
+		#endregion
+
+		#region Object Edit
+		private void CreateObjectEdit(GameObject objectToEdit)
+		{
+			ObjectEditGameObject = new GameObject();
+			ObjectEditController = ObjectEditGameObject.AddComponent<ObjectEditController>();
+			ObjectEditController.SelectedObject = objectToEdit;
+
+			ObjectEditGameObject.SetActive(true);
+		}
+
+		private void DestroyObjectEdit()
+		{
+			if (ObjectEditGameObject == null || ObjectEditController == null) return;
+
+			ObjectEditGameObject.SetActive(false);
+
+			DestroyImmediate(ObjectEditController);
+			DestroyImmediate(ObjectEditGameObject);
 		}
 		#endregion
 	}

@@ -37,6 +37,7 @@ namespace XLObjectDropper.UserInterface
 				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>(true);
 				ObjectSelectionController.ObjectSelection = UserInterface.GetComponentInChildren<ObjectSelectionUI>(true);
 				QuickMenuController.QuickMenu = UserInterface.GetComponentInChildren<QuickMenuUI>(true);
+				ObjectEditController.ObjectEdit = UserInterface.GetComponentInChildren<ObjectEditUI>(true);
 
 				CustomPass = Object.Instantiate(AssetBundleHelper.CustomPassPrefab);
 				Object.DontDestroyOnLoad(CustomPass);

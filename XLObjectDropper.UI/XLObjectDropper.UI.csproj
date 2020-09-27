@@ -127,9 +127,14 @@
     <Compile Include="Controls\BumperController.cs" />
     <Compile Include="Controls\Buttons\ButtonBase.cs" />
     <Compile Include="Controls\DirectionalPadController.cs" />
+    <Compile Include="Controls\Expandable.cs" />
+    <Compile Include="Controls\SliderControl.cs" />
     <Compile Include="Controls\StickController.cs" />
     <Compile Include="Controls\Buttons\TriggerButton.cs" />
+    <Compile Include="Controls\ToggleControl.cs" />
     <Compile Include="Controls\TriggerController.cs" />
+    <Compile Include="Controls\Vector3SliderControl.cs" />
+    <Compile Include="Menus\ObjectEditUI.cs" />
     <Compile Include="Menus\UnsavedChangesDialog.cs" />
     <Compile Include="SnappingModeUI.cs" />
     <Compile Include="Utilities\Color.cs" />

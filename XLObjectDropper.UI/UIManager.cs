@@ -13,6 +13,7 @@ namespace XLObjectDropper.UI
         public GameObject OptionsMenuUI;
         public GameObject QuickMenuUI;
         public GameObject UnsavedChangesDialogUI;
+        public GameObject ObjectEditUI;
 
         public static UIManager Instance { get; private set; }
 
@@ -41,6 +42,7 @@ namespace XLObjectDropper.UI
 	        OptionsMenuUI.SetActive(false);
 			QuickMenuUI.SetActive(false);
 			UnsavedChangesDialogUI.SetActive(false);
+			ObjectEditUI.SetActive(false);
         }
 
         // Update is called once per frame
@@ -63,6 +65,26 @@ namespace XLObjectDropper.UI
 		        if (QuickMenuUI.activeInHierarchy)
 		        {
 			        QuickMenuUI.SetActive(false);
+			        ObjectPlacementUI.SetActive(true);
+		        }
+
+		        if (ObjectEditUI.activeInHierarchy)
+		        {
+					ObjectEditUI.SetActive(false);
+					ObjectPlacementUI.SetActive(true);
+		        }
+			}
+
+	        if (Player.GetButtonDown("X") && ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasSelectedObject)
+	        {
+		        if (!ObjectEditUI.activeInHierarchy)
+		        {
+			        ObjectPlacementUI.SetActive(false);
+			        ObjectEditUI.SetActive(true);
+		        }
+		        else
+		        {
+			        ObjectEditUI.SetActive(false);
 			        ObjectPlacementUI.SetActive(true);
 		        }
 			}
