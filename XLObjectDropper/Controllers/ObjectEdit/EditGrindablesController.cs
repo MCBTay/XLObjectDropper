@@ -22,29 +22,33 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			var grindableExpandable = ObjectEdit.AddGrindableSettings();
 
-			var expandable = grindableExpandable.GetComponent<Expandable>();
+			var expandable = grindableExpandable.GetComponent<GrindableSettingsExpandable>();
 
-			//if (hasGrindables)
-			//{
-			//	expandable.AddToggle("Grindables Enabled", true, (isOn) =>
-			//	{
-			//		foreach (var grindable in grindables)
-			//		{
-			//			grindable.SetActive(isOn);
-			//		}
-			//	});
-			//}
+			if (!hasGrindables)
+			{
+				expandable.GrindablesToggle.Toggle.interactable = false;
+			}
+			else
+			{
+				expandable.GrindablesToggle.Toggle.interactable = true;
+				expandable.GrindablesToggle.onValueChanged += (isOn) =>
+				{
+					// enable/disable gameobjects on grindable layer
+				};
+			}
 
-			//if (hasCoping)
-			//{
-			//	expandable.AddToggle("Coping Enabled", true, (isOn) =>
-			//	{
-			//		foreach (var coping in copings)
-			//		{
-			//			coping.SetActive(isOn);
-			//		}
-			//	});
-			//}
+			if (!hasCoping)
+			{
+				expandable.CopingToggle.Toggle.interactable = false;
+			}
+			else
+			{
+				expandable.CopingToggle.Toggle.interactable = true;
+				expandable.CopingToggle.onValueChanged += (isOn) =>
+				{
+					// enable/disable gameobjects on coping layer
+				};
+			}
 		}
 	}
 }
