@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace XLObjectDropper.Utilities
 		public GameObject Prefab;
 		public GameObject SpawnedInstance;
 		public Texture2D PreviewTexture;
-		public string BundleName { get; set; }
+		public string BundleName;
+		public List<Spawnable> AlternateStyles;
 
 		public Spawnable(SpawnableType type, GameObject prefab, AssetBundle bundle)
 		{
@@ -21,6 +23,15 @@ namespace XLObjectDropper.Utilities
 			BundleName = bundle.name;
 
 			LoadPreviewImage();
+		}
+
+		public Spawnable(SpawnableType type, GameObject prefab, AssetBundle bundle, List<GameObject> alternateStyles) : this(type, prefab, bundle)
+		{
+			AlternateStyles = new List<Spawnable>();
+			foreach (var altStyle in alternateStyles)
+			{
+				AlternateStyles.Add(new Spawnable(type, altStyle, bundle));
+			}
 		}
 
 		public Spawnable(GameObject prefab, GameObject spawnedInstance, Texture2D previewTexture)

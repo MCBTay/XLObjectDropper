@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityModManagerNet;
+using XLObjectDropper.SpawnableScripts;
 using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.Utilities
@@ -101,7 +102,27 @@ namespace XLObjectDropper.Utilities
 					}
 				}
 
-				SpawnableManager.Prefabs.Add(new Spawnable(type, asset as GameObject, bundle));
+				var gameObject = asset as GameObject;
+
+				var styleGroupController = gameObject.GetComponent<StyleGroupController>();
+				var styleController = gameObject.GetComponent<StyleController>();
+
+				if (styleController == null && styleGroupController == null)
+				{
+					SpawnableManager.Prefabs.Add(new Spawnable(type, gameObject, bundle));
+				}
+				else if (styleGroupController != null)
+				{
+					foreach (var styleObject in styleGroupController.Objects)
+					{
+						var component = styleObject.GetComponent<StyleController>();
+						if (component.ShowInObjectSelection)
+						{
+							var altStyles = styleGroupController.Objects.Where(x => !x.GetComponent<StyleController>().ShowInObjectSelection).ToList();
+							SpawnableManager.Prefabs.Add(new Spawnable(type, styleObject, bundle, altStyles));
+						}
+					}
+				}
 			}
 
 			SelfieCamera.enabled = false;

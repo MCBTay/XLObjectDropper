@@ -27,6 +27,11 @@ namespace XLObjectDropper.UI.Menus
 			return AddSettings(GrindableSettingsPrefab, objectClicked, objectSelected);
 		}
 
+		public GameObject AddStyleSettings(UnityAction objectClicked = null, UnityAction objectSelected = null)
+		{
+			return AddSettings(StyleSettingsPrefab, objectClicked, objectSelected);
+		}
+
 		public GameObject AddSettings(GameObject prefab, UnityAction objectClicked = null, UnityAction objectSelected = null)
 		{
 			var listItem = Instantiate(prefab, ListContent.transform);
