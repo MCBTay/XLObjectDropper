@@ -10,8 +10,8 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 	public static class EditLightController
 	{
 		static float ev100Min = 15.0f;
-		static float ev100Max = 25.0f;
-		static float numSteps = 40.0f;
+		static float ev100Max = 40.0f;
+		static float numSteps = 100.0f;
 
 		static float rangeMin = 0.0f;
 		static float rangeMax = 20.0f;
