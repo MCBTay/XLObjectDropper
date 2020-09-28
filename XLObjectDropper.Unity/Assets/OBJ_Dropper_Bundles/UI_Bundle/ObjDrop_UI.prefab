@@ -1784,7 +1784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6902729125869222929
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2638,7 +2638,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v0.0.5
+  m_text: v0.1.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b790aeed1648a764ab67163dd5704955, type: 2}
   m_sharedMaterial: {fileID: -1470814966106991453, guid: b790aeed1648a764ab67163dd5704955,
@@ -10081,7 +10081,7 @@ PrefabInstance:
     - target: {fileID: 3042055455710113845, guid: 9786077ce32840446b3b969d6d3d5f3e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6956031275529047764, guid: 9786077ce32840446b3b969d6d3d5f3e,
         type: 3}
@@ -10196,7 +10196,7 @@ PrefabInstance:
     - target: {fileID: 7376047529814896043, guid: 9786077ce32840446b3b969d6d3d5f3e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9786077ce32840446b3b969d6d3d5f3e, type: 3}
