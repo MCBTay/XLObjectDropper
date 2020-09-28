@@ -4578,7 +4578,8 @@ MonoBehaviour:
   ListContent: {fileID: 6886326803265147244}
   ExpandablePrefab: {fileID: 4209294011185831998, guid: 903752381408a634886881c69f1086ef,
     type: 3}
-  StyleSettingsPrefab: {fileID: 0}
+  StyleSettingsPrefab: {fileID: 1683115445802087475, guid: 1256daf2a25b5be409ce661f42ba5117,
+    type: 3}
   LightSettingsPrefab: {fileID: 49075056469604195, guid: de7bf139ede3d904c8ee7c631a647029,
     type: 3}
   GrindableSettingsPrefab: {fileID: 9050888305353594447, guid: 7c12bc46ecc9bb54a9a59d41c930484d,
