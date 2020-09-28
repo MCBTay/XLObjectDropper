@@ -56,6 +56,7 @@ namespace XLObjectDropper.Controllers
 			DestroyOptionsMenu();
 			DestroyObjectMovement();
 			DestroyQuickMenu();
+			DestroyObjectEdit();
 			DestroyRotationAndScaleUI();
 			DestroySnappingModeUI();
 		}
