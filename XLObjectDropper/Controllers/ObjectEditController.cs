@@ -23,7 +23,6 @@ namespace XLObjectDropper.Controllers
 		private void OnDisable()
 		{
 			ObjectEdit.ClearList();
-			SelectedObject = null;
 		}
 
 		private void Start()
