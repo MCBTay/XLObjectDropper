@@ -130,34 +130,6 @@ namespace XLObjectDropper.UI.Controls
 
 		public void OnSelect(BaseEventData eventData)
 		{
-			//foreach (var anim in Animator.runtimeAnimatorController.animationClips)
-			//{
-			//	float contentSize = (PropertiesListContent.transform as RectTransform).rect.height;
-			//	anim.legacy = true;
-
-			//	AnimationCurve newCurve;
-			//	AnimationClip newClip = new AnimationClip();
-			//	newClip.legacy = true;
-
-			//	Keyframe[] keys = new Keyframe[2];
-
-			//	if (anim.name.StartsWith("Expand"))
-			//	{
-			//		keys[0] = new Keyframe(0.0f, 25.0f);
-			//		keys[1] = new Keyframe(10.0f, contentSize);
-			//	}
-			//	else
-			//	{
-			//		keys[0] = new Keyframe(0.0f, contentSize);
-			//		keys[1] = new Keyframe(10.0f, 25.0f);
-			//	}
-
-				
-			//	newCurve = new AnimationCurve(keys);
-
-			//	anim.SetCurve(string.Empty, typeof(RectTransform), "Size.Delta.y", newCurve);
-			//}
-
 			Animator.Play("Expand");
 
 			Expanded = true;
