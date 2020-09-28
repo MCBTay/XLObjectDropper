@@ -168,6 +168,12 @@ namespace XLObjectDropper.Controllers
 					DestroyQuickMenu();
 					ObjectMovementController.enabled = true;
 				}
+
+				if (ObjectEditOpen)
+				{
+					DestroyObjectEdit();
+					ObjectMovementController.enabled = true;
+				}
 			}
 		}
 
