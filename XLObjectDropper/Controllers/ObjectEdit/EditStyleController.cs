@@ -11,9 +11,14 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 {
 	public static class EditStyleController
 	{
-		public static void AddStyleOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
+		public static GameObject SelectedObject;
+
+
+		public static void AddStyleOptions(GameObject selectedObject, ObjectEditUI ObjectEdit)
 		{
-			var spawnable = SelectedObject.GetSpawnable();
+			SelectedObject = selectedObject;
+
+			var spawnable = selectedObject.GetSpawnable();
 
 			if (spawnable?.AlternateStyles == null || !spawnable.AlternateStyles.Any()) return;
 
@@ -61,10 +66,33 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				listItem.GetComponentInChildren<TMP_Text>().SetText(spawnable.Prefab.name.Replace('_', ' '));
 			}
 			
-			//if (objectClicked != null)
-			//{
-			//	listItem.GetComponent<Button>().onClick.AddListener(objectClicked);
-			//}
+			listItem.GetComponent<Button>().onClick.AddListener(() =>
+			{
+				var pos = SelectedObject.transform.position;
+				var rot = SelectedObject.transform.rotation;
+				var parent = SelectedObject.transform.parent;
+
+				var updateSelected = SelectedObject == ObjectMovementController.Instance.SelectedObject;
+				var updateHighlighted = SelectedObject == ObjectMovementController.Instance.HighlightedObject;
+
+				Object.DestroyImmediate(SelectedObject);
+
+				SelectedObject = Object.Instantiate(spawnable.Prefab, pos, rot);
+
+				if (parent != null)
+				{
+					SelectedObject.transform.SetParent(parent);
+				}
+
+				if (updateSelected)
+				{
+					ObjectMovementController.Instance.SelectedObject = SelectedObject;
+				}
+				if (updateHighlighted)
+				{
+					ObjectMovementController.Instance.HighlightedObject = SelectedObject;
+				}
+			});
 
 			//if (objectSelected != null)
 			//{
