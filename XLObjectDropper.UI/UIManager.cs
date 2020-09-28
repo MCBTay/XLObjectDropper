@@ -75,7 +75,7 @@ namespace XLObjectDropper.UI
 		        }
 			}
 
-	        if (Player.GetButtonDown("X") && ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasSelectedObject)
+	        if (Player.GetButtonDown("X") && (ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasSelectedObject || ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasHighlightedObject))
 	        {
 		        if (!ObjectEditUI.activeInHierarchy)
 		        {
