@@ -224,7 +224,8 @@ namespace XLObjectDropper.Controllers
 			else if (HighlightedObject != null)
 			{
 				if (player.GetButtonDown("A")) SelectObject();
-				if (player.GetButtonDown("X")) DuplicateObject();
+				//if (player.GetButtonDown("X")) DuplicateObject();
+				if (player.GetButtonDown("X")) EditObject();
 				if (player.GetButtonDown("Y")) DeleteObject();
 			}
 			else
