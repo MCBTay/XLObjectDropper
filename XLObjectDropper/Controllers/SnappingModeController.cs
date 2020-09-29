@@ -154,7 +154,7 @@ namespace XLObjectDropper.Controllers
 		{
 			UISounds.Instance?.PlayOneShotSelectMajor();
 
-			ObjectMovementController.Instance.targetHeight = 0;
+			ObjectMovementController.Instance.targetHeight = Settings.Instance.GroundTracking ? 0.0f : ObjectMovementController.Instance.groundLevel;
 			ObjectMovementController.Instance.MoveObjectOnYAxis();
 			ObjectMovementController.Instance.UpdateSelectedObjectPosition();
 
