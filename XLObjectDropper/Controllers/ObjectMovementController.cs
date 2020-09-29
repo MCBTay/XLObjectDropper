@@ -241,6 +241,7 @@ namespace XLObjectDropper.Controllers
 
 			HandleDPadHeightAdjustment(player);
 			if (player.GetButtonDown("DPadX")) ToggleLockCameraMovement();
+			if (player.GetNegativeButtonDown("DPadX")) ToggleGroundTracking();
 			if (player.GetButtonDown("Right Stick Button")) ResetCamera();
         }
 
@@ -359,6 +360,12 @@ namespace XLObjectDropper.Controllers
 	        UISounds.Instance?.PlayOneShotSelectionChange();
 	        LockCameraMovement = !LockCameraMovement;
 		}
+
+        private void ToggleGroundTracking()
+        {
+	        UISounds.Instance?.PlayOneShotSelectionChange();
+	        Settings.Instance.GroundTracking = !Settings.Instance.GroundTracking;
+        }
 
         private void ResetCamera()
         {
