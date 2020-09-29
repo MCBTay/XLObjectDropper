@@ -30,7 +30,7 @@ namespace XLObjectDropper.Utilities
 
 		public static void LoadUserBundles()
 		{
-			AssetPacksPath = Path.Combine(Main.ModPath, "AssetPacks");
+			AssetPacksPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Asset Packs");
 
 			if (!Directory.Exists(AssetPacksPath))
 			{
