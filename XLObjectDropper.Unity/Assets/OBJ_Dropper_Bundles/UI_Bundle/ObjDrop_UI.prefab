@@ -2856,6 +2856,8 @@ MonoBehaviour:
   QuickMenuUI: {fileID: 1184538061}
   UnsavedChangesDialogUI: {fileID: 1676970455545069097}
   ObjectEditUI: {fileID: 4041390255753560405}
+  RotationAndScaleUI: {fileID: 6221709645908651292}
+  SnappingModeUI: {fileID: 3959238924192758985}
 --- !u!1 &1751118475889213357
 GameObject:
   m_ObjectHideFlags: 0
@@ -5301,7 +5303,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3135368272004386412}
   m_HandleRect: {fileID: 4916719717491756525}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

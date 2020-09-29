@@ -75,21 +75,24 @@ namespace XLObjectDropper.UI
 		        }
 			}
 
-	        if (Player.GetButtonDown("X") && (ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasSelectedObject || ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasHighlightedObject))
-	        {
-		        if (!ObjectEditUI.activeInHierarchy)
-		        {
-			        ObjectPlacementUI.SetActive(false);
-			        ObjectEditUI.SetActive(true);
-		        }
-		        else
-		        {
-			        ObjectEditUI.SetActive(false);
-			        ObjectPlacementUI.SetActive(true);
-		        }
+			
+			if (Player.GetButtonDown("X") && 
+				!Player.GetButton("RB") && !Player.GetButton("LB") &&
+			    (ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasSelectedObject || ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasHighlightedObject))
+			{
+				if (!ObjectEditUI.activeInHierarchy)
+				{
+					ObjectPlacementUI.SetActive(false);
+					ObjectEditUI.SetActive(true);
+				}
+				else
+				{
+					ObjectEditUI.SetActive(false);
+					ObjectPlacementUI.SetActive(true);
+				}
 			}
 
-	        if (Player.GetButtonDown("Select"))
+			if (Player.GetButtonDown("Select"))
 			{
 				if (!OptionsMenuUI.activeInHierarchy)
 				{

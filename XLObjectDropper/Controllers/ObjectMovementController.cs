@@ -142,6 +142,12 @@ namespace XLObjectDropper.Controllers
 		private void OnEnable()
         {
 	        LockCameraMovement = false;
+
+	        MovementUI.RotateAndScaleModeUI.GetComponent<RotationAndScaleUI>().ScalingMode = Settings.Instance.ScalingMode;
+			MovementUI.RotateAndScaleModeUI.GetComponent<RotationAndScaleUI>().ScaleSnappingMode = Settings.Instance.ScaleSnappingMode;
+			MovementUI.RotateAndScaleModeUI.GetComponent<RotationAndScaleUI>().RotationSnappingMode = Settings.Instance.RotationSnappingMode;
+
+			MovementUI.SnappingModeUI.GetComponent<SnappingModeUI>().MovementSnappingMode = Settings.Instance.MovementSnappingMode;
         }
 
         private void OnDisable()

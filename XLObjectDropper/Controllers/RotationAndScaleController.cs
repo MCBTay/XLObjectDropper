@@ -14,10 +14,6 @@ namespace XLObjectDropper.Controllers
 
 		private float ObjectRotateSpeed = 5f;
 
-		private static int CurrentScaleMode;
-		private static int CurrentRotationSnappingMode;
-		private static int CurrentScaleSnappingMode;
-
 		private void Awake()
 		{
 			Instance = this;
@@ -38,7 +34,7 @@ namespace XLObjectDropper.Controllers
 
 			if (player.GetButtonDown("A")) HandleScaleSnappingModeSwitching();
 			if (player.GetButtonDown("Y")) HandleScaleModeSwitching();
-			if (player.GetButtonDown("X")) HandleRotationSnappingModeSwitching(player);
+			if (player.GetButtonDown("X")) HandleRotationSnappingModeSwitching();
 
 			HandleRotation(player);
 			HandleScaling(player);
@@ -60,30 +56,36 @@ namespace XLObjectDropper.Controllers
 		{
 			UISounds.Instance?.PlayOneShotSelectionChange();
 
-			CurrentScaleSnappingMode++;
+			Settings.Instance.ScaleSnappingMode++;
 
-			if (CurrentScaleSnappingMode > Enum.GetValues(typeof(ScaleSnappingMode)).Length - 1)
-				CurrentScaleSnappingMode = 0;
+			if ((int)Settings.Instance.ScaleSnappingMode > Enum.GetValues(typeof(ScaleSnappingMode)).Length - 1)
+				Settings.Instance.ScaleSnappingMode = ScaleSnappingMode.Off;
+
+			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
 		private void HandleScaleModeSwitching()
 		{
 			UISounds.Instance?.PlayOneShotSelectionChange();
 
-			CurrentScaleMode++;
+			Settings.Instance.ScalingMode++;
 
-			if (CurrentScaleMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
-				CurrentScaleMode = 0;
+			if ((int)Settings.Instance.ScalingMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
+				Settings.Instance.ScalingMode = ScalingMode.Uniform;
+
+			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
-		private void HandleRotationSnappingModeSwitching(Player player)
+		private void HandleRotationSnappingModeSwitching()
 		{
 			UISounds.Instance?.PlayOneShotSelectionChange();
 
-			CurrentRotationSnappingMode++;
+			Settings.Instance.RotationSnappingMode++;
 
-			if (CurrentRotationSnappingMode > Enum.GetValues(typeof(RotationSnappingMode)).Length - 1)
-				CurrentRotationSnappingMode = 0;
+			if ((int)Settings.Instance.RotationSnappingMode > Enum.GetValues(typeof(RotationSnappingMode)).Length - 1)
+				Settings.Instance.RotationSnappingMode = RotationSnappingMode.Off;
+
+			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
 		private void HandleRotation(Player player)
@@ -107,18 +109,18 @@ namespace XLObjectDropper.Controllers
 		{
 			float rotationIncrement = 0.0f;
 
-			switch (CurrentRotationSnappingMode)
+			switch (Settings.Instance.RotationSnappingMode)
 			{
-				case (int)RotationSnappingMode.Off:
+				case RotationSnappingMode.Off:
 					rotationIncrement = 0.0f;
 					break;
-				case (int)RotationSnappingMode.Degrees15:
+				case RotationSnappingMode.Degrees15:
 					rotationIncrement = 15.0f;
 					break;
-				case (int)RotationSnappingMode.Degrees45:
+				case RotationSnappingMode.Degrees45:
 					rotationIncrement = 45.0f;
 					break;
-				case (int)RotationSnappingMode.Degrees90:
+				case RotationSnappingMode.Degrees90:
 					rotationIncrement = 90.0f;
 					break;
 			}
@@ -179,18 +181,18 @@ namespace XLObjectDropper.Controllers
 
 			Vector3 scale = Vector3.zero;
 
-			switch (CurrentScaleMode)
+			switch (Settings.Instance.ScalingMode)
 			{
-				case (int)ScalingMode.Uniform:
+				case ScalingMode.Uniform:
 					scale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
 					break;
-				case (int)ScalingMode.Width:
+				case ScalingMode.Width:
 					scale = new Vector3(scaleFactor, 0, 0);
 					break;
-				case (int)ScalingMode.Height:
+				case ScalingMode.Height:
 					scale = new Vector3(0, scaleFactor, 0);
 					break;
-				case (int)ScalingMode.Depth:
+				case ScalingMode.Depth:
 					scale = new Vector3(0, 0, scaleFactor);
 					break;
 			}
@@ -207,18 +209,18 @@ namespace XLObjectDropper.Controllers
 		{
 			float increment = 0.0f;
 
-			switch (CurrentScaleSnappingMode)
+			switch (Settings.Instance.ScaleSnappingMode)
 			{
-				case (int)ScaleSnappingMode.Off:
+				case ScaleSnappingMode.Off:
 					increment = 0.0f;
 					break;
-				case (int)ScaleSnappingMode.Quarter:
+				case ScaleSnappingMode.Quarter:
 					increment = 0.25f;
 					break;
-				case (int)ScaleSnappingMode.Half:
+				case ScaleSnappingMode.Half:
 					increment = 0.5f;
 					break;
-				case (int)ScaleSnappingMode.Full:
+				case ScaleSnappingMode.Full:
 					increment = 1.0f;
 					break;
 			}

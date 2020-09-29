@@ -10,8 +10,6 @@ namespace XLObjectDropper.Controllers
 	{
 		public static SnappingModeController Instance;
 
-		private static int CurrentPlacementSnappingMode { get; set; }
-
 		private void Awake()
 		{
 			Instance = this;
@@ -74,31 +72,33 @@ namespace XLObjectDropper.Controllers
 		{
 			UISounds.Instance?.PlayOneShotSelectionChange();
 
-			CurrentPlacementSnappingMode++;
+			Settings.Instance.MovementSnappingMode++;
 
-			if (CurrentPlacementSnappingMode > Enum.GetValues(typeof(MovementSnappingMode)).Length - 1)
-				CurrentPlacementSnappingMode = 0;
+			if ((int)Settings.Instance.MovementSnappingMode > Enum.GetValues(typeof(MovementSnappingMode)).Length - 1)
+				Settings.Instance.MovementSnappingMode = 0;
+
+			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
 		private float GetCurrentPlacementSnappingModeIncrement()
 		{
 			float increment = 0.0f;
 
-			switch (CurrentPlacementSnappingMode)
+			switch (Settings.Instance.MovementSnappingMode)
 			{
-				case (int)MovementSnappingMode.Quarter:
+				case MovementSnappingMode.Quarter:
 					increment = 0.25f;
 					break;
-				case (int)MovementSnappingMode.Half:
+				case MovementSnappingMode.Half:
 					increment = 0.5f;
 					break;
-				case (int)MovementSnappingMode.Full:
+				case MovementSnappingMode.Full:
 					increment = 1.0f;
 					break;
-				case (int)MovementSnappingMode.Double:
+				case MovementSnappingMode.Double:
 					increment = 2.0f;
 					break;
-				case (int)MovementSnappingMode.Off:
+				case MovementSnappingMode.Off:
 				default:
 					increment = 0.0f;
 					break;

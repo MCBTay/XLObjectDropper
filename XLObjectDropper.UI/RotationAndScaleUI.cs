@@ -13,19 +13,23 @@ namespace XLObjectDropper.UI
 		public StickController LeftStick;
 		public StickController RightStick;
 
-		[HideInInspector] private static int CurrentRotationSnappingMode;
-		[HideInInspector] private static int CurrentScaleMode;
-		[HideInInspector] private static int CurrentScaleSnappingMode;
+		[HideInInspector] public RotationSnappingMode RotationSnappingMode;
+		[HideInInspector] public ScalingMode ScalingMode;
+		[HideInInspector] public ScaleSnappingMode ScaleSnappingMode;
 
 		private void Awake()
 		{
-			CurrentScaleMode = (int) ScalingMode.Uniform;
-			CurrentRotationSnappingMode = (int) RotationSnappingMode.Off;
-
 			DPad.gameObject.SetActive(false);
 
 			RightStick.EnableStickButton(true);
 			LeftStick.EnableStickButton(true);
+		}
+
+		private void Start()
+		{
+			SetScaleModeText();
+			SetRotationSnappingText();
+			SetScaleSnappingText();
 		}
 
 		private void Update()
@@ -39,53 +43,63 @@ namespace XLObjectDropper.UI
 
 		private void UpdateRotationSnappingMode()
 		{
-			CurrentRotationSnappingMode++;
+			RotationSnappingMode++;
 
-			if (CurrentRotationSnappingMode > Enum.GetValues(typeof(RotationSnappingMode)).Length - 1)
-				CurrentRotationSnappingMode = 0;
+			if ((int)RotationSnappingMode > Enum.GetValues(typeof(RotationSnappingMode)).Length - 1)
+				RotationSnappingMode = RotationSnappingMode.Off;
 
+			SetRotationSnappingText();
+		}
+
+		private void SetRotationSnappingText()
+		{
 			string rotationSnapping = "Off";
-			switch (CurrentRotationSnappingMode)
+			switch (RotationSnappingMode)
 			{
-				case (int)RotationSnappingMode.Off:
+				case RotationSnappingMode.Off:
 					rotationSnapping = "Off";
 					break;
-				case (int)RotationSnappingMode.Degrees15:
+				case RotationSnappingMode.Degrees15:
 					rotationSnapping = "15°";
 					break;
-				case (int)RotationSnappingMode.Degrees45:
+				case RotationSnappingMode.Degrees45:
 					rotationSnapping = "45°";
 					break;
-				case (int)RotationSnappingMode.Degrees90:
+				case RotationSnappingMode.Degrees90:
 					rotationSnapping = "90°";
 					break;
 			}
 
-			DPad.gameObject.SetActive(CurrentRotationSnappingMode > 0);
+			DPad.gameObject.SetActive(RotationSnappingMode > 0);
 
 			AXBYButtons.XButton.ButtonLabel.SetText($"Rotation Snapping: {Utilities.Color.ColorTag}{rotationSnapping}");
 		}
 
 		private void UpdateScaleMode()
 		{
-			CurrentScaleMode++;
+			ScalingMode++;
 
-			if (CurrentScaleMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
-				CurrentScaleMode = 0;
+			if ((int)ScalingMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
+				ScalingMode = ScalingMode.Uniform;
 
+			SetScaleModeText();
+		}
+
+		private void SetScaleModeText()
+		{
 			string scalingMode = "Uniform";
-			switch (CurrentScaleMode)
+			switch (ScalingMode)
 			{
-				case (int)ScalingMode.Uniform:
+				case ScalingMode.Uniform:
 					scalingMode = "Uniform";
 					break;
-				case (int)ScalingMode.Width:
+				case ScalingMode.Width:
 					scalingMode = "Width";
 					break;
-				case (int)ScalingMode.Height:
+				case ScalingMode.Height:
 					scalingMode = "Height";
 					break;
-				case (int)ScalingMode.Depth:
+				case ScalingMode.Depth:
 					scalingMode = "Depth";
 					break;
 			}
@@ -95,24 +109,29 @@ namespace XLObjectDropper.UI
 
 		private void UpdateScaleSnappingMode()
 		{
-			CurrentScaleSnappingMode++;
+			ScaleSnappingMode++;
 
-			if (CurrentScaleSnappingMode > Enum.GetValues(typeof(ScaleSnappingMode)).Length - 1)
-				CurrentScaleSnappingMode = 0;
+			if ((int)ScaleSnappingMode > Enum.GetValues(typeof(ScaleSnappingMode)).Length - 1)
+				ScaleSnappingMode = ScaleSnappingMode.Off;
 
+			SetScaleSnappingText();
+		}
+
+		private void SetScaleSnappingText()
+		{
 			string scalingMode = "Uniform";
-			switch (CurrentScaleSnappingMode)
+			switch (ScaleSnappingMode)
 			{
-				case (int)ScaleSnappingMode.Off:
+				case ScaleSnappingMode.Off:
 					scalingMode = "Off";
 					break;
-				case (int)ScaleSnappingMode.Quarter:
+				case ScaleSnappingMode.Quarter:
 					scalingMode = "¼";
 					break;
-				case (int)ScaleSnappingMode.Half:
+				case ScaleSnappingMode.Half:
 					scalingMode = "½";
 					break;
-				case (int)ScaleSnappingMode.Full:
+				case ScaleSnappingMode.Full:
 				default:
 					scalingMode = "1";
 					break;

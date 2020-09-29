@@ -24,7 +24,6 @@ namespace XLObjectDropper.UI
 		public BottomRowController BottomRow;
 		public GameObject Cursor;
 
-		[HideInInspector] private static int CurrentPlacementSnappingMode;
 		[HideInInspector] public bool HasHighlightedObject;
 		[HideInInspector] public bool HasSelectedObject;
 		[HideInInspector] private bool LockCam;

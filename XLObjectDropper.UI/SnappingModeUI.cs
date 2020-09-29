@@ -10,11 +10,11 @@ namespace XLObjectDropper.UI
 		public AXYBController AXBYButtons;
 		public DirectionalPadController DPad;
 
-		[HideInInspector] private static int CurrentMovementSnappingMode;
+		[HideInInspector] public MovementSnappingMode MovementSnappingMode;
 
-		private void Awake()
+		private void Start()
 		{
-			CurrentMovementSnappingMode = (int) MovementSnappingMode.Off;
+			SetMovementSnappingText();
 		}
 
 		private void Update()
@@ -26,27 +26,32 @@ namespace XLObjectDropper.UI
 
 		private void UpdateMovementSnappingMode()
 		{
-			CurrentMovementSnappingMode++;
+			MovementSnappingMode++;
 
-			if (CurrentMovementSnappingMode > Enum.GetValues(typeof(MovementSnappingMode)).Length - 1)
-				CurrentMovementSnappingMode = 0;
+			if ((int)MovementSnappingMode > Enum.GetValues(typeof(MovementSnappingMode)).Length - 1)
+				MovementSnappingMode = MovementSnappingMode.Off;
 
+			SetMovementSnappingText();
+		}
+
+		private void SetMovementSnappingText()
+		{
 			string placementSnapping = "Off";
-			switch (CurrentMovementSnappingMode)
+			switch (MovementSnappingMode)
 			{
-				case (int)MovementSnappingMode.Off:
+				case MovementSnappingMode.Off:
 					placementSnapping = "Off";
 					break;
-				case (int)MovementSnappingMode.Quarter:
+				case MovementSnappingMode.Quarter:
 					placementSnapping = "¼m";
 					break;
-				case (int)MovementSnappingMode.Half:
+				case MovementSnappingMode.Half:
 					placementSnapping = "½m";
 					break;
-				case (int)MovementSnappingMode.Full:
+				case MovementSnappingMode.Full:
 					placementSnapping = "1m";
 					break;
-				case (int)MovementSnappingMode.Double:
+				case MovementSnappingMode.Double:
 					placementSnapping = "2m";
 					break;
 			}
