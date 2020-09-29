@@ -37,7 +37,7 @@ namespace XLObjectDropper.UI.Controls
 				}
 			}
 
-			GetComponent<Outline>().enabled = expandableSelected || childSelected;
+			//GetComponent<Outline>().enabled = expandableSelected || childSelected;
 		}
 
 		public void OnSelect(BaseEventData eventData)

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.UI.Controls;
 using XLObjectDropper.UI.Controls.Buttons;
@@ -61,10 +62,12 @@ namespace XLObjectDropper.Controllers
 								(lights != null ? lights.EnabledToggle.gameObject :
 									(grindables != null ? grindables.GrindablesToggle.gameObject : null));
 
-						EventSystem.current.SetSelectedGameObject(selectedObj);
-					
+						var selectable = selectedObj.GetComponentInChildren<Selectable>(true);
+
+						EventSystem.current.SetSelectedGameObject(selectable.gameObject);
+						selectable.OnSelect(null);
+
 				}
-				//EventSystem.current.SetSelectedGameObject(ObjectEdit.ListContent.transform.GetChild(0).gameObject);
 			}
 		}
 
