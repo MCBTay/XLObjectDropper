@@ -442,6 +442,13 @@ namespace XLObjectDropper.Controllers
 		#region Object creation, deletion, duplication, highlight methods
 		public void InstantiateSelectedObject(Spawnable spawnable)
 		{
+			if (SelectedObjectActive)
+			{
+				DestroyImmediate(SelectedObject);
+				SelectedObjectLayerInfo = null;
+				SelectedObjectSpawnable = null;
+			}
+
 			SelectedObject = Instantiate(spawnable.Prefab);
 			SelectedObject.name = spawnable.Prefab.name;
 
