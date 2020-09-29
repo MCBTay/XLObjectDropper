@@ -157,6 +157,8 @@ namespace XLObjectDropper.Controllers
 			ObjectMovementController.Instance.targetHeight = 0;
 			ObjectMovementController.Instance.MoveObjectOnYAxis();
 			ObjectMovementController.Instance.UpdateSelectedObjectPosition();
+
+			ObjectMovementController.Instance.SelectedObject.transform.rotation = Quaternion.FromToRotation(Vector3.up, ObjectMovementController.Instance.groundNormal);
 		}
 	}
 }
