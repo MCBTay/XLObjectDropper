@@ -8,15 +8,15 @@
 		Depth
 	}
 
-	public enum SpawnableType
-	{
-		Rails,
-		Ramps,
-		Splines,
-		Props,
-		Park,
-		Packs
-	}
+	//public enum SpawnableType
+	//{
+	//	Rails,
+	//	Ramps,
+	//	Splines,
+	//	Props,
+	//	Park,
+	//	Packs
+	//}
 
 	public enum RotationSnappingMode
 	{

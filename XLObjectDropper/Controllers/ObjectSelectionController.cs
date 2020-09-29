@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using XLObjectDropper.SpawnableScripts;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.Utilities;
@@ -43,7 +44,7 @@ namespace XLObjectDropper.Controllers
 		{
 			ObjectSelection.ClearList();
 
-			var spawnablesByType = SpawnableManager.Prefabs.Where(x => x.Type == (SpawnableType)ObjectSelection.CurrentCategoryIndex).ToList();
+			var spawnablesByType = SpawnableManager.Prefabs.Where(x => x.Type == (Enumerations.SpawnableType)ObjectSelection.CurrentCategoryIndex).ToList();
 			if (spawnablesByType.Any())
 			{
 				foreach (var spawnable in spawnablesByType)

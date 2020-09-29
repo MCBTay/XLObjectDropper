@@ -153,6 +153,11 @@
     <Compile Include="UIManager.cs" />
     <Compile Include="Utilities\UIScrollToSelection.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\XLObjectDropper.SpawnableScripts\XLObjectDropper.SpawnableScripts.csproj">
+      <Project>{d2673308-8e7b-4a23-81f7-2eb178d8fb9a}</Project>
+      <Name>XLObjectDropper.SpawnableScripts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

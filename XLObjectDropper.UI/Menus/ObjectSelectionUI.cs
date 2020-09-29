@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using XLObjectDropper.SpawnableScripts;
 using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.UI.Menus
 {
-	public class ObjectSelectionUI : ObjectSelectionBase<SpawnableType>
+	public class ObjectSelectionUI : ObjectSelectionBase<Enumerations.SpawnableType>
 	{
 		[Header("Categories")]
 		public GameObject RailsCategory;
@@ -17,12 +18,12 @@ namespace XLObjectDropper.UI.Menus
 		{
 			base.Awake();
 
-			Categories.Add(SpawnableType.Rails, RailsCategory);
-			Categories.Add(SpawnableType.Ramps, RampsCategory);
-			Categories.Add(SpawnableType.Splines, SplinesCategory);
-			Categories.Add(SpawnableType.Props, PropsCategory);
-			Categories.Add(SpawnableType.Park, ParkCategory);
-			Categories.Add(SpawnableType.Packs, PacksCategory);
+			Categories.Add(Enumerations.SpawnableType.Rails, RailsCategory);
+			Categories.Add(Enumerations.SpawnableType.Ramps, RampsCategory);
+			Categories.Add(Enumerations.SpawnableType.Splines, SplinesCategory);
+			Categories.Add(Enumerations.SpawnableType.Props, PropsCategory);
+			Categories.Add(Enumerations.SpawnableType.Park, ParkCategory);
+			Categories.Add(Enumerations.SpawnableType.Packs, PacksCategory);
 		}
 	}
 }
