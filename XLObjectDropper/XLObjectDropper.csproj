@@ -237,7 +237,7 @@ if "$(ConfigurationName)"=="Release" (
 mkdir $(TargetDir)XLObjectDropper
 copy /Y "$(TargetDir)XLObjectDropper.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.dll"
 copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.UI.dll"
-copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
+copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
 copy /Y "$(TargetDir)Info.json" "$(TargetDir)XLObjectDropper\Info.json"
 
 powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-0-1-1.zip' -Force
