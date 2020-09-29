@@ -30,9 +30,7 @@ namespace XLObjectDropper.Utilities
 		{
 			foreach (var spawnedObject in SpawnedObjects)
 			{
-				Object.DestroyImmediate(spawnedObject.Prefab);
 				Object.DestroyImmediate(spawnedObject.SpawnedInstance);
-				Object.DestroyImmediate(spawnedObject.PreviewTexture);
 			}
 
 			SpawnedObjects.Clear();

@@ -35,7 +35,7 @@ namespace XLObjectDropper.Controllers
 
 		private float MaxGroundAngle = 70f;
 		public float groundLevel;
-		private Vector3 groundNormal;
+		public Vector3 groundNormal;
 		private bool hasGround;
 
 		private float HorizontalAcceleration = 10f;
