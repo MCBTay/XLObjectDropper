@@ -15,6 +15,7 @@ namespace XLObjectDropper
 		public RotationSnappingMode RotationSnappingMode { get; set; }
 		public ScaleSnappingMode ScaleSnappingMode { get; set; }
 		public MovementSnappingMode MovementSnappingMode { get; set; }
+		public bool GroundTracking { get; set; }
 
 		public static Settings Instance { get; set; }
 
