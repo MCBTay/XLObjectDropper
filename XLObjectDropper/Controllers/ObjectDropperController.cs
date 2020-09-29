@@ -104,7 +104,7 @@ namespace XLObjectDropper.Controllers
 					else
 					{
 						ObjectMovementController.enabled = false;
-						CreateObjectEdit(ObjectMovementController.SelectedObject ?? ObjectMovementController.HighlightedObject);
+						CreateObjectEdit(ObjectMovementController.HighlightedObject ?? ObjectMovementController.SelectedObject);
 					}
 				}
 
