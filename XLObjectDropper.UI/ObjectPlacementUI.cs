@@ -27,8 +27,9 @@ namespace XLObjectDropper.UI
 		[HideInInspector] public bool HasHighlightedObject;
 		[HideInInspector] public bool HasSelectedObject;
 		[HideInInspector] private bool LockCam;
+		[HideInInspector] public bool GroundTracking;
 
-        private void OnEnable()
+		private void OnEnable()
 		{
 			MainScreen_UI.SetActive(true);
 
@@ -104,6 +105,7 @@ namespace XLObjectDropper.UI
             #endregion
 
             if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
+            if (player.GetNegativeButtonDown("DPadX")) GroundTracking = !GroundTracking;
 
             AXYBButtons.XButton.UpdateButton("Edit", HasSelectedObject || HasHighlightedObject);
 			AXYBButtons.YButton.UpdateButton("Delete", HasSelectedObject || HasHighlightedObject);
@@ -111,6 +113,7 @@ namespace XLObjectDropper.UI
 			AXYBButtons.BButton.UpdateButton(HasSelectedObject ? "Cancel" : "Exit");
 
 			DirectionalPad.RightLabel.SetText($"Lock Cam: {Utilities.Color.ColorTag}{(LockCam ? "On" : "Off")}");
+			DirectionalPad.LeftLabel.SetText($"Ground Tracking: {Utilities.Color.ColorTag}{(GroundTracking ? "On" : "Off")}");
 			
 			Bumpers.RightBumper.EnableButton(HasSelectedObject);
 			Bumpers.LeftBumper.EnableButton(HasSelectedObject);

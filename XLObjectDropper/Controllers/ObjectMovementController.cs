@@ -143,6 +143,8 @@ namespace XLObjectDropper.Controllers
         {
 	        LockCameraMovement = false;
 
+	        MovementUI.GroundTracking = Settings.Instance.GroundTracking;
+
 	        MovementUI.RotateAndScaleModeUI.GetComponent<RotationAndScaleUI>().ScalingMode = Settings.Instance.ScalingMode;
 			MovementUI.RotateAndScaleModeUI.GetComponent<RotationAndScaleUI>().ScaleSnappingMode = Settings.Instance.ScaleSnappingMode;
 			MovementUI.RotateAndScaleModeUI.GetComponent<RotationAndScaleUI>().RotationSnappingMode = Settings.Instance.RotationSnappingMode;
@@ -365,7 +367,11 @@ namespace XLObjectDropper.Controllers
         {
 	        UISounds.Instance?.PlayOneShotSelectionChange();
 	        Settings.Instance.GroundTracking = !Settings.Instance.GroundTracking;
-        }
+
+			Utilities.SaveManager.Instance.SaveSettings();
+
+	        currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
+		}
 
         private void ResetCamera()
         {
@@ -390,15 +396,25 @@ namespace XLObjectDropper.Controllers
 
 		public void MoveObjectOnYAxis()
 		{
-			currentHeight = transform.position.y - groundLevel;
-			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
-			currentHeight = transform.position.y - groundLevel;
+			currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
+			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed* HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
+			currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
 
-			float num = (float)(((double)targetHeight - (double)currentHeight) / 0.25);
-			collisionFlags = characterController.Move((Mathf.Approximately(lastVerticalVelocity, 0.0f) || (double)Mathf.Sign(num) == (double)Mathf.Sign(lastVerticalVelocity) ? ((double)Mathf.Abs(num) <= (double)Mathf.Abs(lastVerticalVelocity) ? num : Mathf.MoveTowards(lastVerticalVelocity, num, VerticalAcceleration * Time.deltaTime)) : 0.0f) * Time.deltaTime * Vector3.up);
+			float num = (targetHeight - currentHeight) / 0.25f;
+
+			var speed =
+				(Mathf.Approximately(lastVerticalVelocity, 0.0f) || (double) Mathf.Sign(num) == (double) Mathf.Sign(lastVerticalVelocity) ? 
+					((double) Mathf.Abs(num) <= (double) Mathf.Abs(lastVerticalVelocity)
+						? num
+						: Mathf.MoveTowards(lastVerticalVelocity, num, VerticalAcceleration * Time.deltaTime))
+					: 0.0f);
+
+			var motion = speed * Time.deltaTime * Vector3.up;
+
+			collisionFlags = characterController.Move(motion);
 			lastVerticalVelocity = characterController.velocity.y;
 
-			currentHeight = transform.position.y - groundLevel;
+			currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
 		}
 
 		private void UpdateGroundLevel()
