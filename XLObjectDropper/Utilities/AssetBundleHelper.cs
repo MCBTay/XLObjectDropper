@@ -6,7 +6,6 @@ using System.Reflection;
 using UnityEngine;
 using UnityModManagerNet;
 using XLObjectDropper.SpawnableScripts;
-using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.Utilities
 {

@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityModManagerNet;
-using XLObjectDropper.Controllers;
 using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Utilities
@@ -13,6 +13,8 @@ namespace XLObjectDropper.Utilities
 	{
 		private static SaveManager __instance;
 		public static SaveManager Instance => __instance ?? (__instance = new SaveManager());
+
+		private static string SavesPath;
 
 		public UnityModManager.ModEntry ModEntry { get; set; }
 
@@ -44,12 +46,27 @@ namespace XLObjectDropper.Utilities
 			}
 
 			string json = JsonConvert.SerializeObject(levelConfigToSave);
-			File.WriteAllText(Path.Combine(Main.ModPath, "test.json"), json);
+
+			SavesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Saves");
+
+			if (!Directory.Exists(SavesPath))
+			{
+				Directory.CreateDirectory(SavesPath);
+			}
+
+			File.WriteAllText(Path.Combine(SavesPath, "test.json"), json);
 		}
 
 		public void LoadSpawnables()
 		{
-			var filePath = Path.Combine(Main.ModPath, "test.json");
+			var filePath = Path.Combine(SavesPath, "test.json");
+
+			SavesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Saves");
+
+			if (!Directory.Exists(SavesPath))
+			{
+				Directory.CreateDirectory(SavesPath);
+			}
 
 			if (!File.Exists(filePath)) return;
 
