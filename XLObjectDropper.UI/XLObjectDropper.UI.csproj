@@ -141,6 +141,7 @@
     <Compile Include="Menus\UnsavedChangesDialog.cs" />
     <Compile Include="SnappingModeUI.cs" />
     <Compile Include="Utilities\Color.cs" />
+    <Compile Include="Utilities\PlatformHelper.cs" />
     <Compile Include="Utilities\Enumerations.cs" />
     <Compile Include="Menus\ObjectSelectionBase.cs" />
     <Compile Include="Controls\ObjectSelectionListItem.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Menus\QuickMenuUI.cs" />
     <Compile Include="RotationAndScaleUI.cs" />
     <Compile Include="UIManager.cs" />
+    <Compile Include="Utilities\SpriteHelper.cs" />
     <Compile Include="Utilities\UIScrollToSelection.cs" />
   </ItemGroup>
   <ItemGroup>

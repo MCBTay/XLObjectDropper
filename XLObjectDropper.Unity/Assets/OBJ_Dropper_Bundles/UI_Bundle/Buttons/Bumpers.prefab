@@ -375,9 +375,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 6362476285219536983}
+  ButtonImage: {fileID: 6362476285219536981}
   ButtonPressed: {fileID: 6318041959317034525}
+  ButtonPressedImage: {fileID: 7359283040705339365}
   ButtonLabel: {fileID: 6362476285059328470}
   ButtonName: LB
+  ControllerButton: 7
+  Xbox: {fileID: 7475578875763064728, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  XboxPressed: {fileID: -4598422290921694364, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Playstation: {fileID: -1740396406389220023, guid: 15f26e860faa27a4c9b1415f827df5e1,
+    type: 3}
+  PlaystationPressed: {fileID: 8338464866344303799, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Switch: {fileID: -778641301543543881, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  SwitchPressed: {fileID: -3840936151455164280, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
 --- !u!1 &6362476285993148557
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,9 +482,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 6362476285993148557}
+  ButtonImage: {fileID: 6362476285993148787}
   ButtonPressed: {fileID: 8101353463895184427}
+  ButtonPressedImage: {fileID: 3495360831863398865}
   ButtonLabel: {fileID: 6362476286117636422}
   ButtonName: RB
+  ControllerButton: 5
+  Xbox: {fileID: 1515382190666927914, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  XboxPressed: {fileID: -7000406870951478814, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Playstation: {fileID: 5686063522095680267, guid: 15f26e860faa27a4c9b1415f827df5e1,
+    type: 3}
+  PlaystationPressed: {fileID: 6246973970560349637, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Switch: {fileID: -5604718665168017188, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  SwitchPressed: {fileID: 2034202085256717240, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
 --- !u!1 &6362476286117636416
 GameObject:
   m_ObjectHideFlags: 0

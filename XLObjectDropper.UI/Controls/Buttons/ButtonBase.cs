@@ -1,20 +1,62 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using XLObjectDropper.UI.Utilities;
+using Color = UnityEngine.Color;
 
 namespace XLObjectDropper.UI.Controls.Buttons
 {
 	public class ButtonBase : MonoBehaviour
 	{
 		public GameObject Button;
+		public Image ButtonImage;
 		public GameObject ButtonPressed;
+		public Image ButtonPressedImage;
 		public TMP_Text ButtonLabel;
-		public string ButtonName;
+		public ControllerButton ControllerButton;
+
+		[Header("Xbox Sprites")]
+		public Sprite Xbox;
+		public Sprite XboxPressed;
+		[Header("Playstation Sprites")]
+		public Sprite Playstation;
+		public Sprite PlaystationPressed;
+		[Header("Switch Sprites")]
+		public Sprite Switch;
+		public Sprite SwitchPressed;
+
 		[HideInInspector] protected bool ButtonEnabled;
+
+		private void Awake()
+		{
+			SetButtonSprites();
+		}
 
 		private void Start()
 		{
 			SetDefaultState();
+		}
+
+		private void SetButtonSprites()
+		{
+			if (Xbox == null || XboxPressed == null) return;
+
+			switch (PlatformHelper.GetPlatformType())
+			{
+				case PlatformType.Playstation:
+					ButtonImage.sprite = Playstation;
+					ButtonPressedImage.sprite = PlaystationPressed;
+					break;
+				case PlatformType.Switch:
+					ButtonImage.sprite = Switch;
+					ButtonPressedImage.sprite = SwitchPressed;
+					break;
+				case PlatformType.Xbox:
+				default:
+					ButtonImage.sprite = Xbox;
+					ButtonPressedImage.sprite = XboxPressed;
+					break;
+			}
 		}
 
 		public void SetDefaultState()
@@ -30,7 +72,7 @@ namespace XLObjectDropper.UI.Controls.Buttons
 
 			if (ButtonEnabled)
 			{
-				if (player.GetButton(ButtonName))
+				if (player.GetButton(ControllerButton.ToString().Replace('_', ' ')))
 				{
 					Button.SetActive(false);
 					ButtonPressed.SetActive(true);
@@ -54,6 +96,20 @@ namespace XLObjectDropper.UI.Controls.Buttons
 
 			ButtonLabel.alpha = Utilities.Color.GetAlpha(buttonEnabled);
 			Button.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, Utilities.Color.GetAlpha(buttonEnabled));
+		}
+
+		public void SetButtonIcon(PlatformType spriteType)
+		{
+			if (ButtonImage == null) return;
+
+			//ButtonImage.sprite = SpriteHelper.GetSprite(ControllerButton, spriteType);
+		}
+
+		public void SetButtonPressedIcon(PlatformType spriteType)
+		{
+			if (ButtonPressedImage == null) return;
+
+			//ButtonPressedImage.sprite = SpriteHelper.GetSprite(ControllerButton, spriteType, true);
 		}
 	}
 }

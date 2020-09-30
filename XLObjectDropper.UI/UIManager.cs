@@ -1,13 +1,15 @@
 ﻿using Rewired;
 using UnityEngine;
+using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.UI
 {
 	public class UIManager : MonoBehaviour
-    {
-        [HideInInspector] public Player Player { get; set; }
+	{
+		[HideInInspector] public Player Player;
+        [HideInInspector] public PlatformType PlatformType;
 
-        [Header("Master Elements")]
+		[Header("Master Elements")]
         public GameObject ObjectPlacementUI;
         public GameObject ObjectSelectionUI;
         public GameObject OptionsMenuUI;
