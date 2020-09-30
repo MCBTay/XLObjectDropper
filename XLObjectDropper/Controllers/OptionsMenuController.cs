@@ -101,7 +101,7 @@ namespace XLObjectDropper.Controllers
 
 		private static void LoadClicked()
 		{
-			Utilities.SaveManager.Instance.LoadSpawnables();
+			Utilities.SaveManager.Instance.LoadSave();
 		}
 	}
 }

@@ -16,9 +16,11 @@ namespace XLObjectDropper.Utilities
 		private static SaveManager __instance;
 		public static SaveManager Instance => __instance ?? (__instance = new SaveManager());
 
-		private static string SavesPath;
+		public UnityModManager.ModEntry ModEntry;
 
-		public UnityModManager.ModEntry ModEntry { get; set; }
+		public static string SaveDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Saves");
+
+		public List<LevelSaveData> LoadedSaves;
 
 		public void SaveCurrentSpawnables()
 		{
@@ -67,25 +69,84 @@ namespace XLObjectDropper.Utilities
 
 			string json = JsonConvert.SerializeObject(levelConfigToSave);
 
-			SavesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Saves", levelConfigToSave.levelName);
+			var currentSaveDir = Path.Combine(SaveDir, levelConfigToSave.levelName);
 
-			if (!Directory.Exists(SavesPath))
+			if (!Directory.Exists(currentSaveDir))
 			{
-				Directory.CreateDirectory(SavesPath);
+				Directory.CreateDirectory(currentSaveDir);
 			}
 
-			File.WriteAllText(Path.Combine(SavesPath, $"{levelConfigToSave.levelName}_{DateTime.Now:MM.dd.yyyyThh.mm.ss}.json"), json);
+			File.WriteAllText(Path.Combine(currentSaveDir, $"{levelConfigToSave.levelName}_{DateTime.Now:MM.dd.yyyyThh.mm.ss}.json"), json);
 		}
 
-		public void LoadSpawnables()
+		public void LoadAllSaves()
 		{
-			SavesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Saves");
-
-			var filePath = Path.Combine(SavesPath, "test.json");
-
-			if (!Directory.Exists(SavesPath))
+			if (!Directory.Exists(SaveDir))
 			{
-				Directory.CreateDirectory(SavesPath);
+				Directory.CreateDirectory(SaveDir);
+				return;
+			}
+
+			if (LoadedSaves == null)
+			{
+				LoadedSaves = new List<LevelSaveData>();
+			}
+			else
+			{
+				LoadedSaves.Clear();
+			}
+
+			var saveFiles = Directory.GetFiles(SaveDir, "*.json", SearchOption.AllDirectories);
+
+			if (saveFiles.Any())
+			{
+				foreach (var saveFile in saveFiles)
+				{
+					var content = File.ReadAllText(saveFile);
+
+					if (string.IsNullOrEmpty(content))
+						continue;
+
+					try
+					{
+						LoadedSaves.Add(JsonConvert.DeserializeObject<LevelSaveData>(content));
+					}
+					catch (Exception ex)
+					{
+						UnityModManager.Logger.Log($"XLObjectDropper: Unable to deserialize {saveFile}");
+						continue;
+					}
+				}
+			}
+		}
+
+		public List<LevelSaveData> GetLoadedSavesByLevelHash(string hash)
+		{
+			if (LoadedSaves == null || !LoadedSaves.Any())
+			{
+				return new List<LevelSaveData>();
+			}
+
+			return LoadedSaves.Where(x => x.levelHash == hash).ToList();
+		}
+
+		public List<LevelSaveData> GetLoadedSavesByLevelName(string name)
+		{
+			if (LoadedSaves == null || !LoadedSaves.Any())
+			{
+				return new List<LevelSaveData>();
+			}
+
+			return LoadedSaves.Where(x => x.levelName == name).ToList();
+		}
+
+		public void LoadSave()
+		{
+			var filePath = Path.Combine(SaveDir, "test.json");
+
+			if (!Directory.Exists(SaveDir))
+			{
+				Directory.CreateDirectory(SaveDir);
 			}
 
 			if (!File.Exists(filePath)) return;
@@ -124,6 +185,7 @@ namespace XLObjectDropper.Utilities
 			}
 		}
 
+		// TODO: Does this really belong here?
 		public void SaveSettings()
 		{
 			Settings.Instance.Save(ModEntry);
