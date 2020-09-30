@@ -192,6 +192,8 @@
     <Compile Include="Utilities\Save\GrindableSaveData.cs" />
     <Compile Include="Utilities\Save\LevelSaveData.cs" />
     <Compile Include="Utilities\Save\LightingSaveData.cs" />
+    <Compile Include="Utilities\Save\SerializableQuaternion.cs" />
+    <Compile Include="Utilities\Save\SerializableVector3.cs" />
     <Compile Include="Utilities\Spawnable.cs" />
     <Compile Include="UserInterface\ControllerButtonHelper.cs" />
     <Compile Include="Main.cs" />
