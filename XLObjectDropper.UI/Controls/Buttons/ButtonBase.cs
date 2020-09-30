@@ -27,13 +27,10 @@ namespace XLObjectDropper.UI.Controls.Buttons
 
 		[HideInInspector] protected bool ButtonEnabled;
 
-		private void Awake()
-		{
-			SetButtonSprites();
-		}
 
 		private void Start()
 		{
+			SetButtonSprites();
 			SetDefaultState();
 		}
 

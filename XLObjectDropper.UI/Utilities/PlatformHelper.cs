@@ -7,11 +7,18 @@ namespace XLObjectDropper.UI.Utilities
 	{
 		public static PlatformType GetPlatformType()
 		{
+  			var player = UIManager.Instance.Player;
+
+			if (player == null)
+			{
+				return PlatformType.Xbox;
+			}
+
 			switch (Application.platform)
 			{
 				case RuntimePlatform.WindowsPlayer:
 				case RuntimePlatform.WindowsEditor:
-					string str = UIManager.Instance.Player.controllers.Joysticks.FirstOrDefault()?.name ?? "unknown";
+					string str = player.controllers.Joysticks.FirstOrDefault()?.name ?? "unknown";
 					if (str.Contains("Dual Shock") || str.Contains("DualShock"))
 					{
 						return PlatformType.Playstation;
