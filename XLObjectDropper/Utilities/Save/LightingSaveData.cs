@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 
 namespace XLObjectDropper.Utilities.Save
@@ -12,6 +11,6 @@ namespace XLObjectDropper.Utilities.Save
 		public LightUnit unit;
 		public float range;
 		public float angle;
-		public Vector3 color;
+		public SerializableVector3 color;
 	}
 }

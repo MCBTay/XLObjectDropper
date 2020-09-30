@@ -6,16 +6,10 @@ namespace XLObjectDropper.Utilities.Save
 	public class GameObjectSaveData
 	{
 		public string Id;
-		public float positionX;
-		public float positionY;
-		public float positionZ;
-		public float rotationX;
-		public float rotationY;
-		public float rotationZ;
-		public float rotationW;
-		public float scaleX;
-		public float scaleY;
-		public float scaleZ;
+
+		public SerializableVector3 position;
+		public SerializableQuaternion rotation;
+		public SerializableVector3 localScale;
 
 		public LightingSaveData lighting;
 		public GrindableSaveData grindables;
