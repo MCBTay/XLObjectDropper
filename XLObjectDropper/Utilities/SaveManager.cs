@@ -22,9 +22,13 @@ namespace XLObjectDropper.Utilities
 
 		public void SaveCurrentSpawnables()
 		{
-			var levelConfigToSave = new LevelSaveData { levelHash = LevelManager.Instance.currentLevel.hash };
-			levelConfigToSave.gameObjects = new List<GameObjectSaveData>();
-			
+			var levelConfigToSave = new LevelSaveData
+			{ 
+				levelHash = LevelManager.Instance.currentLevel.hash, 
+				levelName = LevelManager.Instance.currentLevel.name,
+				dateModified = DateTime.Now,
+			};
+
 			var spawnedItems = SpawnableManager.SpawnedObjects;
 
 			if (spawnedItems == null || !spawnedItems.Any()) return;
@@ -63,14 +67,14 @@ namespace XLObjectDropper.Utilities
 
 			string json = JsonConvert.SerializeObject(levelConfigToSave);
 
-			SavesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Saves");
+			SavesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Saves", levelConfigToSave.levelName);
 
 			if (!Directory.Exists(SavesPath))
 			{
 				Directory.CreateDirectory(SavesPath);
 			}
 
-			File.WriteAllText(Path.Combine(SavesPath, "test.json"), json);
+			File.WriteAllText(Path.Combine(SavesPath, $"{levelConfigToSave.levelName}_{DateTime.Now:MM.dd.yyyyThh.mm.ss}.json"), json);
 		}
 
 		public void LoadSpawnables()
