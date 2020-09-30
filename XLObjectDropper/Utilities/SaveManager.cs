@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
 using XLObjectDropper.Utilities.Save;
 using Object = UnityEngine.Object;
@@ -30,20 +31,34 @@ namespace XLObjectDropper.Utilities
 
 			foreach (var spawnable in spawnedItems)
 			{
-				levelConfigToSave.gameObjects.Add(new GameObjectSaveData
+				var instance = spawnable.SpawnedInstance;
+
+				var objectSaveData = new GameObjectSaveData
 				{
-					Id = spawnable.SpawnedInstance.name,
-					positionX = spawnable.SpawnedInstance.transform.position.x,
-					positionY = spawnable.SpawnedInstance.transform.position.y,
-					positionZ = spawnable.SpawnedInstance.transform.position.z,
-					rotationX = spawnable.SpawnedInstance.transform.rotation.x,
-					rotationY = spawnable.SpawnedInstance.transform.rotation.y,
-					rotationZ = spawnable.SpawnedInstance.transform.rotation.z,
-					rotationW = spawnable.SpawnedInstance.transform.rotation.w,
-					scaleX = spawnable.SpawnedInstance.transform.localScale.x,
-					scaleY = spawnable.SpawnedInstance.transform.localScale.y,
-					scaleZ = spawnable.SpawnedInstance.transform.localScale.z,
-				});
+					Id = instance.name,
+					position = new SerializableVector3(instance.transform.position),
+					rotation = new SerializableQuaternion(instance.transform.rotation),
+					localScale = new SerializableVector3(instance.transform.localScale)
+				};
+
+				var light = instance.GetComponentInChildren<Light>(true);
+
+				if (light != null)
+				{
+					var hdLight = light.GetComponent<HDAdditionalLightData>();
+
+					objectSaveData.lighting = new LightingSaveData
+					{
+						intensity = hdLight.intensity,
+						unit = hdLight.lightUnit,
+						angle = light.spotAngle,
+						range = hdLight.range,
+						enabled = hdLight.enabled,
+						color = new SerializableVector3(hdLight.color.r, hdLight.color.g, hdLight.color.b)
+					};
+				}
+
+				levelConfigToSave.gameObjects.Add(objectSaveData);
 			}
 
 			string json = JsonConvert.SerializeObject(levelConfigToSave);
@@ -60,9 +75,9 @@ namespace XLObjectDropper.Utilities
 
 		public void LoadSpawnables()
 		{
-			var filePath = Path.Combine(SavesPath, "test.json");
-
 			SavesPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Saves");
+
+			var filePath = Path.Combine(SavesPath, "test.json");
 
 			if (!Directory.Exists(SavesPath))
 			{
@@ -76,8 +91,8 @@ namespace XLObjectDropper.Utilities
 
 			foreach (var spawnable in levelSaveData.gameObjects)
 			{
-				var position = new Vector3(spawnable.positionX, spawnable.positionY, spawnable.positionZ);
-				var rotation = new Quaternion(spawnable.rotationX, spawnable.rotationY, spawnable.rotationZ, spawnable.rotationW);
+				var position = new Vector3(spawnable.position.x, spawnable.position.y, spawnable.position.z);
+				var rotation = new Quaternion(spawnable.rotation.x, spawnable.rotation.y, spawnable.rotation.z, spawnable.rotation.w);
 
 				var prefab = SpawnableManager.Prefabs.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name));
 
@@ -86,7 +101,20 @@ namespace XLObjectDropper.Utilities
 				var newObject = Object.Instantiate(prefab.Prefab, position, rotation);
 				newObject.SetActive(true);
 
-				newObject.transform.ChangeLayersRecursively("Default");
+				if (spawnable.lighting != null)
+				{
+					var light = newObject.GetComponentInChildren<Light>(true);
+					var hdLight = light.GetComponent<HDAdditionalLightData>();
+
+					light.enabled = spawnable.lighting.enabled;
+					hdLight.enabled = spawnable.lighting.enabled;
+
+					hdLight.lightUnit = spawnable.lighting.unit;
+					hdLight.intensity = spawnable.lighting.intensity;
+					hdLight.range = spawnable.lighting.range;
+					hdLight.SetSpotAngle(spawnable.lighting.angle);
+					hdLight.color = new Color(spawnable.lighting.color.x, spawnable.lighting.color.y, spawnable.lighting.color.z);
+				}
 
 				SpawnableManager.SpawnedObjects.Add(new Spawnable(prefab.Prefab, newObject, prefab.PreviewTexture));
 			}
