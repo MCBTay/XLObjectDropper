@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityModManagerNet;
+using XLObjectDropper.Utilities.Save;
 using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Utilities
@@ -95,28 +96,5 @@ namespace XLObjectDropper.Utilities
 		{
 			Settings.Instance.Save(ModEntry);
 		}
-	}
-
-	[System.Serializable]
-	public class LevelSaveData
-	{
-		public string levelHash;
-		public List<GameObjectSaveData> gameObjects;
-	}
-
-	[System.Serializable]
-	public class GameObjectSaveData
-	{
-		public string Id;
-		public float positionX;
-		public float positionY;
-		public float positionZ;
-		public float rotationX;
-		public float rotationY;
-		public float rotationZ;
-		public float rotationW;
-		public float scaleX;
-		public float scaleY;
-		public float scaleZ;
 	}
 }

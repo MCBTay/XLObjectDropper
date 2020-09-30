@@ -188,6 +188,10 @@
     <Compile Include="Utilities\RuntimePreviewGenerator.cs" />
     <Compile Include="Utilities\SaveManager.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Utilities\Save\GameObjectSaveData.cs" />
+    <Compile Include="Utilities\Save\GrindableSaveData.cs" />
+    <Compile Include="Utilities\Save\LevelSaveData.cs" />
+    <Compile Include="Utilities\Save\LightingSaveData.cs" />
     <Compile Include="Utilities\Spawnable.cs" />
     <Compile Include="UserInterface\ControllerButtonHelper.cs" />
     <Compile Include="Main.cs" />
