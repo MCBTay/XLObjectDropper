@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,13 +26,26 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject UIButton_RB;
 		public GameObject UIButton_RB_Pressed;
 
+		public Animator Animator;
+
 		protected virtual void Awake()
 		{
 			Categories = new Dictionary<T, GameObject>();
 			CurrentCategoryIndex = 0;
 		}
 
-		protected virtual void Start()
+		protected void OnEnable()
+		{
+			Animator.Play("SlideIn");
+		}
+
+		void OnDisable()
+		{
+		}
+
+		
+
+		protected void Start()
 		{
 			CurrentCategoryIndex = -1;
 			SetActiveCategory(true);
@@ -43,7 +57,7 @@ namespace XLObjectDropper.UI.Menus
 			UIButton_RB_Pressed.SetActive(false);
 		}
 
-		public virtual void SetActiveCategory(bool increment)
+		public void SetActiveCategory(bool increment)
 		{
 			if (increment) CurrentCategoryIndex++;
 			else CurrentCategoryIndex--;
@@ -76,7 +90,7 @@ namespace XLObjectDropper.UI.Menus
 				EventSystem.current.SetSelectedGameObject(ListContent.transform.GetChild(0).gameObject);
 		}
 
-		protected virtual void Update()
+		protected void Update()
 		{
 			#region Right bumper
 			if (UIManager.Instance.Player.GetButtonDown("RB"))
@@ -109,7 +123,7 @@ namespace XLObjectDropper.UI.Menus
 			#endregion
 		}
 
-		public virtual void ClearList()
+		public void ClearList()
 		{
 			for (var i = ListContent.transform.childCount - 1; i >= 0; i--)
 			{
@@ -125,7 +139,7 @@ namespace XLObjectDropper.UI.Menus
 			EventSystem.current.SetSelectedGameObject(null);
 		}
 
-		public virtual GameObject AddToList(string name, Texture2D previewTexture, UnityAction objectClicked = null, UnityAction objectSelected = null)
+		public GameObject AddToList(string name, Texture2D previewTexture, UnityAction objectClicked = null, UnityAction objectSelected = null)
 		{
 			var listItem = Instantiate(ListItemPrefab, ListContent.transform);
 			

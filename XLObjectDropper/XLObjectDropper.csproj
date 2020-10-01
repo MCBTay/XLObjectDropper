@@ -229,14 +229,14 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)"=="Debug" ( 
-del /Q /F "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\"
-copy /Y "$(TargetDir)XLObjectDropper.dll" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.dll"
-copy /Y "$(TargetDir)XLObjectDropper.pdb" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.pdb"
-copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.dll"
-copy /Y "$(TargetDir)XLObjectDropper.UI.pdb" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.pdb"
-copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.dll" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
-copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.pdb" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.pdb"
-copy /Y "$(TargetDir)Info.json" "C:\Program Files (x86)\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\Info.json"
+del /Q /F "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\"
+copy /Y "$(TargetDir)XLObjectDropper.dll" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.dll"
+copy /Y "$(TargetDir)XLObjectDropper.pdb" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.pdb"
+copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.dll"
+copy /Y "$(TargetDir)XLObjectDropper.UI.pdb" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.pdb"
+copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.dll" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
+copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.pdb" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.pdb"
+copy /Y "$(TargetDir)Info.json" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\Info.json"
 )
 
 if "$(ConfigurationName)"=="Release" (

@@ -15,6 +15,13 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject LightSettingsPrefab;
 		public GameObject GrindableSettingsPrefab;
 
+		public Animator Animator;
+
+		private void OnEnable()
+		{
+			Animator.Play("SlideIn");
+		}
+
 		public GameObject AddLightSettings(UnityAction objectClicked = null, UnityAction objectSelected = null)
 		{
 			return AddSettings(LightSettingsPrefab, objectClicked, objectSelected);

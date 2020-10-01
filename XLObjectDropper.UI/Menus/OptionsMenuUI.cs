@@ -23,6 +23,8 @@ namespace XLObjectDropper.UI.Menus
 		[Space(10)]
 		public BottomRowController BottomRow;
 
+		public Animator Animator;
+
 		[HideInInspector] public event UnityAction<float> SensitivityValueChanged = (x) => { };
 		[HideInInspector] public event UnityAction<bool> InvertCamControlValueChanged = (x) => { };
 		[HideInInspector] public event UnityAction<bool> ShowGridValueChanged = (x) => { };
@@ -34,6 +36,7 @@ namespace XLObjectDropper.UI.Menus
 		private void OnEnable()
 		{
 			SetDefaultState(true);
+			Animator.Play("SlideIn");
 		}
 
 		private void Start()

@@ -1,5 +1,7 @@
 ﻿using Rewired;
+using System.Collections;
 using UnityEngine;
+using XLObjectDropper.UI.Menus;
 using XLObjectDropper.UI.Utilities;
 
 namespace XLObjectDropper.UI
@@ -47,37 +49,27 @@ namespace XLObjectDropper.UI
 			ObjectEditUI.SetActive(false);
         }
 
-        // Update is called once per frame
-        private void Update()
+        
+
+		// Update is called once per frame
+		private void Update()
         {
 	        if (Player.GetButtonDown("B"))
 	        {
-		        if (OptionsMenuUI.activeInHierarchy)
-		        {
-			        OptionsMenuUI.SetActive(false);
-			        ObjectPlacementUI.SetActive(true);
-		        }
+		        if (OptionsMenuUI.activeInHierarchy) 
+			        StartCoroutine(DisableOptionsMenu());
 
-		        if (ObjectSelectionUI.activeInHierarchy)
-		        {
-			        ObjectSelectionUI.SetActive(false);
-			        ObjectPlacementUI.SetActive(true);
-		        }
+		        if (ObjectSelectionUI.activeInHierarchy) 
+			        StartCoroutine(DisableSelection());
 
-		        if (QuickMenuUI.activeInHierarchy)
-		        {
-			        QuickMenuUI.SetActive(false);
-			        ObjectPlacementUI.SetActive(true);
-		        }
+		        if (QuickMenuUI.activeInHierarchy) 
+			        StartCoroutine(DisableQuickMenu());
 
-		        if (ObjectEditUI.activeInHierarchy)
-		        {
-					ObjectEditUI.SetActive(false);
-					ObjectPlacementUI.SetActive(true);
-		        }
+		        if (ObjectEditUI.activeInHierarchy) 
+			        StartCoroutine(DisableObjectEdit());
 			}
 
-			
+			//TODO: Get rid of t his shit
 			if (Player.GetButtonDown("X") && 
 				!Player.GetButton("RB") && !Player.GetButton("LB") &&
 			    (ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasSelectedObject || ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasHighlightedObject))
@@ -89,8 +81,7 @@ namespace XLObjectDropper.UI
 				}
 				else
 				{
-					ObjectEditUI.SetActive(false);
-					ObjectPlacementUI.SetActive(true);
+					StartCoroutine(DisableObjectEdit());
 				}
 			}
 
@@ -103,8 +94,7 @@ namespace XLObjectDropper.UI
 				}
 				else
 				{
-					OptionsMenuUI.SetActive(false);
-					ObjectPlacementUI.SetActive(true);
+					StartCoroutine(DisableOptionsMenu());
 				}
 			}
 
@@ -112,8 +102,7 @@ namespace XLObjectDropper.UI
 			{
 				if (QuickMenuUI.activeInHierarchy)
 				{
-					QuickMenuUI.SetActive(false);
-					ObjectPlacementUI.SetActive(true);
+					StartCoroutine(DisableQuickMenu());
 				}
 				else
 				{
@@ -124,8 +113,7 @@ namespace XLObjectDropper.UI
 					}
 					else
 					{
-						ObjectSelectionUI.SetActive(false);
-						ObjectPlacementUI.SetActive(true);
+						StartCoroutine(DisableSelection());
 					}
 				}
 			}
@@ -138,10 +126,49 @@ namespace XLObjectDropper.UI
 				}
 				else
 				{
-					QuickMenuUI.SetActive(false);
-					ObjectPlacementUI.SetActive(true);
+					StartCoroutine(DisableQuickMenu());
 				}
 			}
         }
-    }
+
+		public IEnumerator DisableSelection()
+		{
+			ObjectSelectionUI.GetComponent<ObjectSelectionUI>().Animator.Play("SlideOut");
+
+			yield return new WaitForSeconds(0.2f);
+
+			ObjectSelectionUI.SetActive(false);
+			ObjectPlacementUI.SetActive(true);
+		}
+
+		public IEnumerator DisableQuickMenu()
+		{
+			QuickMenuUI.GetComponent<QuickMenuUI>().Animator.Play("SlideOut");
+
+			yield return new WaitForSeconds(0.2f);
+
+			QuickMenuUI.SetActive(false);
+			ObjectPlacementUI.SetActive(true);
+		}
+
+		public IEnumerator DisableOptionsMenu()
+		{
+			OptionsMenuUI.GetComponent<OptionsMenuUI>().Animator.Play("SlideOut");
+
+			yield return new WaitForSeconds(0.2f);
+
+			OptionsMenuUI.SetActive(false);
+			ObjectPlacementUI.SetActive(true);
+		}
+
+		public IEnumerator DisableObjectEdit()
+		{
+			ObjectEditUI.GetComponent<ObjectEditUI>().Animator.Play("SlideOut");
+
+			yield return new WaitForSeconds(0.2f);
+
+			ObjectEditUI.SetActive(false);
+			ObjectPlacementUI.SetActive(true);
+		}
+	}
 }

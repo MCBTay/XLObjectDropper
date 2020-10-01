@@ -1238,6 +1238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1933048796716561703}
   - component: {fileID: 5337884163529413231}
+  - component: {fileID: 6908398361964013331}
   m_Layer: 5
   m_Name: ObjectSelection_Master
   m_TagString: Untagged
@@ -1286,12 +1287,32 @@ MonoBehaviour:
   UIButton_LB_Pressed: {fileID: 7684247847323969707}
   UIButton_RB: {fileID: 6882083582785151219}
   UIButton_RB_Pressed: {fileID: 176657701971616097}
+  Animator: {fileID: 6908398361964013331}
   RailsCategory: {fileID: 3912601153072934644}
   RampsCategory: {fileID: 2117298710112804042}
   SplinesCategory: {fileID: 5370674158193364749}
   PropsCategory: {fileID: 8535127206725393125}
   ParkCategory: {fileID: 2005865680040076241}
   PacksCategory: {fileID: 3019819236280179992}
+--- !u!95 &6908398361964013331
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5490405019482275587}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f150bdf29880fe14b9c8d46e34590978, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5613589587888566871
 GameObject:
   m_ObjectHideFlags: 0
