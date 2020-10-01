@@ -216,10 +216,7 @@ namespace XLObjectDropper.Controllers
 			
 			HandleTriggers(player);
 
-			if (!LockCameraMovement)
-			{
-				MoveCamera();
-			}
+			MoveCamera();
 
 			if (SelectedObjectActive)
 			{
@@ -261,7 +258,7 @@ namespace XLObjectDropper.Controllers
 	        var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
 	        var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
-	        collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
+			collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
 
 		    if (GridOverlayActive && Settings.Instance.ShowGrid)
 	        {
@@ -274,23 +271,25 @@ namespace XLObjectDropper.Controllers
 		/// </summary>
 		private void HandleRightStick(Player player)
         {
-	        //TODO: Something about this new rotation method fucks up the default angle of the object dropper
+			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
+			if (!LockCameraMovement)
+			{
+				Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
+				rotationAngleX += rightStick.x * Time.deltaTime * CameraRotateSpeed;
 
-			Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
-	        rotationAngleX += rightStick.x * Time.deltaTime * CameraRotateSpeed;
+				if (Settings.Instance.InvertCamControl)
+				{
+					rotationAngleY -= rightStick.y * Time.deltaTime * CameraRotateSpeed;
+				}
+				else
+				{
+					rotationAngleY += rightStick.y * Time.deltaTime * CameraRotateSpeed;
+				}
+			}
 
-	        if (Settings.Instance.InvertCamControl)
-	        {
-		        rotationAngleY -= rightStick.y * Time.deltaTime * CameraRotateSpeed;
-	        }
-	        else
-	        {
-		        rotationAngleY += rightStick.y * Time.deltaTime * CameraRotateSpeed;
-	        }
+			var maxAngle = 85f;
 
-	        var maxAngle = 85f;
-
-	        rotationAngleY = ClampAngle(rotationAngleY, -maxAngle, maxAngle);
+			rotationAngleY = ClampAngle(rotationAngleY, -maxAngle, maxAngle);
 
 	        var rotation = Quaternion.Euler(rotationAngleY, rotationAngleX, 0);
 
@@ -299,10 +298,10 @@ namespace XLObjectDropper.Controllers
 	        var position = rotation * negDistance + Vector3.zero;
 
 	        cameraPivot.rotation = rotation;
-			cameraNode.rotation = rotation;
+	        cameraNode.rotation = rotation;
 	        cameraNode.position = position;
 
-	        if (SelectedObject != null)
+		    if (SelectedObject != null)
 	        {
 		        SelectedObject.transform.position = cameraPivot.position;
 	        }
