@@ -110,8 +110,6 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonTimedPressUp("Start", 0.0f, 0.7f)) // tap
 				{
-					UISounds.Instance.PlayOneShotSelectMajor();
-
 					if (QuickMenuOpen)
 					{
 						DestroyQuickMenu();
@@ -133,8 +131,6 @@ namespace XLObjectDropper.Controllers
 				}
 				else if (player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionOpen) //press
 				{
-					UISounds.Instance.PlayOneShotSelectMajor();
-
 					if (QuickMenuOpen)
 					{
 						DestroyQuickMenu();
@@ -206,6 +202,8 @@ namespace XLObjectDropper.Controllers
 		#region Object Selection
 		private void CreateObjectSelection()
 		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
 			ObjectSelectionMenuGameObject = new GameObject();
 			ObjectSelectionController = ObjectSelectionMenuGameObject.AddComponent<ObjectSelectionController>();
 			ObjectSelectionController.ObjectClickedEvent += ObjectSelectionControllerOnObjectClickedEvent;
@@ -216,6 +214,8 @@ namespace XLObjectDropper.Controllers
 		private void DestroyObjectSelection()
 		{
 			if (ObjectSelectionMenuGameObject == null || ObjectSelectionController == null) return;
+
+			UISounds.Instance?.PlayOneShotSelectMajor();
 
 			ObjectSelectionMenuGameObject.SetActive(false);
 			ObjectSelectionController.ObjectClickedEvent -= ObjectSelectionControllerOnObjectClickedEvent;
@@ -236,6 +236,8 @@ namespace XLObjectDropper.Controllers
 		#region Options Menu
 		private void CreateOptionsMenu()
 		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
 			OptionsMenuGameObject = new GameObject();
 			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
 
@@ -245,6 +247,8 @@ namespace XLObjectDropper.Controllers
 		private void DestroyOptionsMenu()
 		{
 			if (OptionsMenuGameObject == null || OptionsMenuController == null) return;
+			
+			UISounds.Instance?.PlayOneShotSelectMajor();
 
 			OptionsMenuGameObject.SetActive(false);
 
@@ -256,6 +260,8 @@ namespace XLObjectDropper.Controllers
 		#region Quick Menu
 		private void CreateQuickMenu()
 		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
 			QuickMenuGameObject = new GameObject();
 			QuickMenuController = QuickMenuGameObject.AddComponent<QuickMenuController>();
 			QuickMenuController.ObjectClickedEvent += QuickMenuControllerOnObjectClickedEvent;
@@ -266,6 +272,8 @@ namespace XLObjectDropper.Controllers
 		private void DestroyQuickMenu()
 		{
 			if (QuickMenuGameObject == null || QuickMenuController == null) return;
+
+			UISounds.Instance?.PlayOneShotSelectMajor();
 
 			QuickMenuGameObject.SetActive(false);
 			QuickMenuController.ObjectClickedEvent -= QuickMenuControllerOnObjectClickedEvent;
@@ -335,6 +343,8 @@ namespace XLObjectDropper.Controllers
 		#region Object Edit
 		private void CreateObjectEdit(GameObject objectToEdit)
 		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
 			ObjectEditGameObject = new GameObject();
 			ObjectEditController = ObjectEditGameObject.AddComponent<ObjectEditController>();
 			ObjectEditController.SelectedObject = objectToEdit;
@@ -345,6 +355,8 @@ namespace XLObjectDropper.Controllers
 		private void DestroyObjectEdit()
 		{
 			if (ObjectEditGameObject == null || ObjectEditController == null) return;
+
+			UISounds.Instance?.PlayOneShotSelectMajor();
 
 			ObjectEditGameObject.SetActive(false);
 
