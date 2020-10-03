@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2186279163
+CRC: 3734548936
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 26b3661a3588f5fd613410c105bca4ac
+    Hash: 2ce190cd31e9c5f7171243778e842869
   TypeTreeHash:
     serializedVersion: 2
     Hash: 44f17ef19dbee9c4e5ad10f74656a9ad
@@ -58,6 +58,7 @@ Assets:
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Street.Asphalt.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Wood.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Clean.prefab
+- Assets/SDT - Modular/Prefabs/Rails/Rail_Down_x1.5.Capped.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Grungy.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.25x2.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Wood.prefab
@@ -67,6 +68,7 @@ Assets:
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Clean.Left.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_2x2.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Clean.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Hubba_Low_.25x1.5.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Brick.Left.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.5x4.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_2x2.prefab
