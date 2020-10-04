@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1982600477
+CRC: 3734548936
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 743e3741d3723b2f8fd07efc1855775c
+    Hash: 2ce190cd31e9c5f7171243778e842869
   TypeTreeHash:
     serializedVersion: 2
     Hash: 44f17ef19dbee9c4e5ad10f74656a9ad
@@ -48,15 +48,19 @@ Assets:
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Brick.Right.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_1x1.prefab
 - Assets/SDT - Modular/Prefabs/Rails/Polejam_Small.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.25x4.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Clean.Right.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Block.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.5x2.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Clean.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3_1_x5.Brick.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_2x4.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Street.Asphalt.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Wood.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Clean.prefab
+- Assets/SDT - Modular/Prefabs/Rails/Rail_Down_x1.5.Capped.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Grungy.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.25x2.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Wood.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_1x4.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Stair_3-1_x5.prefab
@@ -64,7 +68,9 @@ Assets:
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Clean.Left.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_2x2.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Clean.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Hubba_Low_.25x1.5.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Brick.Left.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.5x4.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_2x2.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_StairCap_3-1_x5.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_1x2.prefab
