@@ -83,21 +83,21 @@ namespace XLObjectDropper.Utilities
 
 			foreach (var asset in assets)
 			{
-				var type = Enumerations.SpawnableType.Rails;
+				var type = Enumerations.SpawnableType.RailsAndLedges;
 
 				if (!isEmbedded)
 				{
-					type = Enumerations.SpawnableType.Packs;
+					type = Enumerations.SpawnableType.RailsAndLedges;
 				}
 				else
 				{
 					if (asset.name.StartsWith("grind", StringComparison.InvariantCultureIgnoreCase) || asset.name.StartsWith("coping", StringComparison.InvariantCultureIgnoreCase))
 					{
-						type = Enumerations.SpawnableType.Splines;
+						type = Enumerations.SpawnableType.Grinds;
 					}
 					else
 					{
-						type = Enumerations.SpawnableType.Rails;
+						type = Enumerations.SpawnableType.RailsAndLedges;
 					}
 				}
 
