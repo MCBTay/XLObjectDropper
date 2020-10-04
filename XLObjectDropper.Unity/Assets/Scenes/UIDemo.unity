@@ -2201,6 +2201,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1676970455545069097, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1730958808089623629, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2616,6 +2621,11 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1793031262821979729, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1802497380652817691, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -3014,27 +3024,33 @@ PrefabInstance:
     - target: {fileID: 2670740563364052428, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 97
       objectReference: {fileID: 0}
     - target: {fileID: 2670740563364052428, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2670740563364052428, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2670740563364052428, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2670740563364052428, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670740563364052428, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_text
+      value: You've got unsaved changes that will be lost if you do not save.  Would
+        you like to save them now?
       objectReference: {fileID: 0}
     - target: {fileID: 2727514163467059375, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
@@ -3446,6 +3462,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3592646896713187054, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3625752088954095458, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3647235998296460019, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3585,6 +3611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860363557431541685, guid: 41a6b721a8e27e44d87396a83131ae74,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.9411765
       objectReference: {fileID: 0}
     - target: {fileID: 3992636902726409976, guid: 41a6b721a8e27e44d87396a83131ae74,
         type: 3}

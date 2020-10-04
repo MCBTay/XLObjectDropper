@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6183608305514048182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5614706772918933189}
+  - component: {fileID: 1930034829922348021}
+  m_Layer: 5
+  m_Name: LeftBumper_Master
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5614706772918933189
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183608305514048182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6362476285219536982}
+  - {fileID: 6362476285059328471}
+  - {fileID: 6290187028990077286}
+  m_Father: {fileID: 6362476284742015374}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1930034829922348021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6183608305514048182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1635497819, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 6362476285219536983}
+  ButtonImage: {fileID: 6362476285219536981}
+  ButtonPressed: {fileID: 6318041959317034525}
+  ButtonPressedImage: {fileID: 7359283040705339365}
+  ButtonLabel: {fileID: 6362476285059328470}
+  ControllerButton: 7
+  Xbox: {fileID: 7475578875763064728, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  XboxPressed: {fileID: -4598422290921694364, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Playstation: {fileID: -1740396406389220023, guid: 15f26e860faa27a4c9b1415f827df5e1,
+    type: 3}
+  PlaystationPressed: {fileID: 8338464866344303799, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Switch: {fileID: -778641301543543881, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  SwitchPressed: {fileID: -3840936151455164280, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
 --- !u!1 &6318041959317034525
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,12 +96,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4137499, y: 1.4137499, z: 1.4137499}
   m_Children: []
-  m_Father: {fileID: 6362476285219536982}
-  m_RootOrder: 1
+  m_Father: {fileID: 5614706772918933189}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: -0.000015258789}
+  m_AnchoredPosition: {x: -150.1, y: 172}
   m_SizeDelta: {x: 18, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &585329556690949040
@@ -103,8 +170,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6362476285219536982}
-  - {fileID: 6362476285993148556}
+  - {fileID: 5614706772918933189}
+  - {fileID: 7118609142022323111}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,8 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 1095442984, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftBumper: {fileID: 843985522176886839}
-  RightBumper: {fileID: 4636130703248286795}
+  LeftBumper: {fileID: 1930034829922348021}
+  RightBumper: {fileID: 8420843818491534248}
 --- !u!1 &6362476285059328464
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,16 +219,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6362476285059328464}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6362476285219536982}
-  m_RootOrder: 0
+  m_Father: {fileID: 5614706772918933189}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 37.75, y: -0}
+  m_AnchoredPosition: {x: -340.75, y: 194.9}
   m_SizeDelta: {x: 55.342033, y: 19.995377}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6362476285059328469
@@ -295,7 +362,6 @@ GameObject:
   - component: {fileID: 6362476285219536982}
   - component: {fileID: 6362476285219536980}
   - component: {fileID: 6362476285219536981}
-  - component: {fileID: 843985522176886839}
   m_Layer: 5
   m_Name: LeftBumper
   m_TagString: Untagged
@@ -313,10 +379,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 6362476285059328471}
-  - {fileID: 6290187028990077286}
-  m_Father: {fileID: 6362476284742015374}
+  m_Children: []
+  m_Father: {fileID: 5614706772918933189}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -362,35 +426,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &843985522176886839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6362476285219536983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1635497819, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: {fileID: 6362476285219536983}
-  ButtonImage: {fileID: 6362476285219536981}
-  ButtonPressed: {fileID: 6318041959317034525}
-  ButtonPressedImage: {fileID: 7359283040705339365}
-  ButtonLabel: {fileID: 6362476285059328470}
-  ButtonName: LB
-  ControllerButton: 7
-  Xbox: {fileID: 7475578875763064728, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
-  XboxPressed: {fileID: -4598422290921694364, guid: 19533ca3f17ce0145827c947a5c0b081,
-    type: 3}
-  Playstation: {fileID: -1740396406389220023, guid: 15f26e860faa27a4c9b1415f827df5e1,
-    type: 3}
-  PlaystationPressed: {fileID: 8338464866344303799, guid: 19533ca3f17ce0145827c947a5c0b081,
-    type: 3}
-  Switch: {fileID: -778641301543543881, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
-  SwitchPressed: {fileID: -3840936151455164280, guid: 19533ca3f17ce0145827c947a5c0b081,
-    type: 3}
 --- !u!1 &6362476285993148557
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +437,6 @@ GameObject:
   - component: {fileID: 6362476285993148556}
   - component: {fileID: 6362476285993148786}
   - component: {fileID: 6362476285993148787}
-  - component: {fileID: 4636130703248286795}
   m_Layer: 5
   m_Name: RightBumper
   m_TagString: Untagged
@@ -420,11 +454,9 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 6362476286117636423}
-  - {fileID: 918515810174039831}
-  m_Father: {fileID: 6362476284742015374}
-  m_RootOrder: 1
+  m_Children: []
+  m_Father: {fileID: 7118609142022323111}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -469,35 +501,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4636130703248286795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6362476285993148557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1635497819, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Button: {fileID: 6362476285993148557}
-  ButtonImage: {fileID: 6362476285993148787}
-  ButtonPressed: {fileID: 8101353463895184427}
-  ButtonPressedImage: {fileID: 3495360831863398865}
-  ButtonLabel: {fileID: 6362476286117636422}
-  ButtonName: RB
-  ControllerButton: 5
-  Xbox: {fileID: 1515382190666927914, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
-  XboxPressed: {fileID: -7000406870951478814, guid: 19533ca3f17ce0145827c947a5c0b081,
-    type: 3}
-  Playstation: {fileID: 5686063522095680267, guid: 15f26e860faa27a4c9b1415f827df5e1,
-    type: 3}
-  PlaystationPressed: {fileID: 6246973970560349637, guid: 19533ca3f17ce0145827c947a5c0b081,
-    type: 3}
-  Switch: {fileID: -5604718665168017188, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
-  SwitchPressed: {fileID: 2034202085256717240, guid: 19533ca3f17ce0145827c947a5c0b081,
-    type: 3}
 --- !u!1 &6362476286117636416
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,16 +526,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6362476286117636416}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6362476285993148556}
-  m_RootOrder: 0
+  m_Father: {fileID: 7118609142022323111}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30.3, y: -0.5}
+  m_AnchoredPosition: {x: 350.44, y: 194.4}
   m_SizeDelta: {x: 80.74386, y: 19.995377}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6362476286117636421
@@ -684,12 +687,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4137499, y: 1.4137499, z: 1.4137499}
   m_Children: []
-  m_Father: {fileID: 6362476285993148556}
-  m_RootOrder: 1
+  m_Father: {fileID: 7118609142022323111}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00015258789, y: -0.000015258789}
+  m_AnchoredPosition: {x: 150.86, y: 172}
   m_SizeDelta: {x: 18, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5980865557063365759
@@ -730,3 +733,70 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8325687390489568339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7118609142022323111}
+  - component: {fileID: 8420843818491534248}
+  m_Layer: 5
+  m_Name: RightBumper_Master
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7118609142022323111
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325687390489568339}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6362476285993148556}
+  - {fileID: 6362476286117636423}
+  - {fileID: 918515810174039831}
+  m_Father: {fileID: 6362476284742015374}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8420843818491534248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8325687390489568339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1635497819, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 6362476285993148557}
+  ButtonImage: {fileID: 6362476285993148787}
+  ButtonPressed: {fileID: 8101353463895184427}
+  ButtonPressedImage: {fileID: 3495360831863398865}
+  ButtonLabel: {fileID: 6362476286117636422}
+  ControllerButton: 5
+  Xbox: {fileID: 1515382190666927914, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  XboxPressed: {fileID: -7000406870951478814, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Playstation: {fileID: 5686063522095680267, guid: 15f26e860faa27a4c9b1415f827df5e1,
+    type: 3}
+  PlaystationPressed: {fileID: 6246973970560349637, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Switch: {fileID: -5604718665168017188, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  SwitchPressed: {fileID: 2034202085256717240, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
