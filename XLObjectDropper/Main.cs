@@ -44,7 +44,6 @@ namespace XLObjectDropper
 				UserInterfaceHelper.LoadUserInterface();
 				AssetBundleHelper.LoadDefaultBundles();
 				AssetBundleHelper.LoadUserBundles();
-				Utilities.SaveManager.Instance.LoadAllSaves();
 			}
 			else
 			{
