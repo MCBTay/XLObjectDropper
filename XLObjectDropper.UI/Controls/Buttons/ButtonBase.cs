@@ -94,19 +94,5 @@ namespace XLObjectDropper.UI.Controls.Buttons
 			ButtonLabel.alpha = Utilities.Color.GetAlpha(buttonEnabled);
 			Button.GetComponent<Image>().color = new Color(1.0f, 1.0f, 1.0f, Utilities.Color.GetAlpha(buttonEnabled));
 		}
-
-		public void SetButtonIcon(PlatformType spriteType)
-		{
-			if (ButtonImage == null) return;
-
-			//ButtonImage.sprite = SpriteHelper.GetSprite(ControllerButton, spriteType);
-		}
-
-		public void SetButtonPressedIcon(PlatformType spriteType)
-		{
-			if (ButtonPressedImage == null) return;
-
-			//ButtonPressedImage.sprite = SpriteHelper.GetSprite(ControllerButton, spriteType, true);
-		}
 	}
 }
