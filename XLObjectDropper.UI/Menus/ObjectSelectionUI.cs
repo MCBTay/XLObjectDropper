@@ -7,23 +7,25 @@ namespace XLObjectDropper.UI.Menus
 	public class ObjectSelectionUI : ObjectSelectionBase<Enumerations.SpawnableType>
 	{
 		[Header("Categories")]
-		public GameObject RailsCategory;
-		public GameObject RampsCategory;
-		public GameObject SplinesCategory;
-		public GameObject PropsCategory;
-		public GameObject ParkCategory;
-		public GameObject PacksCategory;
+		public GameObject RailsAndLedgesCategory;
+		public GameObject StairsAndRampsCategory;
+		public GameObject FloorsAndWallsCategory;
+		public GameObject PropsAndLightsCategory;
+		public GameObject BuildingsAndVegetationCategory;
+		public GameObject GrindsCategory;
+		public GameObject OtherCategory;
 
 		protected override void Awake()
 		{
 			base.Awake();
 
-			Categories.Add(Enumerations.SpawnableType.Rails, RailsCategory);
-			Categories.Add(Enumerations.SpawnableType.Ramps, RampsCategory);
-			Categories.Add(Enumerations.SpawnableType.Splines, SplinesCategory);
-			Categories.Add(Enumerations.SpawnableType.Props, PropsCategory);
-			Categories.Add(Enumerations.SpawnableType.Park, ParkCategory);
-			Categories.Add(Enumerations.SpawnableType.Packs, PacksCategory);
+			Categories.Add(Enumerations.SpawnableType.RailsAndLedges, RailsAndLedgesCategory);
+			Categories.Add(Enumerations.SpawnableType.StairsAndRamps, StairsAndRampsCategory);
+			Categories.Add(Enumerations.SpawnableType.FloorsAndWalls, FloorsAndWallsCategory);
+			Categories.Add(Enumerations.SpawnableType.PropsAndLights, PropsAndLightsCategory);
+			Categories.Add(Enumerations.SpawnableType.BuildingsAndVegetation, BuildingsAndVegetationCategory);
+			Categories.Add(Enumerations.SpawnableType.Grinds, GrindsCategory);
+			Categories.Add(Enumerations.SpawnableType.Other, OtherCategory);
 		}
 	}
 }
