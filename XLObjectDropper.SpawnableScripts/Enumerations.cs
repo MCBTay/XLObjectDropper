@@ -4,12 +4,13 @@
 	{
 		public enum SpawnableType
 		{
-			Rails,
-			Ramps,
-			Splines,
-			Props,
-			Park,
-			Packs
+			RailsAndLedges,
+			StairsAndRamps,
+			FloorsAndWalls,
+			PropsAndLights,
+			BuildingsAndVegetation,
+			Grinds,
+			Other
 		}
 	}
 }
