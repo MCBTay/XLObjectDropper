@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using XLObjectDropper.UI;
 using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
@@ -52,13 +53,13 @@ namespace XLObjectDropper.Controllers
 		{
 			UserInterfaceHelper.UserInterface?.SetActive(false);
 
-			DestroyObjectSelection();
-			DestroyOptionsMenu();
 			DestroyObjectMovement();
-			DestroyQuickMenu();
-			DestroyObjectEdit();
 			DestroyRotationAndScaleUI();
 			DestroySnappingModeUI();
+			DestroyObjectSelection(false);
+			DestroyOptionsMenu(false);
+			DestroyQuickMenu(false);
+			DestroyObjectEdit(false);
 		}
 
 		private void Update()
@@ -84,28 +85,21 @@ namespace XLObjectDropper.Controllers
 				{
 					if (OptionsMenuOpen)
 					{
+						if (OptionsMenuController.LoadSavedOpen) 
+							return;
+
 						DestroyOptionsMenu();
-						ObjectMovementController.enabled = true;
 					}
 					else
 					{
-						ObjectMovementController.enabled = false;
 						CreateOptionsMenu();
 					}
 				}
 
 				if (player.GetButtonDown("X") && (ObjectMovementController.SelectedObject != null || ObjectMovementController.HighlightedObject != null))
 				{
-					if (ObjectEditOpen)
-					{
-						DestroyObjectEdit();
-						ObjectMovementController.enabled = true;
-					}
-					else
-					{
-						ObjectMovementController.enabled = false;
-						CreateObjectEdit(ObjectMovementController.HighlightedObject ?? ObjectMovementController.SelectedObject);
-					}
+					if (ObjectEditOpen) DestroyObjectEdit();
+					else CreateObjectEdit(ObjectMovementController.HighlightedObject ?? ObjectMovementController.SelectedObject);
 				}
 
 				if (player.GetButtonTimedPressUp("Start", 0.0f, 0.7f)) // tap
@@ -113,63 +107,33 @@ namespace XLObjectDropper.Controllers
 					if (QuickMenuOpen)
 					{
 						DestroyQuickMenu();
-						ObjectMovementController.enabled = true;
 					}
 					else
 					{
-						if (ObjectSelectionOpen)
-						{
-							DestroyObjectSelection();
-							ObjectMovementController.enabled = true;
-						}
-						else
-						{
-							ObjectMovementController.enabled = false;
-							CreateObjectSelection();
-						}
+						if (ObjectSelectionOpen) DestroyObjectSelection();
+						else CreateObjectSelection();
 					}
 				}
 				else if (player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionOpen) //press
 				{
-					if (QuickMenuOpen)
-					{
-						DestroyQuickMenu();
-						ObjectMovementController.enabled = true;
-					}
-					else
-					{
-						ObjectMovementController.enabled = false;
-						CreateQuickMenu();
-					}
+					if (QuickMenuOpen) DestroyQuickMenu();
+					else CreateQuickMenu();
 				}
 			}
-
 
 			if (player.GetButtonDown("B"))
 			{
 				if (OptionsMenuOpen)
 				{
+					if (OptionsMenuController.LoadSavedOpen) 
+						return;
+
 					DestroyOptionsMenu();
-					ObjectMovementController.enabled = true;
 				}
 
-				if (ObjectSelectionOpen)
-				{
-					DestroyObjectSelection();
-					ObjectMovementController.enabled = true;
-				}
-
-				if (QuickMenuOpen)
-				{
-					DestroyQuickMenu();
-					ObjectMovementController.enabled = true;
-				}
-
-				if (ObjectEditOpen)
-				{
-					DestroyObjectEdit();
-					ObjectMovementController.enabled = true;
-				}
+				if (ObjectSelectionOpen) DestroyObjectSelection();
+				if (QuickMenuOpen) DestroyQuickMenu();
+				if (ObjectEditOpen) DestroyObjectEdit();
 			}
 		}
 
@@ -202,6 +166,8 @@ namespace XLObjectDropper.Controllers
 		#region Object Selection
 		private void CreateObjectSelection()
 		{
+			ObjectMovementController.enabled = false;
+
 			UISounds.Instance?.PlayOneShotSelectMajor();
 
 			ObjectSelectionMenuGameObject = new GameObject();
@@ -211,7 +177,7 @@ namespace XLObjectDropper.Controllers
 			ObjectSelectionMenuGameObject.SetActive(true);
 		}
 
-		private void DestroyObjectSelection()
+		private void DestroyObjectSelection(bool reenableObjMovement = true)
 		{
 			if (ObjectSelectionMenuGameObject == null || ObjectSelectionController == null) return;
 
@@ -222,6 +188,11 @@ namespace XLObjectDropper.Controllers
 
 			DestroyImmediate(ObjectSelectionController);
 			DestroyImmediate(ObjectSelectionMenuGameObject);
+
+			if (reenableObjMovement)
+			{
+				ObjectMovementController.enabled = true;
+			}
 		}
 
 		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
@@ -229,37 +200,49 @@ namespace XLObjectDropper.Controllers
 			ObjectMovementController.InstantiateSelectedObject(spawnable);
 			
 			DestroyObjectSelection();
-			ObjectMovementController.enabled = true;
 		}
 		#endregion
 
 		#region Options Menu
 		private void CreateOptionsMenu()
 		{
+			ObjectMovementController.enabled = false;
+
 			UISounds.Instance?.PlayOneShotSelectMajor();
 
 			OptionsMenuGameObject = new GameObject();
 			OptionsMenuController = OptionsMenuGameObject.AddComponent<OptionsMenuController>();
 
+			OptionsMenuController.SaveLoaded += () =>
+			{
+				StartCoroutine(UIManager.Instance.DisableOptionsMenu());
+				DestroyOptionsMenu();
+			};
+
 			OptionsMenuGameObject.SetActive(true);
 		}
 
-		private void DestroyOptionsMenu()
+		public void DestroyOptionsMenu(bool reenableObjMovement = true)
 		{
 			if (OptionsMenuGameObject == null || OptionsMenuController == null) return;
 			
-			UISounds.Instance?.PlayOneShotSelectMajor();
-
 			OptionsMenuGameObject.SetActive(false);
 
 			DestroyImmediate(OptionsMenuController);
 			DestroyImmediate(OptionsMenuGameObject);
+
+			if (reenableObjMovement)
+			{
+				ObjectMovementController.enabled = true;
+			}
 		}
 		#endregion
 
 		#region Quick Menu
 		private void CreateQuickMenu()
 		{
+			ObjectMovementController.enabled = false;
+
 			UISounds.Instance?.PlayOneShotSelectMajor();
 
 			QuickMenuGameObject = new GameObject();
@@ -269,7 +252,7 @@ namespace XLObjectDropper.Controllers
 			QuickMenuGameObject.SetActive(true);
 		}
 
-		private void DestroyQuickMenu()
+		private void DestroyQuickMenu(bool reenableObjMovement = true)
 		{
 			if (QuickMenuGameObject == null || QuickMenuController == null) return;
 
@@ -280,6 +263,11 @@ namespace XLObjectDropper.Controllers
 
 			DestroyImmediate(QuickMenuController);
 			DestroyImmediate(QuickMenuGameObject);
+
+			if (reenableObjMovement)
+			{
+				ObjectMovementController.enabled = true;
+			}
 		}
 
 		private void QuickMenuControllerOnObjectClickedEvent(Spawnable spawnable)
@@ -297,7 +285,6 @@ namespace XLObjectDropper.Controllers
 			}
 
 			DestroyQuickMenu();
-			ObjectMovementController.enabled = true;
 		}
 		#endregion
 
@@ -343,6 +330,8 @@ namespace XLObjectDropper.Controllers
 		#region Object Edit
 		private void CreateObjectEdit(GameObject objectToEdit)
 		{
+			ObjectMovementController.enabled = false;
+
 			UISounds.Instance?.PlayOneShotSelectMajor();
 
 			ObjectEditGameObject = new GameObject();
@@ -352,7 +341,7 @@ namespace XLObjectDropper.Controllers
 			ObjectEditGameObject.SetActive(true);
 		}
 
-		private void DestroyObjectEdit()
+		private void DestroyObjectEdit(bool reenableObjMovement = true)
 		{
 			if (ObjectEditGameObject == null || ObjectEditController == null) return;
 
@@ -362,6 +351,11 @@ namespace XLObjectDropper.Controllers
 
 			DestroyImmediate(ObjectEditController);
 			DestroyImmediate(ObjectEditGameObject);
+
+			if (reenableObjMovement)
+			{
+				ObjectMovementController.enabled = true;
+			}
 		}
 		#endregion
 	}
