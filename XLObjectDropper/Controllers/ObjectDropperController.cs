@@ -200,6 +200,8 @@ namespace XLObjectDropper.Controllers
 			ObjectMovementController.InstantiateSelectedObject(spawnable);
 			
 			DestroyObjectSelection();
+
+			StartCoroutine(UIManager.Instance.DisableSelection());
 		}
 		#endregion
 
@@ -285,6 +287,8 @@ namespace XLObjectDropper.Controllers
 			}
 
 			DestroyQuickMenu();
+
+			StartCoroutine(UIManager.Instance.DisableQuickMenu());
 		}
 		#endregion
 
