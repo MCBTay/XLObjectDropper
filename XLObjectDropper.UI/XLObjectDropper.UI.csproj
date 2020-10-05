@@ -120,23 +120,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\BottomRowController.cs" />
+    <Compile Include="Controls\ControllerButtons\BottomRowController.cs" />
     <Compile Include="Controls\Buttons\AXYBButton.cs" />
-    <Compile Include="Controls\AXYBController.cs" />
+    <Compile Include="Controls\ControllerButtons\AXYBController.cs" />
     <Compile Include="Controls\Buttons\BumperButton.cs" />
-    <Compile Include="Controls\BumperController.cs" />
+    <Compile Include="Controls\ControllerButtons\BumperController.cs" />
     <Compile Include="Controls\Buttons\ButtonBase.cs" />
     <Compile Include="Controls\GrindableSettingsExpandable.cs" />
     <Compile Include="Controls\LightSettingsExpandable.cs" />
-    <Compile Include="Controls\DirectionalPadController.cs" />
+    <Compile Include="Controls\ControllerButtons\DirectionalPadController.cs" />
     <Compile Include="Controls\Expandable.cs" />
     <Compile Include="Controls\LoadSavedListItem.cs" />
     <Compile Include="Controls\SliderControl.cs" />
-    <Compile Include="Controls\StickController.cs" />
+    <Compile Include="Controls\ControllerButtons\StickController.cs" />
     <Compile Include="Controls\Buttons\TriggerButton.cs" />
     <Compile Include="Controls\StyleSettingsExpandable.cs" />
     <Compile Include="Controls\ToggleControl.cs" />
-    <Compile Include="Controls\TriggerController.cs" />
+    <Compile Include="Controls\ControllerButtons\TriggerController.cs" />
     <Compile Include="Controls\Vector3SliderControl.cs" />
     <Compile Include="Menus\LoadSavedUI.cs" />
     <Compile Include="Menus\ObjectEditUI.cs" />
@@ -163,5 +163,6 @@
       <Name>XLObjectDropper.SpawnableScripts</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

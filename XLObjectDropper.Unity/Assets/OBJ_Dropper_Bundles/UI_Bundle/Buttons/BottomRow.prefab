@@ -350,9 +350,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 6956031275656219703}
+  ButtonImage: {fileID: 0}
   ButtonPressed: {fileID: 4029440727109936412}
+  ButtonPressedImage: {fileID: 0}
   ButtonLabel: {fileID: 6956031275508099882}
-  ButtonName: Start
+  ControllerButton: 0
+  Xbox: {fileID: 0}
+  XboxPressed: {fileID: 0}
+  Playstation: {fileID: 0}
+  PlaystationPressed: {fileID: 0}
+  Switch: {fileID: 0}
+  SwitchPressed: {fileID: 0}
 --- !u!1 &6956031275508099876
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +566,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6956031275529047764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1881771748, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: -1413027799, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StartButton: {fileID: 3668803308803654589}
@@ -918,6 +926,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 6956031275895497818}
+  ButtonImage: {fileID: 0}
   ButtonPressed: {fileID: 5890063696867993688}
+  ButtonPressedImage: {fileID: 0}
   ButtonLabel: {fileID: 6956031276820679054}
-  ButtonName: Select
+  ControllerButton: 0
+  Xbox: {fileID: 0}
+  XboxPressed: {fileID: 0}
+  Playstation: {fileID: 0}
+  PlaystationPressed: {fileID: 0}
+  Switch: {fileID: 0}
+  SwitchPressed: {fileID: 0}

@@ -1,7 +1,6 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using XLObjectDropper.UI.Controls;
+using XLObjectDropper.UI.Controls.ControllerButtons;
 
 namespace XLObjectDropper.UI
 {

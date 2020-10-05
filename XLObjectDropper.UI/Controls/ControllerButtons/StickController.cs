@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace XLObjectDropper.UI.Controls
+namespace XLObjectDropper.UI.Controls.ControllerButtons
 {
 	public class StickController : MonoBehaviour
 	{

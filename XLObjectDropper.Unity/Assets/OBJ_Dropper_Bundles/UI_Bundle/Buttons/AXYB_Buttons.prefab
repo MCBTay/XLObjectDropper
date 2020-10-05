@@ -56,7 +56,6 @@ MonoBehaviour:
   ButtonPressed: {fileID: 6892813349796143544}
   ButtonPressedImage: {fileID: 541352718129414139}
   ButtonLabel: {fileID: 7921227295624715758}
-  ButtonName: X
   ControllerButton: 2
   Xbox: {fileID: 1179391602998847271, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
   XboxPressed: {fileID: -8368730357634322722, guid: 19533ca3f17ce0145827c947a5c0b081,
@@ -349,7 +348,6 @@ MonoBehaviour:
   ButtonPressed: {fileID: 1833267733577461725}
   ButtonPressedImage: {fileID: 2921188131763741751}
   ButtonLabel: {fileID: 7921227295311306794}
-  ButtonName: B
   ControllerButton: 1
   Xbox: {fileID: 2368901363655476514, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
   XboxPressed: {fileID: 2981542675632646441, guid: 19533ca3f17ce0145827c947a5c0b081,
@@ -417,7 +415,6 @@ MonoBehaviour:
   ButtonPressed: {fileID: 1550851174626302356}
   ButtonPressedImage: {fileID: 8734496431754783769}
   ButtonLabel: {fileID: 7921227295082655782}
-  ButtonName: A
   ControllerButton: 0
   Xbox: {fileID: 788179008988410771, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
   XboxPressed: {fileID: -1741461890141805444, guid: 19533ca3f17ce0145827c947a5c0b081,
@@ -560,7 +557,6 @@ MonoBehaviour:
   ButtonPressed: {fileID: 2773233337031610729}
   ButtonPressedImage: {fileID: 8632642091146617772}
   ButtonLabel: {fileID: 7921227295500519598}
-  ButtonName: Y
   ControllerButton: 3
   Xbox: {fileID: -2654047458616716842, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
   XboxPressed: {fileID: 4932758927961260346, guid: 19533ca3f17ce0145827c947a5c0b081,
@@ -1473,7 +1469,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7921227295690125027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1625431324, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: -418262241, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AButtonGameObject: {fileID: 4961445095926012532}

@@ -56,7 +56,6 @@ MonoBehaviour:
   ButtonPressed: {fileID: 4873089294306711635}
   ButtonPressedImage: {fileID: 4873089294306711633}
   ButtonLabel: {fileID: 6624100286700436106}
-  ButtonName: LT
   ControllerButton: 6
   Xbox: {fileID: -2327508155424014135, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
   XboxPressed: {fileID: -3351896017593636695, guid: 19533ca3f17ce0145827c947a5c0b081,
@@ -340,7 +339,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6624100285982096705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1467921064, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: 823002831, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LeftTrigger: {fileID: 5324018208226189487}
@@ -790,7 +789,6 @@ MonoBehaviour:
   ButtonPressed: {fileID: 4873089294402941814}
   ButtonPressedImage: {fileID: 4873089294402941812}
   ButtonLabel: {fileID: 6624100286838135045}
-  ButtonName: RT
   ControllerButton: 4
   Xbox: {fileID: 2408332968177133696, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
   XboxPressed: {fileID: 6930534114401881875, guid: 19533ca3f17ce0145827c947a5c0b081,
