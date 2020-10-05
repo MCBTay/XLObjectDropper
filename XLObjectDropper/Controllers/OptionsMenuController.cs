@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using XLObjectDropper.UI;
 using XLObjectDropper.UI.Menus;
 
 namespace XLObjectDropper.Controllers
@@ -8,6 +9,8 @@ namespace XLObjectDropper.Controllers
 	public class OptionsMenuController : MonoBehaviour
 	{
 		public static OptionsMenuUI OptionsMenu { get; set; }
+
+		[HideInInspector] public event UnityAction SaveLoaded = () => { };
 
 		private void Awake()
 		{
@@ -60,7 +63,7 @@ namespace XLObjectDropper.Controllers
 			RemoveListeners();
 		}
 
-		private static void SensitivityValueChanged(float value)
+		private void SensitivityValueChanged(float value)
 		{
 			Settings.Instance.Sensitivity = value;
 			Utilities.SaveManager.Instance.SaveSettings();
@@ -78,7 +81,7 @@ namespace XLObjectDropper.Controllers
 			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
-		private static void UndoClicked()
+		private void UndoClicked()
 		{
 			EventStack.EventStack.Instance.UndoAction();
 
@@ -86,7 +89,7 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 		}
 
-		private static void RedoClicked()
+		private void RedoClicked()
 		{
 			EventStack.EventStack.Instance.RedoAction();
 
@@ -94,14 +97,50 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 		}
 
-		private static void SaveClicked()
+		private void SaveClicked()
 		{
 			Utilities.SaveManager.Instance.SaveCurrentSpawnables();
 		}
 
-		private static void LoadClicked()
+		private void LoadClicked()
 		{
-			Utilities.SaveManager.Instance.LoadSave();
+			CreateLoadSaved();
+		}
+
+		private void Update()
+		{
+			if (UIManager.Instance.Player.GetButtonDown("B") && LoadSavedOpen)
+			{
+				DestroyLoadSaved();
+			}
+		}
+
+		private GameObject LoadSavedGameObject;
+		private LoadSavedController LoadSavedController;
+		public bool LoadSavedOpen => LoadSavedGameObject != null && LoadSavedGameObject.activeInHierarchy;
+
+		private void CreateLoadSaved()
+		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
+			LoadSavedGameObject = new GameObject();
+			LoadSavedController = LoadSavedGameObject.AddComponent<LoadSavedController>();
+			LoadSavedController.SaveLoaded += () => SaveLoaded.Invoke();
+			LoadSavedGameObject.SetActive(true);
+		}
+
+		private void DestroyLoadSaved()
+		{
+			if (LoadSavedGameObject == null || LoadSavedController == null) return;
+
+			LoadSavedController.LoadSavedUI.DestroyUnsavedChangesDialog();
+			LoadSavedController.LoadSavedUI.gameObject.SetActive(false);
+			
+
+			LoadSavedGameObject.SetActive(false);
+
+			DestroyImmediate(LoadSavedController);
+			DestroyImmediate(LoadSavedGameObject);
 		}
 	}
 }

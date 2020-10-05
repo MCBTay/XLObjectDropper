@@ -166,6 +166,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\LoadSavedController.cs" />
     <Compile Include="Controllers\ObjectDropperController.cs" />
     <Compile Include="Controllers\ObjectEditController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditGrindablesController.cs" />
