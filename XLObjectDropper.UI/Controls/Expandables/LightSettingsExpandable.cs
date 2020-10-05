@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace XLObjectDropper.UI.Controls.Buttons
+namespace XLObjectDropper.UI.Controls.Expandables
 {
 	public class LightSettingsExpandable : MonoBehaviour
 	{

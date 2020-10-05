@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-namespace XLObjectDropper.UI.Controls
+namespace XLObjectDropper.UI.Controls.Expandables
 {
 	public class Expandable : MonoBehaviour
 	{
@@ -11,7 +10,6 @@ namespace XLObjectDropper.UI.Controls
 		public GameObject Properties;
 		public GameObject PropertiesListContent;
 		public Animator Animator;
-		public Button Button;
 		[HideInInspector] public bool Expanded;
 		[HideInInspector] public UnityEvent onSelect;
 

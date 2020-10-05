@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace XLObjectDropper.UI.Controls
+namespace XLObjectDropper.UI.Controls.Expandables
 {
 	public class StyleSettingsExpandable : MonoBehaviour
 	{

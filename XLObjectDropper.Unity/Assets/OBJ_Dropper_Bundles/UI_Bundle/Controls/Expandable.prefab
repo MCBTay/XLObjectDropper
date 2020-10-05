@@ -454,14 +454,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4209294011185831998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1932563200, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: -899991780, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ExpandableItem: {fileID: 4209294011185831998}
   Properties: {fileID: 3323296764632983370}
   PropertiesListContent: {fileID: 3499844248125007327}
   Animator: {fileID: 8801418120544531797}
-  Button: {fileID: 0}
   Expanded: 0
   onSelect:
     m_PersistentCalls:

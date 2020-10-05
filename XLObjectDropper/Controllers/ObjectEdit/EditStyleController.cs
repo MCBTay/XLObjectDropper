@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using XLObjectDropper.SpawnableScripts;
 using XLObjectDropper.UI.Controls;
+using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
 

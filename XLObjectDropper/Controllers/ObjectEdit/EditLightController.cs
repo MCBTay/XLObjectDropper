@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 using XLObjectDropper.UI.Controls.Buttons;
+using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
 
 namespace XLObjectDropper.Controllers.ObjectEdit

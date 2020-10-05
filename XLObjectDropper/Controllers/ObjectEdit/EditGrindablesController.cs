@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using UnityEngine;
-using XLObjectDropper.UI.Controls;
+using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
 

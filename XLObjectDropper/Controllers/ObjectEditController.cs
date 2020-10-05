@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.UI.Controls;
 using XLObjectDropper.UI.Controls.Buttons;
+using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
 
 namespace XLObjectDropper.Controllers
