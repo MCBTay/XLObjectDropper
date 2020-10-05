@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XLObjectDropper.UI.Controls;
 
@@ -23,6 +25,7 @@ namespace XLObjectDropper.UI.Menus
 		[Space(10)]
 		public BottomRowController BottomRow;
 
+		public GameObject LoadSavedUI;
 		public Animator Animator;
 
 		[HideInInspector] public event UnityAction<float> SensitivityValueChanged = (x) => { };
@@ -44,8 +47,29 @@ namespace XLObjectDropper.UI.Menus
 			SetDefaultState(true);
 		}
 
+		private void Update()
+		{
+			if (UIManager.Instance.Player.GetButtonDown("B") && LoadSavedUI != null && LoadSavedUI.activeInHierarchy)
+			{
+				StartCoroutine(DisableLoadSavedUI());
+
+				SetAllInteractable(true);
+
+				EventSystem.current.SetSelectedGameObject(LoadButton.gameObject);
+			}
+		}
+
+		public IEnumerator DisableLoadSavedUI()
+		{
+			LoadSavedUI.GetComponent<LoadSavedUI>().Animator.Play("SlideOut");
+			yield return new WaitForSeconds(0.2f);
+			LoadSavedUI.SetActive(false);
+		}
+
 		private void SetDefaultState(bool enabled)
 		{
+			LoadSavedUI.SetActive(false);
+
 			Sensitivity.onValueChanged.RemoveAllListeners();
 			InvertCamControl.onValueChanged.RemoveAllListeners();
 			ShowGrid.onValueChanged.RemoveAllListeners();
@@ -53,6 +77,8 @@ namespace XLObjectDropper.UI.Menus
 			RedoButton.onClick.RemoveAllListeners();
 			SaveButton.onClick.RemoveAllListeners();
 			LoadButton.onClick.RemoveAllListeners();
+
+			SetAllInteractable(true);
 
 			Sensitivity.gameObject.SetActive(enabled);
 			InvertCamControl.gameObject.SetActive(enabled);
@@ -70,8 +96,26 @@ namespace XLObjectDropper.UI.Menus
 				UndoButton.onClick.AddListener(delegate { UndoClicked.Invoke(); });
 				RedoButton.onClick.AddListener(delegate { RedoClicked.Invoke(); });
 				SaveButton.onClick.AddListener(delegate { SaveClicked.Invoke(); });
-				LoadButton.onClick.AddListener(delegate { LoadClicked.Invoke(); });
+				
+				LoadButton.onClick.AddListener(delegate
+				{
+					LoadClicked.Invoke();
+					LoadSavedUI.SetActive(true);
+
+					SetAllInteractable(false);
+				});
 			}
+		}
+
+		private void SetAllInteractable(bool interactable)
+		{
+			Sensitivity.interactable = interactable;
+			InvertCamControl.interactable = interactable;
+			ShowGrid.interactable = interactable;
+			UndoButton.interactable = interactable;
+			RedoButton.interactable = interactable;
+			SaveButton.interactable = interactable;
+			LoadButton.interactable = interactable;
 		}
 
 		private void OnDisable()
