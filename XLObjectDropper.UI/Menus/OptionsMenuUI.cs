@@ -54,7 +54,7 @@ namespace XLObjectDropper.UI.Menus
 			{
 				StartCoroutine(DisableLoadSavedUI());
 
-				SetAllInteractable(true);
+				//SetAllInteractable(true);
 
 				EventSystem.current.SetSelectedGameObject(LoadButton.gameObject);
 			}
@@ -67,29 +67,19 @@ namespace XLObjectDropper.UI.Menus
 			LoadSavedUI.SetActive(false);
 		}
 
-		private void SetDefaultState(bool enabled)
+		private void SetDefaultState(bool isEnabled)
 		{
 			LoadSavedUI.SetActive(false);
 
-			Sensitivity.onValueChanged.RemoveAllListeners();
-			InvertCamControl.onValueChanged.RemoveAllListeners();
-			ShowGrid.onValueChanged.RemoveAllListeners();
-			UndoButton.onClick.RemoveAllListeners();
-			RedoButton.onClick.RemoveAllListeners();
-			SaveButton.onClick.RemoveAllListeners();
-			LoadButton.onClick.RemoveAllListeners();
+			SetDefaultState(Sensitivity, isEnabled);
+			SetDefaultState(InvertCamControl, isEnabled);
+			SetDefaultState(ShowGrid, isEnabled);
+			SetDefaultState(UndoButton, isEnabled);
+			SetDefaultState(RedoButton, isEnabled);
+			SetDefaultState(SaveButton, isEnabled);
+			SetDefaultState(LoadButton, isEnabled);
 
-			SetAllInteractable(true);
-
-			Sensitivity.gameObject.SetActive(enabled);
-			InvertCamControl.gameObject.SetActive(enabled);
-			ShowGrid.gameObject.SetActive(enabled);
-			UndoButton.gameObject.SetActive(enabled);
-			RedoButton.gameObject.SetActive(enabled);
-			SaveButton.gameObject.SetActive(enabled);
-			LoadButton.gameObject.SetActive(enabled);
-
-			if (enabled)
+			if (isEnabled)
 			{
 				Sensitivity.onValueChanged.AddListener(delegate { SensitivityValueChanged.Invoke(Sensitivity.GetComponent<Slider>().value); });
 				InvertCamControl.onValueChanged.AddListener(delegate { InvertCamControlValueChanged.Invoke(InvertCamControl.GetComponent<Toggle>().isOn); });
@@ -106,6 +96,27 @@ namespace XLObjectDropper.UI.Menus
 					SetAllInteractable(false);
 				});
 			}
+		}
+
+		private void SetDefaultState(Slider slider, bool isEnabled)
+		{
+			slider.onValueChanged.RemoveAllListeners();
+			slider.interactable = true;
+			slider.gameObject.SetActive(isEnabled);
+		}
+
+		private void SetDefaultState(Toggle toggle, bool isEnabled)
+		{
+			toggle.onValueChanged.RemoveAllListeners();
+			toggle.interactable = true;
+			toggle.gameObject.SetActive(isEnabled);
+		}
+
+		private void SetDefaultState(Button button, bool isEnabled)
+		{
+			button.onClick.RemoveAllListeners();
+			button.interactable = true;
+			button.gameObject.SetActive(isEnabled);
 		}
 
 		private void SetAllInteractable(bool interactable)

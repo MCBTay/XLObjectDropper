@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using XLObjectDropper.UI;
 using XLObjectDropper.UI.Menus;
+using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Controllers
 {
@@ -11,6 +13,10 @@ namespace XLObjectDropper.Controllers
 		public static OptionsMenuUI OptionsMenu { get; set; }
 
 		[HideInInspector] public event UnityAction SaveLoaded = () => { };
+
+		private GameObject LoadSavedGameObject;
+		private LoadSavedController LoadSavedController;
+		public bool LoadSavedOpen => LoadSavedGameObject != null && LoadSavedGameObject.activeInHierarchy;
 
 		private void Awake()
 		{
@@ -27,11 +33,20 @@ namespace XLObjectDropper.Controllers
 
 			AddListeners();
 
-			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
-			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
-
 			EventSystem.current.SetSelectedGameObject(OptionsMenu.Sensitivity.gameObject);
 			OptionsMenu.Sensitivity.OnSelect(null);
+		}
+
+		private void Update()
+		{
+			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
+			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
+			OptionsMenu.EnableSaveButton(SpawnableManager.SpawnedObjects.Any() && Utilities.SaveManager.Instance.HasUnsavedChanges);
+
+			if (UIManager.Instance.Player.GetButtonDown("B") && LoadSavedOpen)
+			{
+				DestroyLoadSaved();
+			}
 		}
 
 		private void AddListeners()
@@ -84,17 +99,11 @@ namespace XLObjectDropper.Controllers
 		private void UndoClicked()
 		{
 			EventStack.EventStack.Instance.UndoAction();
-
-			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
-			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 		}
 
 		private void RedoClicked()
 		{
 			EventStack.EventStack.Instance.RedoAction();
-
-			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
-			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 		}
 
 		private void SaveClicked()
@@ -106,18 +115,6 @@ namespace XLObjectDropper.Controllers
 		{
 			CreateLoadSaved();
 		}
-
-		private void Update()
-		{
-			if (UIManager.Instance.Player.GetButtonDown("B") && LoadSavedOpen)
-			{
-				DestroyLoadSaved();
-			}
-		}
-
-		private GameObject LoadSavedGameObject;
-		private LoadSavedController LoadSavedController;
-		public bool LoadSavedOpen => LoadSavedGameObject != null && LoadSavedGameObject.activeInHierarchy;
 
 		private void CreateLoadSaved()
 		{
