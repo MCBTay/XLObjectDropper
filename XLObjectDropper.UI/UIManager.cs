@@ -165,7 +165,7 @@ namespace XLObjectDropper.UI
 						loadSavedUI.DestroyUnsavedChangesDialog();
 					}
 
-					yield return StartCoroutine(optionsMenu.DisableLoadSavedUI());
+					StartCoroutine(optionsMenu.DisableLoadSavedUI());
 				}
 			}
 
