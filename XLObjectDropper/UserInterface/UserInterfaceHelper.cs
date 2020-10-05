@@ -8,7 +8,6 @@ using XLObjectDropper.Controllers;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UI.Menus;
-using XLObjectDropper.UI.Utilities;
 using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.UserInterface
@@ -36,6 +35,7 @@ namespace XLObjectDropper.UserInterface
 
 				ObjectMovementController.MovementUI = UserInterface.GetComponentInChildren<ObjectPlacementUI>(true);
 				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>(true);
+				LoadSavedController.LoadSavedUI = UserInterface.GetComponentInChildren<LoadSavedUI>(true);
 				ObjectSelectionController.ObjectSelection = UserInterface.GetComponentInChildren<ObjectSelectionUI>(true);
 				QuickMenuController.QuickMenu = UserInterface.GetComponentInChildren<QuickMenuUI>(true);
 				ObjectEditController.ObjectEdit = UserInterface.GetComponentInChildren<ObjectEditUI>(true);
