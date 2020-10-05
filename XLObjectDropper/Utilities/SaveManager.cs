@@ -22,6 +22,9 @@ namespace XLObjectDropper.Utilities
 
 		public List<LevelSaveData> LoadedSaves;
 
+		//TODO: Actually implement this
+		public bool HasUnsavedChanges = true;
+
 		public void SaveCurrentSpawnables()
 		{
 			var levelConfigToSave = new LevelSaveData
@@ -109,7 +112,10 @@ namespace XLObjectDropper.Utilities
 
 					try
 					{
-						LoadedSaves.Add(JsonConvert.DeserializeObject<LevelSaveData>(content));
+						var loadedLevelSave = JsonConvert.DeserializeObject<LevelSaveData>(content);
+						loadedLevelSave.filePath = saveFile;
+
+						LoadedSaves.Add(loadedLevelSave);
 					}
 					catch (Exception ex)
 					{
@@ -138,51 +144,6 @@ namespace XLObjectDropper.Utilities
 			}
 
 			return LoadedSaves.Where(x => x.levelName == name).ToList();
-		}
-
-		public void LoadSave()
-		{
-			var filePath = Path.Combine(SaveDir, "test.json");
-
-			if (!Directory.Exists(SaveDir))
-			{
-				Directory.CreateDirectory(SaveDir);
-			}
-
-			if (!File.Exists(filePath)) return;
-
-			var levelSaveData = JsonConvert.DeserializeObject<LevelSaveData>(File.ReadAllText(filePath));
-			if (levelSaveData.gameObjects == null || !levelSaveData.gameObjects.Any()) return;
-
-			foreach (var spawnable in levelSaveData.gameObjects)
-			{
-				var position = new Vector3(spawnable.position.x, spawnable.position.y, spawnable.position.z);
-				var rotation = new Quaternion(spawnable.rotation.x, spawnable.rotation.y, spawnable.rotation.z, spawnable.rotation.w);
-
-				var prefab = SpawnableManager.Prefabs.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name));
-
-				if (prefab == null) continue;
-
-				var newObject = Object.Instantiate(prefab.Prefab, position, rotation);
-				newObject.SetActive(true);
-
-				if (spawnable.lighting != null)
-				{
-					var light = newObject.GetComponentInChildren<Light>(true);
-					var hdLight = light.GetComponent<HDAdditionalLightData>();
-
-					light.enabled = spawnable.lighting.enabled;
-					hdLight.enabled = spawnable.lighting.enabled;
-
-					hdLight.lightUnit = spawnable.lighting.unit;
-					hdLight.intensity = spawnable.lighting.intensity;
-					hdLight.range = spawnable.lighting.range;
-					hdLight.SetSpotAngle(spawnable.lighting.angle);
-					hdLight.color = new Color(spawnable.lighting.color.x, spawnable.lighting.color.y, spawnable.lighting.color.z);
-				}
-
-				SpawnableManager.SpawnedObjects.Add(new Spawnable(prefab.Prefab, newObject, prefab.PreviewTexture));
-			}
 		}
 
 		// TODO: Does this really belong here?
