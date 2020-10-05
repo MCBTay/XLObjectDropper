@@ -49,14 +49,12 @@ namespace XLObjectDropper.UI
 			ObjectEditUI.SetActive(false);
         }
 
-        
-
-		// Update is called once per frame
+        // Update is called once per frame
 		private void Update()
         {
 	        if (Player.GetButtonDown("B"))
 	        {
-		        if (OptionsMenuUI.activeInHierarchy) 
+		        if (OptionsMenuUI.activeInHierarchy && (OptionsMenuUI.GetComponent<OptionsMenuUI>().LoadSavedUI == null || !OptionsMenuUI.GetComponent<OptionsMenuUI>().LoadSavedUI.activeInHierarchy))
 			        StartCoroutine(DisableOptionsMenu());
 
 		        if (ObjectSelectionUI.activeInHierarchy) 
@@ -69,7 +67,7 @@ namespace XLObjectDropper.UI
 			        StartCoroutine(DisableObjectEdit());
 			}
 
-			//TODO: Get rid of t his shit
+			//TODO: Get rid of this shit, this should be a child of object movement
 			if (Player.GetButtonDown("X") && 
 				!Player.GetButton("RB") && !Player.GetButton("LB") &&
 			    (ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasSelectedObject || ObjectPlacementUI.GetComponent<ObjectPlacementUI>().HasHighlightedObject))
@@ -153,7 +151,25 @@ namespace XLObjectDropper.UI
 
 		public IEnumerator DisableOptionsMenu()
 		{
-			OptionsMenuUI.GetComponent<OptionsMenuUI>().Animator.Play("SlideOut");
+			var optionsMenu = OptionsMenuUI.GetComponent<OptionsMenuUI>();
+			if (optionsMenu == null) yield break;
+
+			if (optionsMenu?.LoadSavedUI != null && optionsMenu.LoadSavedUI.activeInHierarchy)
+			{
+				var loadSavedUI = optionsMenu.LoadSavedUI.GetComponent<LoadSavedUI>();
+
+				if (loadSavedUI != null)
+				{
+					if (loadSavedUI.UnsavedChangesDialog != null && loadSavedUI.UnsavedChangesDialog.activeInHierarchy)
+					{
+						loadSavedUI.DestroyUnsavedChangesDialog();
+					}
+
+					yield return StartCoroutine(optionsMenu.DisableLoadSavedUI());
+				}
+			}
+
+			optionsMenu?.Animator.Play("SlideOut");
 
 			yield return new WaitForSeconds(0.2f);
 
