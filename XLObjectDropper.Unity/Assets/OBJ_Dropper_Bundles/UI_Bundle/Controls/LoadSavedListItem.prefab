@@ -640,13 +640,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7283047517104527542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -532547434, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: 1471824261, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ListItem: {fileID: 7283047517104527542}
   Name: {fileID: 2501036502377900822}
   LastSaved: {fileID: 7776901372830986537}
   NumObjects: {fileID: 2802849591036952835}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2069097787365564492
 MonoBehaviour:
   m_ObjectHideFlags: 0

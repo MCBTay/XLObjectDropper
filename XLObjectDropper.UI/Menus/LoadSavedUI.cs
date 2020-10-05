@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XLObjectDropper.UI.Controls;
+using XLObjectDropper.UI.Controls.ListItems;
 using Color = XLObjectDropper.UI.Utilities.Color;
 
 namespace XLObjectDropper.UI.Menus

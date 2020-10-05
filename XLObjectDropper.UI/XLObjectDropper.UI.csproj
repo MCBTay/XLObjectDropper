@@ -130,7 +130,7 @@
     <Compile Include="Controls\Expandables\LightSettingsExpandable.cs" />
     <Compile Include="Controls\ControllerButtons\DirectionalPadController.cs" />
     <Compile Include="Controls\Expandables\Expandable.cs" />
-    <Compile Include="Controls\LoadSavedListItem.cs" />
+    <Compile Include="Controls\ListItems\LoadSavedListItem.cs" />
     <Compile Include="Controls\SliderControl.cs" />
     <Compile Include="Controls\ControllerButtons\StickController.cs" />
     <Compile Include="Controls\Buttons\TriggerButton.cs" />
@@ -146,7 +146,7 @@
     <Compile Include="Utilities\PlatformHelper.cs" />
     <Compile Include="Utilities\Enumerations.cs" />
     <Compile Include="Menus\ObjectSelectionBase.cs" />
-    <Compile Include="Controls\ObjectSelectionListItem.cs" />
+    <Compile Include="Controls\ListItems\ObjectSelectionListItem.cs" />
     <Compile Include="ObjectPlacementUI.cs" />
     <Compile Include="Menus\ObjectSelectionUI.cs" />
     <Compile Include="Menus\OptionsMenuUI.cs" />

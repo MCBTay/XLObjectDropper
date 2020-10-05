@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace XLObjectDropper.UI.Controls
+namespace XLObjectDropper.UI.Controls.ListItems
 {
 	public class LoadSavedListItem : MonoBehaviour
 	{
