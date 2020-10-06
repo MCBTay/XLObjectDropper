@@ -202,7 +202,7 @@ PrefabInstance:
     - target: {fileID: 9131791461156327778, guid: 9149a9d89cbc23444acb02e7a057c760,
         type: 3}
       propertyPath: m_textAlignment
-      value: 513
+      value: 1025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9149a9d89cbc23444acb02e7a057c760, type: 3}
@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 1107259140580715657, guid: a26688df80ed7f84f8fa2b68d97e1e86,
         type: 3}
       propertyPath: m_textAlignment
-      value: 513
+      value: 1025
       objectReference: {fileID: 0}
     - target: {fileID: 1818609621530618331, guid: a26688df80ed7f84f8fa2b68d97e1e86,
         type: 3}
@@ -253,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 1818609621530618331, guid: a26688df80ed7f84f8fa2b68d97e1e86,
         type: 3}
       propertyPath: m_textAlignment
-      value: 513
+      value: 1025
       objectReference: {fileID: 0}
     - target: {fileID: 3272014736534182118, guid: a26688df80ed7f84f8fa2b68d97e1e86,
         type: 3}
@@ -268,7 +268,7 @@ PrefabInstance:
     - target: {fileID: 3272014736534182118, guid: a26688df80ed7f84f8fa2b68d97e1e86,
         type: 3}
       propertyPath: m_textAlignment
-      value: 513
+      value: 1025
       objectReference: {fileID: 0}
     - target: {fileID: 5273163251788932963, guid: a26688df80ed7f84f8fa2b68d97e1e86,
         type: 3}
@@ -439,6 +439,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textAlignment
       value: 257
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563233259486261553, guid: a26688df80ed7f84f8fa2b68d97e1e86,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.19607845
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563233259486261553, guid: a26688df80ed7f84f8fa2b68d97e1e86,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563233259486261553, guid: a26688df80ed7f84f8fa2b68d97e1e86,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.9215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563233259486261553, guid: a26688df80ed7f84f8fa2b68d97e1e86,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4293625394
       objectReference: {fileID: 0}
     - target: {fileID: 7583483774192918402, guid: a26688df80ed7f84f8fa2b68d97e1e86,
         type: 3}
@@ -689,7 +709,7 @@ PrefabInstance:
     - target: {fileID: 9131791461156327778, guid: 9149a9d89cbc23444acb02e7a057c760,
         type: 3}
       propertyPath: m_textAlignment
-      value: 513
+      value: 1025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9149a9d89cbc23444acb02e7a057c760, type: 3}
@@ -870,7 +890,7 @@ PrefabInstance:
     - target: {fileID: 5829621286818499298, guid: 9149a9d89cbc23444acb02e7a057c760,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.5
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 6339646078253392734, guid: 9149a9d89cbc23444acb02e7a057c760,
         type: 3}
@@ -915,7 +935,7 @@ PrefabInstance:
     - target: {fileID: 9131791461156327778, guid: 9149a9d89cbc23444acb02e7a057c760,
         type: 3}
       propertyPath: m_textAlignment
-      value: 513
+      value: 1025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9149a9d89cbc23444acb02e7a057c760, type: 3}
@@ -1006,11 +1026,16 @@ PrefabInstance:
     - target: {fileID: 2790196021482685030, guid: 903752381408a634886881c69f1086ef,
         type: 3}
       propertyPath: m_Padding.m_Bottom
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2790196021482685030, guid: 903752381408a634886881c69f1086ef,
         type: 3}
       propertyPath: m_ChildForceExpandWidth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2790196021482685030, guid: 903752381408a634886881c69f1086ef,
+        type: 3}
+      propertyPath: m_ChildForceExpandHeight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2873522928200485819, guid: 903752381408a634886881c69f1086ef,
@@ -1242,8 +1267,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: a69486f882ac3544aaa50b5f9c2f6b0c,
-        type: 2}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 903752381408a634886881c69f1086ef, type: 3}
 --- !u!1 &49075056469604195 stripped
