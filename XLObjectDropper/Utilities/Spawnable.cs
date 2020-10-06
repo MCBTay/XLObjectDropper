@@ -15,6 +15,7 @@ namespace XLObjectDropper.Utilities
 		public Texture2D PreviewTexture;
 		public string BundleName;
 		public List<Spawnable> AlternateStyles;
+		public bool HideInReplays { get; set; }
 
 		public Spawnable(Enumerations.SpawnableType type, GameObject prefab, AssetBundle bundle)
 		{

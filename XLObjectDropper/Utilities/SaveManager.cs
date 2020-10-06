@@ -50,6 +50,11 @@ namespace XLObjectDropper.Utilities
 					localScale = new SerializableVector3(instance.transform.localScale)
 				};
 
+				objectSaveData.general = new GeneralSaveData()
+				{
+					hideInReplays = spawnable.HideInReplays
+				};
+
 				var light = instance.GetComponentInChildren<Light>(true);
 
 				if (light != null)

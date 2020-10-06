@@ -11,6 +11,7 @@ namespace XLObjectDropper.Utilities.Save
 		public SerializableQuaternion rotation;
 		public SerializableVector3 localScale;
 
+		public GeneralSaveData general;
 		public LightingSaveData lighting;
 		public GrindableSaveData grindables;
 	}

@@ -169,12 +169,14 @@
     <Compile Include="Controllers\LoadSavedController.cs" />
     <Compile Include="Controllers\ObjectDropperController.cs" />
     <Compile Include="Controllers\ObjectEditController.cs" />
+    <Compile Include="Controllers\ObjectEdit\EditGeneralController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditGrindablesController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditLightController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditStyleController.cs" />
     <Compile Include="Controllers\QuickMenuController.cs" />
     <Compile Include="Controllers\RotationAndScaleController.cs" />
     <Compile Include="Controllers\SnappingModeController.cs" />
+    <Compile Include="Patches\GameManagement\ReplayStatePatch.cs" />
     <Compile Include="Patches\LevelManagerPatch.cs" />
     <Compile Include="Utilities\AssetBundleHelper.cs" />
     <Compile Include="Controllers\OptionsMenuController.cs" />
@@ -190,6 +192,7 @@
     <Compile Include="Utilities\SaveManager.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utilities\Save\GameObjectSaveData.cs" />
+    <Compile Include="Utilities\Save\GeneralSaveData.cs" />
     <Compile Include="Utilities\Save\GrindableSaveData.cs" />
     <Compile Include="Utilities\Save\LevelSaveData.cs" />
     <Compile Include="Utilities\Save\LightingSaveData.cs" />

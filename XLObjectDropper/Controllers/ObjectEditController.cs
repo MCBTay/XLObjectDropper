@@ -2,8 +2,6 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using XLObjectDropper.Controllers.ObjectEdit;
-using XLObjectDropper.UI.Controls;
-using XLObjectDropper.UI.Controls.Buttons;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
 
@@ -12,16 +10,11 @@ namespace XLObjectDropper.Controllers
 	public class ObjectEditController : MonoBehaviour
 	{
 		public GameObject SelectedObject;
-
 		public static ObjectEditUI ObjectEdit { get; set; }
-
-		
-
-		//public event UnityAction<Spawnable> ObjectClickedEvent = (x) => { };
 
 		private void OnEnable()
 		{
-			//ObjectEdit.ClearList();
+			ObjectEdit.ClearList();
 		}
 
 		private void OnDisable()
@@ -31,6 +24,7 @@ namespace XLObjectDropper.Controllers
 
 		private void Start()
 		{
+			EditGeneralController.AddOptions(SelectedObject, ObjectEdit);
 			EditStyleController.AddStyleOptions(SelectedObject, ObjectEdit);
 			EditLightController.AddLightOptions(SelectedObject, ObjectEdit);
 			EditGrindablesController.AddGrindablesOptions(SelectedObject, ObjectEdit);
@@ -39,35 +33,29 @@ namespace XLObjectDropper.Controllers
 			{
 				var firstChild = ObjectEdit.ListContent.transform.GetChild(0).gameObject;
 
-					var animator = firstChild?.GetComponent<Animator>();
+				var expandable = firstChild?.GetComponent<Expandable>();
 
-					if (animator != null)
-					{
-						animator.Play("Expand");
-					}
+				if (expandable != null)
+				{
+					var general = firstChild.GetComponent<GeneralSettingsExpandable>() == null ? null : firstChild.GetComponent<GeneralSettingsExpandable>().HideInReplays.gameObject;
+					var styles = firstChild.GetComponent<StyleSettingsExpandable>() == null ? null : expandable.PropertiesListContent.transform.GetChild(0).gameObject;
+					var lights = firstChild.GetComponent<LightSettingsExpandable>() == null ? null : firstChild.GetComponent<LightSettingsExpandable>().EnabledToggle.gameObject;
+					var grindables = firstChild.GetComponent<GrindableSettingsExpandable>() == null ? null : firstChild.GetComponent<GrindableSettingsExpandable>().GrindablesToggle.gameObject;
 
-					var expandable = firstChild?.GetComponent<Expandable>();
+					var selectedObj = general == null 
+						? (styles == null 
+							? (lights == null 
+								? grindables 
+								: lights) 
+							: styles)
+						: general;
 
-					if (expandable != null)
-					{
-						expandable.Properties.SetActive(true);
-						expandable.Expanded = true;
+					if (selectedObj == null) return;
 
-						var styles = firstChild.GetComponent<StyleSettingsExpandable>();
-						var lights = firstChild.GetComponent<LightSettingsExpandable>();
-						var grindables = firstChild.GetComponent<GrindableSettingsExpandable>();
+					var selectable = selectedObj.GetComponentInChildren<Selectable>(true);
 
-						var selectedObj =
-							styles != null ?
-								expandable.PropertiesListContent.transform.GetChild(0).gameObject :
-								(lights != null ? lights.EnabledToggle.gameObject :
-									(grindables != null ? grindables.GrindablesToggle.gameObject : null));
-
-						var selectable = selectedObj.GetComponentInChildren<Selectable>(true);
-
-						EventSystem.current.SetSelectedGameObject(selectable.gameObject);
-						selectable.OnSelect(null);
-
+					EventSystem.current.SetSelectedGameObject(selectable.gameObject);
+					selectable.OnSelect(null);
 				}
 			}
 		}

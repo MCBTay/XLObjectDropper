@@ -2,7 +2,6 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using XLObjectDropper.UI.Controls;
 using XLObjectDropper.UI.Controls.ListItems;
 
 namespace XLObjectDropper.UI.Menus
@@ -15,6 +14,7 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject StyleSettingsPrefab;
 		public GameObject LightSettingsPrefab;
 		public GameObject GrindableSettingsPrefab;
+		public GameObject GeneralSettingsPrefab;
 
 		public Animator Animator;
 
@@ -36,6 +36,11 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject AddStyleSettings(UnityAction objectClicked = null, UnityAction objectSelected = null)
 		{
 			return AddSettings(StyleSettingsPrefab, objectClicked, objectSelected);
+		}
+
+		public GameObject AddGeneralSettings(UnityAction objectClicked = null, UnityAction objectSelected = null)
+		{
+			return AddSettings(GeneralSettingsPrefab, objectClicked, objectSelected);
 		}
 
 		public GameObject AddSettings(GameObject prefab, UnityAction objectClicked = null, UnityAction objectSelected = null)

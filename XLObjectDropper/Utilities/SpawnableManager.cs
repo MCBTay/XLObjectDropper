@@ -47,6 +47,12 @@ namespace XLObjectDropper.Utilities
 			var name = gameObject.name.Replace("(Clone)", string.Empty);
 			return Prefabs.FirstOrDefault(x => name.Equals(x.Prefab.name));
 		}
+
+		public static Spawnable GetSpawnableFromSpawned(this GameObject gameObject)
+		{
+			var name = gameObject.name.Replace("(Clone)", string.Empty);
+			return SpawnedObjects.FirstOrDefault(x => name.Equals(x.Prefab.name));
+		}
 		#endregion
 	}
 }
