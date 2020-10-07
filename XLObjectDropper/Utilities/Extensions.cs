@@ -61,7 +61,13 @@ namespace XLObjectDropper
 
 		public static LayerInfo GetObjectLayers(this Transform transform, LayerInfo parent = null)
 		{
-			var layerInfo = new LayerInfo { GameObjectName = transform.name, Layer = transform.gameObject.layer, Enabled = transform.gameObject.activeInHierarchy, Parent = parent };
+			var layerInfo = new LayerInfo
+			{
+				GameObjectName = transform.name, 
+				Layer = transform.gameObject.layer, 
+				Enabled = transform.gameObject.activeInHierarchy, 
+				Parent = parent
+			};
 
 			foreach (Transform child in transform)
 			{
