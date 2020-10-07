@@ -6,9 +6,15 @@ using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Controllers.ObjectEdit
 {
-	public class EditGrindablesController
+	public class EditGrindablesController : IObjectSettings
 	{
-		public static void AddGrindablesOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
+		private static EditGrindablesController _instance;
+		public static EditGrindablesController Instance => _instance ?? (_instance = new EditGrindablesController());
+
+		public bool GrindableEnabled;
+		public bool CopingEnabled;
+
+		public void AddOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
 		{
 			if (ObjectMovementController.Instance.SelectedObjectLayerInfo == null) return;
 
@@ -24,6 +30,9 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			var expandable = grindableExpandable.GetComponent<GrindableSettingsExpandable>();
 
+			var spawnable = SelectedObject.GetSpawnableFromSpawned() ?? SelectedObject.GetSpawnable();
+			if (spawnable == null) return;
+
 			if (!hasGrindables)
 			{
 				expandable.GrindablesToggle.Toggle.interactable = false;
@@ -31,10 +40,19 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			else
 			{
 				expandable.GrindablesToggle.Toggle.interactable = true;
-				expandable.GrindablesToggle.onValueChanged += (isOn) =>
+				expandable.GrindablesToggle.Toggle.onValueChanged.AddListener((isOn) =>
 				{
-					// enable/disable gameobjects on grindable layer
-				};
+					GrindableEnabled = isOn;
+
+					if (ObjectMovementController.Instance.HighlightedObjectActive && ObjectMovementController.Instance.HighlightedObjectLayerInfo != null)
+					{
+						DisableLayer(ObjectMovementController.Instance.HighlightedObjectLayerInfo, "Grindable", isOn);
+					}
+					else if (ObjectMovementController.Instance.SelectedObjectActive && ObjectMovementController.Instance.SelectedObjectLayerInfo != null)
+					{
+						DisableLayer(ObjectMovementController.Instance.SelectedObjectLayerInfo, "Grindable", isOn);
+					}
+				});
 			}
 
 			if (!hasCoping)
@@ -44,10 +62,32 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			else
 			{
 				expandable.CopingToggle.Toggle.interactable = true;
-				expandable.CopingToggle.onValueChanged += (isOn) =>
+				expandable.CopingToggle.Toggle.onValueChanged.AddListener((isOn) =>
 				{
-					// enable/disable gameobjects on coping layer
-				};
+					CopingEnabled = isOn;
+
+					if (ObjectMovementController.Instance.HighlightedObjectActive && ObjectMovementController.Instance.HighlightedObjectLayerInfo != null)
+					{
+						DisableLayer(ObjectMovementController.Instance.HighlightedObjectLayerInfo, "Coping", isOn);
+					}
+					else if (ObjectMovementController.Instance.SelectedObjectActive && ObjectMovementController.Instance.SelectedObjectLayerInfo != null)
+					{
+						DisableLayer(ObjectMovementController.Instance.SelectedObjectLayerInfo, "Coping", isOn);
+					}
+				});
+			}
+		}
+
+		private void DisableLayer(LayerInfo layerInfo, string layerName, bool isEnabled)
+		{
+			if (layerInfo.Layer == LayerMask.NameToLayer(layerName))
+			{
+				ObjectMovementController.Instance.SelectedObjectLayerInfo.Enabled = isEnabled;
+			}
+
+			foreach (var child in layerInfo.Children)
+			{
+				DisableLayer(child, layerName, isEnabled);
 			}
 		}
 	}

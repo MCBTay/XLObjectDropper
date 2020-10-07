@@ -1,27 +1,36 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using XLObjectDropper.SpawnableScripts;
-using XLObjectDropper.UI.Controls;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Controllers.ObjectEdit
 {
-	public static class EditStyleController
+	public class EditStyleController : IObjectSettings
 	{
-		public static GameObject SelectedObject;
+		private static EditGeneralController _instance;
+		public static EditGeneralController Instance => _instance ?? (_instance = new EditGeneralController());
 
+		public GameObject SelectedObject;
+		public List<Spawnable> Styles;
 
-		public static void AddStyleOptions(GameObject selectedObject, ObjectEditUI ObjectEdit)
+		public EditStyleController()
+		{
+			Styles = new List<Spawnable>();
+		}
+
+		public void AddOptions(GameObject selectedObject, ObjectEditUI ObjectEdit)
 		{
 			SelectedObject = selectedObject;
 
 			var spawnable = selectedObject.GetSpawnable();
 
-			if (spawnable?.AlternateStyles == null || !spawnable.AlternateStyles.Any()) return;
+			var stylesController = spawnable.Settings.FirstOrDefault(x => x is EditStyleController) as EditStyleController;
+			if (stylesController?.Styles == null || !stylesController.Styles.Any()) return;
 
 			var newExpandable = ObjectEdit.AddStyleSettings();
 
@@ -39,7 +48,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			AddListItem(styleExpandable.ListItemPrefab, expandable.PropertiesListContent.transform, spawnable, name);
 
-			foreach (var altStyle in spawnable.AlternateStyles)
+			foreach (var altStyle in stylesController.Styles)
 			{
 				style = altStyle.Prefab.GetComponent<StyleController>().Style;
 				subStyle = altStyle.Prefab.GetComponent<StyleController>().SubStyle;
@@ -54,9 +63,9 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			}
 		}
 
-		private static void AddListItem(GameObject prefab, Transform listContent, Spawnable spawnable, string customName = null)
+		private void AddListItem(GameObject prefab, Transform listContent, Spawnable spawnable, string customName = null)
 		{
-			var listItem = GameObject.Instantiate(prefab, listContent);
+			var listItem = Object.Instantiate(prefab, listContent);
 
 			if (!string.IsNullOrEmpty(customName))
 			{
