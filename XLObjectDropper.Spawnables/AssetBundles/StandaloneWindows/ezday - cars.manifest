@@ -1,0 +1,39 @@
+ManifestFileVersion: 0
+CRC: 573968706
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 82e93822d8d08b88eb736b6a2219ed96
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ad72443c5ec7afa11a877f2b859d8408
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 205
+  Script: {instanceID: 0}
+Assets:
+- Assets/EZDayProps/Prefabs/Cars/P_Car_White.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_Red.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_SchoolBus.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_Cop.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_Taxi.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_Van.prefab
+Dependencies: []

@@ -1,0 +1,91 @@
+ManifestFileVersion: 0
+CRC: 2259341425
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b4ad7f3f16f2947e83a8da27f970b27a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3134ef530dee5e72f50b7472e199149c
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c6c2871f720b2af4e9210febdac74517, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 205
+  Script: {instanceID: 0}
+Assets:
+- Assets/Soldino Props Pack/Props/Prefabs/FireHydrant.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BankCurb.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BarrierDamaged.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/WorklightSmall.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BenchHatchet.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/MagazineBox_YZ_Orange.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/RecyclingBin.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/WorklightGenerator.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BenchFloating.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/Dumpster.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/StopLight1.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/PlywoodSmall.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/Plywood.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/Barrier.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/MagazineBox_YZ_White.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BusStop.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/JerseyBarrier.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/KickerWood.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/CopCar.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/DIYRamp.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/MagazineBox_240p.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/KickerPlastic.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/CopCar_NoLights.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/Cinderblock.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/StopLight2.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/RainbowRail.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/PlasticBarrier.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/QPWood.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/ParkingBlock.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BarrierEnd.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/ElectricBox.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BarrierWorn.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BenchConcrete.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/FlatRail.prefab
+Dependencies: []
