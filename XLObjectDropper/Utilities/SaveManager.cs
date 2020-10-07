@@ -6,7 +6,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
+using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.Utilities.Save;
+using XLObjectDropper.Utilities.Save.Settings;
 using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Utilities
@@ -50,10 +52,28 @@ namespace XLObjectDropper.Utilities
 					localScale = new SerializableVector3(instance.transform.localScale)
 				};
 
-				objectSaveData.general = new GeneralSaveData()
+				if (spawnable.Settings.FirstOrDefault(x => x is EditGeneralController) is EditGeneralController generalSettings)
 				{
-					hideInReplays = spawnable.HideInReplays
-				};
+					objectSaveData.settings.Add(new GeneralSaveData { hideInReplays = generalSettings.HideInReplays });
+				}
+
+				var grindables = spawnable.Prefab.GetChildrenOnLayer("Grindable");
+				bool hasGrindables = grindables != null && grindables.Any();
+
+				var copings = spawnable.Prefab.GetChildrenOnLayer("Coping");
+				bool hasCoping = copings != null && copings.Any();
+
+				if (hasGrindables || hasCoping)
+				{
+					if (spawnable.Settings.FirstOrDefault(x => x is EditGrindablesController) is EditGrindablesController grindableSettings)
+					{
+						objectSaveData.settings.Add(new GrindableSaveData
+						{
+							grindablesEnabled = grindableSettings.GrindableEnabled,
+							copingEnabled = grindableSettings.CopingEnabled,
+						});
+					}
+				}
 
 				var light = instance.GetComponentInChildren<Light>(true);
 
@@ -61,7 +81,7 @@ namespace XLObjectDropper.Utilities
 				{
 					var hdLight = light.GetComponent<HDAdditionalLightData>();
 
-					objectSaveData.lighting = new LightingSaveData
+					objectSaveData.settings.Add(new LightingSaveData
 					{
 						intensity = hdLight.intensity,
 						unit = hdLight.lightUnit,
@@ -69,13 +89,13 @@ namespace XLObjectDropper.Utilities
 						range = hdLight.range,
 						enabled = hdLight.enabled,
 						color = new SerializableVector3(hdLight.color.r, hdLight.color.g, hdLight.color.b)
-					};
+					});
 				}
 
 				levelConfigToSave.gameObjects.Add(objectSaveData);
 			}
 
-			string json = JsonConvert.SerializeObject(levelConfigToSave);
+			string json = JsonConvert.SerializeObject(levelConfigToSave, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
 
 			var currentSaveDir = Path.Combine(SaveDir, levelConfigToSave.levelName);
 
@@ -117,7 +137,7 @@ namespace XLObjectDropper.Utilities
 
 					try
 					{
-						var loadedLevelSave = JsonConvert.DeserializeObject<LevelSaveData>(content);
+						var loadedLevelSave = JsonConvert.DeserializeObject<LevelSaveData>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
 						loadedLevelSave.filePath = saveFile;
 
 						LoadedSaves.Add(loadedLevelSave);
