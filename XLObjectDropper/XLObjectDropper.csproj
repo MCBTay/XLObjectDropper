@@ -173,6 +173,7 @@
     <Compile Include="Controllers\ObjectEdit\EditGrindablesController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditLightController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditStyleController.cs" />
+    <Compile Include="Controllers\ObjectEdit\IObjectSettings.cs" />
     <Compile Include="Controllers\QuickMenuController.cs" />
     <Compile Include="Controllers\RotationAndScaleController.cs" />
     <Compile Include="Controllers\SnappingModeController.cs" />
@@ -192,12 +193,13 @@
     <Compile Include="Utilities\SaveManager.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utilities\Save\GameObjectSaveData.cs" />
-    <Compile Include="Utilities\Save\GeneralSaveData.cs" />
-    <Compile Include="Utilities\Save\GrindableSaveData.cs" />
+    <Compile Include="Utilities\Save\Settings\GeneralSaveData.cs" />
+    <Compile Include="Utilities\Save\Settings\GrindableSaveData.cs" />
     <Compile Include="Utilities\Save\LevelSaveData.cs" />
-    <Compile Include="Utilities\Save\LightingSaveData.cs" />
+    <Compile Include="Utilities\Save\Settings\LightingSaveData.cs" />
     <Compile Include="Utilities\Save\SerializableQuaternion.cs" />
     <Compile Include="Utilities\Save\SerializableVector3.cs" />
+    <Compile Include="Utilities\Save\Settings\ISettingsSaveData.cs" />
     <Compile Include="Utilities\Spawnable.cs" />
     <Compile Include="UserInterface\ControllerButtonHelper.cs" />
     <Compile Include="Main.cs" />
