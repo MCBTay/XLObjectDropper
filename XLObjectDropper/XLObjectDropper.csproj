@@ -111,6 +111,7 @@
       <HintPath>References\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\UnityEngine.CoreModule.dll</HintPath>
@@ -176,6 +177,7 @@
     <Compile Include="Controllers\ObjectEdit\IObjectSettings.cs" />
     <Compile Include="Controllers\QuickMenuController.cs" />
     <Compile Include="Controllers\RotationAndScaleController.cs" />
+    <Compile Include="Controllers\SaveController.cs" />
     <Compile Include="Controllers\SnappingModeController.cs" />
     <Compile Include="Patches\GameManagement\ReplayStatePatch.cs" />
     <Compile Include="Patches\LevelManagerPatch.cs" />
