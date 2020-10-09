@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityModManagerNet;
 using XLObjectDropper.UI;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
@@ -17,6 +18,10 @@ namespace XLObjectDropper.Controllers
 		private GameObject LoadSavedGameObject;
 		private LoadSavedController LoadSavedController;
 		public bool LoadSavedOpen => LoadSavedGameObject != null && LoadSavedGameObject.activeInHierarchy;
+
+		private GameObject SaveGameObject;
+		private SaveController SaveController;
+		public bool SaveOpen => SaveGameObject != null && SaveGameObject.activeInHierarchy;
 
 		private void Awake()
 		{
@@ -43,9 +48,10 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
 			OptionsMenu.EnableSaveButton(SpawnableManager.SpawnedObjects.Any() && Utilities.SaveManager.Instance.HasUnsavedChanges);
 
-			if (UIManager.Instance.Player.GetButtonDown("B") && LoadSavedOpen)
+			if (UIManager.Instance.Player.GetButtonDown("B"))
 			{
-				DestroyLoadSaved();
+				if (LoadSavedOpen) DestroyLoadSaved();
+				if (SaveOpen) DestroySave();
 			}
 		}
 
@@ -53,24 +59,24 @@ namespace XLObjectDropper.Controllers
 		{
 			RemoveListeners();
 
-			OptionsMenu.SensitivityValueChanged += SensitivityValueChanged;
-			OptionsMenu.InvertCamControlValueChanged += InvertCamControlValueChanged;
-			OptionsMenu.ShowGridValueChanged += ShowGridValueChanged;
-			OptionsMenu.UndoClicked += UndoClicked;
-			OptionsMenu.RedoClicked += RedoClicked;
-			OptionsMenu.SaveClicked += SaveClicked;
-			OptionsMenu.LoadClicked += LoadClicked;
+			OptionsMenu.Sensitivity.onValueChanged.AddListener(SensitivityValueChanged);
+			OptionsMenu.InvertCamControl.onValueChanged.AddListener(InvertCamControlValueChanged);
+			OptionsMenu.ShowGrid.onValueChanged.AddListener(ShowGridValueChanged);
+			OptionsMenu.UndoButton.onClick.AddListener(UndoClicked);
+			OptionsMenu.RedoButton.onClick.AddListener(RedoClicked);
+			OptionsMenu.SaveButton.onClick.AddListener(SaveClicked);
+			OptionsMenu.LoadButton.onClick.AddListener(LoadClicked);
 		}
 
 		private void RemoveListeners()
 		{
-			OptionsMenu.SensitivityValueChanged -= SensitivityValueChanged;
-			OptionsMenu.InvertCamControlValueChanged -= InvertCamControlValueChanged;
-			OptionsMenu.ShowGridValueChanged -= ShowGridValueChanged;
-			OptionsMenu.UndoClicked -= UndoClicked;
-			OptionsMenu.RedoClicked -= RedoClicked;
-			OptionsMenu.SaveClicked -= SaveClicked;
-			OptionsMenu.LoadClicked -= LoadClicked;
+			OptionsMenu.Sensitivity.onValueChanged.RemoveListener(SensitivityValueChanged);
+			OptionsMenu.InvertCamControl.onValueChanged.RemoveListener(InvertCamControlValueChanged);
+			OptionsMenu.ShowGrid.onValueChanged.RemoveListener(ShowGridValueChanged);
+			OptionsMenu.UndoButton.onClick.RemoveListener(UndoClicked);
+			OptionsMenu.RedoButton.onClick.RemoveListener(RedoClicked);
+			OptionsMenu.SaveButton.onClick.RemoveListener(SaveClicked);
+			OptionsMenu.LoadButton.onClick.RemoveListener(LoadClicked);
 		}
 
 		private void OnDisable()
@@ -108,7 +114,7 @@ namespace XLObjectDropper.Controllers
 
 		private void SaveClicked()
 		{
-			Utilities.SaveManager.Instance.SaveCurrentSpawnables();
+			CreateSave();
 		}
 
 		private void LoadClicked()
@@ -138,6 +144,27 @@ namespace XLObjectDropper.Controllers
 
 			DestroyImmediate(LoadSavedController);
 			DestroyImmediate(LoadSavedGameObject);
+		}
+
+		private void CreateSave()
+		{
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
+			SaveGameObject = new GameObject();
+			SaveController = SaveGameObject.AddComponent<SaveController>();
+
+			//SaveController.SaveLoaded += () => SaveLoaded.Invoke();
+			SaveGameObject.SetActive(true);
+		}
+
+		private void DestroySave()
+		{
+			if (SaveGameObject == null || SaveController == null) return;
+			SaveController.SaveUI.gameObject.SetActive(false);
+			SaveGameObject.SetActive(false);
+
+			DestroyImmediate(SaveController);
+			DestroyImmediate(SaveGameObject);
 		}
 	}
 }
