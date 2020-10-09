@@ -27,7 +27,7 @@ namespace XLObjectDropper.Utilities
 		//TODO: Actually implement this
 		public bool HasUnsavedChanges = true;
 
-		public void SaveCurrentSpawnables()
+		public void SaveCurrentSpawnables(string fileName)
 		{
 			var levelConfigToSave = new LevelSaveData
 			{ 
@@ -104,7 +104,7 @@ namespace XLObjectDropper.Utilities
 				Directory.CreateDirectory(currentSaveDir);
 			}
 
-			File.WriteAllText(Path.Combine(currentSaveDir, $"{levelConfigToSave.levelName}_{DateTime.Now:MM.dd.yyyyThh.mm.ss}.json"), json);
+			File.WriteAllText(Path.Combine(currentSaveDir, $"{fileName}.json"), json);
 		}
 
 		public void LoadAllSaves()
@@ -139,6 +139,7 @@ namespace XLObjectDropper.Utilities
 					{
 						var loadedLevelSave = JsonConvert.DeserializeObject<LevelSaveData>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
 						loadedLevelSave.filePath = saveFile;
+						loadedLevelSave.fileName = Path.GetFileNameWithoutExtension(saveFile);
 
 						LoadedSaves.Add(loadedLevelSave);
 					}
