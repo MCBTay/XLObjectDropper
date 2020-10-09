@@ -141,6 +141,7 @@
     <Compile Include="Controls\Vector3SliderControl.cs" />
     <Compile Include="Menus\LoadSavedUI.cs" />
     <Compile Include="Menus\ObjectEditUI.cs" />
+    <Compile Include="Menus\SaveUI.cs" />
     <Compile Include="Menus\UnsavedChangesDialog.cs" />
     <Compile Include="SnappingModeUI.cs" />
     <Compile Include="Utilities\Color.cs" />

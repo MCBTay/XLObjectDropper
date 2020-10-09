@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using XLObjectDropper.UI.Controls;
 using XLObjectDropper.UI.Controls.ControllerButtons;
 
 namespace XLObjectDropper.UI.Menus
@@ -27,15 +25,8 @@ namespace XLObjectDropper.UI.Menus
 		public BottomRowController BottomRow;
 
 		public GameObject LoadSavedUI;
+		public GameObject SaveUI;
 		public Animator Animator;
-
-		[HideInInspector] public event UnityAction<float> SensitivityValueChanged = (x) => { };
-		[HideInInspector] public event UnityAction<bool> InvertCamControlValueChanged = (x) => { };
-		[HideInInspector] public event UnityAction<bool> ShowGridValueChanged = (x) => { };
-		[HideInInspector] public event UnityAction UndoClicked = () => { };
-		[HideInInspector] public event UnityAction RedoClicked = () => { };
-		[HideInInspector] public event UnityAction SaveClicked = () => { };
-		[HideInInspector] public event UnityAction LoadClicked = () => { };
 
 		private void OnEnable()
 		{
@@ -50,13 +41,19 @@ namespace XLObjectDropper.UI.Menus
 
 		private void Update()
 		{
-			if (UIManager.Instance.Player.GetButtonDown("B") && LoadSavedUI != null && LoadSavedUI.activeInHierarchy)
+			if (UIManager.Instance.Player.GetButtonDown("B"))
 			{
-				StartCoroutine(DisableLoadSavedUI());
+				if (LoadSavedUI != null && LoadSavedUI.activeInHierarchy)
+				{
+					StartCoroutine(DisableLoadSavedUI());
+					EventSystem.current.SetSelectedGameObject(LoadButton.gameObject);
+				}
 
-				//SetAllInteractable(true);
-
-				EventSystem.current.SetSelectedGameObject(LoadButton.gameObject);
+				if (SaveUI != null && SaveUI.activeInHierarchy)
+				{
+					StartCoroutine(DisableSaveUI());
+					EventSystem.current.SetSelectedGameObject(SaveButton.gameObject);
+				}
 			}
 		}
 
@@ -67,9 +64,17 @@ namespace XLObjectDropper.UI.Menus
 			LoadSavedUI.SetActive(false);
 		}
 
+		public IEnumerator DisableSaveUI()
+		{
+			SaveUI.GetComponent<SaveUI>().Animator.Play("SlideOut");
+			yield return new WaitForSeconds(0.2f);
+			SaveUI.SetActive(false);
+		}
+
 		private void SetDefaultState(bool isEnabled)
 		{
 			LoadSavedUI.SetActive(false);
+			SaveUI.SetActive(false);
 
 			SetDefaultState(Sensitivity, isEnabled);
 			SetDefaultState(InvertCamControl, isEnabled);
@@ -81,21 +86,23 @@ namespace XLObjectDropper.UI.Menus
 
 			if (isEnabled)
 			{
-				Sensitivity.onValueChanged.AddListener(delegate { SensitivityValueChanged.Invoke(Sensitivity.GetComponent<Slider>().value); });
-				InvertCamControl.onValueChanged.AddListener(delegate { InvertCamControlValueChanged.Invoke(InvertCamControl.GetComponent<Toggle>().isOn); });
-				ShowGrid.onValueChanged.AddListener(delegate { ShowGridValueChanged.Invoke(ShowGrid.GetComponent<Toggle>().isOn); });
-				UndoButton.onClick.AddListener(delegate { UndoClicked.Invoke(); });
-				RedoButton.onClick.AddListener(delegate { RedoClicked.Invoke(); });
-				SaveButton.onClick.AddListener(delegate { SaveClicked.Invoke(); });
-				
-				LoadButton.onClick.AddListener(delegate
-				{
-					LoadClicked.Invoke();
-					LoadSavedUI.SetActive(true);
-
-					SetAllInteractable(false);
-				});
+				SaveButton.onClick.AddListener(SaveClicked);
+				LoadButton.onClick.AddListener(LoadClicked);
 			}
+		}
+
+		private void SaveClicked()
+		{
+			SaveUI.SetActive(true);
+			SetAllInteractable(false);
+
+			EventSystem.current.SetSelectedGameObject(SaveUI.GetComponent<SaveUI>().InputField.gameObject);
+		}
+
+		private void LoadClicked()
+		{
+			LoadSavedUI.SetActive(true);
+			SetAllInteractable(false);
 		}
 
 		private void SetDefaultState(Slider slider, bool isEnabled)
@@ -114,7 +121,9 @@ namespace XLObjectDropper.UI.Menus
 
 		private void SetDefaultState(Button button, bool isEnabled)
 		{
-			button.onClick.RemoveAllListeners();
+			if (button != SaveButton && button != LoadButton)
+				button.onClick.RemoveAllListeners();
+
 			button.interactable = true;
 			button.gameObject.SetActive(isEnabled);
 		}
