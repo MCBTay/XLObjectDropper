@@ -1,0 +1,54 @@
+ManifestFileVersion: 0
+CRC: 2930440711
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c8bb84c906873d1344eff96342e99dee
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c6de3636cbc5b221aa721f823da08ac6
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 205
+  Script: {instanceID: 0}
+Assets:
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Trashbin.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Trashbag.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/BoxSmall.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Box.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/TrashbinBagged.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/TrashbagSmall.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/ConstructionBarrier.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Coffeecup2.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Coffeecup1.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Waterbottle.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/TakeoutBox.prefab
+Dependencies: []

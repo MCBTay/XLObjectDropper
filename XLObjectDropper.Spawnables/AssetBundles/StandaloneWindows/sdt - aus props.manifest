@@ -1,0 +1,60 @@
+ManifestFileVersion: 0
+CRC: 3403648180
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d7d0e13b6f1144a85181f3fd0cfc478a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7e893a12147a0d51b4e8d1d2bca5b62e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c6c2871f720b2af4e9210febdac74517, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 205
+  Script: {instanceID: 0}
+Assets:
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Street.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Powerpole_2.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_LightPole.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Roundabout.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Trashcan.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Ped.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Speed.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Powerpole_1.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Bench.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_StreetLight.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Street_2.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Bikerack.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Parking.prefab
+Dependencies: []
