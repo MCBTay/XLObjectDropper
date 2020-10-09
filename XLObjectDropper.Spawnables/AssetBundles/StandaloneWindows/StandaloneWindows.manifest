@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3738478048
+CRC: 1429230379
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -22,4 +22,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_6:
       Name: sdt - soldino rigibody
+      Dependencies: {}
+    Info_7:
+      Name: sdt - animated chars
       Dependencies: {}
