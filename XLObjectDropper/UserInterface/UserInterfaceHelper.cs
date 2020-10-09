@@ -36,6 +36,7 @@ namespace XLObjectDropper.UserInterface
 				ObjectMovementController.MovementUI = UserInterface.GetComponentInChildren<ObjectPlacementUI>(true);
 				OptionsMenuController.OptionsMenu = UserInterface.GetComponentInChildren<OptionsMenuUI>(true);
 				LoadSavedController.LoadSavedUI = UserInterface.GetComponentInChildren<LoadSavedUI>(true);
+				SaveController.SaveUI = UserInterface.GetComponentInChildren<SaveUI>(true);
 				ObjectSelectionController.ObjectSelection = UserInterface.GetComponentInChildren<ObjectSelectionUI>(true);
 				QuickMenuController.QuickMenu = UserInterface.GetComponentInChildren<QuickMenuUI>(true);
 				ObjectEditController.ObjectEdit = UserInterface.GetComponentInChildren<ObjectEditUI>(true);
