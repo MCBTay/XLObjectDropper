@@ -6,8 +6,10 @@ namespace XLObjectDropper.Utilities.Save
 	[Serializable]
 	public class LevelSaveData
 	{
+		[NonSerialized]
 		public string filePath;
-		public string saveName;
+		[NonSerialized]
+		public string fileName;
 		public string levelHash;
 		public string levelName;
 		public DateTime dateModified;
@@ -16,7 +18,7 @@ namespace XLObjectDropper.Utilities.Save
 		public LevelSaveData()
 		{
 			filePath = string.Empty;
-			saveName = string.Empty;
+			fileName = string.Empty;
 			levelHash = string.Empty;
 			levelName = string.Empty;
 			dateModified = DateTime.MinValue;
