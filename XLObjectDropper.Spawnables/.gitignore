@@ -59,6 +59,10 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# Never ignore meshes
+!*.obj
+!*.fbx
+
 # Crashlytics generated file
 crashlytics-build.properties
 
