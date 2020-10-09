@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GameManagement;
+﻿using GameManagement;
 using HarmonyLib;
+using System.Linq;
+using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Patches.GameManagement
@@ -14,14 +11,16 @@ namespace XLObjectDropper.Patches.GameManagement
 		[HarmonyPatch(typeof(ReplayState), nameof(ReplayState.OnEnter))]
 		static class OnEnterPatch
 		{
-			static void Postfix(ReplayState __instance)
+			static void Postfix()
 			{
-				if (SpawnableManager.SpawnedObjects != null &&
-				    SpawnableManager.SpawnedObjects.Any(x => x.HideInReplays))
+				if (SpawnableManager.SpawnedObjects != null && SpawnableManager.SpawnedObjects.Any())
 				{
-					foreach (var spawnable in SpawnableManager.SpawnedObjects.Where(x => x.HideInReplays))
+					foreach (var spawnable in SpawnableManager.SpawnedObjects)
 					{
-						spawnable.SpawnedInstance.SetActive(false);
+						if (spawnable.Settings != null && spawnable.Settings.FirstOrDefault(x => x is EditGeneralController) is EditGeneralController generalSettings && generalSettings.HideInReplays)
+						{
+							spawnable.SpawnedInstance.SetActive(false);
+						}
 					}
 				}
 			}
@@ -30,14 +29,16 @@ namespace XLObjectDropper.Patches.GameManagement
 		[HarmonyPatch(typeof(ReplayState), nameof(ReplayState.OnExit))]
 		static class OnExitPatch
 		{
-			static void Postfix(ReplayState __instance)
+			static void Postfix()
 			{
-				if (SpawnableManager.SpawnedObjects != null &&
-				    SpawnableManager.SpawnedObjects.Any(x => x.HideInReplays))
+				if (SpawnableManager.SpawnedObjects != null && SpawnableManager.SpawnedObjects.Any())
 				{
-					foreach (var spawnable in SpawnableManager.SpawnedObjects.Where(x => x.HideInReplays))
+					foreach (var spawnable in SpawnableManager.SpawnedObjects)
 					{
-						spawnable.SpawnedInstance.SetActive(true);
+						if (spawnable.Settings != null && spawnable.Settings.FirstOrDefault(x => x is EditGeneralController) is EditGeneralController generalSettings && generalSettings.HideInReplays)
+						{
+							spawnable.SpawnedInstance.SetActive(true);
+						}
 					}
 				}
 			}

@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
+using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.SpawnableScripts;
 
 namespace XLObjectDropper.Utilities
@@ -14,32 +16,55 @@ namespace XLObjectDropper.Utilities
 		public GameObject SpawnedInstance;
 		public Texture2D PreviewTexture;
 		public string BundleName;
-		public List<Spawnable> AlternateStyles;
-		public bool HideInReplays { get; set; }
 
-		public Spawnable(Enumerations.SpawnableType type, GameObject prefab, AssetBundle bundle)
+		public List<IObjectSettings> Settings;
+
+		public Spawnable(Enumerations.SpawnableType type, GameObject prefab, string bundleName, bool generatePreview = true)
 		{
 			Type = type;
 			Prefab = prefab;
-			BundleName = bundle.name;
+			BundleName = bundleName;
 
-			LoadPreviewImage();
-		}
+			InitializeSettings();
 
-		public Spawnable(Enumerations.SpawnableType type, GameObject prefab, AssetBundle bundle, List<GameObject> alternateStyles) : this(type, prefab, bundle)
-		{
-			AlternateStyles = new List<Spawnable>();
-			foreach (var altStyle in alternateStyles)
+			if (generatePreview)
 			{
-				AlternateStyles.Add(new Spawnable(type, altStyle, bundle));
+				LoadPreviewImage();
 			}
 		}
 
-		public Spawnable(GameObject prefab, GameObject spawnedInstance, Texture2D previewTexture)
+		public Spawnable(Enumerations.SpawnableType type, GameObject prefab, string bundleName, List<GameObject> alternateStyles) : this(type, prefab, bundleName)
 		{
-			Prefab = prefab;
-			SpawnedInstance = spawnedInstance;
-			PreviewTexture = previewTexture;
+			var styleController = new EditStyleController();
+
+			foreach (var altStyle in alternateStyles)
+			{
+				styleController.Styles.Add(new Spawnable(type, altStyle, bundleName));
+			}
+		}
+
+		public Spawnable(Spawnable spawnable, GameObject spawnedinstance) : this(spawnable.Type, spawnable.Prefab, spawnable.BundleName, false)
+		{
+			SpawnedInstance = spawnedinstance;
+			PreviewTexture = spawnable.PreviewTexture;
+			Settings = spawnable.Settings;
+		}
+
+		private void InitializeSettings()
+		{
+			Settings = new List<IObjectSettings>();
+
+			Settings.Add(new EditGeneralController());
+
+			if (Prefab.GetChildrenOnLayer("Grindable").Any() || Prefab.GetChildrenOnLayer("Coping").Any())
+			{
+				Settings.Add(new EditGrindablesController());
+			}
+
+			if (Prefab.GetComponentsInChildren<Light>(true).Any())
+			{
+				Settings.Add(new EditLightController());
+			}
 		}
 
 		private void LoadPreviewImage()

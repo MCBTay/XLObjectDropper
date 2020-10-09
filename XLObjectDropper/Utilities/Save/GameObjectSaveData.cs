@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Utilities.Save
 {
@@ -11,8 +13,11 @@ namespace XLObjectDropper.Utilities.Save
 		public SerializableQuaternion rotation;
 		public SerializableVector3 localScale;
 
-		public GeneralSaveData general;
-		public LightingSaveData lighting;
-		public GrindableSaveData grindables;
+		public List<ISettingsSaveData> settings;
+
+		public GameObjectSaveData()
+		{
+			settings = new List<ISettingsSaveData>();
+		}
 	}
 }

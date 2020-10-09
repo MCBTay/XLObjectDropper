@@ -7,22 +7,24 @@ using XLObjectDropper.UI.Menus;
 
 namespace XLObjectDropper.Controllers.ObjectEdit
 {
-	public static class EditLightController
+	public class EditLightController : IObjectSettings
 	{
-		static float ev100Min = 15.0f;
-		static float ev100Max = 40.0f;
-		static float numSteps = 100.0f;
+		private static EditLightController _instance;
+		public static EditLightController Instance => _instance ?? (_instance = new EditLightController());
 
-		static float rangeMin = 0.0f;
-		static float rangeMax = 20.0f;
-		static float numRangeSteps = 80.0f;
+		private float ev100Min = 15.0f;
+		private float ev100Max = 40.0f;
+		private float numSteps = 100.0f;
 
-		static float angleMin = 1.0f;
-		static float angleMax = 179.0f;
-		static float numAngleSteps = 178.0f;
+		private float rangeMin = 0.0f;
+		private float rangeMax = 20.0f;
+		private float numRangeSteps = 80.0f;
 
+		private float angleMin = 1.0f;
+		private float angleMax = 179.0f;
+		private float numAngleSteps = 178.0f;
 
-		public static void AddLightOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
+		public void AddOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
 		{
 			var lights = SelectedObject.GetComponentsInChildren<Light>(true);
 
@@ -35,21 +37,21 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 				var expandable = lightExpandable.GetComponent<LightSettingsExpandable>();
 
-				expandable.EnabledToggle.onValueChanged += (isOn) =>
+				expandable.EnabledToggle.Toggle.onValueChanged.AddListener((isOn) =>
 				{
 					foreach (var lightToEdit in lights)
 					{
 						lightToEdit.GetComponent<HDAdditionalLightData>().enabled = isOn;
 						lightToEdit.enabled = isOn;
 					}
-				};
+				});
 
 				float currentIntensity = Mathf.Clamp(hdrpLight.intensity, ev100Min, ev100Max);
 				float sliderValue = ((currentIntensity - ev100Min) / (ev100Max - ev100Min)) * numSteps;
 				expandable.IntensitySlider.Slider.value = sliderValue;
 				expandable.IntensitySlider.Value.SetText(sliderValue.ToString("N"));
 
-				expandable.IntensitySlider.onValueChanged += (intensity) =>
+				expandable.IntensitySlider.Slider.onValueChanged.AddListener((intensity) =>
 				{
 					foreach (var lightToEdit in lights)
 					{
@@ -61,14 +63,14 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 						hdrpLightToEdit.SetIntensity(newIntensity, LightUnit.Ev100);
 					}
-				};
+				});
 
 				float currentRange = Mathf.Clamp(hdrpLight.range, rangeMin, rangeMax);
 				float rangeSliderValue = ((currentRange - rangeMin) / (rangeMax - rangeMin)) * numRangeSteps;
 				expandable.RangeSlider.Slider.value = rangeSliderValue;
 				expandable.RangeSlider.Value.SetText(rangeSliderValue.ToString("N"));
 
-				expandable.RangeSlider.onValueChanged += (range) =>
+				expandable.RangeSlider.Slider.onValueChanged.AddListener((range) =>
 				{
 					foreach (var lightToEdit in lights)
 					{
@@ -78,7 +80,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 						lightToEdit.GetComponent<HDAdditionalLightData>().SetRange(newRange);
 					}
-				};
+				});
 
 				if (hdrpLight.type != HDLightType.Spot)
 				{
@@ -91,7 +93,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 					expandable.AngleSlider.Slider.value = angleSliderValue;
 					expandable.AngleSlider.Value.SetText($"{(int)angleSliderValue}°");
 
-					expandable.AngleSlider.onValueChanged += (angle) =>
+					expandable.AngleSlider.Slider.onValueChanged.AddListener((angle) =>
 					{
 						foreach (var lightToEdit in lights)
 						{
@@ -100,7 +102,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 							expandable.AngleSlider.Value.SetText($"{(int)newSpotAngle}°");
 						}
-					};
+					});
 				}
 
 				expandable.ColorSliders.XSlider.Slider.value = hdrpLight.color.r;

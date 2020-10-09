@@ -21,8 +21,8 @@ namespace XLObjectDropper.Controllers
 		public LayerInfo SelectedObjectLayerInfo;
 
 		public GameObject HighlightedObject;
-		private bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
-		private LayerInfo HighlightedObjectLayerInfo;
+		public bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
+		public LayerInfo HighlightedObjectLayerInfo;
 
 		public GameObject GridOverlay;
 		private bool GridOverlayActive => GridOverlay != null && GridOverlay.activeInHierarchy;
@@ -477,10 +477,34 @@ namespace XLObjectDropper.Controllers
 
 			newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
 
-			SpawnableManager.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable.Prefab, newObject, SelectedObjectSpawnable.PreviewTexture));
+			SpawnableManager.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable, newObject));
 
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
+
+			//TODO: Come back to this!!
+			//if (newObject.GetComponentInChildren<Rigidbody>(true) != null)
+			//{
+			//	ReplayRecorder.Instance.RecordedTransforms.Add(newObject.transform);
+
+			//	var traverseReplayRecorder = Traverse.Create(ReplayRecorder.Instance);
+			//	traverseReplayRecorder.Field("transformsWithRigidbody").SetValue(ReplayRecorder.Instance
+			//		.RecordedTransforms
+			//		.Select((t, i) =>
+			//		   new Tuple<Transform, int>(t, i))
+			//		.Where(t =>
+			//		   t.Item1.GetComponent<Rigidbody>() != null)
+			//		.Select(t => t.Item2)
+			//		.ToArray());
+
+			//	traverseReplayRecorder.Field("cachedPositions").SetValue(new Vector3[traverseReplayRecorder
+			//		.Field("transformsWithRigidbody").GetValue<int[]>().Length]);
+
+			//	traverseReplayRecorder.Field("cachedRotations").SetValue(new Quaternion[traverseReplayRecorder
+			//		.Field("transformsWithRigidbody").GetValue<int[]>().Length]);
+
+			//	ReplayEditorController.Instance.playbackController.playbackTransforms.Add(newObject.transform);
+			//}
 
 			if (disablePreview)
 			{

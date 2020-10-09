@@ -16,7 +16,7 @@ namespace XLObjectDropper.Utilities
 		{
 			GameObjectName = string.Empty;
 			Layer = -1;
-			Enabled = false;
+			Enabled = true;
 			Parent = null;
 			Children = new List<LayerInfo>();
 		}

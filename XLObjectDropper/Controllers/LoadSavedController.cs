@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
 using XLObjectDropper.Utilities.Save;
+using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Controllers
 {
@@ -105,22 +106,26 @@ namespace XLObjectDropper.Controllers
 				var newObject = Object.Instantiate(prefab.Prefab, position, rotation);
 				newObject.SetActive(true);
 
-				if (spawnable.lighting != null)
+				if (spawnable.settings.FirstOrDefault(x => x is LightingSaveData) != null)
 				{
+					var lightingSettings = spawnable.settings.FirstOrDefault(x => x is LightingSaveData) as LightingSaveData;
+
 					var light = newObject.GetComponentInChildren<Light>(true);
 					var hdLight = light.GetComponent<HDAdditionalLightData>();
 
-					light.enabled = spawnable.lighting.enabled;
-					hdLight.enabled = spawnable.lighting.enabled;
+					light.enabled = lightingSettings.enabled;
+					hdLight.enabled = lightingSettings.enabled;
 
-					hdLight.lightUnit = spawnable.lighting.unit;
-					hdLight.intensity = spawnable.lighting.intensity;
-					hdLight.range = spawnable.lighting.range;
-					hdLight.SetSpotAngle(spawnable.lighting.angle);
-					hdLight.color = new Color(spawnable.lighting.color.x, spawnable.lighting.color.y, spawnable.lighting.color.z);
+					hdLight.lightUnit = lightingSettings.unit;
+					hdLight.intensity = lightingSettings.intensity;
+					hdLight.range = lightingSettings.range;
+					hdLight.SetSpotAngle(lightingSettings.angle);
+					hdLight.color = new Color(lightingSettings.color.x, lightingSettings.color.y, lightingSettings.color.z);
 				}
 
-				SpawnableManager.SpawnedObjects.Add(new Spawnable(prefab.Prefab, newObject, prefab.PreviewTexture));
+				//TODO: Load general and grindable settings too
+
+				SpawnableManager.SpawnedObjects.Add(new Spawnable(prefab, newObject));
 			}
 
 			SaveLoaded?.Invoke();

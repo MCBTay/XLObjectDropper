@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine.Rendering.HighDefinition;
 
-namespace XLObjectDropper.Utilities.Save
+namespace XLObjectDropper.Utilities.Save.Settings
 {
 	[Serializable]
-	public class LightingSaveData
+	public class LightingSaveData : ISettingsSaveData
 	{
 		public bool enabled;
 		public float intensity;

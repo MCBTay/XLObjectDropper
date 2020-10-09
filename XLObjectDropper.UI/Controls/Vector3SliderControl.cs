@@ -19,9 +19,16 @@ namespace XLObjectDropper.UI.Controls
 				onValueChanged.Invoke(new Vector3(XSlider.Slider.value, YSlider.Slider.value, ZSlider.Slider.value));
 			};
 
-			XSlider.onValueChanged += action;
-			YSlider.onValueChanged += action;
-			ZSlider.onValueChanged += action;
+			XSlider.Slider.onValueChanged.AddListener(action);
+			YSlider.Slider.onValueChanged.AddListener(action);
+			ZSlider.Slider.onValueChanged.AddListener(action);
+		}
+
+		public void OnDestroy()
+		{
+			XSlider.Slider.onValueChanged.RemoveAllListeners();
+			YSlider.Slider.onValueChanged.RemoveAllListeners();
+			ZSlider.Slider.onValueChanged.RemoveAllListeners();
 		}
 	}
 }

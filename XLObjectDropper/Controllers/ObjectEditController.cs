@@ -24,10 +24,10 @@ namespace XLObjectDropper.Controllers
 
 		private void Start()
 		{
-			EditGeneralController.AddOptions(SelectedObject, ObjectEdit);
-			EditStyleController.AddStyleOptions(SelectedObject, ObjectEdit);
-			EditLightController.AddLightOptions(SelectedObject, ObjectEdit);
-			EditGrindablesController.AddGrindablesOptions(SelectedObject, ObjectEdit);
+			EditGeneralController.Instance.AddOptions(SelectedObject, ObjectEdit);
+			EditStyleController.Instance.AddOptions(SelectedObject, ObjectEdit);
+			EditLightController.Instance.AddOptions(SelectedObject, ObjectEdit);
+			EditGrindablesController.Instance.AddOptions(SelectedObject, ObjectEdit);
 
 			if (ObjectEdit.ListContent.transform.childCount > 0)
 			{
@@ -37,6 +37,7 @@ namespace XLObjectDropper.Controllers
 
 				if (expandable != null)
 				{
+					//TODO: It feels like there's a better way to do this.
 					var general = firstChild.GetComponent<GeneralSettingsExpandable>() == null ? null : firstChild.GetComponent<GeneralSettingsExpandable>().HideInReplays.gameObject;
 					var styles = firstChild.GetComponent<StyleSettingsExpandable>() == null ? null : expandable.PropertiesListContent.transform.GetChild(0).gameObject;
 					var lights = firstChild.GetComponent<LightSettingsExpandable>() == null ? null : firstChild.GetComponent<LightSettingsExpandable>().EnabledToggle.gameObject;
