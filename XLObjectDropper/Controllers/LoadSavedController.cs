@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +11,7 @@ using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
 using XLObjectDropper.Utilities.Save;
 using XLObjectDropper.Utilities.Save.Settings;
+using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Controllers
 {
@@ -18,7 +20,7 @@ namespace XLObjectDropper.Controllers
 		public static LoadSavedUI LoadSavedUI;
 		private List<LevelSaveData> LevelSaves;
 
-		[HideInInspector] public event UnityAction SaveLoaded = () => { };
+		public event UnityAction SaveLoaded = () => { };
 
 		public void Awake()
 		{
@@ -33,7 +35,7 @@ namespace XLObjectDropper.Controllers
 
 			foreach (var levelSave in LevelSaves)
 			{
-				LoadSavedUI.AddToList(levelSave.levelName ?? "Test", levelSave.dateModified, levelSave.gameObjects.Count,
+				LoadSavedUI.AddToList(levelSave.fileName ?? levelSave.fileName, levelSave.dateModified, levelSave.gameObjects.Count,
 					() => ObjectClicked(levelSave),
 					() => { UISounds.Instance?.PlayOneShotSelectionChange(); });
 			}
@@ -66,7 +68,8 @@ namespace XLObjectDropper.Controllers
 					test.YesClicked += () =>
 					{
 						UISounds.Instance?.PlayOneShotSelectMajor();
-						Utilities.SaveManager.Instance.SaveCurrentSpawnables();
+						//TODO: launch save here
+						Utilities.SaveManager.Instance.SaveCurrentSpawnables($"{LevelManager.Instance.currentLevel.name}_{DateTime.Now:MM.dd.yyyyThh.mm.ss}");
 						LoadSave(levelSave);
 					};
 
