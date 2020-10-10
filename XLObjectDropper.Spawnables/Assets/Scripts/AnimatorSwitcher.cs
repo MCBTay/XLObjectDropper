@@ -11,7 +11,7 @@ public class AnimatorSwitcher : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            character.GetComponent<Animator>().Play("Armature|CrouchIdle");
+            character.GetComponent<Animator>().Play("Armature|CrouchingIdle");
         }
         if (Input.GetButtonDown("Fire2"))
         {
@@ -19,7 +19,7 @@ public class AnimatorSwitcher : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire3"))
         {
-            character.GetComponent<Animator>().Play("Idle");
+            character.GetComponent<Animator>().Play("Armature|TPose");
         }
     }
 }
