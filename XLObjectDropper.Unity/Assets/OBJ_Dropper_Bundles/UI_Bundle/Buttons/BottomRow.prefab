@@ -350,15 +350,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 6956031275656219703}
-  ButtonImage: {fileID: 0}
+  ButtonImage: {fileID: 6956031275656219701}
   ButtonPressed: {fileID: 4029440727109936412}
-  ButtonPressedImage: {fileID: 0}
+  ButtonPressedImage: {fileID: 1016059929794036757}
   ButtonLabel: {fileID: 6956031275508099882}
-  ControllerButton: 0
-  Xbox: {fileID: 0}
-  XboxPressed: {fileID: 0}
-  Playstation: {fileID: 0}
-  PlaystationPressed: {fileID: 0}
+  ControllerButton: 11
+  Xbox: {fileID: -6082457025959578749, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  XboxPressed: {fileID: 3015285644681207709, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Playstation: {fileID: 4495700353371699378, guid: 15f26e860faa27a4c9b1415f827df5e1,
+    type: 3}
+  PlaystationPressed: {fileID: -8158504643738834570, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
   Switch: {fileID: 0}
   SwitchPressed: {fileID: 0}
 --- !u!1 &6956031275508099876
@@ -926,14 +929,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 6956031275895497818}
-  ButtonImage: {fileID: 0}
+  ButtonImage: {fileID: 6956031275895497816}
   ButtonPressed: {fileID: 5890063696867993688}
-  ButtonPressedImage: {fileID: 0}
+  ButtonPressedImage: {fileID: 7009494918242592659}
   ButtonLabel: {fileID: 6956031276820679054}
-  ControllerButton: 0
-  Xbox: {fileID: 0}
-  XboxPressed: {fileID: 0}
-  Playstation: {fileID: 0}
-  PlaystationPressed: {fileID: 0}
+  ControllerButton: 10
+  Xbox: {fileID: 4761293739997704986, guid: 15f26e860faa27a4c9b1415f827df5e1, type: 3}
+  XboxPressed: {fileID: -613216956551412034, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
+  Playstation: {fileID: 4495700353371699378, guid: 15f26e860faa27a4c9b1415f827df5e1,
+    type: 3}
+  PlaystationPressed: {fileID: -8158504643738834570, guid: 19533ca3f17ce0145827c947a5c0b081,
+    type: 3}
   Switch: {fileID: 0}
   SwitchPressed: {fileID: 0}
