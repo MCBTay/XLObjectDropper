@@ -762,6 +762,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fleep_Rigged
       objectReference: {fileID: 0}
+    - target: {fileID: 4366796322095550640, guid: 1e7965d7eabc9e54c9d849ef9b466d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4bf0258bcd45dde498c6870eefa25b1b, type: 2}
+    - target: {fileID: 4366796322095550640, guid: 1e7965d7eabc9e54c9d849ef9b466d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6f2f2b298fa11774d8217f45e0201d4e, type: 2}
+    - target: {fileID: 4366796322095550640, guid: 1e7965d7eabc9e54c9d849ef9b466d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce31e633052fe4a47838ced17a023c4a, type: 2}
+    - target: {fileID: 4366796322095550640, guid: 1e7965d7eabc9e54c9d849ef9b466d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2601abec67455049acdfa43a5f7ec5e, type: 2}
+    - target: {fileID: 4366796322095550640, guid: 1e7965d7eabc9e54c9d849ef9b466d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e96ef7f1fdf57ea4f9b31520fddac0ac, type: 2}
+    - target: {fileID: 4366796322095550640, guid: 1e7965d7eabc9e54c9d849ef9b466d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[6]
+      value: 
+      objectReference: {fileID: 2100000, guid: 696a3d750c17bd94492098054c62fa4f, type: 2}
+    - target: {fileID: 4366796322095550640, guid: 1e7965d7eabc9e54c9d849ef9b466d24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: b68aa7271787f224686e0426cfe397be, type: 2}
     - target: {fileID: 5866666021909216657, guid: 1e7965d7eabc9e54c9d849ef9b466d24,
         type: 3}
       propertyPath: m_Controller
@@ -769,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: bedd1e3eec16d574e8ca6b51771eefd8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e7965d7eabc9e54c9d849ef9b466d24, type: 3}
---- !u!114 &1248063139
+--- !u!114 &1166002535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -965,7 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Profile: {fileID: 11400000, guid: a123fc0ac58cb774e8592c925f167e7c, type: 2}
   m_StaticLightingSkyUniqueID: 1
-  m_SkySettings: {fileID: 1248063139}
+  m_SkySettings: {fileID: 1166002535}
   m_SkySettingsFromProfile: {fileID: -1658960478407648048, guid: a123fc0ac58cb774e8592c925f167e7c,
     type: 2}
 --- !u!4 &1977084918
