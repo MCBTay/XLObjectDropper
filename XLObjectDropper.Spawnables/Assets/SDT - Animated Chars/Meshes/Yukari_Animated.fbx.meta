@@ -15,6 +15,15 @@ ModelImporter:
   - first:
       74: -236022367644965580
     second: Armature|Idle (1)
+  - first:
+      74: 5152524018116331999
+    second: Armature|TPose
+  - first:
+      74: -4701415721766691894
+    second: Armature|CrouchIdle
+  - first:
+      74: 1245832802944112275
+    second: Armature|StandingIdle
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -44,11 +53,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|Idle (1)
-      takeName: Armature|Idle
+      name: Armature|TPose
+      takeName: Armature|TPose
       internalID: 0
       firstFrame: 0
-      lastFrame: 50
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -73,19 +82,19 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Armature|Armature|Armature|mixamo.com|Layer0|Armature|Armature|
-      takeName: Armature|Armature|Armature|Armature|mixamo.com|Layer0|Armature|Armature|
+      name: Armature|CrouchIdle
+      takeName: Armature|CrouchIdle
       internalID: 0
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 63
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -102,8 +111,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Idle
-      takeName: Armature|Idle
+      name: Armature|StandingIdle
+      takeName: Armature|StandingIdle
       internalID: 0
       firstFrame: 0
       lastFrame: 50
