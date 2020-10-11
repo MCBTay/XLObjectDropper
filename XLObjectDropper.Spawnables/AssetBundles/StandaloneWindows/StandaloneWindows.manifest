@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1429230379
+CRC: 4162989991
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -25,4 +25,5 @@ AssetBundleManifest:
       Dependencies: {}
     Info_7:
       Name: sdt - animated chars
-      Dependencies: {}
+      Dependencies:
+        Dependency_0: dryden - prop pack

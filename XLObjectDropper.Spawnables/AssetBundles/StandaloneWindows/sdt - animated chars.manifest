@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3542642925
+CRC: 3673699719
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f23a089b8b21c7b3548b33da88a20116
+    Hash: a70ff58445ed81110413c516499ff7f5
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 6a3eba316372b2f69b09604b127ff833
+    Hash: 7716432faa410a777697dcf7d0238677
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -25,6 +25,34 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 1516441529, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
+  Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
+  Script: {fileID: -1691373624, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 895512359
+  Script: {instanceID: 0}
 Assets:
-- Assets/SDT - Animated Chars/Prefabs/FIlmer_Yukari.prefab
-Dependencies: []
+- Assets/SDT - Animated Chars/Prefabs/Filmer_Fleep.prefab
+- Assets/SDT - Animated Chars/Prefabs/Filmer_Yukari.prefab
+- Assets/SDT - Animated Chars/Prefabs/SGC/SGC_Filmer.prefab
+Dependencies:
+- C:/Users/squee/Documents/GitHub/XLObjectDropper/XLObjectDropper.Spawnables/AssetBundles/StandaloneWindows/dryden
+  - prop pack
