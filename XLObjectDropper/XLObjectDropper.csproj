@@ -79,6 +79,10 @@
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Animation.Rigging">
+      <HintPath>References\Unity.Animation.Rigging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>References\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       <Private>False</Private>
@@ -168,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\LoadSavedController.cs" />
+    <Compile Include="Controllers\AimConstraintTargetController.cs" />
     <Compile Include="Controllers\ObjectDropperController.cs" />
     <Compile Include="Controllers\ObjectEditController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditGeneralController.cs" />
@@ -245,6 +250,7 @@ copy /Y "$(TargetDir)XLObjectDropper.UI.pdb" "F:\Steam\steamapps\common\Skater X
 copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.dll" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
 copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.pdb" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.pdb"
 copy /Y "$(TargetDir)Info.json" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\Info.json"
+copy /Y "$(TargetDir)Unity.Animation.Rigging.dll" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\Unity.Animation.Rigging.dll"
 )
 
 if "$(ConfigurationName)"=="Release" (
