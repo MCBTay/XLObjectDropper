@@ -15,6 +15,7 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject LightSettingsPrefab;
 		public GameObject GrindableSettingsPrefab;
 		public GameObject GeneralSettingsPrefab;
+		public GameObject AvatarAnimatorSettingsPrefab;
 
 		public Animator Animator;
 
@@ -41,6 +42,11 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject AddGeneralSettings(UnityAction objectClicked = null, UnityAction objectSelected = null)
 		{
 			return AddSettings(GeneralSettingsPrefab, objectClicked, objectSelected);
+		}
+
+		public GameObject AddAvatarAnimatorSettings(UnityAction objectClicked = null, UnityAction objectSelected = null)
+		{
+			return AddSettings(AvatarAnimatorSettingsPrefab, objectClicked, objectSelected);
 		}
 
 		public GameObject AddSettings(GameObject prefab, UnityAction objectClicked = null, UnityAction objectSelected = null)
