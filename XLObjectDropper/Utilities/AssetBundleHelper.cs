@@ -84,11 +84,13 @@ namespace XLObjectDropper.Utilities
 			foreach (GameObject asset in assets)
 			{
 				var type = Enumerations.SpawnableType.Other;
+				var menuText = string.Empty;
 
 				var categoryController = asset.GetComponentInChildren<XLCategoryController>(true);
 				if (categoryController != null)
 				{
 					type = categoryController.Type;
+					menuText = categoryController.MenuText;
 				}
 
 				var styleGroupController = asset.GetComponent<XLStyleGroupController>();

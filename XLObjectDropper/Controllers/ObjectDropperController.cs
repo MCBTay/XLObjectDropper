@@ -125,8 +125,11 @@ namespace XLObjectDropper.Controllers
 			{
 				if (OptionsMenuOpen)
 				{
-					if (OptionsMenuController.LoadSavedOpen) 
-						return;
+					if (OptionsMenuController != null)
+					{
+						if (OptionsMenuController.LoadSavedOpen) return;
+						if (OptionsMenuController.SaveOpen) return;
+					}
 
 					DestroyOptionsMenu();
 				}
@@ -219,6 +222,17 @@ namespace XLObjectDropper.Controllers
 			{
 				StartCoroutine(UIManager.Instance.DisableOptionsMenu());
 				DestroyOptionsMenu();
+			};
+
+			OptionsMenuController.Saved += () =>
+			{
+				StartCoroutine(UIManager.Instance.DisableOptionsMenu());
+				DestroyOptionsMenu();
+			};
+
+			OptionsMenuController.SaveCancelled += () =>
+			{
+				OptionsMenuController.DestroySave();
 			};
 
 			OptionsMenuGameObject.SetActive(true);

@@ -13,14 +13,16 @@ namespace XLObjectDropper.Controllers
 	{
 		public static OptionsMenuUI OptionsMenu { get; set; }
 
-		[HideInInspector] public event UnityAction SaveLoaded = () => { };
+		public event UnityAction SaveLoaded = () => { };
+		public event UnityAction Saved = () => { };
+		public event UnityAction SaveCancelled = () => { };
 
 		private GameObject LoadSavedGameObject;
 		private LoadSavedController LoadSavedController;
 		public bool LoadSavedOpen => LoadSavedGameObject != null && LoadSavedGameObject.activeInHierarchy;
 
 		private GameObject SaveGameObject;
-		private SaveController SaveController;
+		public SaveController SaveController;
 		public bool SaveOpen => SaveGameObject != null && SaveGameObject.activeInHierarchy;
 
 		private void Awake()
@@ -50,8 +52,14 @@ namespace XLObjectDropper.Controllers
 
 			if (UIManager.Instance.Player.GetButtonDown("B"))
 			{
-				if (LoadSavedOpen) DestroyLoadSaved();
-				if (SaveOpen) DestroySave();
+				if (LoadSavedOpen)
+				{
+					DestroyLoadSaved();
+				}
+				if (SaveOpen)
+				{
+					DestroySave();
+				}
 			}
 		}
 
@@ -157,15 +165,28 @@ namespace XLObjectDropper.Controllers
 
 			SaveGameObject = new GameObject();
 			SaveController = SaveGameObject.AddComponent<SaveController>();
-
-			//SaveController.SaveLoaded += () => SaveLoaded.Invoke();
+			SaveController.Saved += SaveControllerSaveClicked;
+			SaveController.SaveCancelled += SaveControllerCancelled;
 			SaveGameObject.SetActive(true);
 		}
 
-		private void DestroySave()
+		private void SaveControllerSaveClicked()
+		{
+			Saved.Invoke();
+		}
+
+		private void SaveControllerCancelled()
+		{
+			SaveCancelled.Invoke();
+		}
+
+		public void DestroySave()
 		{
 			if (SaveGameObject == null || SaveController == null) return;
-			SaveController.SaveUI.gameObject.SetActive(false);
+
+			SaveController.Saved -= SaveControllerSaveClicked;
+			SaveController.SaveCancelled -= SaveControllerCancelled;
+
 			SaveGameObject.SetActive(false);
 
 			DestroyImmediate(SaveController);
