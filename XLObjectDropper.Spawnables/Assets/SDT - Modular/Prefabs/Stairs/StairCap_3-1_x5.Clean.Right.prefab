@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3436709994165132029}
   - component: {fileID: 4066803404030985847}
   - component: {fileID: 9147875682281373048}
+  - component: {fileID: 2074986632443927846}
   m_Layer: 0
   m_Name: StairCap_3-1_x5.Clean.Right
   m_TagString: Surface_Concrete
@@ -110,3 +111,16 @@ MonoBehaviour:
   ShowInObjectSelection: 0
   Style: Clean
   SubStyle: Right
+--- !u!114 &2074986632443927846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3796914881606777640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1

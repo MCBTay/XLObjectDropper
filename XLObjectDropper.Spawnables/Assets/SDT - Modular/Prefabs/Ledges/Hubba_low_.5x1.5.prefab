@@ -664,6 +664,7 @@ GameObject:
   - component: {fileID: 6218929768829421619}
   - component: {fileID: 8190610544529439993}
   - component: {fileID: 7380116954781868135}
+  - component: {fileID: 8106041202971835783}
   m_Layer: 0
   m_Name: Hubba_low_.5x1.5
   m_TagString: Surface_Concrete
@@ -678,7 +679,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7685982743205862700}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -750,3 +751,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1266435404508809222, guid: f0498a26a647f3c40ab0985690aba816, type: 3}
+--- !u!114 &8106041202971835783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685982743205862700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
