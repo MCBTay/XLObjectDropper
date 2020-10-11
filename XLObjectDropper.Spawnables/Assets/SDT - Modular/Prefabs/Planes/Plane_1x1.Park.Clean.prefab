@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 2082019913852745643}
   - component: {fileID: 3055682267268066199}
   - component: {fileID: 803126953264147245}
+  - component: {fileID: 3955979907415062638}
   m_Layer: 0
-  m_Name: Plane_1x1.Clean
+  m_Name: Plane_1x1.Park.Clean
   m_TagString: Surface_Concrete
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568630462450554494}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -110,3 +111,16 @@ MonoBehaviour:
   ShowInObjectSelection: 1
   Style: Park
   SubStyle: Clean
+--- !u!114 &3955979907415062638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568630462450554494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 2

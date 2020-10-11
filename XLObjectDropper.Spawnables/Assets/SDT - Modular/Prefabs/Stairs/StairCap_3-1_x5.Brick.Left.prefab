@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8481654652006141981}
   - component: {fileID: 1846551259298194797}
   - component: {fileID: 1924747240439461756}
+  - component: {fileID: 6544517719083134203}
   m_Layer: 0
   m_Name: StairCap_3-1_x5.Brick.Left
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7977035508267233736}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -110,3 +111,16 @@ MonoBehaviour:
   ShowInObjectSelection: 0
   Style: Brick
   SubStyle: Left
+--- !u!114 &6544517719083134203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7977035508267233736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1

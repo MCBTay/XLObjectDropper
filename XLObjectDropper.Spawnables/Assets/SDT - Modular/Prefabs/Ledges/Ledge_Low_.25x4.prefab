@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 6453463236698387000}
   - component: {fileID: 9109579003691517682}
   - component: {fileID: 912005033747494255}
+  - component: {fileID: 5184056830222135755}
   m_Layer: 0
   m_Name: Ledge_Low_.25x4
   m_TagString: Untagged
@@ -352,7 +353,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7308011403612022567}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -421,3 +422,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2500003, y: 0.25000066, z: 4}
   m_Center: {x: 0.00000014901161, y: 0.125, z: 0}
+--- !u!114 &5184056830222135755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7308011403612022567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
