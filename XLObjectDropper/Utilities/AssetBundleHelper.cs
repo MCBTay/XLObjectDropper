@@ -107,6 +107,13 @@ namespace XLObjectDropper.Utilities
 						var component = styleObject.GetComponent<XLStyleController>();
 						if (component.ShowInObjectSelection)
 						{
+							var styleCatController = styleObject.GetComponentInChildren<XLCategoryController>(true);
+							if (styleCatController != null)
+							{
+								type = styleCatController.Type;
+								menuText = styleCatController.MenuText;
+							}
+
 							var altStyles = styleGroupController.Objects.Where(x => !x.GetComponent<XLStyleController>().ShowInObjectSelection).ToList();
 							SpawnableManager.Prefabs.Add(new Spawnable(type, styleObject, bundle.name, altStyles));
 						}
