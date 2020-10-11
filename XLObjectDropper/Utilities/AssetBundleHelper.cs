@@ -81,34 +81,22 @@ namespace XLObjectDropper.Utilities
 			var assets = assetLoadRequest.allAssets;
 			if (assets == null || !assets.Any()) yield break;
 
-			foreach (var asset in assets)
+			foreach (GameObject asset in assets)
 			{
-				var type = Enumerations.SpawnableType.RailsAndLedges;
+				var type = Enumerations.SpawnableType.Other;
 
-				if (!isEmbedded)
+				var categoryController = asset.GetComponentInChildren<CategoryController>(true);
+				if (categoryController != null)
 				{
-					type = Enumerations.SpawnableType.RailsAndLedges;
-				}
-				else
-				{
-					if (asset.name.StartsWith("grind", StringComparison.InvariantCultureIgnoreCase) || asset.name.StartsWith("coping", StringComparison.InvariantCultureIgnoreCase))
-					{
-						type = Enumerations.SpawnableType.Grinds;
-					}
-					else
-					{
-						type = Enumerations.SpawnableType.RailsAndLedges;
-					}
+					type = categoryController.Type;
 				}
 
-				var gameObject = asset as GameObject;
-
-				var styleGroupController = gameObject.GetComponent<StyleGroupController>();
-				var styleController = gameObject.GetComponent<StyleController>();
+				var styleGroupController = asset.GetComponent<StyleGroupController>();
+				var styleController = asset.GetComponent<StyleController>();
 
 				if (styleController == null && styleGroupController == null)
 				{
-					SpawnableManager.Prefabs.Add(new Spawnable(type, gameObject, bundle.name));
+					SpawnableManager.Prefabs.Add(new Spawnable(type, asset, bundle.name));
 				}
 				else if (styleGroupController != null)
 				{
