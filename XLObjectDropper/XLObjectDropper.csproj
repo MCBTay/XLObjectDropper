@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AimConstraintTargetController.cs" />
     <Compile Include="Controllers\ObjectDropperController.cs" />
     <Compile Include="Controllers\ObjectEditController.cs" />
+    <Compile Include="Controllers\ObjectEdit\EditAvatarAnimatorController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditGeneralController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditGrindablesController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditLightController.cs" />

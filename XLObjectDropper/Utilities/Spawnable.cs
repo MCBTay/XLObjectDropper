@@ -67,6 +67,11 @@ namespace XLObjectDropper.Utilities
 			{
 				Settings.Add(new EditLightController());
 			}
+
+			if (Prefab.GetComponentInChildren<Animator>())
+			{
+				Settings.Add(new EditAvatarAnimatorController());
+			}
 		}
 
 		private void LoadPreviewImage()
