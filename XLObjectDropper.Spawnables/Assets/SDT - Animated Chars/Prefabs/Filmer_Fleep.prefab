@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 965078968, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShowInObjectSelection: 0
+  ShowInObjectSelection: 1
   Style: Fleep
   SubStyle: 
 --- !u!1 &7263316842634425992
