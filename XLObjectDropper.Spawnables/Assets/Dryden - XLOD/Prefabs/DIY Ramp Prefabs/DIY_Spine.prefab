@@ -346,7 +346,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &4995839638304420495
 GameObject:
@@ -485,7 +485,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 0
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &5507051750391143990
 GameObject:
@@ -624,7 +624,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 0
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &5604260084274637460
 GameObject:
@@ -778,7 +778,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &6395639187083287048
 GameObject:
@@ -962,6 +962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7237574378917033293}
+  - component: {fileID: 1330777330}
   m_Layer: 0
   m_Name: DIY_Spine
   m_TagString: Untagged
@@ -984,3 +985,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1330777330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656134240107618855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1

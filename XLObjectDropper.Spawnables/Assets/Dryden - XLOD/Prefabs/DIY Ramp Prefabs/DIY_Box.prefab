@@ -445,7 +445,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &6254718956285128263
 GameObject:
@@ -456,6 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2463871614514467592}
+  - component: {fileID: 1789632716}
   m_Layer: 0
   m_Name: DIY_Box
   m_TagString: Untagged
@@ -478,6 +479,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1789632716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6254718956285128263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
 --- !u!1 &6978365615683298107
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +687,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &8234743743430787009
 GameObject:
@@ -906,7 +920,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &8582031477106619752
 GameObject:

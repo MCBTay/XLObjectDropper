@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2836954173
+CRC: 2187140259
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a56b4d936e4e7072ef93abc28a583912
+    Hash: 5f61afa85ea7172de5f09cf8334cb07d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 19d9aba9b57afe4ff74fa190661d52fa
+    Hash: 5136e964909a74c21ad459ac1bb4edfc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -30,6 +30,12 @@ ClassTypes:
 - Class: 65
   Script: {instanceID: 0}
 - Class: 114
+  Script: {fileID: 1516441529, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
+  Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
+  Script: {fileID: -1691373624, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
   Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
 - Class: 115
   Script: {instanceID: 0}
@@ -38,8 +44,15 @@ ClassTypes:
 Assets:
 - Assets/Dryden - XLOD/Prefabs/DIY Ramp Prefabs/DIY_MiniRamp.prefab
 - Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Medium Cinder Block Ledge.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/ParkingGate.prefab
+- Assets/Dryden - XLOD/Prefabs/SGC/SGC_Cinderblock_Ledges.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Square.prefab
 - Assets/Dryden - XLOD/Prefabs/DIY Ramp Prefabs/DIY_Spine.prefab
 - Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Short Cinder Block Ledge.prefab
 - Assets/Dryden - XLOD/Prefabs/DIY Ramp Prefabs/DIY_Box.prefab
+- Assets/Dryden - XLOD/Prefabs/SGC/SGC_Pylon.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Round Bent.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Square Bent.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Round.prefab
 - Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Long Cinder Block Ledge.prefab
 Dependencies: []

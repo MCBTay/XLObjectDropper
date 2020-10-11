@@ -161,29 +161,29 @@ MonoBehaviour:
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: -4.078882, y: 0.16210707, z: -1.5533732}
+  - position: {x: -0.0568932, y: 0.12968566, z: 0.18749887}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.00010284972, y: -0.0000002384186, z: 1}
+    forward: {x: 0.00009694886, y: -0.0000002384186, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: -4.0790634, y: 0.16210677, z: 0.32084525}
+  - position: {x: -0.056757092, y: 0.12968542, z: -1.3118758}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.00010284972, y: -0.0000002384186, z: 1}
+    forward: {x: 0.00009694886, y: -0.0000002384186, z: -1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: -4.078882, y: 0.16210707, z: -1.5533732}
+    - position: {x: -0.0568932, y: 0.12968566, z: 0.18749887}
       up: {x: 0, y: 1, z: 0}
-      forward: {x: -0.00010284972, y: -0.0000002384186, z: 1}
+      forward: {x: 0.00009694886, y: -0.0000002384186, z: -1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: -4.0790634, y: 0.16210677, z: 0.32084525}
+    - position: {x: -0.056757092, y: 0.12968542, z: -1.3118758}
       up: {x: 0, y: 1, z: 0}
-      forward: {x: -0.00010284972, y: -0.0000002384186, z: 1}
+      forward: {x: 0.00009694886, y: -0.0000002384186, z: -1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -200,7 +200,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &1362479584998991458
 GameObject:
@@ -456,29 +456,29 @@ MonoBehaviour:
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: -4.2474885, y: 0.16210677, z: 0.32114542}
+  - position: {x: 0.077982984, y: 0.12968542, z: -1.3121169}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.00025895843, y: 0.00000023841858, z: -0.99999994}
+    forward: {x: -0.00025305757, y: 0.00000023841858, z: 0.99999994}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: -4.2470336, y: 0.16210714, z: -1.5520725}
+  - position: {x: 0.077627905, y: 0.12968571, z: 0.18645751}
     up: {x: 0, y: 1, z: 0}
-    forward: {x: 0.0002589584, y: 0.00000023841858, z: -0.99999994}
+    forward: {x: -0.00025305754, y: 0.00000023841858, z: 0.99999994}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: -4.2474885, y: 0.16210677, z: 0.32114542}
+    - position: {x: 0.077982984, y: 0.12968542, z: -1.3121169}
       up: {x: 0, y: 1, z: 0}
-      forward: {x: 0.00025895843, y: 0.00000023841858, z: -0.99999994}
+      forward: {x: -0.00025305757, y: 0.00000023841858, z: 0.99999994}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: -4.2470336, y: 0.16210714, z: -1.5520725}
+    - position: {x: 0.077627905, y: 0.12968571, z: 0.18645751}
       up: {x: 0, y: 1, z: 0}
-      forward: {x: 0.0002589584, y: 0.00000023841858, z: -0.99999994}
+      forward: {x: -0.00025305754, y: 0.00000023841858, z: 0.99999994}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -495,7 +495,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &5281098196843561342
 GameObject:
@@ -506,6 +506,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3691912922760119623}
+  - component: {fileID: 4563781702263383606}
+  - component: {fileID: 7548941423325610661}
   m_Layer: 0
   m_Name: Long Cinder Block Ledge
   m_TagString: Untagged
@@ -520,7 +522,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5281098196843561342}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0.011372366, y: -0.00008575991, z: -0.56216943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -528,7 +530,35 @@ Transform:
   - {fileID: 2076204155206291458}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
+--- !u!114 &4563781702263383606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5281098196843561342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1516441529, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowInObjectSelection: 1
+  Style: Long
+  SubStyle: 
+--- !u!114 &7548941423325610661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5281098196843561342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
 --- !u!1 &5809168306593526975
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,5 +697,5 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []

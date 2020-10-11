@@ -254,29 +254,29 @@ MonoBehaviour:
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: -4.7686086, y: 0.16210678, z: 0.3208691}
-    up: {x: 3.5171865e-13, y: 1, z: -0.00000005960465}
-    forward: {x: -0.0009779087, y: 0.0000002384186, z: -0.9999995}
+  - position: {x: 0.49487907, y: 0.12968543, z: -1.3118982}
+    up: {x: 0, y: 1, z: 0.00000005960465}
+    forward: {x: 0.0009838096, y: 0.0000002384186, z: 0.9999995}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: -4.769293, y: 0.16210696, z: -0.3014151}
-    up: {x: 3.5171865e-13, y: 1, z: -0.00000005960465}
-    forward: {x: -0.0009779088, y: 0.0000002384186, z: -0.9999995}
+  - position: {x: 0.49542937, y: 0.12968557, z: -0.81407094}
+    up: {x: 0, y: 1, z: 0.00000005960465}
+    forward: {x: 0.0009838097, y: 0.0000002384186, z: 0.9999995}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: -4.7686086, y: 0.16210678, z: 0.3208691}
-      up: {x: 3.5171865e-13, y: 1, z: -0.00000005960465}
-      forward: {x: -0.0009779087, y: 0.0000002384186, z: -0.9999995}
+    - position: {x: 0.49487907, y: 0.12968543, z: -1.3118982}
+      up: {x: 0, y: 1, z: 0.00000005960465}
+      forward: {x: 0.0009838096, y: 0.0000002384186, z: 0.9999995}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: -4.769293, y: 0.16210696, z: -0.3014151}
-      up: {x: 3.5171865e-13, y: 1, z: -0.00000005960465}
-      forward: {x: -0.0009779088, y: 0.0000002384186, z: -0.9999995}
+    - position: {x: 0.49542937, y: 0.12968557, z: -0.81407094}
+      up: {x: 0, y: 1, z: 0.00000005960465}
+      forward: {x: 0.0009838097, y: 0.0000002384186, z: 0.9999995}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -293,7 +293,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &4673923047883686014
 GameObject:
@@ -433,7 +433,7 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 0
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
 --- !u!1 &6227725586337036379
 GameObject:
@@ -444,6 +444,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8786366603206313170}
+  - component: {fileID: 7605971212221902358}
+  - component: {fileID: 2858276216270991542}
   m_Layer: 0
   m_Name: Short Cinder Block Ledge
   m_TagString: Untagged
@@ -458,7 +460,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6227725586337036379}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0.56283617, y: -0.00008575991, z: -1.0623418}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -466,7 +468,35 @@ Transform:
   - {fileID: 8180436376748035315}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
+--- !u!114 &7605971212221902358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6227725586337036379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1516441529, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowInObjectSelection: 0
+  Style: Short
+  SubStyle: 
+--- !u!114 &2858276216270991542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6227725586337036379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
 --- !u!1 &8331227356588084038
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,29 +658,29 @@ MonoBehaviour:
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: -4.9361944, y: 0.16210696, z: -0.3032378}
-    up: {x: 3.5171865e-13, y: 1, z: -0.00000005960465}
-    forward: {x: -0.0003655512, y: -0.0000001192093, z: 0.99999994}
+  - position: {x: 0.62895066, y: 0.12968557, z: -0.8126135}
+    up: {x: 0, y: 1, z: 0.00000005960465}
+    forward: {x: 0.00035965035, y: -0.0000001192093, z: -0.99999994}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: -4.93645, y: 0.16210687, z: 0.32031572}
-    up: {x: 3.5171865e-13, y: 1, z: -0.00000005960465}
-    forward: {x: -0.00036555127, y: -0.0000001192093, z: 0.99999994}
+  - position: {x: 0.62915224, y: 0.12968549, z: -1.3114563}
+    up: {x: 0, y: 1, z: 0.00000005960465}
+    forward: {x: 0.0003596504, y: -0.0000001192093, z: -0.99999994}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: -4.9361944, y: 0.16210696, z: -0.3032378}
-      up: {x: 3.5171865e-13, y: 1, z: -0.00000005960465}
-      forward: {x: -0.0003655512, y: -0.0000001192093, z: 0.99999994}
+    - position: {x: 0.62895066, y: 0.12968557, z: -0.8126135}
+      up: {x: 0, y: 1, z: 0.00000005960465}
+      forward: {x: 0.00035965035, y: -0.0000001192093, z: -0.99999994}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: -4.93645, y: 0.16210687, z: 0.32031572}
-      up: {x: 3.5171865e-13, y: 1, z: -0.00000005960465}
-      forward: {x: -0.00036555127, y: -0.0000001192093, z: 0.99999994}
+    - position: {x: 0.62915224, y: 0.12968549, z: -1.3114563}
+      up: {x: 0, y: 1, z: 0.00000005960465}
+      forward: {x: 0.0003596504, y: -0.0000001192093, z: -0.99999994}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
@@ -667,5 +697,5 @@ MonoBehaviour:
   _optimizeAngleThreshold: 0.5
   _space: 1
   _sampleMode: 0
-  subscribers: []
+  _subscribers: []
   nodes: []
