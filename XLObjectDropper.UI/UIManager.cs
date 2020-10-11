@@ -54,7 +54,9 @@ namespace XLObjectDropper.UI
         {
 	        if (Player.GetButtonDown("B"))
 	        {
-		        if (OptionsMenuUI.activeInHierarchy && (OptionsMenuUI.GetComponent<OptionsMenuUI>().LoadSavedUI == null || !OptionsMenuUI.GetComponent<OptionsMenuUI>().LoadSavedUI.activeInHierarchy))
+		        if (OptionsMenuUI.activeInHierarchy && 
+		            !OptionsMenuUI.GetComponent<OptionsMenuUI>().LoadSavedActive && 
+		            !OptionsMenuUI.GetComponent<OptionsMenuUI>().SaveActive)
 			        StartCoroutine(DisableOptionsMenu());
 
 		        if (ObjectSelectionUI.activeInHierarchy) 
@@ -154,7 +156,7 @@ namespace XLObjectDropper.UI
 			var optionsMenu = OptionsMenuUI.GetComponent<OptionsMenuUI>();
 			if (optionsMenu == null) yield break;
 
-			if (optionsMenu?.LoadSavedUI != null && optionsMenu.LoadSavedUI.activeInHierarchy)
+			if (optionsMenu.LoadSavedActive)
 			{
 				var loadSavedUI = optionsMenu.LoadSavedUI.GetComponent<LoadSavedUI>();
 
@@ -166,6 +168,16 @@ namespace XLObjectDropper.UI
 					}
 
 					StartCoroutine(optionsMenu.DisableLoadSavedUI());
+				}
+			}
+
+			if (optionsMenu.SaveActive)
+			{
+				var saveUI = optionsMenu.SaveUI.GetComponent<SaveUI>();
+
+				if (saveUI != null && saveUI.gameObject.activeInHierarchy)
+				{
+					StartCoroutine(optionsMenu.DisableSaveUI());
 				}
 			}
 

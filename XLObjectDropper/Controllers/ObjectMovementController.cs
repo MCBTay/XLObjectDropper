@@ -1,4 +1,5 @@
-﻿using GameManagement;
+﻿using System;
+using GameManagement;
 using Rewired;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -553,7 +554,11 @@ namespace XLObjectDropper.Controllers
 		private void SelectObject()
 		{
 			UISounds.Instance?.PlayOneShotSelectMajor();
-			SelectedObject = HighlightedObject;
+
+			transform.position = cameraPivot.position = HighlightedObject.transform.position;
+			MoveCamera(true);
+
+			//SelectedObject = HighlightedObject;
 		}
 
 		private void HandleObjectHighlight()

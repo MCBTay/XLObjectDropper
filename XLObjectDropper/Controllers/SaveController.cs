@@ -1,7 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using Rewired;
 using UnityEngine;
+using UnityEngine.Events;
+using XLObjectDropper.UI;
 using XLObjectDropper.UI.Menus;
 
 namespace XLObjectDropper.Controllers
@@ -9,6 +12,8 @@ namespace XLObjectDropper.Controllers
 	public class SaveController : MonoBehaviour
 	{
 		public static SaveUI SaveUI;
+		public event UnityAction Saved = () => { };
+		public event UnityAction SaveCancelled = () => { };
 
 		private void OnEnable()
 		{
@@ -25,7 +30,6 @@ namespace XLObjectDropper.Controllers
 
 		private void SaveClicked()
 		{
-			//validate text
 			var text = SaveUI.InputField.text;
 
 			if (text.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
@@ -37,14 +41,14 @@ namespace XLObjectDropper.Controllers
 				UISounds.Instance?.PlayOneShotSelectMajor();
 				Utilities.SaveManager.Instance.SaveCurrentSpawnables(text);
 
-				gameObject.SetActive(false);
+				Saved.Invoke();
 			}
 		}
 
 		private void CancelClicked()
 		{
 			UISounds.Instance?.PlayOneShotSelectMajor();
-			gameObject.SetActive(false);
+			SaveCancelled.Invoke();
 		}
 	}
 }

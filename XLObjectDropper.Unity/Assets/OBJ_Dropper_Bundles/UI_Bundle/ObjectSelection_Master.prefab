@@ -1287,6 +1287,7 @@ MonoBehaviour:
   ListContent: {fileID: 5613589587888566871}
   ListItemPrefab: {fileID: 4693846912459679585, guid: b7d3316d2cf504e4db57e87e358173c2,
     type: 3}
+  RecylingListview: {fileID: 0}
   Bumpers: {fileID: 2759632718986923783}
   CurrentCategoryIndex: 0
   Animator: {fileID: 6908398361964013331}
@@ -2871,7 +2872,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1095442984, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
+  m_Script: {fileID: 2109044991, guid: 062c7920eaf448247af1e5f5a96e9f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &3958544305285484438 stripped
