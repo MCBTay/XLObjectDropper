@@ -566,7 +566,7 @@ namespace XLObjectDropper.Controllers
 
 			if (!SelectedObjectActive)
 			{
-				if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out RaycastHit hit, 10.0f))
+				if (Physics.Raycast(transform.position, mainCam.transform.forward, out RaycastHit hit, 10.0f))
 				{
 					var parent = hit.transform.GetTopMostParent();
 
