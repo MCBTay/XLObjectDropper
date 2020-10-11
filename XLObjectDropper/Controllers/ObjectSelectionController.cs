@@ -66,6 +66,7 @@ namespace XLObjectDropper.Controllers
 
 		private void CategoryChanged()
 		{
+			UISounds.Instance?.PlayOneShotSelectionChange();
 			PopulateList();
 		}
 
