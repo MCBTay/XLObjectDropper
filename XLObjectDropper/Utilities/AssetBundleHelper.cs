@@ -85,14 +85,14 @@ namespace XLObjectDropper.Utilities
 			{
 				var type = Enumerations.SpawnableType.Other;
 
-				var categoryController = asset.GetComponentInChildren<CategoryController>(true);
+				var categoryController = asset.GetComponentInChildren<XLCategoryController>(true);
 				if (categoryController != null)
 				{
 					type = categoryController.Type;
 				}
 
-				var styleGroupController = asset.GetComponent<StyleGroupController>();
-				var styleController = asset.GetComponent<StyleController>();
+				var styleGroupController = asset.GetComponent<XLStyleGroupController>();
+				var styleController = asset.GetComponent<XLStyleController>();
 
 				if (styleController == null && styleGroupController == null)
 				{
@@ -102,10 +102,10 @@ namespace XLObjectDropper.Utilities
 				{
 					foreach (var styleObject in styleGroupController.Objects)
 					{
-						var component = styleObject.GetComponent<StyleController>();
+						var component = styleObject.GetComponent<XLStyleController>();
 						if (component.ShowInObjectSelection)
 						{
-							var altStyles = styleGroupController.Objects.Where(x => !x.GetComponent<StyleController>().ShowInObjectSelection).ToList();
+							var altStyles = styleGroupController.Objects.Where(x => !x.GetComponent<XLStyleController>().ShowInObjectSelection).ToList();
 							SpawnableManager.Prefabs.Add(new Spawnable(type, styleObject, bundle.name, altStyles));
 						}
 					}
