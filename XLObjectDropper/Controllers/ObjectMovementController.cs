@@ -1,6 +1,7 @@
 ﻿using GameManagement;
 using Rewired;
 using UnityEngine;
+using UnityEngine.Animations;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
@@ -481,6 +482,13 @@ namespace XLObjectDropper.Controllers
 
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
+
+			var aimConstraint = newObject.GetComponentInChildren<AimConstraint>(true);
+			var aimTarget = newObject.transform.Find("Target");
+			if (aimConstraint != null && aimTarget != null)
+			{
+				aimTarget.gameObject.AddComponent<AimConstraintTargetController>();
+			}
 
 			//TODO: Come back to this!!
 			//if (newObject.GetComponentInChildren<Rigidbody>(true) != null)
