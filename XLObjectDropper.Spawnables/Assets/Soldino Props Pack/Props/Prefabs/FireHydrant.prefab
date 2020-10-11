@@ -56,6 +56,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -67,6 +68,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -89,9 +91,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300008, guid: c568f41a48969e94fa531ea591f29ffc, type: 3}
 --- !u!114 &47566340062341045
 MonoBehaviour:
@@ -109,7 +111,11 @@ MonoBehaviour:
   alwaysDraw: 0
   drawThinckness: 0
   billboardThickness: 1
-  is2D: 0
+  isNewlyCreated: 1
+  multithreaded: 0
+  rebuildOnAwake: 0
+  updateMode: 0
+  triggerGroups: []
   spline:
     points:
     - _type: 0
@@ -121,6 +127,7 @@ MonoBehaviour:
       tangent2: {x: 0.000579834, y: 0.8641844, z: 0.00066185}
     closed: 0
     type: 3
+    linearAverageDirection: 1
     customValueInterpolation:
       serializedVersion: 2
       m_Curve: []
@@ -133,14 +140,26 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    precision: 0.8999999761581421
-  _morph:
-    computer: {fileID: 0}
-    morphStates: []
-    initialized: 0
+    sampleRate: 10
+  _rawSamples: []
+  _transformedSamples: []
+  sampleCollection:
+    samples: []
+    optimizedIndices: 
+    sampleMode: 0
+    clipFrom: 0
+    clipTo: 1
+    loopSamples: 0
+  originalSamplePercents: []
+  _sampleCount: 0
+  _is2D: 0
+  hasSamples: 0
+  pointsDirty: 00
+  _optimizeAngleThreshold: 0.5
   _space: 1
-  subscribers: []
-  _nodeLinks: []
+  _sampleMode: 0
+  _subscribers: []
+  nodes: []
 --- !u!1 &5742326960590461458
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +214,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -206,6 +226,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -272,6 +293,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -283,6 +305,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -349,6 +372,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -360,6 +384,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -382,6 +407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8383611101858499053}
   - component: {fileID: 1271720139156608763}
+  - component: {fileID: 1057203283}
   m_Layer: 0
   m_Name: FireHydrant
   m_TagString: Untagged
@@ -438,3 +464,17 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5742326960588457174}
   m_Enabled: 1
+--- !u!114 &1057203283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7273628824742230711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuText: Fire Hydrant
+  Type: 3

@@ -61,7 +61,11 @@ MonoBehaviour:
   alwaysDraw: 0
   drawThinckness: 0
   billboardThickness: 1
-  is2D: 0
+  isNewlyCreated: 1
+  multithreaded: 0
+  rebuildOnAwake: 0
+  updateMode: 0
+  triggerGroups: []
   spline:
     points:
     - _type: 0
@@ -80,6 +84,7 @@ MonoBehaviour:
       tangent2: {x: -0.7548599, y: 0.026504515, z: -0.010588646}
     closed: 0
     type: 3
+    linearAverageDirection: 1
     customValueInterpolation:
       serializedVersion: 2
       m_Curve: []
@@ -92,14 +97,26 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    precision: 0.8999999761581421
-  _morph:
-    computer: {fileID: 0}
-    morphStates: []
-    initialized: 0
+    sampleRate: 10
+  _rawSamples: []
+  _transformedSamples: []
+  sampleCollection:
+    samples: []
+    optimizedIndices: 
+    sampleMode: 0
+    clipFrom: 0
+    clipTo: 1
+    loopSamples: 0
+  originalSamplePercents: []
+  _sampleCount: 0
+  _is2D: 0
+  hasSamples: 0
+  pointsDirty: 0000
+  _optimizeAngleThreshold: 0.5
   _space: 1
-  subscribers: []
-  _nodeLinks: []
+  _sampleMode: 0
+  _subscribers: []
+  nodes: []
 --- !u!1 &1957452115034005673
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +127,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1957452115034005679}
   - component: {fileID: 1957452115034005678}
+  - component: {fileID: 182254417}
+  - component: {fileID: 182254416}
   m_Layer: 0
   m_Name: BarrierWorn
   m_TagString: Untagged
@@ -124,7 +143,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957452115034005673}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 37.31027, y: 18.775362, z: -5.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -166,6 +185,35 @@ LODGroup:
     renderers:
     - renderer: {fileID: 9157715921448143736}
   m_Enabled: 1
+--- !u!114 &182254417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957452115034005673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuText: Barrier
+  Type: 0
+--- !u!114 &182254416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957452115034005673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 965078968, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowInObjectSelection: 0
+  Style: Worn
+  SubStyle: 
 --- !u!1 &9157715921450145208
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +268,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -231,6 +280,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -297,6 +347,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -308,6 +359,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -374,6 +426,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -385,6 +438,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -453,6 +507,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -464,6 +519,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -486,7 +542,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: 83da97d9a39f4134f9305965211dbb02, type: 3}
