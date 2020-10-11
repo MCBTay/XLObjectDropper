@@ -25,7 +25,10 @@ namespace XLObjectDropper.UI.Menus
 		public BottomRowController BottomRow;
 
 		public GameObject LoadSavedUI;
+		[HideInInspector] public bool LoadSavedActive => LoadSavedUI != null && LoadSavedUI.activeInHierarchy;
 		public GameObject SaveUI;
+		[HideInInspector] public bool SaveActive => SaveUI != null && SaveUI.activeInHierarchy;
+
 		public Animator Animator;
 
 		private void OnEnable()
@@ -43,16 +46,18 @@ namespace XLObjectDropper.UI.Menus
 		{
 			if (UIManager.Instance.Player.GetButtonDown("B"))
 			{
-				if (LoadSavedUI != null && LoadSavedUI.activeInHierarchy)
+				if (LoadSavedActive)
 				{
 					StartCoroutine(DisableLoadSavedUI());
 					EventSystem.current.SetSelectedGameObject(LoadButton.gameObject);
+					SetAllInteractable(true);
 				}
 
-				if (SaveUI != null && SaveUI.activeInHierarchy)
+				if (SaveActive)
 				{
 					StartCoroutine(DisableSaveUI());
 					EventSystem.current.SetSelectedGameObject(SaveButton.gameObject);
+					SetAllInteractable(true);
 				}
 			}
 		}
@@ -88,6 +93,11 @@ namespace XLObjectDropper.UI.Menus
 			{
 				SaveButton.onClick.AddListener(SaveClicked);
 				LoadButton.onClick.AddListener(LoadClicked);
+			}
+			else
+			{
+				SaveButton.onClick.RemoveListener(SaveClicked);
+				LoadButton.onClick.RemoveListener(LoadClicked);
 			}
 		}
 
