@@ -2,7 +2,8 @@
 
 namespace XLObjectDropper.SpawnableScripts
 {
-	public class StyleController : MonoBehaviour
+	[HideInInspector]
+	public class XLStyleController : MonoBehaviour
 	{
 		public bool ShowInObjectSelection;
 		[Space(10)]

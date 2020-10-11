@@ -2,7 +2,7 @@
 
 namespace XLObjectDropper.SpawnableScripts
 {
-	public class CategoryController : MonoBehaviour
+	public class XLCategoryController : MonoBehaviour
 	{
 		public Enumerations.SpawnableType Type;
 	}

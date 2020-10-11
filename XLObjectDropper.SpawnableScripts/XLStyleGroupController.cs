@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace XLObjectDropper.SpawnableScripts
 {
-	public class StyleGroupController : MonoBehaviour
+	public class XLStyleGroupController : MonoBehaviour
 	{
 		public List<GameObject> Objects;
 	}
