@@ -12,8 +12,8 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 {
 	public class EditStyleController : IObjectSettings
 	{
-		private static EditGeneralController _instance;
-		public static EditGeneralController Instance => _instance ?? (_instance = new EditGeneralController());
+		private static EditStyleController _instance;
+		public static EditStyleController Instance => _instance ?? (_instance = new EditStyleController());
 
 		public GameObject SelectedObject;
 		public List<Spawnable> Styles;
@@ -97,10 +97,12 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				if (updateSelected)
 				{
 					ObjectMovementController.Instance.SelectedObject = SelectedObject;
+					ObjectMovementController.Instance.SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
 				}
 				if (updateHighlighted)
 				{
 					ObjectMovementController.Instance.HighlightedObject = SelectedObject;
+					ObjectMovementController.Instance.HighlightedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
 				}
 			});
 
