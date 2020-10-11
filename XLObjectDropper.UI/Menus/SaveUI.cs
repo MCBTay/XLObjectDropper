@@ -14,7 +14,6 @@ namespace XLObjectDropper.UI.Menus
 		private void OnEnable()
 		{
 			Animator.Play("SlideIn");
-			InputField.input
 		}
 	}
 }
