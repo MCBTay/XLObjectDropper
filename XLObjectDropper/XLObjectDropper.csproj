@@ -171,6 +171,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\GridOverlayController.cs" />
     <Compile Include="Controllers\LoadSavedController.cs" />
     <Compile Include="Controllers\AimConstraintTargetController.cs" />
     <Compile Include="Controllers\ObjectDropperController.cs" />

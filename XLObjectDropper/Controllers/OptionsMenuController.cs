@@ -100,6 +100,11 @@ namespace XLObjectDropper.Controllers
 		{
 			Settings.Instance.ShowGrid = value;
 			Utilities.SaveManager.Instance.SaveSettings();
+
+			if (ObjectMovementController.Instance.GridOverlay != null)
+			{
+				ObjectMovementController.Instance.GridOverlay.enabled = value;
+			}
 		}
 
 		private void UndoClicked()
