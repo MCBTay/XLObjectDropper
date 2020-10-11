@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1918106919
+CRC: 3593374475
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 810684baa51270cd1b0c739b898eb270
+    Hash: 6000841930f7362f40c6bf22a7acc7b8
   TypeTreeHash:
     serializedVersion: 2
     Hash: ef76e3e3c01f1358080d9b85669b5484
@@ -50,7 +50,9 @@ ClassTypes:
 - Class: 895512359
   Script: {instanceID: 0}
 Assets:
+- Assets/SDT - Animated Chars/Prefabs/Filmer_Fleep.prefab
 - Assets/SDT - Animated Chars/Prefabs/Filmer_Yukari.prefab
 - Assets/SDT - Animated Chars/Prefabs/Fleep_Rigged.prefab
+- Assets/SDT - Animated Chars/Prefabs/Filmer_Yukari 1.prefab
 - Assets/SDT - Animated Chars/Prefabs/SGC/SGC_Filmer.prefab
 Dependencies: []
