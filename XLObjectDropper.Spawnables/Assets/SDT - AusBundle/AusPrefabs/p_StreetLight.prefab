@@ -109,6 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3773834003038588434}
   - component: {fileID: 3773834003054402226}
+  - component: {fileID: 4002804357432985721}
   m_Layer: 0
   m_Name: p_StreetLight
   m_TagString: Untagged
@@ -123,7 +124,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3773834003038097970}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 52.528824, y: 0.122916326, z: 41.026344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -162,6 +163,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 3773834003036163316}
   m_Enabled: 1
+--- !u!114 &4002804357432985721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3773834003038097970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuText: Aus Streetlight
+  Type: 3
 --- !u!1 &3773834003038097972
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +461,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 95.492966
+  m_Intensity: 1482910.4
   m_Range: 12.12
   m_SpotAngle: 103.4
   m_InnerSpotAngle: 84.61037
