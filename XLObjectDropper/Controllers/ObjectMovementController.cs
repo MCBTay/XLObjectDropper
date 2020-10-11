@@ -555,10 +555,11 @@ namespace XLObjectDropper.Controllers
 		{
 			UISounds.Instance?.PlayOneShotSelectMajor();
 
-			transform.position = cameraPivot.position = HighlightedObject.transform.position;
-			MoveCamera(true);
+			//transform.position = cameraPivot.position = HighlightedObject.transform.position;
+			//MoveCamera(true);
 
-			//SelectedObject = HighlightedObject;
+			SelectedObject = HighlightedObject;
+			SelectedObjectLayerInfo = HighlightedObjectLayerInfo;
 		}
 
 		private void HandleObjectHighlight()

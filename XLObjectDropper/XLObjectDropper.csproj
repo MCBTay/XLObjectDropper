@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AimConstraintTargetController.cs" />
     <Compile Include="Controllers\ObjectDropperController.cs" />
     <Compile Include="Controllers\ObjectEditController.cs" />
+    <Compile Include="Controllers\ObjectEdit\EditAvatarAnimatorController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditGeneralController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditGrindablesController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditLightController.cs" />
@@ -261,7 +262,7 @@ copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "$(TargetDir)XLObjectDropper\XLObje
 copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
 copy /Y "$(TargetDir)Info.json" "$(TargetDir)XLObjectDropper\Info.json"
 
-powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-0-3-0.zip' -Force
+powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-0-3-2.zip' -Force
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

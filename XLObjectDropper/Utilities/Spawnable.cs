@@ -41,6 +41,8 @@ namespace XLObjectDropper.Utilities
 			{
 				styleController.Styles.Add(new Spawnable(type, altStyle, bundleName));
 			}
+
+			Settings.Add(styleController);
 		}
 
 		public Spawnable(Spawnable spawnable, GameObject spawnedinstance) : this(spawnable.Type, spawnable.Prefab, spawnable.BundleName, false)
@@ -64,6 +66,11 @@ namespace XLObjectDropper.Utilities
 			if (Prefab.GetComponentsInChildren<Light>(true).Any())
 			{
 				Settings.Add(new EditLightController());
+			}
+
+			if (Prefab.GetComponentInChildren<Animator>())
+			{
+				Settings.Add(new EditAvatarAnimatorController());
 			}
 		}
 
