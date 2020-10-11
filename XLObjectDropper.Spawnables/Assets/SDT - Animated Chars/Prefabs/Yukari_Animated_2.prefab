@@ -4027,7 +4027,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8796532797730099696}
   - component: {fileID: 3239111973676993418}
-  - component: {fileID: 9050324867162483741}
   - component: {fileID: 9050324867162483743}
   m_Layer: 0
   m_Name: Yukari_Animated_2
@@ -4077,32 +4076,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &9050324867162483741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8167382745823497034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RigLayers:
-  - rig: {fileID: 0}
-    active: 1
-  - rig: {fileID: 0}
-    active: 1
-  m_Effectors:
-  - m_Transform: {fileID: 9050324867508510864}
-    m_Style:
-      shape: {fileID: 4300000, guid: e050c2b16fe384bd994474655a4b4968, type: 2}
-      color: {r: 1, g: 0, b: 0, a: 0.5}
-      size: 0.1
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0}
-    m_Visible: 1
 --- !u!114 &9050324867162483743
 MonoBehaviour:
   m_ObjectHideFlags: 0
