@@ -4,11 +4,8 @@ ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: 2073693694548410006
-    second: Armature.001|Armature.001|mixamo.com|Layer0
-  - first:
-      74: 7168972985768442993
-    second: Armature.001|TPose
+      74: -4791504522942941401
+    second: Armature|Armature|mixamo.com|Layer0
   externalObjects: {}
   materials:
     materialImportMode: 1
