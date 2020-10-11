@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3910502881
+CRC: 506607816
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: aead85363ef82d971c0e7bbe464f82f2
+    Hash: ed4c81946ecb1c940c1bf82423831c1d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 5136e964909a74c21ad459ac1bb4edfc
+    Hash: daa34307c26b5ac99038594dcda92e32
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -30,11 +30,11 @@ ClassTypes:
 - Class: 65
   Script: {instanceID: 0}
 - Class: 114
-  Script: {fileID: 1516441529, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
 - Class: 114
-  Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  Script: {fileID: 98598976, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
 - Class: 114
-  Script: {fileID: -1691373624, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  Script: {fileID: 965078968, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
 - Class: 115
@@ -44,14 +44,12 @@ ClassTypes:
 Assets:
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Street.Asphalt.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Grungy.prefab
-- Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Grungy.Right.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Hubba_low_.5x1.5.prefab
-- Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Block.Right.prefab
-- Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Brick.Right.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_HubbaLow.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_1x1.prefab
 - Assets/SDT - Modular/Prefabs/Rails/Polejam_Small.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_Stair5Cap.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.25x4.prefab
-- Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Clean.Right.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Block.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.5x2.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Clean.prefab
@@ -60,21 +58,22 @@ Assets:
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Street.Asphalt.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Wood.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Clean.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_PadLow.prefab
 - Assets/SDT - Modular/Prefabs/Rails/Rail_Down_x1.5.Capped.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Grungy.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.25x2.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Wood.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_1x4.prefab
-- Assets/SDT - Modular/Prefabs/SGC/SGC_Stair_3-1_x5.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Block.Left.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_LedgeLow.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Clean.Left.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_2x2.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Clean.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Hubba_Low_.25x1.5.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Brick.Left.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_Stair5.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.5x4.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_2x2.prefab
-- Assets/SDT - Modular/Prefabs/SGC/SGC_StairCap_3-1_x5.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_1x2.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Grungy.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Grungy.Left.prefab
