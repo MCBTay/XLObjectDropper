@@ -37,8 +37,8 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			var expandable = newExpandable.GetComponent<Expandable>();
 			var styleExpandable = newExpandable.GetComponent<StyleSettingsExpandable>();
 
-			string style = spawnable.Prefab.GetComponent<StyleController>().Style;
-			string subStyle = spawnable.Prefab.GetComponent<StyleController>().SubStyle;
+			string style = spawnable.Prefab.GetComponent<XLStyleController>().Style;
+			string subStyle = spawnable.Prefab.GetComponent<XLStyleController>().SubStyle;
 
 			string name = style;
 			if (!string.IsNullOrEmpty(subStyle))
@@ -50,8 +50,8 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			foreach (var altStyle in stylesController.Styles)
 			{
-				style = altStyle.Prefab.GetComponent<StyleController>().Style;
-				subStyle = altStyle.Prefab.GetComponent<StyleController>().SubStyle;
+				style = altStyle.Prefab.GetComponent<XLStyleController>().Style;
+				subStyle = altStyle.Prefab.GetComponent<XLStyleController>().SubStyle;
 
 				name = style;
 				if (!string.IsNullOrEmpty(subStyle))
