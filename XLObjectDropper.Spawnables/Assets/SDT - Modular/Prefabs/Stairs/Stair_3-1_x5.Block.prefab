@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2643815961750160387
+--- !u!1 &3055030310824395374
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3457471696604241593}
-  - component: {fileID: 1753223679679861020}
-  - component: {fileID: 4589243801315304918}
-  - component: {fileID: 2914340566683449676}
-  - component: {fileID: 1586207625}
-  - component: {fileID: 6960002372013979970}
+  - component: {fileID: 3839811685847672527}
+  - component: {fileID: 6058973071408586038}
+  - component: {fileID: 7189650024894756979}
+  - component: {fileID: 831520201218905501}
+  - component: {fileID: 8971511537623543990}
+  - component: {fileID: 51658722550886627}
   m_Layer: 0
   m_Name: Stair_3-1_x5.Block
   m_TagString: Surface_Brick
@@ -21,13 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3457471696604241593
+--- !u!4 &3839811685847672527
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643815961750160387}
+  m_GameObject: {fileID: 3055030310824395374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,21 +35,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1753223679679861020
+--- !u!33 &6058973071408586038
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643815961750160387}
+  m_GameObject: {fileID: 3055030310824395374}
   m_Mesh: {fileID: 5721897896835679882, guid: ebb22a12bbe0af54e8cf0ca2fac94ad3, type: 3}
---- !u!23 &4589243801315304918
+--- !u!23 &7189650024894756979
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643815961750160387}
+  m_GameObject: {fileID: 3055030310824395374}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -82,13 +82,13 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &2914340566683449676
+--- !u!64 &831520201218905501
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643815961750160387}
+  m_GameObject: {fileID: 3055030310824395374}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -96,31 +96,32 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5721897896835679882, guid: ebb22a12bbe0af54e8cf0ca2fac94ad3, type: 3}
---- !u!114 &1586207625
+--- !u!114 &8971511537623543990
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643815961750160387}
+  m_GameObject: {fileID: 3055030310824395374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1516441529, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuText: Stair 5
+  Type: 1
+--- !u!114 &51658722550886627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055030310824395374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 965078968, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowInObjectSelection: 0
-  Style: Block
-  SubStyle: 
---- !u!114 &6960002372013979970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2643815961750160387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1695324350, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 1
+  Style: Normal
+  SubStyle: Block
