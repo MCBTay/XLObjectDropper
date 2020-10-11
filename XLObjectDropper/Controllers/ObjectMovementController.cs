@@ -1,6 +1,7 @@
 ﻿using GameManagement;
 using Rewired;
 using UnityEngine;
+using UnityEngine.Animations;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
@@ -23,9 +24,6 @@ namespace XLObjectDropper.Controllers
 		public GameObject HighlightedObject;
 		public bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
 		public LayerInfo HighlightedObjectLayerInfo;
-
-		public GameObject GridOverlay;
-		private bool GridOverlayActive => GridOverlay != null && GridOverlay.activeInHierarchy;
 
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
 		public float minHeight = 0.0f;
@@ -70,6 +68,8 @@ namespace XLObjectDropper.Controllers
 		private float targetDistance;
 		private float rotationAngleX;
 		private float rotationAngleY;
+
+		public GridOverlayController GridOverlay;
 
 		private bool LockCameraMovement { get; set; }
 		#endregion
@@ -117,6 +117,9 @@ namespace XLObjectDropper.Controllers
 			rotationAngleY = cameraPivot.eulerAngles.y;
 
 			targetDistance = defaultDistance;
+
+			GridOverlay = gameObject.AddComponent<GridOverlayController>();
+			GridOverlay.enabled = Settings.Instance.ShowGrid;
 
 			if (!(GameStateMachine.Instance.CurrentState.GetType() != typeof(ObjectDropperState)))
 				return;
@@ -169,8 +172,7 @@ namespace XLObjectDropper.Controllers
 
 	        if (GridOverlay != null)
 	        {
-				GridOverlay.SetActive(false);
-				DestroyImmediate(GridOverlay);
+		        GridOverlay.enabled = false;
 	        }
 
 	        if (HighlightedObject != null)
@@ -259,12 +261,7 @@ namespace XLObjectDropper.Controllers
 
 	        var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
 			collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
-
-		    if (GridOverlayActive && Settings.Instance.ShowGrid)
-	        {
-		        GridOverlay.transform.position = transform.position;
-	        }
-		}
+        }
 
 		/// <summary>
 		/// Camera movement
@@ -459,12 +456,6 @@ namespace XLObjectDropper.Controllers
 			SelectedObjectSpawnable = spawnable;
 			SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
 
-			if (Settings.Instance.ShowGrid)
-			{
-				GridOverlay = Instantiate(AssetBundleHelper.GridOverlayPrefab);
-				GridOverlay.transform.position = SelectedObject.transform.position;
-			}
-
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
 
@@ -481,6 +472,13 @@ namespace XLObjectDropper.Controllers
 
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
+
+			var aimConstraint = newObject.GetComponentInChildren<AimConstraint>(true);
+			var aimTarget = newObject.transform.Find("Target");
+			if (aimConstraint != null && aimTarget != null)
+			{
+				aimTarget.gameObject.AddComponent<AimConstraintTargetController>();
+			}
 
 			//TODO: Come back to this!!
 			//if (newObject.GetComponentInChildren<Rigidbody>(true) != null)
@@ -510,12 +508,6 @@ namespace XLObjectDropper.Controllers
 			{
 				SelectedObject.SetActive(false);
 				UserInterfaceHelper.CustomPassVolume.enabled = false;
-
-				if (GridOverlay != null && GridOverlay.activeInHierarchy)
-				{
-					GridOverlay.SetActive(false);
-					DestroyImmediate(GridOverlay);
-				}
 			}
 		}
 
@@ -537,11 +529,6 @@ namespace XLObjectDropper.Controllers
 			if (SelectedObjectActive)
 			{
 				SelectedObject.transform.position = cameraPivot.position;
-
-				if (GridOverlayActive && Settings.Instance.ShowGrid)
-				{
-					GridOverlay.transform.position = SelectedObject.transform.position;
-				}
 			}
 		}
 

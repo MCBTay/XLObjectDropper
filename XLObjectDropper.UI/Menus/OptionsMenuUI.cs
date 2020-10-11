@@ -107,23 +107,18 @@ namespace XLObjectDropper.UI.Menus
 
 		private void SetDefaultState(Slider slider, bool isEnabled)
 		{
-			slider.onValueChanged.RemoveAllListeners();
 			slider.interactable = true;
 			slider.gameObject.SetActive(isEnabled);
 		}
 
 		private void SetDefaultState(Toggle toggle, bool isEnabled)
 		{
-			toggle.onValueChanged.RemoveAllListeners();
 			toggle.interactable = true;
 			toggle.gameObject.SetActive(isEnabled);
 		}
 
 		private void SetDefaultState(Button button, bool isEnabled)
 		{
-			if (button != SaveButton && button != LoadButton)
-				button.onClick.RemoveAllListeners();
-
 			button.interactable = true;
 			button.gameObject.SetActive(isEnabled);
 		}
