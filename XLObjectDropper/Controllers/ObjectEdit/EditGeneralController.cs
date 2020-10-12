@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
+using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Controllers.ObjectEdit
 {
@@ -19,7 +21,16 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			if (expandable == null) return;
 
 			expandable.HideInReplays.Toggle.isOn = HideInReplays;
-			expandable.HideInReplays.Toggle.onValueChanged.AddListener((isOn) => { HideInReplays = isOn; });
+			expandable.HideInReplays.Toggle.onValueChanged.AddListener((isOn) =>
+			{
+				HideInReplays = isOn;
+
+				var general = SelectedObject?.GetSpawnableFromSpawned()?.Settings?.FirstOrDefault(x => x is EditGeneralController) as EditGeneralController;
+				if (general != null)
+				{
+					general.HideInReplays = HideInReplays;
+				}
+			});
 		}
 	}
 }

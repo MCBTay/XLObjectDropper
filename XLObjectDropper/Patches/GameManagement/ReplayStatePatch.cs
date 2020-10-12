@@ -17,7 +17,8 @@ namespace XLObjectDropper.Patches.GameManagement
 				{
 					foreach (var spawnable in SpawnableManager.SpawnedObjects)
 					{
-						if (spawnable.Settings != null && spawnable.Settings.FirstOrDefault(x => x is EditGeneralController) is EditGeneralController generalSettings && generalSettings.HideInReplays)
+						var settings = spawnable.Settings?.FirstOrDefault(x => x is EditGeneralController) as EditGeneralController;
+						if (settings != null && settings.HideInReplays)
 						{
 							spawnable.SpawnedInstance.SetActive(false);
 						}
@@ -35,7 +36,8 @@ namespace XLObjectDropper.Patches.GameManagement
 				{
 					foreach (var spawnable in SpawnableManager.SpawnedObjects)
 					{
-						if (spawnable.Settings != null && spawnable.Settings.FirstOrDefault(x => x is EditGeneralController) is EditGeneralController generalSettings && generalSettings.HideInReplays)
+						var settings = spawnable.Settings?.FirstOrDefault(x => x is EditGeneralController) as EditGeneralController;
+						if (settings != null && settings.HideInReplays)
 						{
 							spawnable.SpawnedInstance.SetActive(true);
 						}
