@@ -17,12 +17,34 @@ namespace XLObjectDropper.Controllers
 		public static ObjectMovementController Instance { get; set; }
 		public static ObjectPlacementUI MovementUI { get; set; }
 
-		public GameObject SelectedObject { get; set; }
+		private GameObject _selectedObject;
+		public GameObject SelectedObject
+		{
+			get => _selectedObject;
+			set
+			{
+				_selectedObject = value;
+				
+				SelectedObjectSpawnable = _selectedObject.GetSpawnable();
+				SelectedObjectLayerInfo = _selectedObject.GetSpawnable().Prefab.transform.GetObjectLayers();
+			}
+		}
+
 		private Spawnable SelectedObjectSpawnable;
 		public bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
 		public LayerInfo SelectedObjectLayerInfo;
 
-		public GameObject HighlightedObject;
+		private GameObject _highlightedObject;
+
+		public GameObject HighlightedObject
+		{
+			get => _highlightedObject;
+			set
+			{
+				_highlightedObject = value;
+				HighlightedObjectLayerInfo = _selectedObject.GetSpawnableFromSpawned().Prefab.transform.GetObjectLayers();
+			}
+		}
 		public bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
 		public LayerInfo HighlightedObjectLayerInfo;
 
@@ -442,6 +464,7 @@ namespace XLObjectDropper.Controllers
 			if (SelectedObjectActive)
 			{
 				DestroyImmediate(SelectedObject);
+				SelectedObject = null;
 				SelectedObjectLayerInfo = null;
 				SelectedObjectSpawnable = null;
 			}
@@ -453,9 +476,6 @@ namespace XLObjectDropper.Controllers
 
 			SelectedObject.transform.position = transform.position;
 			SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
-
-			SelectedObjectSpawnable = spawnable;
-			SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
 
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
@@ -559,7 +579,6 @@ namespace XLObjectDropper.Controllers
 			//MoveCamera(true);
 
 			SelectedObject = HighlightedObject;
-			SelectedObjectLayerInfo = HighlightedObjectLayerInfo;
 		}
 
 		private void HandleObjectHighlight()
