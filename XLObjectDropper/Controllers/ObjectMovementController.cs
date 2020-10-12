@@ -34,17 +34,7 @@ namespace XLObjectDropper.Controllers
 		public bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
 		public LayerInfo SelectedObjectLayerInfo;
 
-		private GameObject _highlightedObject;
-
-		public GameObject HighlightedObject
-		{
-			get => _highlightedObject;
-			set
-			{
-				_highlightedObject = value;
-				HighlightedObjectLayerInfo = _selectedObject.GetSpawnableFromSpawned().Prefab.transform.GetObjectLayers();
-			}
-		}
+		public GameObject HighlightedObject;
 		public bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
 		public LayerInfo HighlightedObjectLayerInfo;
 
