@@ -61,7 +61,11 @@ MonoBehaviour:
   alwaysDraw: 0
   drawThinckness: 0
   billboardThickness: 1
-  is2D: 0
+  isNewlyCreated: 1
+  multithreaded: 0
+  rebuildOnAwake: 0
+  updateMode: 0
+  triggerGroups: []
   spline:
     points:
     - _type: 0
@@ -80,6 +84,7 @@ MonoBehaviour:
       tangent2: {x: 0.032073975, y: 0.8979101, z: 0.015553474}
     closed: 0
     type: 3
+    linearAverageDirection: 1
     customValueInterpolation:
       serializedVersion: 2
       m_Curve: []
@@ -92,14 +97,26 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    precision: 0.8999999761581421
-  _morph:
-    computer: {fileID: 0}
-    morphStates: []
-    initialized: 0
+    sampleRate: 10
+  _rawSamples: []
+  _transformedSamples: []
+  sampleCollection:
+    samples: []
+    optimizedIndices: 
+    sampleMode: 0
+    clipFrom: 0
+    clipTo: 1
+    loopSamples: 0
+  originalSamplePercents: []
+  _sampleCount: 0
+  _is2D: 0
+  hasSamples: 0
+  pointsDirty: 0000
+  _optimizeAngleThreshold: 0.5
   _space: 1
-  subscribers: []
-  _nodeLinks: []
+  _sampleMode: 0
+  _subscribers: []
+  nodes: []
 --- !u!1 &3931042483603141123
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +178,11 @@ MonoBehaviour:
   alwaysDraw: 0
   drawThinckness: 0
   billboardThickness: 1
-  is2D: 0
+  isNewlyCreated: 1
+  multithreaded: 0
+  rebuildOnAwake: 0
+  updateMode: 0
+  triggerGroups: []
   spline:
     points:
     - _type: 0
@@ -180,6 +201,7 @@ MonoBehaviour:
       tangent2: {x: 0.032073975, y: 0.8979101, z: 0.015550613}
     closed: 0
     type: 3
+    linearAverageDirection: 1
     customValueInterpolation:
       serializedVersion: 2
       m_Curve: []
@@ -192,14 +214,26 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    precision: 0.8999999761581421
-  _morph:
-    computer: {fileID: 0}
-    morphStates: []
-    initialized: 0
+    sampleRate: 10
+  _rawSamples: []
+  _transformedSamples: []
+  sampleCollection:
+    samples: []
+    optimizedIndices: 
+    sampleMode: 0
+    clipFrom: 0
+    clipTo: 1
+    loopSamples: 0
+  originalSamplePercents: []
+  _sampleCount: 0
+  _is2D: 0
+  hasSamples: 0
+  pointsDirty: 0000
+  _optimizeAngleThreshold: 0.5
   _space: 1
-  subscribers: []
-  _nodeLinks: []
+  _sampleMode: 0
+  _subscribers: []
+  nodes: []
 --- !u!1 &6338071292440841263
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +295,11 @@ MonoBehaviour:
   alwaysDraw: 0
   drawThinckness: 0
   billboardThickness: 1
-  is2D: 0
+  isNewlyCreated: 1
+  multithreaded: 0
+  rebuildOnAwake: 0
+  updateMode: 0
+  triggerGroups: []
   spline:
     points:
     - _type: 0
@@ -280,6 +318,7 @@ MonoBehaviour:
       tangent2: {x: -0.028869629, y: 0.90221643, z: 0.014644623}
     closed: 0
     type: 3
+    linearAverageDirection: 1
     customValueInterpolation:
       serializedVersion: 2
       m_Curve: []
@@ -292,14 +331,26 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    precision: 0.8999999761581421
-  _morph:
-    computer: {fileID: 0}
-    morphStates: []
-    initialized: 0
+    sampleRate: 10
+  _rawSamples: []
+  _transformedSamples: []
+  sampleCollection:
+    samples: []
+    optimizedIndices: 
+    sampleMode: 0
+    clipFrom: 0
+    clipTo: 1
+    loopSamples: 0
+  originalSamplePercents: []
+  _sampleCount: 0
+  _is2D: 0
+  hasSamples: 0
+  pointsDirty: 0000
+  _optimizeAngleThreshold: 0.5
   _space: 1
-  subscribers: []
-  _nodeLinks: []
+  _sampleMode: 0
+  _subscribers: []
+  nodes: []
 --- !u!1 &6541391463569645814
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +360,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5877436925252775532}
+  - component: {fileID: 1495880880}
+  - component: {fileID: 1495880881}
   m_Layer: 0
   m_Name: MagazineBox_YZ_White
   m_TagString: Untagged
@@ -334,6 +387,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1495880880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541391463569645814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuText: Magazine Box
+  Type: 0
+--- !u!114 &1495880881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541391463569645814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 965078968, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowInObjectSelection: 0
+  Style: White
+  SubStyle: 
 --- !u!1 &7225047622970837177
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +477,11 @@ MonoBehaviour:
   alwaysDraw: 0
   drawThinckness: 0
   billboardThickness: 1
-  is2D: 0
+  isNewlyCreated: 1
+  multithreaded: 0
+  rebuildOnAwake: 0
+  updateMode: 0
+  triggerGroups: []
   spline:
     points:
     - _type: 0
@@ -414,6 +500,7 @@ MonoBehaviour:
       tangent2: {x: -0.028869629, y: 0.90221643, z: 0.014643669}
     closed: 0
     type: 3
+    linearAverageDirection: 1
     customValueInterpolation:
       serializedVersion: 2
       m_Curve: []
@@ -426,14 +513,26 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    precision: 0.8999999761581421
-  _morph:
-    computer: {fileID: 0}
-    morphStates: []
-    initialized: 0
+    sampleRate: 10
+  _rawSamples: []
+  _transformedSamples: []
+  sampleCollection:
+    samples: []
+    optimizedIndices: 
+    sampleMode: 0
+    clipFrom: 0
+    clipTo: 1
+    loopSamples: 0
+  originalSamplePercents: []
+  _sampleCount: 0
+  _is2D: 0
+  hasSamples: 0
+  pointsDirty: 0000
+  _optimizeAngleThreshold: 0.5
   _space: 1
-  subscribers: []
-  _nodeLinks: []
+  _sampleMode: 0
+  _subscribers: []
+  nodes: []
 --- !u!1 &8830831287426082625
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +587,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -499,6 +599,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -570,6 +671,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -581,6 +683,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -603,9 +706,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d6b2fb6b8b2b3754cb39d83af8267541, type: 3}
 --- !u!1 &8830831287426082629
 GameObject:
@@ -661,6 +764,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -672,6 +776,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -738,6 +843,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -749,6 +855,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
