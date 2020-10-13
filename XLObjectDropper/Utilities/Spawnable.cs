@@ -47,7 +47,7 @@ namespace XLObjectDropper.Utilities
 			Settings.Add(styleController);
 		}
 
-		public Spawnable(Spawnable spawnable, GameObject spawnedinstance) : this(spawnable.Type, spawnable.Prefab, spawnable.BundleName, generatePreview: false)
+		public Spawnable(Spawnable spawnable, GameObject spawnedinstance) : this(spawnable.Type, spawnable.Prefab, spawnable.BundleName, spawnable.MenuText, false)
 		{
 			SpawnedInstance = spawnedinstance;
 			PreviewTexture = spawnable.PreviewTexture;

@@ -51,7 +51,8 @@ namespace XLObjectDropper.Controllers
 				for (int i = objectList.Count - 1; i >= 0; i--)
 				{
 					var spawnable = objectList[i];
-					QuickMenu.AddToList(spawnable.Prefab.name, spawnable.PreviewTexture, () => ObjectClicked(spawnable), () => ObjectSelected(spawnable));
+					string displayText = string.IsNullOrEmpty(spawnable.MenuText) ? spawnable.Prefab.name : spawnable.MenuText;
+					QuickMenu.AddToList(displayText, spawnable.PreviewTexture, () => ObjectClicked(spawnable), () => ObjectSelected(spawnable));
 				}
 
 				if (QuickMenu.ListContent.transform.childCount > 0)
