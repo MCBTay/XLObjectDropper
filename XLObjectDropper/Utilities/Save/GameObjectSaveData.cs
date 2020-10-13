@@ -8,7 +8,7 @@ namespace XLObjectDropper.Utilities.Save
 	public class GameObjectSaveData
 	{
 		public string Id;
-
+		public string bundleName;
 		public SerializableVector3 position;
 		public SerializableQuaternion rotation;
 		public SerializableVector3 localScale;

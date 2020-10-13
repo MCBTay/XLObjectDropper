@@ -47,6 +47,7 @@ namespace XLObjectDropper.Utilities
 				var objectSaveData = new GameObjectSaveData
 				{
 					Id = instance.name,
+					bundleName = spawnable.BundleName,
 					position = new SerializableVector3(instance.transform.position),
 					rotation = new SerializableQuaternion(instance.transform.rotation),
 					localScale = new SerializableVector3(instance.transform.localScale)
