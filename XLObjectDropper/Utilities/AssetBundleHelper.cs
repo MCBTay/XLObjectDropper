@@ -98,7 +98,7 @@ namespace XLObjectDropper.Utilities
 
 				if (styleController == null && styleGroupController == null)
 				{
-					SpawnableManager.Prefabs.Add(new Spawnable(type, asset, bundle.name));
+					SpawnableManager.Prefabs.Add(new Spawnable(type, asset, bundle.name, menuText));
 				}
 				else if (styleGroupController != null)
 				{
@@ -115,7 +115,7 @@ namespace XLObjectDropper.Utilities
 							}
 
 							var altStyles = styleGroupController.Objects.Where(x => !x.GetComponent<XLStyleController>().ShowInObjectSelection).ToList();
-							SpawnableManager.Prefabs.Add(new Spawnable(type, styleObject, bundle.name, altStyles));
+							SpawnableManager.Prefabs.Add(new Spawnable(type, styleObject, bundle.name, menuText, altStyles));
 						}
 					}
 				}

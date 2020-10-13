@@ -16,14 +16,16 @@ namespace XLObjectDropper.Utilities
 		public GameObject SpawnedInstance;
 		public Texture2D PreviewTexture;
 		public string BundleName;
+		public string MenuText;
 
 		public List<IObjectSettings> Settings;
 
-		public Spawnable(Enumerations.SpawnableType type, GameObject prefab, string bundleName, bool generatePreview = true)
+		public Spawnable(Enumerations.SpawnableType type, GameObject prefab, string bundleName, string menuText = null, bool generatePreview = true)
 		{
 			Type = type;
 			Prefab = prefab;
 			BundleName = bundleName;
+			MenuText = menuText;
 
 			InitializeSettings();
 
@@ -33,7 +35,7 @@ namespace XLObjectDropper.Utilities
 			}
 		}
 
-		public Spawnable(Enumerations.SpawnableType type, GameObject prefab, string bundleName, List<GameObject> alternateStyles) : this(type, prefab, bundleName)
+		public Spawnable(Enumerations.SpawnableType type, GameObject prefab, string bundleName, string menuText, List<GameObject> alternateStyles) : this(type, prefab, bundleName, menuText)
 		{
 			var styleController = new EditStyleController();
 
@@ -45,7 +47,7 @@ namespace XLObjectDropper.Utilities
 			Settings.Add(styleController);
 		}
 
-		public Spawnable(Spawnable spawnable, GameObject spawnedinstance) : this(spawnable.Type, spawnable.Prefab, spawnable.BundleName, false)
+		public Spawnable(Spawnable spawnable, GameObject spawnedinstance) : this(spawnable.Type, spawnable.Prefab, spawnable.BundleName, generatePreview: false)
 		{
 			SpawnedInstance = spawnedinstance;
 			PreviewTexture = spawnable.PreviewTexture;
@@ -68,7 +70,7 @@ namespace XLObjectDropper.Utilities
 				Settings.Add(new EditLightController());
 			}
 
-			if (Prefab.GetComponentInChildren<Animator>())
+			if (Prefab.GetComponentInChildren<Animator>(true))
 			{
 				Settings.Add(new EditAvatarAnimatorController());
 			}

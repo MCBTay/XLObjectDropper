@@ -49,7 +49,8 @@ namespace XLObjectDropper.Controllers
 			{
 				foreach (var spawnable in spawnablesByType)
 				{
-					ObjectSelection.AddToList(spawnable.Prefab.name, spawnable.PreviewTexture, () => ObjectClicked(spawnable), () => ListItemSelected(spawnable));
+					string displayText = string.IsNullOrEmpty(spawnable.MenuText) ? spawnable.Prefab.name : spawnable.MenuText;
+					ObjectSelection.AddToList(displayText, spawnable.PreviewTexture, () => ObjectClicked(spawnable), () => ListItemSelected(spawnable));
 				}
 
 				if (ObjectSelection.ListContent.transform.childCount > 0)
