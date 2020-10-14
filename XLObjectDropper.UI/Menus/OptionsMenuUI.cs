@@ -18,6 +18,7 @@ namespace XLObjectDropper.UI.Menus
 		[Space(10)]
 		public Button UndoButton;
 		public Button RedoButton;
+		public Button ClearAllButton;
 		public Button SaveButton;
 		public Button LoadButton;
 
@@ -86,6 +87,7 @@ namespace XLObjectDropper.UI.Menus
 			SetDefaultState(ShowGrid, isEnabled);
 			SetDefaultState(UndoButton, isEnabled);
 			SetDefaultState(RedoButton, isEnabled);
+			SetDefaultState(ClearAllButton, isEnabled);
 			SetDefaultState(SaveButton, isEnabled);
 			SetDefaultState(LoadButton, isEnabled);
 
@@ -140,6 +142,7 @@ namespace XLObjectDropper.UI.Menus
 			ShowGrid.interactable = interactable;
 			UndoButton.interactable = interactable;
 			RedoButton.interactable = interactable;
+			ClearAllButton.interactable = interactable;
 			SaveButton.interactable = interactable;
 			LoadButton.interactable = interactable;
 		}
@@ -147,26 +150,6 @@ namespace XLObjectDropper.UI.Menus
 		private void OnDisable()
 		{
 			SetDefaultState(false);
-		}
-
-		public void EnableUndoButton(bool enabled)
-		{
-			UndoButton.interactable = enabled;
-		}
-
-		public void EnableRedoButton(bool enabled)
-		{
-			RedoButton.interactable = enabled;
-		}
-
-		public void EnableSaveButton(bool enabled)
-		{
-			SaveButton.interactable = enabled;
-		}
-
-		public void EnableLoadButton(bool enabled)
-		{
-			LoadButton.interactable = enabled;
 		}
 	}
 }

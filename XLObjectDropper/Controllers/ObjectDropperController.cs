@@ -242,6 +242,8 @@ namespace XLObjectDropper.Controllers
 		{
 			if (OptionsMenuGameObject == null || OptionsMenuController == null) return;
 			
+			UISounds.Instance?.PlayOneShotSelectMajor();
+
 			OptionsMenuGameObject.SetActive(false);
 
 			DestroyImmediate(OptionsMenuController);

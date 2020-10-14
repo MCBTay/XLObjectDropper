@@ -134,6 +134,7 @@
     <Compile Include="Controls\Expandables\Expandable.cs" />
     <Compile Include="Controls\ListItems\AnimationClipListItem.cs" />
     <Compile Include="Controls\ListItems\LoadSavedListItem.cs" />
+    <Compile Include="Controls\SelectableControl.cs" />
     <Compile Include="Controls\SliderControl.cs" />
     <Compile Include="Controls\ControllerButtons\StickController.cs" />
     <Compile Include="Controls\Buttons\TriggerButton.cs" />

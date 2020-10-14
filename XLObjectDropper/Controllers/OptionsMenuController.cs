@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityModManagerNet;
 using XLObjectDropper.UI;
+using XLObjectDropper.UI.Controls;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
 
@@ -46,9 +47,10 @@ namespace XLObjectDropper.Controllers
 
 		private void Update()
 		{
-			OptionsMenu.EnableUndoButton(EventStack.EventStack.Instance.UndoQueue.Count > 0);
-			OptionsMenu.EnableRedoButton(EventStack.EventStack.Instance.RedoQueue.Count > 0);
-			OptionsMenu.EnableSaveButton(SpawnableManager.SpawnedObjects.Any() && Utilities.SaveManager.Instance.HasUnsavedChanges);
+			OptionsMenu.UndoButton.interactable = EventStack.EventStack.Instance.UndoQueue.Count > 0;
+			OptionsMenu.RedoButton.interactable = EventStack.EventStack.Instance.RedoQueue.Count > 0;
+			OptionsMenu.SaveButton.interactable = SpawnableManager.SpawnedObjects.Any() && Utilities.SaveManager.Instance.HasUnsavedChanges;
+			OptionsMenu.ClearAllButton.interactable = SpawnableManager.SpawnedObjects.Any();
 
 			if (UIManager.Instance.Player.GetButtonDown("B"))
 			{
@@ -72,8 +74,23 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.ShowGrid.onValueChanged.AddListener(ShowGridValueChanged);
 			OptionsMenu.UndoButton.onClick.AddListener(UndoClicked);
 			OptionsMenu.RedoButton.onClick.AddListener(RedoClicked);
+			OptionsMenu.ClearAllButton.onClick.AddListener(ClearAllClicked);
 			OptionsMenu.SaveButton.onClick.AddListener(SaveClicked);
 			OptionsMenu.LoadButton.onClick.AddListener(LoadClicked);
+
+			OptionsMenu.Sensitivity.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
+			OptionsMenu.InvertCamControl.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
+			OptionsMenu.ShowGrid.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
+			OptionsMenu.UndoButton.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
+			OptionsMenu.RedoButton.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
+			OptionsMenu.ClearAllButton.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
+			OptionsMenu.SaveButton.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
+			OptionsMenu.LoadButton.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
+		}
+
+		private void Selected()
+		{
+			UISounds.Instance?.PlayOneShotSelectionChange();
 		}
 
 		private void RemoveListeners()
@@ -83,8 +100,18 @@ namespace XLObjectDropper.Controllers
 			OptionsMenu.ShowGrid.onValueChanged.RemoveListener(ShowGridValueChanged);
 			OptionsMenu.UndoButton.onClick.RemoveListener(UndoClicked);
 			OptionsMenu.RedoButton.onClick.RemoveListener(RedoClicked);
+			OptionsMenu.ClearAllButton.onClick.RemoveListener(ClearAllClicked);
 			OptionsMenu.SaveButton.onClick.RemoveListener(SaveClicked);
 			OptionsMenu.LoadButton.onClick.RemoveListener(LoadClicked);
+
+			OptionsMenu.Sensitivity.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
+			OptionsMenu.InvertCamControl.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
+			OptionsMenu.ShowGrid.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
+			OptionsMenu.UndoButton.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
+			OptionsMenu.RedoButton.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
+			OptionsMenu.ClearAllButton.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
+			OptionsMenu.SaveButton.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
+			OptionsMenu.LoadButton.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
 		}
 
 		private void OnDisable()
@@ -123,6 +150,21 @@ namespace XLObjectDropper.Controllers
 		private void RedoClicked()
 		{
 			EventStack.EventStack.Instance.RedoAction();
+		}
+
+		private void ClearAllClicked()
+		{
+			if (SpawnableManager.SpawnedObjects == null || !SpawnableManager.SpawnedObjects.Any()) return;
+
+			if (Utilities.SaveManager.Instance.HasUnsavedChanges)
+			{
+				//TODO: show are you sure?
+				SpawnableManager.DeleteSpawnedObjects();
+			}
+			else
+			{
+				SpawnableManager.DeleteSpawnedObjects();
+			}
 		}
 
 		private void SaveClicked()

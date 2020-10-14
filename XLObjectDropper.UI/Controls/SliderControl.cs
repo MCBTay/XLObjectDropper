@@ -1,11 +1,9 @@
 ﻿using TMPro;
-using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace XLObjectDropper.UI.Controls
 {
-	public class SliderControl : MonoBehaviour
+	public class SliderControl : SelectableControl
 	{
 		public Slider Slider;
 		public TMP_Text Label;
