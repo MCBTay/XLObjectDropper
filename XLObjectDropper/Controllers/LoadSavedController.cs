@@ -26,7 +26,9 @@ namespace XLObjectDropper.Controllers
 		{
 			Utilities.SaveManager.Instance.LoadAllSaves();
 
-			LevelSaves = Utilities.SaveManager.Instance.GetLoadedSavesByLevelHash(LevelManager.Instance.currentLevel.hash);
+			LevelSaves = new List<LevelSaveData>();
+			LevelSaves.AddRange(Utilities.SaveManager.Instance.GetLoadedSavesByLevelHash(LevelManager.Instance.currentLevel.hash));
+			LevelSaves.AddRange(Utilities.SaveManager.Instance.GetLoadedLegacySaves(LevelManager.Instance.currentLevel.name));
 		}
 
 		public void Start()
@@ -40,7 +42,8 @@ namespace XLObjectDropper.Controllers
 					() => { UISounds.Instance?.PlayOneShotSelectionChange(); });
 			}
 
-			EventSystem.current.SetSelectedGameObject(LoadSavedUI.ListContent.transform.GetChild(0).gameObject);
+			if (LoadSavedUI.ListContent.transform.childCount > 0)
+				EventSystem.current.SetSelectedGameObject(LoadSavedUI.ListContent.transform.GetChild(0).gameObject);
 		}
 
 
@@ -102,11 +105,15 @@ namespace XLObjectDropper.Controllers
 				var position = new Vector3(spawnable.position.x, spawnable.position.y, spawnable.position.z);
 				var rotation = new Quaternion(spawnable.rotation.x, spawnable.rotation.y, spawnable.rotation.z, spawnable.rotation.w);
 
-				var prefab = SpawnableManager.Prefabs.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name));
+				Spawnable prefab = null;
+
+				prefab = levelSave.isLegacy ? 
+					SpawnableManager.LegacyPrefabs.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name)) : 
+					SpawnableManager.Prefabs.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name));
 
 				if (prefab == null) continue;
 
-				var newObject = Object.Instantiate(prefab.Prefab, position, rotation);
+				var newObject = Instantiate(prefab.Prefab, position, rotation);
 				newObject.SetActive(true);
 
 				if (spawnable.settings.FirstOrDefault(x => x is LightingSaveData) != null)

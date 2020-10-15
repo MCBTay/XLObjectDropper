@@ -202,6 +202,7 @@
     <Compile Include="Utilities\SaveManager.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Utilities\Save\GameObjectSaveData.cs" />
+    <Compile Include="Utilities\Save\Legacy\LegacyGameObjectSaveData.cs" />
     <Compile Include="Utilities\Save\Settings\GeneralSaveData.cs" />
     <Compile Include="Utilities\Save\Settings\GrindableSaveData.cs" />
     <Compile Include="Utilities\Save\LevelSaveData.cs" />
@@ -224,6 +225,7 @@
     <EmbeddedResource Include="Assets\object_testbundle" />
     <EmbeddedResource Include="Assets\ui_bundle" />
     <EmbeddedResource Include="Assets\sdt - modular" />
+    <EmbeddedResource Include="Assets\legacysupport" />
     <None Include="Info.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

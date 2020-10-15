@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityModManagerNet;
-using XLObjectDropper.SpawnableScripts;
 
 namespace XLObjectDropper.Utilities
 {
@@ -25,6 +24,7 @@ namespace XLObjectDropper.Utilities
 
 			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.object_testbundle", true));
 			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.sdt - modular", true));
+			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.legacysupport", true, true));
 		}
 
 		public static void LoadUserBundles()
@@ -57,7 +57,7 @@ namespace XLObjectDropper.Utilities
 			}
 		}
 
-		static IEnumerator LoadBundleAsync(string name, bool isEmbedded = false)
+		static IEnumerator LoadBundleAsync(string name, bool isEmbedded = false, bool isLegacy = false)
 		{
 			AssetBundleCreateRequest abCreateRequest;
 
@@ -83,42 +83,7 @@ namespace XLObjectDropper.Utilities
 
 			foreach (GameObject asset in assets)
 			{
-				var type = Enumerations.SpawnableType.Other;
-				var menuText = string.Empty;
-
-				var categoryController = asset.GetComponentInChildren<XLCategoryController>(true);
-				if (categoryController != null)
-				{
-					type = categoryController.Type;
-					menuText = categoryController.MenuText;
-				}
-
-				var styleGroupController = asset.GetComponent<XLStyleGroupController>();
-				var styleController = asset.GetComponent<XLStyleController>();
-
-				if (styleController == null && styleGroupController == null)
-				{
-					SpawnableManager.Prefabs.Add(new Spawnable(type, asset, bundle.name, menuText));
-				}
-				else if (styleGroupController != null)
-				{
-					foreach (var styleObject in styleGroupController.Objects)
-					{
-						var component = styleObject.GetComponent<XLStyleController>();
-						if (component.ShowInObjectSelection)
-						{
-							var styleCatController = styleObject.GetComponentInChildren<XLCategoryController>(true);
-							if (styleCatController != null)
-							{
-								type = styleCatController.Type;
-								menuText = styleCatController.MenuText;
-							}
-
-							var altStyles = styleGroupController.Objects.Where(x => !x.GetComponent<XLStyleController>().ShowInObjectSelection).ToList();
-							SpawnableManager.Prefabs.Add(new Spawnable(type, styleObject, bundle.name, menuText, altStyles));
-						}
-					}
-				}
+				SpawnableManager.AddPrefab(asset, bundle, isLegacy);
 			}
 
 			SelfieCamera.enabled = false;

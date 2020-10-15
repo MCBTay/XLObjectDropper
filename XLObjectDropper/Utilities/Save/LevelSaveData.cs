@@ -6,10 +6,9 @@ namespace XLObjectDropper.Utilities.Save
 	[Serializable]
 	public class LevelSaveData
 	{
-		[NonSerialized]
-		public string filePath;
-		[NonSerialized]
-		public string fileName;
+		[NonSerialized] public string filePath;
+		[NonSerialized] public string fileName;
+		[NonSerialized] public bool isLegacy;
 		public string levelHash;
 		public string levelName;
 		public DateTime dateModified;

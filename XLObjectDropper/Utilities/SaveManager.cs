@@ -8,8 +8,8 @@ using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
 using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.Utilities.Save;
+using XLObjectDropper.Utilities.Save.Legacy;
 using XLObjectDropper.Utilities.Save.Settings;
-using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Utilities
 {
@@ -143,11 +143,42 @@ namespace XLObjectDropper.Utilities
 						loadedLevelSave.fileName = Path.GetFileNameWithoutExtension(saveFile);
 
 						LoadedSaves.Add(loadedLevelSave);
+						continue;
 					}
 					catch (Exception ex)
 					{
-						UnityModManager.Logger.Log($"XLObjectDropper: Unable to deserialize {saveFile}");
-						continue;
+						UnityModManager.Logger.Log($"XLObjectDropper: Unable to deserialize {saveFile}.  Will attempt legacy deserialization.");
+					}
+
+					try
+					{
+						var loadedLegacySave = JsonConvert.DeserializeObject<List<LegacyGameObjectSaveData>>(content);
+
+						var loadedLevelSave = new LevelSaveData();
+						loadedLevelSave.isLegacy = true;
+						loadedLevelSave.filePath = saveFile;
+						loadedLevelSave.fileName = Path.GetFileNameWithoutExtension(saveFile);
+
+						foreach (var gameObject in loadedLegacySave)
+						{
+							var saveData = new GameObjectSaveData
+							{
+								Id = gameObject.objectName,
+								position = new SerializableVector3(gameObject.posX, gameObject.posY, gameObject.posZ),
+								localScale = new SerializableVector3(gameObject.scaleX, gameObject.scaleY, gameObject.scaleZ)
+							};
+
+							var tmpQuat = Quaternion.Euler(gameObject.rotX, gameObject.rotY, gameObject.rotZ);
+							saveData.rotation = new SerializableQuaternion(tmpQuat.x, tmpQuat.y, tmpQuat.z, tmpQuat.w);
+
+							loadedLevelSave.gameObjects.Add(saveData);
+						}
+
+						LoadedSaves.Add(loadedLevelSave);
+					}
+					catch (Exception ex)
+					{
+						UnityModManager.Logger.Log($"XLObjectDropper: Unable to deserialize {saveFile} using legacy deserialization.");
 					}
 				}
 			}
@@ -161,6 +192,16 @@ namespace XLObjectDropper.Utilities
 			}
 
 			return LoadedSaves.Where(x => x.levelHash == hash).ToList();
+		}
+
+		public List<LevelSaveData> GetLoadedLegacySaves(string name)
+		{
+			if (LoadedSaves == null || !LoadedSaves.Any())
+			{
+				return new List<LevelSaveData>();
+			}
+
+			return LoadedSaves.Where(x => x.isLegacy).ToList();
 		}
 
 		public List<LevelSaveData> GetLoadedSavesByLevelName(string name)
