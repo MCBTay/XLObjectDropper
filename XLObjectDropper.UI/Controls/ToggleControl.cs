@@ -10,15 +10,17 @@ namespace XLObjectDropper.UI.Controls
 
 		private void OnEnable()
 		{
-			Toggle.onValueChanged.AddListener((value) =>
-			{
-				Toggle.isOn = value;
-			});
+			Toggle.onValueChanged.AddListener(ToggleValueChanged);
+		}
+
+		private void ToggleValueChanged(bool value)
+		{
+			Toggle.isOn = value;
 		}
 
 		private void OnDisable()
 		{
-			Toggle.onValueChanged.RemoveAllListeners();
+			Toggle.onValueChanged.RemoveListener(ToggleValueChanged);
 		}
 	}
 }
