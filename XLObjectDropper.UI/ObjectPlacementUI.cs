@@ -59,51 +59,47 @@ namespace XLObjectDropper.UI
 		{
 			var player = UIManager.Instance.Player;
 
-			#region Right bumper
+
+				
 			if (HasSelectedObject)
 			{
-				if (player.GetButtonDown("RB"))
+				#region Right bumper
+				if (player.GetButtonDown("RB") && MainScreen_UI.activeInHierarchy)
 				{
 					MainScreen_UI.SetActive(false);
 					SnappingModeUI.SetActive(true);
 				}
 				if (player.GetButton("RB")) return;
-				if (player.GetButtonUp("RB"))
+				if (player.GetButtonUp("RB") && SnappingModeUI.activeInHierarchy)
 				{
 					MainScreen_UI.SetActive(true);
 					SnappingModeUI.SetActive(false);
 				}
+				#endregion
+
+				#region Left Bumper
+				if (player.GetButtonDown("LB") && MainScreen_UI.activeInHierarchy)
+				{
+					MainScreen_UI.SetActive(false);
+					RotateAndScaleModeUI.SetActive(true);
+				}
+				if (player.GetButton("LB")) return;
+				if (player.GetButtonUp("LB") && RotateAndScaleModeUI.activeInHierarchy)
+				{
+					MainScreen_UI.SetActive(true);
+					RotateAndScaleModeUI.SetActive(false);
+				}
+				#endregion
 			}
 			else
 			{
 				MainScreen_UI.SetActive(true);
 				SnappingModeUI.SetActive(false);
-			}
-			#endregion
-
-            #region Left Bumper
-            if (HasSelectedObject)
-            {
-	            if (player.GetButtonDown("LB"))
-	            {
-		            MainScreen_UI.SetActive(false);
-		            RotateAndScaleModeUI.SetActive(true);
-	            }
-	            if (player.GetButton("LB")) return;
-	            if (player.GetButtonUp("LB"))
-	            {
-		            MainScreen_UI.SetActive(true);
-		            RotateAndScaleModeUI.SetActive(false);
-	            }
-            }
-            else
-            {
-				MainScreen_UI.SetActive(true);
 				RotateAndScaleModeUI.SetActive(false);
 			}
-            #endregion
 
-            if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
+
+			if (player.GetButtonDown("DPadX")) LockCam = !LockCam;
             if (player.GetNegativeButtonDown("DPadX")) GroundTracking = !GroundTracking;
 
             AXYBButtons.XButton.UpdateButton("Edit", HasSelectedObject || HasHighlightedObject);

@@ -71,11 +71,11 @@ namespace XLObjectDropper.Controllers
 			if (player.GetButtonUp("LB") && RotationAndScaleOpen) DestroyRotationAndScaleUI();
 			if (player.GetButtonUp("RB") && SnappingModeOpen) DestroySnappingModeUI();
 
-			if (player.GetButton("LB") && !RotationAndScaleOpen && ObjectMovementController.SelectedObjectActive)
+			if (player.GetButton("LB") && !RotationAndScaleOpen && !SnappingModeOpen && ObjectMovementController.SelectedObjectActive)
 			{
 				CreateRotationAndScaleUI();
 			}
-			else if (player.GetButton("RB") && !SnappingModeOpen && ObjectMovementController.SelectedObjectActive)
+			else if (player.GetButton("RB") && !SnappingModeOpen && !RotationAndScaleOpen && ObjectMovementController.SelectedObjectActive)
 			{
 				CreateSnappingModeUI();
 			}
