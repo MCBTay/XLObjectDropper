@@ -127,6 +127,7 @@
     <Compile Include="Controls\ControllerButtons\BumperController.cs" />
     <Compile Include="Controls\Buttons\ButtonBase.cs" />
     <Compile Include="Controls\Expandables\AvatarAnimatorExpandable.cs" />
+    <Compile Include="Controls\Expandables\ColorTintExpandable.cs" />
     <Compile Include="Controls\Expandables\GeneralSettingsExpandable.cs" />
     <Compile Include="Controls\Expandables\GrindableSettingsExpandable.cs" />
     <Compile Include="Controls\Expandables\LightSettingsExpandable.cs" />

@@ -29,6 +29,7 @@ namespace XLObjectDropper.Controllers
 			EditLightController.Instance.AddOptions(SelectedObject, ObjectEdit);
 			EditGrindablesController.Instance.AddOptions(SelectedObject, ObjectEdit);
 			EditAvatarAnimatorController.Instance.AddOptions(SelectedObject, ObjectEdit);
+			EditColorTintController.Instance.AddOptions(SelectedObject, ObjectEdit);
 
 			if (ObjectEdit.ListContent.transform.childCount > 0)
 			{
