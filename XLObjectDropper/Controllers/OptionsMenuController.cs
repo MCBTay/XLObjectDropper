@@ -121,18 +121,24 @@ namespace XLObjectDropper.Controllers
 
 		private void SensitivityValueChanged(float value)
 		{
+			UISounds.Instance?.PlayOneShotSelectionChange();
+
 			Settings.Instance.Sensitivity = value;
 			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
 		private static void InvertCamControlValueChanged(bool value)
 		{
+			UISounds.Instance?.PlayOneShotSelectionChange();
+
 			Settings.Instance.InvertCamControl = value;
 			Utilities.SaveManager.Instance.SaveSettings();
 		}
 
 		private static void ShowGridValueChanged(bool value)
 		{
+			UISounds.Instance?.PlayOneShotSelectionChange();
+
 			Settings.Instance.ShowGrid = value;
 			Utilities.SaveManager.Instance.SaveSettings();
 
