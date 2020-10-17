@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityModManagerNet;
+using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.UI;
 using XLObjectDropper.UI.Controls;
 using XLObjectDropper.UI.Menus;
@@ -156,15 +156,12 @@ namespace XLObjectDropper.Controllers
 		{
 			if (SpawnableManager.SpawnedObjects == null || !SpawnableManager.SpawnedObjects.Any()) return;
 
-			if (Utilities.SaveManager.Instance.HasUnsavedChanges)
-			{
-				//TODO: show are you sure?
-				SpawnableManager.DeleteSpawnedObjects();
-			}
-			else
-			{
-				SpawnableManager.DeleteSpawnedObjects();
-			}
+			// Should we maybe show an 'are you sure?' dialog
+			var gameObjects = SpawnableManager.SpawnedObjects.Select(x => x.SpawnedInstance).ToList();
+			var batchObjectDeletedEvent = new BatchObjectDeletedEvent(gameObjects);
+			batchObjectDeletedEvent.AddToUndoStack();
+
+			SpawnableManager.DeleteSpawnedObjects();
 		}
 
 		private void SaveClicked()

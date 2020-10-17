@@ -187,6 +187,7 @@
     <Compile Include="Controllers\RotationAndScaleController.cs" />
     <Compile Include="Controllers\SaveController.cs" />
     <Compile Include="Controllers\SnappingModeController.cs" />
+    <Compile Include="EventStack\Events\BatchObjectDeletedEvent.cs" />
     <Compile Include="Patches\GameManagement\ReplayStatePatch.cs" />
     <Compile Include="Patches\LevelManagerPatch.cs" />
     <Compile Include="Utilities\AssetBundleHelper.cs" />

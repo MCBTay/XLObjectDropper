@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace XLObjectDropper.EventStack.Events
 {
 	public abstract class ObjectDropperEvent
 	{
 		public GameObject GameObject;
+		public List<GameObject> GameObjects;
 
 		public abstract void Undo();
 		public abstract void Redo();
@@ -20,6 +22,11 @@ namespace XLObjectDropper.EventStack.Events
 		public ObjectDropperEvent(GameObject gameObject)
 		{
 			GameObject = gameObject;
+		}
+
+		public ObjectDropperEvent(List<GameObject> gameObjects)
+		{
+			GameObjects = gameObjects;
 		}
 	}
 }
