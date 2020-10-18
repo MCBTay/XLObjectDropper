@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace XLObjectDropper.UI.Controls.ListItems
 {
-	public class LoadSavedListItem : MonoBehaviour
+	public class LoadSavedListItem : MonoBehaviour, ISelectHandler
 	{
 		public GameObject ListItem;
 
@@ -15,6 +15,11 @@ namespace XLObjectDropper.UI.Controls.ListItems
 		public TMP_Text NumObjects;
 
 		[HideInInspector] public UnityEvent onSelect;
+
+		public void OnSelect(BaseEventData eventData)
+		{
+			onSelect.Invoke();
+		}
 
 		public void Update()
 		{

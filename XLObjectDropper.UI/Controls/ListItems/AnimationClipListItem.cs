@@ -6,11 +6,16 @@ using UnityEngine.UI;
 
 namespace XLObjectDropper.UI.Controls.ListItems
 {
-	public class AnimationClipListItem : MonoBehaviour
+	public class AnimationClipListItem : MonoBehaviour, ISelectHandler
 	{
 		public GameObject ListItem;
 		public TMP_Text ClipName;
 		[HideInInspector] public UnityEvent onSelect;
+
+		public void OnSelect(BaseEventData eventData)
+		{
+			onSelect.Invoke();
+		}
 
 		public void Update()
 		{
