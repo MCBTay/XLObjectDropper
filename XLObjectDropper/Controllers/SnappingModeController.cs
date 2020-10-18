@@ -77,7 +77,7 @@ namespace XLObjectDropper.Controllers
 			if ((int)Settings.Instance.MovementSnappingMode > Enum.GetValues(typeof(MovementSnappingMode)).Length - 1)
 				Settings.Instance.MovementSnappingMode = 0;
 
-			Utilities.SaveManager.Instance.SaveSettings();
+			Settings.Instance.Save();
 		}
 
 		private float GetCurrentPlacementSnappingModeIncrement()
