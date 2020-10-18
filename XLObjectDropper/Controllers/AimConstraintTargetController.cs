@@ -14,7 +14,7 @@ namespace XLObjectDropper.Controllers
 			}
 			else
 			{
-				gameObject.transform.position = PlayerController.Instance.skaterController.skaterTargetTransform.position;
+				gameObject.transform.position = PlayerController.Instance.skaterController.skaterHips.position;
 			}
 		}
 	}
