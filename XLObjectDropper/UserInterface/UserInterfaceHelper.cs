@@ -57,9 +57,9 @@ namespace XLObjectDropper.UserInterface
 
 			if (menuButtons != null && menuButtons.Any())
 			{
-				var buttonToClone = menuButtons.ElementAt(6);
+				var buttonToClone = menuButtons.ElementAt(0);
 
-				ObjectDropperButton = Object.Instantiate(buttonToClone, buttonToClone.gameObject.transform);
+				ObjectDropperButton = Object.Instantiate(buttonToClone, buttonToClone.transform.parent);
 
 				if (ObjectDropperButton == null) return;
 
