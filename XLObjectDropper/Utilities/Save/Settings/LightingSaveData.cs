@@ -10,7 +10,7 @@ namespace XLObjectDropper.Utilities.Save.Settings
 		public float intensity;
 		public LightUnit unit;
 		public float range;
-		public float angle;
+		public float? angle;
 		public SerializableVector3 color;
 	}
 }

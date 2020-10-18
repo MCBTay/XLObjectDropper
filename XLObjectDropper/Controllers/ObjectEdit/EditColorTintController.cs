@@ -1,8 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
+using XLObjectDropper.Utilities.Save;
+using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Controllers.ObjectEdit
 {
@@ -10,6 +11,8 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 	{
 		private static EditColorTintController _instance;
 		public static EditColorTintController Instance => _instance ?? (_instance = new EditColorTintController());
+
+		private Color? Color;
 
 		public void AddOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
 		{
@@ -33,12 +36,24 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 		private void ColorClicked(GameObject gameObject, Color color)
 		{
+			Color = color;
+
 			var meshRenderers = gameObject.GetComponentsInChildren<MeshRenderer>();
 
 			foreach (var meshRenderer in meshRenderers)
 			{
 				meshRenderer.material.SetColor("_BaseColor", color);
 			}
+		}
+
+		public ISettingsSaveData ConvertToSaveSettings()
+		{
+			if (Color == null) return null;
+
+			return new ColorTintSaveData
+			{
+				tintedColor = new SerializableVector3(Color.Value.r, Color.Value.g, Color.Value.b)
+			};
 		}
 	}
 }

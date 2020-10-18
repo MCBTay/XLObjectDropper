@@ -3,6 +3,7 @@ using UnityEngine;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
+using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Controllers.ObjectEdit
 {
@@ -89,6 +90,15 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			{
 				DisableLayer(child, layerName, isEnabled);
 			}
+		}
+
+		public ISettingsSaveData ConvertToSaveSettings()
+		{
+			return new GrindableSaveData
+			{
+				copingEnabled = CopingEnabled,
+				grindablesEnabled = GrindableEnabled
+			};
 		}
 	}
 }

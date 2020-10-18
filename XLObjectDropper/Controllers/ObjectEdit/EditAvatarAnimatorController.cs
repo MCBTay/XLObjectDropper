@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
-using XLObjectDropper.Utilities;
+using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Controllers.ObjectEdit
 {
@@ -16,6 +15,8 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 		private Animator Animator;
 		private AnimationClip[] Animations;
+
+		private string CurrentAnimation;
 
 		public void AddOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
 		{
@@ -37,8 +38,6 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			{
 				AddListItem(avatarAnimatorExpandable.ListItemPrefab, expandable.PropertiesListContent.transform, animation);
 			}
-
-
 		}
 
 		private void AddListItem(GameObject prefab, Transform listContent, AnimationClip animationClip)
@@ -56,6 +55,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			listItem.GetComponent<Button>().onClick.AddListener(() =>
 			{
+				CurrentAnimation = animationClip.name;
 				Animator.Play(animationClip.name);
 			});
 
@@ -65,6 +65,15 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			//}
 
 			listItem.SetActive(true);
+		}
+
+		public ISettingsSaveData ConvertToSaveSettings()
+		{
+			return new AvatarAnimatorSaveData
+			{
+				currentAnimationName = CurrentAnimation,
+				isPlaying = true
+			};
 		}
 	}
 }

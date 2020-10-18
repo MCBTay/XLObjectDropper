@@ -205,6 +205,8 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Utilities\Save\GameObjectSaveData.cs" />
     <Compile Include="Utilities\Save\Legacy\LegacyGameObjectSaveData.cs" />
+    <Compile Include="Utilities\Save\Settings\AvatarAnimatorSaveData.cs" />
+    <Compile Include="Utilities\Save\Settings\ColorTintSaveData.cs" />
     <Compile Include="Utilities\Save\Settings\GeneralSaveData.cs" />
     <Compile Include="Utilities\Save\Settings\GrindableSaveData.cs" />
     <Compile Include="Utilities\Save\LevelSaveData.cs" />

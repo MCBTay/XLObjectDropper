@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XLObjectDropper.Utilities.Save.Settings
+﻿namespace XLObjectDropper.Utilities.Save.Settings
 {
 	public interface ISettingsSaveData
 	{

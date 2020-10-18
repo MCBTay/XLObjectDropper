@@ -4,12 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering.HighDefinition;
 using UnityModManagerNet;
-using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.Utilities.Save;
 using XLObjectDropper.Utilities.Save.Legacy;
-using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Utilities
 {
@@ -53,44 +50,13 @@ namespace XLObjectDropper.Utilities
 					localScale = new SerializableVector3(instance.transform.localScale)
 				};
 
-				if (spawnable.Settings.FirstOrDefault(x => x is EditGeneralController) is EditGeneralController generalSettings)
+				foreach (var settings in spawnable.Settings)
 				{
-					objectSaveData.settings.Add(new GeneralSaveData { hideInReplays = generalSettings.HideInReplays });
-				}
-
-				var grindables = spawnable.Prefab.GetChildrenOnLayer("Grindable");
-				bool hasGrindables = grindables != null && grindables.Any();
-
-				var copings = spawnable.Prefab.GetChildrenOnLayer("Coping");
-				bool hasCoping = copings != null && copings.Any();
-
-				if (hasGrindables || hasCoping)
-				{
-					if (spawnable.Settings.FirstOrDefault(x => x is EditGrindablesController) is EditGrindablesController grindableSettings)
+					var settingsSaveData = settings.ConvertToSaveSettings();
+					if (settingsSaveData != null)
 					{
-						objectSaveData.settings.Add(new GrindableSaveData
-						{
-							grindablesEnabled = grindableSettings.GrindableEnabled,
-							copingEnabled = grindableSettings.CopingEnabled,
-						});
+						objectSaveData.settings.Add(settingsSaveData);
 					}
-				}
-
-				var light = instance.GetComponentInChildren<Light>(true);
-
-				if (light != null)
-				{
-					var hdLight = light.GetComponent<HDAdditionalLightData>();
-
-					objectSaveData.settings.Add(new LightingSaveData
-					{
-						intensity = hdLight.intensity,
-						unit = hdLight.lightUnit,
-						angle = light.spotAngle,
-						range = hdLight.range,
-						enabled = hdLight.enabled,
-						color = new SerializableVector3(hdLight.color.r, hdLight.color.g, hdLight.color.b)
-					});
 				}
 
 				levelConfigToSave.gameObjects.Add(objectSaveData);

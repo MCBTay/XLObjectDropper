@@ -4,6 +4,8 @@ using UnityEngine.Rendering.HighDefinition;
 using XLObjectDropper.UI.Controls.Buttons;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
+using XLObjectDropper.Utilities.Save;
+using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Controllers.ObjectEdit
 {
@@ -24,6 +26,12 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 		private float angleMax = 179.0f;
 		private float numAngleSteps = 178.0f;
 
+		public bool Enabled;
+		public float Intensity;
+		public float Range;
+		public float? Angle;
+		public Vector3 Color;
+
 		public void AddOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
 		{
 			var lights = SelectedObject.GetComponentsInChildren<Light>(true);
@@ -39,6 +47,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 				expandable.EnabledToggle.Toggle.onValueChanged.AddListener((isOn) =>
 				{
+					Enabled = isOn;
 					foreach (var lightToEdit in lights)
 					{
 						lightToEdit.GetComponent<HDAdditionalLightData>().enabled = isOn;
@@ -53,6 +62,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 				expandable.IntensitySlider.Slider.onValueChanged.AddListener((intensity) =>
 				{
+					Intensity = intensity;
 					foreach (var lightToEdit in lights)
 					{
 						var hdrpLightToEdit = lightToEdit.GetComponent<HDAdditionalLightData>();
@@ -72,6 +82,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 				expandable.RangeSlider.Slider.onValueChanged.AddListener((range) =>
 				{
+					Range = range;
 					foreach (var lightToEdit in lights)
 					{
 						float newRange = rangeMin + ((range / numRangeSteps) * (rangeMax - rangeMin));
@@ -84,6 +95,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 				if (hdrpLight.type != HDLightType.Spot)
 				{
+					Angle = null;
 					expandable.AngleSlider.Slider.interactable = false;
 				}
 				else
@@ -95,6 +107,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 					expandable.AngleSlider.Slider.onValueChanged.AddListener((angle) =>
 					{
+						Angle = angle;
 						foreach (var lightToEdit in lights)
 						{
 							float newSpotAngle = angleMin + (((angle - angleMin) / numAngleSteps) * (angleMax - angleMin));
@@ -116,6 +129,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 				expandable.ColorSliders.onValueChanged += (color) =>
 				{
+					Color = color;
 					foreach (var lightToEdit in lights)
 					{
 						lightToEdit.GetComponent<HDAdditionalLightData>().color = new Color(color.x, color.y, color.z);
@@ -133,6 +147,18 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				//lightExpandable.GetComponent<Selectable>().navigation = nav;
 				//}
 			}
+		}
+
+		public ISettingsSaveData ConvertToSaveSettings()
+		{
+			return new LightingSaveData
+			{
+				enabled = Enabled,
+				intensity = Intensity,
+				range = Range,
+				angle = Angle,
+				color = new SerializableVector3(Color)
+			};
 		}
 	}
 }

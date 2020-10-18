@@ -2,11 +2,13 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using XLObjectDropper.SpawnableScripts;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
+using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Controllers.ObjectEdit
 {
@@ -17,6 +19,8 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 		public GameObject SelectedObject;
 		public List<Spawnable> Styles;
+
+		public static UnityEvent styleSelected;
 
 		public EditStyleController()
 		{
@@ -75,36 +79,8 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			{
 				listItem.GetComponentInChildren<TMP_Text>().SetText(spawnable.Prefab.name.Replace('_', ' '));
 			}
-			
-			listItem.GetComponent<Button>().onClick.AddListener(() =>
-			{
-				var pos = SelectedObject.transform.position;
-				var rot = SelectedObject.transform.rotation;
-				var parent = SelectedObject.transform.parent;
 
-				var updateSelected = SelectedObject == ObjectMovementController.Instance.SelectedObject;
-				var updateHighlighted = SelectedObject == ObjectMovementController.Instance.HighlightedObject;
-
-				Object.DestroyImmediate(SelectedObject);
-
-				SelectedObject = Object.Instantiate(spawnable.Prefab, pos, rot);
-
-				if (parent != null)
-				{
-					SelectedObject.transform.SetParent(parent);
-				}
-
-				if (updateSelected)
-				{
-					ObjectMovementController.Instance.SelectedObject = SelectedObject;
-					ObjectMovementController.Instance.SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
-				}
-				if (updateHighlighted)
-				{
-					ObjectMovementController.Instance.HighlightedObject = SelectedObject;
-					ObjectMovementController.Instance.HighlightedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
-				}
-			});
+			listItem.GetComponent<Button>().onClick.AddListener(() => StyleClicked(spawnable));
 
 			//if (objectSelected != null)
 			//{
@@ -114,6 +90,70 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			listItem.GetComponentInChildren<RawImage>().texture = spawnable.PreviewTexture;
 
 			listItem.SetActive(true);
+		}
+
+		private void StyleClicked(Spawnable spawnable)
+		{
+			var pos = SelectedObject.transform.position;
+			var rot = SelectedObject.transform.rotation;
+			var parent = SelectedObject.transform.parent;
+
+			var updateSelected = SelectedObject == ObjectMovementController.Instance.SelectedObject;
+			var updateHighlighted = SelectedObject == ObjectMovementController.Instance.HighlightedObject;
+
+			if (updateSelected)
+			{
+				ObjectMovementController.Instance.enabled = true;
+				ObjectMovementController.Instance.InstantiateSelectedObject(spawnable);
+
+				ObjectMovementController.Instance.SelectedObject.transform.position = pos;
+				ObjectMovementController.Instance.SelectedObject.transform.rotation = rot;
+
+				//Object.DestroyImmediate(SelectedObject);
+				//SelectedObject = ObjectMovementController.Instance.SelectedObject;
+
+				ObjectMovementController.Instance.enabled = false;
+				styleSelected.Invoke();
+
+			}
+
+			if (updateHighlighted)
+			{
+				ObjectMovementController.Instance.HighlightedObject = null;
+				ObjectMovementController.Instance.HighlightedObjectLayerInfo = null;
+			}
+
+			//SelectedObject = Object.Instantiate(spawnable.Prefab, pos, rot);
+
+			//if (parent != null)
+			//{
+			//	SelectedObject.transform.SetParent(parent);
+			//}
+
+			//if (updateSelected)
+			//{
+			//	ObjectMovementController.Instance.SelectedObject = SelectedObject;
+			//	ObjectMovementController.Instance.SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
+
+			//	ObjectMovementController.Instance.SelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+
+			//	UserInterfaceHelper.CustomPassVolume.enabled = true;
+			//}
+			//if (updateHighlighted)
+			//{
+			//	ObjectMovementController.Instance.HighlightedObject = SelectedObject;
+			//	ObjectMovementController.Instance.HighlightedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
+
+			//	ObjectMovementController.Instance.HighlightedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+
+			//	UserInterfaceHelper.CustomPassVolume.enabled = true;
+			//}
+		}
+
+		public ISettingsSaveData ConvertToSaveSettings()
+		{
+			// Because styles are just different game objects, there's nothing really to save about them.
+			return null;
 		}
 	}
 }
