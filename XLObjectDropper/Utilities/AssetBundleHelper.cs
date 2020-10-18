@@ -13,7 +13,7 @@ namespace XLObjectDropper.Utilities
 		public static string ImagesPath;
 		public static string AssetPacksPath;
 
-		public static void LoadDefaultBundles()
+		public static IEnumerator LoadDefaultBundles()
 		{
 			ImagesPath = Path.Combine(Main.ModPath, "Images");
 
@@ -22,12 +22,11 @@ namespace XLObjectDropper.Utilities
 				Directory.CreateDirectory(ImagesPath);
 			}
 
-			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.object_testbundle", true));
-			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.sdt - modular", true));
-			PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.legacysupport", true, true));
+			yield return PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.object_testbundle", true));
+			yield return PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.sdt - modular", true));
 		}
 
-		public static void LoadUserBundles()
+		public static IEnumerator LoadUserBundles()
 		{
 			AssetPacksPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "SkaterXL", "XLObjectDropper", "Asset Packs");
 
@@ -46,14 +45,7 @@ namespace XLObjectDropper.Utilities
 					Directory.CreateDirectory(bundlePath);
 				}
 
-				try
-				{
-					PlayerController.Instance.StartCoroutine(LoadBundleAsync(assetPack));
-				}
-				catch (Exception e)
-				{
-					UnityModManager.Logger.Log("XLObjectDropper: Failed to load asset pack: " + assetPack);
-				}
+				yield return PlayerController.Instance.StartCoroutine(LoadBundleAsync(assetPack));
 			}
 		}
 

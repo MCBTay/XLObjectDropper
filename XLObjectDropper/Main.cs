@@ -42,8 +42,9 @@ namespace XLObjectDropper
 
 				UserInterfaceHelper.CreateObjectDropperButton();
 				UserInterfaceHelper.LoadUserInterface();
-				AssetBundleHelper.LoadDefaultBundles();
-				AssetBundleHelper.LoadUserBundles();
+
+				PlayerController.Instance.StartCoroutine(AssetBundleHelper.LoadDefaultBundles());
+				PlayerController.Instance.StartCoroutine(AssetBundleHelper.LoadUserBundles());
 			}
 			else
 			{
