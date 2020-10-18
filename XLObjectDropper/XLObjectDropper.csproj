@@ -227,7 +227,6 @@
     <EmbeddedResource Include="Assets\object_testbundle" />
     <EmbeddedResource Include="Assets\ui_bundle" />
     <EmbeddedResource Include="Assets\sdt - modular" />
-    <EmbeddedResource Include="Assets\legacysupport" />
     <None Include="Info.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
