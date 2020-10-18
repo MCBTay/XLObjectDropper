@@ -7,6 +7,8 @@ namespace XLObjectDropper
 	[Serializable]
 	public class Settings : UnityModManager.ModSettings
 	{
+		public static UnityModManager.ModEntry ModEntry;
+
 		public float Sensitivity { get; set; }
 		public bool InvertCamControl { get; set; }
 		public bool ShowGrid { get; set; }
@@ -26,6 +28,11 @@ namespace XLObjectDropper
 		public override void Save(UnityModManager.ModEntry modEntry)
 		{
 			Save(this, modEntry);
+		}
+
+		public void Save()
+		{
+			Save(ModEntry);
 		}
 	}
 }

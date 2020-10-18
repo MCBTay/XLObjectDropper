@@ -24,9 +24,17 @@ namespace XLObjectDropper.Controllers
 			set
 			{
 				_selectedObject = value;
-				
-				SelectedObjectSpawnable = _selectedObject.GetSpawnable();
-				SelectedObjectLayerInfo = _selectedObject.GetSpawnable().Prefab.transform.GetObjectLayers();
+
+				if (value != null)
+				{
+					SelectedObjectSpawnable = _selectedObject.GetSpawnable();
+					SelectedObjectLayerInfo = _selectedObject.GetSpawnable().Prefab.transform.GetObjectLayers();
+				}
+				else
+				{
+					SelectedObjectSpawnable = null;
+					SelectedObjectLayerInfo = null;
+				}
 			}
 		}
 
@@ -377,7 +385,7 @@ namespace XLObjectDropper.Controllers
 	        UISounds.Instance?.PlayOneShotSelectionChange();
 	        Settings.Instance.GroundTracking = !Settings.Instance.GroundTracking;
 
-			Utilities.SaveManager.Instance.SaveSettings();
+	        Settings.Instance.Save();
 
 	        currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
 		}

@@ -18,6 +18,7 @@ namespace XLObjectDropper
 		static bool Load(UnityModManager.ModEntry modEntry)
 		{
 			Settings.Instance = UnityModManager.ModSettings.Load<Settings>(modEntry);
+			Settings.ModEntry = modEntry;
 
 			ModPath = modEntry.Path;
 			Utilities.SaveManager.Instance.ModEntry = modEntry;

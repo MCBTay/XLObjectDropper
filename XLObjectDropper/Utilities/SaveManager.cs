@@ -213,11 +213,5 @@ namespace XLObjectDropper.Utilities
 
 			return LoadedSaves.Where(x => x.levelName == name).ToList();
 		}
-
-		// TODO: Does this really belong here?
-		public void SaveSettings()
-		{
-			Settings.Instance.Save(ModEntry);
-		}
 	}
 }
