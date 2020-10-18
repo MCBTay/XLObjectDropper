@@ -61,7 +61,7 @@ namespace XLObjectDropper.Controllers
 			if ((int)Settings.Instance.ScaleSnappingMode > Enum.GetValues(typeof(ScaleSnappingMode)).Length - 1)
 				Settings.Instance.ScaleSnappingMode = ScaleSnappingMode.Off;
 
-			Utilities.SaveManager.Instance.SaveSettings();
+			Settings.Instance.Save();
 		}
 
 		private void HandleScaleModeSwitching()
@@ -73,7 +73,7 @@ namespace XLObjectDropper.Controllers
 			if ((int)Settings.Instance.ScalingMode > Enum.GetValues(typeof(ScalingMode)).Length - 1)
 				Settings.Instance.ScalingMode = ScalingMode.Uniform;
 
-			Utilities.SaveManager.Instance.SaveSettings();
+			Settings.Instance.Save();
 		}
 
 		private void HandleRotationSnappingModeSwitching()
@@ -85,7 +85,7 @@ namespace XLObjectDropper.Controllers
 			if ((int)Settings.Instance.RotationSnappingMode > Enum.GetValues(typeof(RotationSnappingMode)).Length - 1)
 				Settings.Instance.RotationSnappingMode = RotationSnappingMode.Off;
 
-			Utilities.SaveManager.Instance.SaveSettings();
+			Settings.Instance.Save();
 		}
 
 		private void HandleRotation(Player player)

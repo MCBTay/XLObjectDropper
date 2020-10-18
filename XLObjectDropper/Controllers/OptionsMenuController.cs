@@ -124,7 +124,7 @@ namespace XLObjectDropper.Controllers
 			UISounds.Instance?.PlayOneShotSelectionChange();
 
 			Settings.Instance.Sensitivity = value;
-			Utilities.SaveManager.Instance.SaveSettings();
+			Settings.Instance.Save();
 		}
 
 		private static void InvertCamControlValueChanged(bool value)
@@ -132,7 +132,7 @@ namespace XLObjectDropper.Controllers
 			UISounds.Instance?.PlayOneShotSelectionChange();
 
 			Settings.Instance.InvertCamControl = value;
-			Utilities.SaveManager.Instance.SaveSettings();
+			Settings.Instance.Save();
 		}
 
 		private static void ShowGridValueChanged(bool value)
@@ -140,7 +140,7 @@ namespace XLObjectDropper.Controllers
 			UISounds.Instance?.PlayOneShotSelectionChange();
 
 			Settings.Instance.ShowGrid = value;
-			Utilities.SaveManager.Instance.SaveSettings();
+			Settings.Instance.Save();
 
 			if (ObjectMovementController.Instance.GridOverlay != null)
 			{
