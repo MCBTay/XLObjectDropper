@@ -100,42 +100,28 @@ namespace XLObjectDropper.Controllers
 
 			SpawnableManager.DeleteSpawnedObjects();
 
-			foreach (var spawnable in levelSave.gameObjects)
+			foreach (var savedGameObject in levelSave.gameObjects)
 			{
-				var position = new Vector3(spawnable.position.x, spawnable.position.y, spawnable.position.z);
-				var rotation = new Quaternion(spawnable.rotation.x, spawnable.rotation.y, spawnable.rotation.z, spawnable.rotation.w);
+				var position = new Vector3(savedGameObject.position.x, savedGameObject.position.y, savedGameObject.position.z);
+				var rotation = new Quaternion(savedGameObject.rotation.x, savedGameObject.rotation.y, savedGameObject.rotation.z, savedGameObject.rotation.w);
 
-				Spawnable prefab = null;
+				Spawnable spawnable = null;
 
-				prefab = levelSave.isLegacy ? 
-					SpawnableManager.LegacyPrefabs.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name)) : 
-					SpawnableManager.Prefabs.FirstOrDefault(x => spawnable.Id.StartsWith(x.Prefab.name));
+				spawnable = levelSave.isLegacy ? 
+					SpawnableManager.LegacyPrefabs.FirstOrDefault(x => savedGameObject.Id.StartsWith(x.Prefab.name)) : 
+					SpawnableManager.Prefabs.FirstOrDefault(x => savedGameObject.Id.StartsWith(x.Prefab.name));
 
-				if (prefab == null) continue;
+				if (spawnable == null) continue;
 
-				var newObject = Instantiate(prefab.Prefab, position, rotation);
-				newObject.SetActive(true);
+				var newGameObject = Instantiate(spawnable.Prefab, position, rotation);
+				newGameObject.SetActive(true);
 
-				if (spawnable.settings.FirstOrDefault(x => x is LightingSaveData) != null)
+				foreach (var settings in spawnable.Settings)
 				{
-					var lightingSettings = spawnable.settings.FirstOrDefault(x => x is LightingSaveData) as LightingSaveData;
-
-					var light = newObject.GetComponentInChildren<Light>(true);
-					var hdLight = light.GetComponent<HDAdditionalLightData>();
-
-					light.enabled = lightingSettings.enabled;
-					hdLight.enabled = lightingSettings.enabled;
-
-					hdLight.lightUnit = lightingSettings.unit;
-					hdLight.intensity = lightingSettings.intensity;
-					hdLight.range = lightingSettings.range;
-					hdLight.SetSpotAngle(lightingSettings.angle);
-					hdLight.color = new Color(lightingSettings.color.x, lightingSettings.color.y, lightingSettings.color.z);
+					settings.ApplySaveSettings(newGameObject, savedGameObject.settings);
 				}
 
-				//TODO: Load general and grindable settings too
-
-				SpawnableManager.SpawnedObjects.Add(new Spawnable(prefab, newObject));
+				SpawnableManager.SpawnedObjects.Add(new Spawnable(spawnable, newGameObject));
 			}
 
 			SaveLoaded?.Invoke();
