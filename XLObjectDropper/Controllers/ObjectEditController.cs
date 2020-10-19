@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
+using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Controllers
 {
@@ -24,12 +24,13 @@ namespace XLObjectDropper.Controllers
 
 		private void Start()
 		{
-			EditGeneralController.Instance.AddOptions(SelectedObject, ObjectEdit);
-			EditStyleController.Instance.AddOptions(SelectedObject, ObjectEdit);
-			EditLightController.Instance.AddOptions(SelectedObject, ObjectEdit);
-			EditGrindablesController.Instance.AddOptions(SelectedObject, ObjectEdit);
-			EditAvatarAnimatorController.Instance.AddOptions(SelectedObject, ObjectEdit);
-			EditColorTintController.Instance.AddOptions(SelectedObject, ObjectEdit);
+			var spawnable = SelectedObject.GetSpawnableFromSpawned() ?? SelectedObject.GetSpawnable();
+			if (spawnable == null) return;
+
+			foreach (var settings in spawnable.Settings)
+			{
+				settings.AddOptions(SelectedObject, ObjectEdit);
+			}
 
 			if (ObjectEdit.ListContent.transform.childCount > 0)
 			{
@@ -48,11 +49,6 @@ namespace XLObjectDropper.Controllers
 					selectable.OnSelect(null);
 				}
 			}
-		}
-
-		private void Update()
-		{
-			if (SelectedObject == null) return;
 		}
 	}
 }
