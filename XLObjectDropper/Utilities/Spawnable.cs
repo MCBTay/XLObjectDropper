@@ -51,7 +51,6 @@ namespace XLObjectDropper.Utilities
 		{
 			SpawnedInstance = spawnedinstance;
 			PreviewTexture = spawnable.PreviewTexture;
-			Settings = spawnable.Settings;
 		}
 
 		private void InitializeSettings()

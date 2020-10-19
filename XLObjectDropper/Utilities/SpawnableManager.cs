@@ -100,7 +100,7 @@ namespace XLObjectDropper.Utilities
 		public static Spawnable GetSpawnableFromSpawned(this GameObject gameObject)
 		{
 			var name = gameObject.name.Replace("(Clone)", string.Empty);
-			return SpawnedObjects.FirstOrDefault(x => name.Equals(x.Prefab.name));
+			return SpawnedObjects.FirstOrDefault(x => name.StartsWith(x.Prefab.name) && x.SpawnedInstance == gameObject);
 		}
 		#endregion
 	}

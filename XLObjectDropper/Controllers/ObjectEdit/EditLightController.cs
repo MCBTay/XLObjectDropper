@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
-using XLObjectDropper.Utilities;
 using XLObjectDropper.Utilities.Save;
 using XLObjectDropper.Utilities.Save.Settings;
 
