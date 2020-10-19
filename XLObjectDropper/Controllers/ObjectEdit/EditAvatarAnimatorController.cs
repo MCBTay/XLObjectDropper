@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.UI;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
@@ -74,6 +76,26 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				currentAnimationName = CurrentAnimation,
 				isPlaying = true
 			};
+		}
+
+		public void ApplySaveSettings(GameObject selectedObject, List<ISettingsSaveData> settings)
+		{
+			if (settings == null || !settings.Any()) return;
+
+			var animationSettings = settings.OfType<AvatarAnimatorSaveData>().ToList();
+			if (!animationSettings.Any()) return;
+
+			var animationSetting = animationSettings.First();
+
+			CurrentAnimation = animationSetting.currentAnimationName;
+			selectedObject.GetComponentInChildren<Animator>().Play(CurrentAnimation);
+
+			var aimConstraint = selectedObject.GetComponentInChildren<AimConstraint>(true);
+			var aimTarget = selectedObject.transform.Find("Target");
+			if (aimConstraint != null && aimTarget != null)
+			{
+				aimTarget.gameObject.AddComponent<AimConstraintTargetController>();
+			}
 		}
 	}
 }
