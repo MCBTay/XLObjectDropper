@@ -55,11 +55,13 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 					}
 				});
 
+				#region Intensity slider
 				float currentIntensity = Mathf.Clamp(hdrpLight.intensity, ev100Min, ev100Max);
 				float sliderValue = ((currentIntensity - ev100Min) / (ev100Max - ev100Min)) * numSteps;
 				Intensity = sliderValue;
 				Unit = LightUnit.Ev100;
 				expandable.IntensitySlider.Slider.value = sliderValue;
+				expandable.IntensitySlider.Value.SetText(sliderValue.ToString("N"));
 
 				expandable.IntensitySlider.Slider.onValueChanged.AddListener((intensity) =>
 				{
@@ -75,7 +77,9 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 						hdrpLightToEdit.SetIntensity(newIntensity, LightUnit.Ev100);
 					}
 				});
+				#endregion
 
+				#region Range slider
 				float currentRange = Mathf.Clamp(hdrpLight.range, rangeMin, rangeMax);
 				Range = currentRange;
 				float rangeSliderValue = ((currentRange - rangeMin) / (rangeMax - rangeMin)) * numRangeSteps;
@@ -93,7 +97,9 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 						lightToEdit.GetComponent<HDAdditionalLightData>().SetRange(newRange);
 					}
 				});
+				#endregion
 
+				#region Angle slider
 				if (hdrpLight.type != HDLightType.Spot)
 				{
 					Angle = null;
@@ -118,7 +124,9 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 						}
 					});
 				}
+				#endregion
 
+				#region Color sliders
 				Color = new Vector3(hdrpLight.color.r, hdrpLight.color.g, hdrpLight.color.b);
 
 				expandable.ColorSliders.XSlider.Slider.value = hdrpLight.color.r;
@@ -142,6 +150,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 						expandable.ColorSliders.ZSlider.Value.SetText(color.z.ToString("N"));
 					}
 				};
+				#endregion
 			}
 		}
 
