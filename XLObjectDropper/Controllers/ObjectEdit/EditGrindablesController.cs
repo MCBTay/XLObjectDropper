@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
@@ -99,6 +100,21 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				copingEnabled = CopingEnabled,
 				grindablesEnabled = GrindableEnabled
 			};
+		}
+
+		public void ApplySaveSettings(GameObject selectedObject, List<ISettingsSaveData> settings)
+		{
+			if (settings == null || !settings.Any()) return;
+
+			var grindableSettings = settings.OfType<GrindableSaveData>().ToList();
+			if (!grindableSettings.Any()) return;
+
+			var grindableSetting = grindableSettings.First();
+
+			GrindableEnabled = grindableSetting.grindablesEnabled;
+			CopingEnabled = grindableSetting.copingEnabled;
+
+			// TODO: Come back to this once I've actually implemented a way to do this.
 		}
 	}
 }

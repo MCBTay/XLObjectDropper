@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
@@ -26,8 +27,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			{
 				HideInReplays = isOn;
 
-				var general = SelectedObject?.GetSpawnableFromSpawned()?.Settings?.FirstOrDefault(x => x is EditGeneralController) as EditGeneralController;
-				if (general != null)
+				if (SelectedObject?.GetSpawnableFromSpawned()?.Settings?.FirstOrDefault(x => x is EditGeneralController) is EditGeneralController general)
 				{
 					general.HideInReplays = HideInReplays;
 				}
@@ -40,6 +40,18 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			{
 				hideInReplays = HideInReplays
 			};
+		}
+
+		public void ApplySaveSettings(GameObject selectedObject, List<ISettingsSaveData> settings)
+		{
+			if (settings == null || !settings.Any()) return;
+
+			var generalSettings = settings.OfType<GeneralSaveData>().ToList();
+			if (!generalSettings.Any()) return;
+
+			var generalSetting = generalSettings.First();
+
+			HideInReplays = generalSetting.hideInReplays;
 		}
 	}
 }
