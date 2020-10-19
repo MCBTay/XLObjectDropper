@@ -74,6 +74,11 @@ namespace XLObjectDropper.Utilities
 			{
 				Settings.Add(new EditAvatarAnimatorController());
 			}
+
+			if (Prefab.GetComponentsInChildren<MeshRenderer>(true).Any())
+			{
+				Settings.Add(new EditColorTintController());
+			}
 		}
 
 		private void LoadPreviewImage()
