@@ -49,7 +49,7 @@ namespace XLObjectDropper.Controllers
 			{
 				foreach (var spawnable in spawnablesByType)
 				{
-					string displayText = string.IsNullOrEmpty(spawnable.MenuText) ? spawnable.Prefab.name : spawnable.MenuText;
+					string displayText = string.IsNullOrEmpty(spawnable.MenuText) ? spawnable.Prefab.name.Replace("selectable", string.Empty) : spawnable.MenuText;
 					ObjectSelection.AddToList(displayText, spawnable.PreviewTexture, () => ObjectClicked(spawnable), () => ListItemSelected(spawnable));
 				}
 
