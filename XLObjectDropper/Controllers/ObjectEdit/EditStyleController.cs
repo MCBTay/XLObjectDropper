@@ -155,5 +155,11 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			// Because styles are just different game objects, there's nothing really to save about them.
 			return null;
 		}
+
+		public void ApplySaveSettings(GameObject selectedobject, List<ISettingsSaveData> settings)
+		{
+			// Because styles are just different game objects, there's nothing really to save about them.
+			return;
+		}
 	}
 }
