@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 using XLObjectDropper.UI.Controls.Expandables;
 using XLObjectDropper.UI.Menus;
@@ -54,6 +56,24 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			{
 				tintedColor = new SerializableVector3(Color.Value.r, Color.Value.g, Color.Value.b)
 			};
+		}
+
+		public void ApplySaveSettings(GameObject selectedObject, List<ISettingsSaveData> settings)
+		{
+			if (settings == null || !settings.Any()) return;
+
+			var colorTintSettings = settings.OfType<ColorTintSaveData>().ToList();
+			if (!colorTintSettings.Any()) return;
+
+			var colorTintSetting = colorTintSettings.First();
+
+			Color = new Color(colorTintSetting.tintedColor.x, colorTintSetting.tintedColor.y, colorTintSetting.tintedColor.z);
+
+			var meshRenderers = selectedObject.GetComponentsInChildren<MeshRenderer>(true);
+			foreach (var meshRenderer in meshRenderers)
+			{
+				meshRenderer.material.SetColor("_BaseColor", Color.Value);
+			}
 		}
 	}
 }
