@@ -201,6 +201,8 @@ namespace XLObjectDropper.Controllers
 		private void ObjectSelectionControllerOnObjectClickedEvent(Spawnable spawnable)
 		{
 			ObjectMovementController.InstantiateSelectedObject(spawnable);
+
+			ObjectMovementController.Instance.SelectingObjectFromMenu = true;
 			
 			DestroyObjectSelection();
 

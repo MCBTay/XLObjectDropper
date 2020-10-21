@@ -1,5 +1,4 @@
-﻿using System;
-using GameManagement;
+﻿using GameManagement;
 using Rewired;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -93,6 +92,9 @@ namespace XLObjectDropper.Controllers
 		public GridOverlayController GridOverlay;
 
 		private bool LockCameraMovement { get; set; }
+
+		private bool SelectingObject;
+		public bool SelectingObjectFromMenu;
 		#endregion
 
 		private void Awake()
@@ -243,16 +245,44 @@ namespace XLObjectDropper.Controllers
 
 			if (SelectedObjectActive)
 			{
-				if (player.GetButtonDown("A")) PlaceObject();
-				//if (player.GetButtonDown("X")) PlaceObject(false);
+				if (player.GetButtonTimedPressUp("A", 0.0f, 0.7f)) // tap
+				{
+					// aids in the double tap case when selecting an already placed an object
+					if (SelectingObject)
+					{
+						SelectingObject = false;
+						return;
+					}
+
+					// aids in the double tap case when selecting an object from the menu
+					if (SelectingObjectFromMenu)
+					{
+						SelectingObjectFromMenu = false;
+						return;
+					}
+
+					PlaceObject();
+				}
+				else if (player.GetButtonTimedPressDown("A", 0.7f)) //press
+				{
+					PlaceObject(false);
+				}
+
 				if (player.GetButtonDown("X")) EditObject();
 				if (player.GetButtonDown("B")) Destroy(SelectedObject);
 				if (player.GetButtonDown("Left Stick Button")) ResetObject();
 			}
 			else if (HighlightedObject != null)
 			{
-				if (player.GetButtonDown("A")) SelectObject();
-				//if (player.GetButtonDown("X")) DuplicateObject();
+				if (player.GetButtonTimedPressUp("A", 0.0f, 0.7f)) // tap
+				{
+					SelectObject();
+				}
+				else if (player.GetButtonTimedPressDown("A", 0.7f)) //press
+				{
+					DuplicateObject();
+				}
+
 				if (player.GetButtonDown("X")) EditObject();
 				if (player.GetButtonDown("Y")) DeleteObject();
 			}
@@ -571,12 +601,19 @@ namespace XLObjectDropper.Controllers
 
 		private void SelectObject()
 		{
+			//SelectingObject = true;
+
 			UISounds.Instance?.PlayOneShotSelectMajor();
 
 			//transform.position = cameraPivot.position = HighlightedObject.transform.position;
 			//MoveCamera(true);
 
 			SelectedObject = HighlightedObject;
+			SelectedObjectLayerInfo = HighlightedObject.transform.GetObjectLayers();
+
+			SelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+
+			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
 
 		private void HandleObjectHighlight()
