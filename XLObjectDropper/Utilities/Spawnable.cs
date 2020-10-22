@@ -44,7 +44,7 @@ namespace XLObjectDropper.Utilities
 				styleController.Styles.Add(new Spawnable(type, altStyle, bundleName));
 			}
 
-			Settings.Add(styleController);
+			Settings.Insert(1, styleController);
 		}
 
 		public Spawnable(Spawnable spawnable, GameObject spawnedinstance) : this(spawnable.Type, spawnable.Prefab, spawnable.BundleName, spawnable.MenuText, false)
