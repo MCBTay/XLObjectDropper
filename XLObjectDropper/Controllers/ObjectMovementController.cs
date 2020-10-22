@@ -26,8 +26,12 @@ namespace XLObjectDropper.Controllers
 
 				if (value != null)
 				{
-					SelectedObjectSpawnable = _selectedObject.GetSpawnable();
-					SelectedObjectLayerInfo = _selectedObject.GetSpawnable().Prefab.transform.GetObjectLayers();
+					var spawnable = _selectedObject.GetSpawnable();
+					if (spawnable != null)
+					{
+						SelectedObjectSpawnable = spawnable;
+						SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
+					}
 				}
 				else
 				{
@@ -93,7 +97,6 @@ namespace XLObjectDropper.Controllers
 
 		private bool LockCameraMovement { get; set; }
 
-		private bool SelectingObject;
 		public bool SelectingObjectFromMenu;
 		#endregion
 
@@ -247,13 +250,6 @@ namespace XLObjectDropper.Controllers
 			{
 				if (player.GetButtonTimedPressUp("A", 0.0f, 0.7f)) // tap
 				{
-					// aids in the double tap case when selecting an already placed an object
-					if (SelectingObject)
-					{
-						SelectingObject = false;
-						return;
-					}
-
 					// aids in the double tap case when selecting an object from the menu
 					if (SelectingObjectFromMenu)
 					{
@@ -489,13 +485,7 @@ namespace XLObjectDropper.Controllers
 		#region Object creation, deletion, duplication, highlight methods
 		public void InstantiateSelectedObject(Spawnable spawnable)
 		{
-			if (SelectedObjectActive)
-			{
-				DestroyImmediate(SelectedObject);
-				SelectedObject = null;
-				SelectedObjectLayerInfo = null;
-				SelectedObjectSpawnable = null;
-			}
+			DestroySelectedObject();
 
 			SelectedObject = Instantiate(spawnable.Prefab);
 			SelectedObject.name = spawnable.Prefab.name;
@@ -601,17 +591,10 @@ namespace XLObjectDropper.Controllers
 
 		private void SelectObject()
 		{
-			//SelectingObject = true;
-
 			UISounds.Instance?.PlayOneShotSelectMajor();
 
-			//transform.position = cameraPivot.position = HighlightedObject.transform.position;
-			//MoveCamera(true);
-
 			SelectedObject = HighlightedObject;
-			SelectedObjectLayerInfo = HighlightedObject.transform.GetObjectLayers();
-
-			SelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+			SelectedObjectLayerInfo = HighlightedObjectLayerInfo;
 
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
@@ -639,6 +622,17 @@ namespace XLObjectDropper.Controllers
 						UserInterfaceHelper.CustomPassVolume.enabled = true;
 					}
 				}
+			}
+		}
+
+		private void DestroySelectedObject()
+		{
+			if (SelectedObjectActive)
+			{
+				DestroyImmediate(SelectedObject);
+				SelectedObject = null;
+				SelectedObjectLayerInfo = null;
+				SelectedObjectSpawnable = null;
 			}
 		}
 
