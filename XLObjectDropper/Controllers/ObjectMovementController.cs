@@ -71,6 +71,7 @@ namespace XLObjectDropper.Controllers
 		private bool LockCameraMovement { get; set; }
 
 		public bool SelectingObjectFromMenu;
+		private bool existingObject;
 		#endregion
 
 		private void Awake()
@@ -477,7 +478,17 @@ namespace XLObjectDropper.Controllers
 
 			var spawnable = SelectedObject.GetSpawnable();
 			newObject.transform.ChangeLayersRecursively(spawnable.PrefabLayerInfo);
-			SpawnableManager.SpawnedObjects.Add(new Spawnable(spawnable, newObject));
+
+			if (existingObject)
+			{
+				existingObject = false;
+				spawnable = SelectedObject.GetSpawnableFromSpawned();
+				spawnable.SpawnedInstance = newObject;
+			}
+			else
+			{
+				SpawnableManager.SpawnedObjects.Add(new Spawnable(spawnable, newObject));
+			}
 
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
@@ -563,6 +574,7 @@ namespace XLObjectDropper.Controllers
 		{
 			UISounds.Instance?.PlayOneShotSelectMajor();
 			SelectedObject = HighlightedObject;
+			existingObject = true;
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
 
