@@ -2,7 +2,6 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using XLObjectDropper.SpawnableScripts;
 using XLObjectDropper.UI.Controls.Expandables;
@@ -19,8 +18,6 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 		public GameObject SelectedObject;
 		public List<Spawnable> Styles;
-
-		public static UnityEvent styleSelected;
 
 		public EditStyleController()
 		{
@@ -104,50 +101,30 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			if (updateSelected)
 			{
 				ObjectMovementController.Instance.enabled = true;
-				ObjectMovementController.Instance.InstantiateSelectedObject(spawnable);
 
+				ObjectMovementController.Instance.InstantiateSelectedObject(spawnable);
 				ObjectMovementController.Instance.SelectedObject.transform.position = pos;
 				ObjectMovementController.Instance.SelectedObject.transform.rotation = rot;
 
-				//Object.DestroyImmediate(SelectedObject);
-				//SelectedObject = ObjectMovementController.Instance.SelectedObject;
-
 				ObjectMovementController.Instance.enabled = false;
-				styleSelected.Invoke();
-
 			}
 
 			if (updateHighlighted)
 			{
+				ObjectMovementController.Instance.enabled = true;
+
+				Object.DestroyImmediate(ObjectMovementController.Instance.HighlightedObject);
 				ObjectMovementController.Instance.HighlightedObject = null;
-				ObjectMovementController.Instance.HighlightedObjectLayerInfo = null;
+
+				ObjectMovementController.Instance.HighlightedObject = Object.Instantiate(spawnable.Prefab);
+
+				ObjectMovementController.Instance.HighlightedObject.transform.position = pos;
+				ObjectMovementController.Instance.HighlightedObject.transform.rotation = rot;
+
+				//UserInterfaceHelper.CustomPassVolume.enabled = true;
+				
+				ObjectMovementController.Instance.enabled = false;
 			}
-
-			//SelectedObject = Object.Instantiate(spawnable.Prefab, pos, rot);
-
-			//if (parent != null)
-			//{
-			//	SelectedObject.transform.SetParent(parent);
-			//}
-
-			//if (updateSelected)
-			//{
-			//	ObjectMovementController.Instance.SelectedObject = SelectedObject;
-			//	ObjectMovementController.Instance.SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
-
-			//	ObjectMovementController.Instance.SelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
-
-			//	UserInterfaceHelper.CustomPassVolume.enabled = true;
-			//}
-			//if (updateHighlighted)
-			//{
-			//	ObjectMovementController.Instance.HighlightedObject = SelectedObject;
-			//	ObjectMovementController.Instance.HighlightedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
-
-			//	ObjectMovementController.Instance.HighlightedObject.transform.ChangeLayersRecursively("Ignore Raycast");
-
-			//	UserInterfaceHelper.CustomPassVolume.enabled = true;
-			//}
 		}
 
 		public ISettingsSaveData ConvertToSaveSettings()
