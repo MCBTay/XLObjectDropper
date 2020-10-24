@@ -15,6 +15,7 @@ namespace XLObjectDropper.Utilities
 		public GameObject Prefab;
 		public GameObject SpawnedInstance;
 		public Texture2D PreviewTexture;
+		public LayerInfo PrefabLayerInfo;
 		public string BundleName;
 		public string MenuText;
 
@@ -26,6 +27,8 @@ namespace XLObjectDropper.Utilities
 			Prefab = prefab;
 			BundleName = bundleName;
 			MenuText = menuText;
+
+			PrefabLayerInfo = prefab.transform.GetObjectLayers();
 
 			InitializeSettings();
 
@@ -51,6 +54,16 @@ namespace XLObjectDropper.Utilities
 		{
 			SpawnedInstance = spawnedinstance;
 			PreviewTexture = spawnable.PreviewTexture;
+
+			if (spawnable.Settings != null && spawnable.Settings.Any())
+			{
+				var styleController = spawnable.Settings.FirstOrDefault(x => x is EditStyleController);
+
+				if (styleController != null)
+				{
+					Settings.Insert(1, styleController);
+				}
+			}
 		}
 
 		private void InitializeSettings()
