@@ -111,6 +111,9 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			if (updateHighlighted)
 			{
+				var spawnedObject = ObjectMovementController.Instance.HighlightedObject.GetSpawnableFromSpawned();
+				SpawnableManager.SpawnedObjects.Remove(spawnedObject);
+
 				ObjectMovementController.Instance.enabled = true;
 
 				Object.DestroyImmediate(ObjectMovementController.Instance.HighlightedObject);
@@ -121,8 +124,10 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				ObjectMovementController.Instance.HighlightedObject.transform.position = pos;
 				ObjectMovementController.Instance.HighlightedObject.transform.rotation = rot;
 
+				SpawnableManager.SpawnedObjects.Add(new Spawnable(spawnable, ObjectMovementController.Instance.HighlightedObject));
+
 				//UserInterfaceHelper.CustomPassVolume.enabled = true;
-				
+
 				ObjectMovementController.Instance.enabled = false;
 			}
 		}
