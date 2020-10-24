@@ -30,16 +30,17 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			var spawnable = selectedObject.GetSpawnable();
 
-			var stylesController = spawnable.Settings.FirstOrDefault(x => x is EditStyleController) as EditStyleController;
-			if (stylesController?.Styles == null || !stylesController.Styles.Any()) return;
+			var editStyleController = spawnable.Settings.FirstOrDefault(x => x is EditStyleController) as EditStyleController;
+			if (editStyleController?.Styles == null || !editStyleController.Styles.Any()) return;
 
 			var newExpandable = ObjectEdit.AddStyleSettings();
 
 			var expandable = newExpandable.GetComponent<Expandable>();
 			var styleExpandable = newExpandable.GetComponent<StyleSettingsExpandable>();
 
-			string style = spawnable.Prefab.GetComponent<XLStyleController>().Style;
-			string subStyle = spawnable.Prefab.GetComponent<XLStyleController>().SubStyle;
+			var styleController = spawnable.Prefab.GetComponent<XLStyleController>();
+			string style = styleController?.Style;
+			string subStyle = styleController?.SubStyle;
 
 			string name = style;
 			if (!string.IsNullOrEmpty(subStyle))
@@ -49,10 +50,11 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 			AddListItem(styleExpandable.ListItemPrefab, expandable.PropertiesListContent.transform, spawnable, name);
 
-			foreach (var altStyle in stylesController.Styles)
+			foreach (var altStyle in editStyleController.Styles.Where(x => x != spawnable))
 			{
-				style = altStyle.Prefab.GetComponent<XLStyleController>().Style;
-				subStyle = altStyle.Prefab.GetComponent<XLStyleController>().SubStyle;
+				styleController = altStyle.Prefab.GetComponent<XLStyleController>();
+				style = styleController?.Style;
+				subStyle = styleController?.SubStyle;
 
 				name = style;
 				if (!string.IsNullOrEmpty(subStyle))

@@ -47,6 +47,16 @@ namespace XLObjectDropper.Utilities
 				styleController.Styles.Add(new Spawnable(type, altStyle, bundleName));
 			}
 
+			foreach (var style in styleController.Styles)
+			{
+				var newStyleController = new EditStyleController();
+
+				newStyleController.Styles.Add(this);
+				newStyleController.Styles.AddRange(styleController.Styles.Where(x => x != style));
+
+				style.Settings.Insert(1, newStyleController);
+			}
+
 			Settings.Insert(1, styleController);
 		}
 
