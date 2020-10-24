@@ -18,7 +18,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 		public void AddOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
 		{
-			if (ObjectMovementController.Instance.SelectedObjectLayerInfo == null) return;
+			//if (ObjectMovementController.Instance.SelectedObjectLayerInfo == null) return;
 
 			var grindables = SelectedObject.GetPrefab().GetChildrenOnLayer("Grindable");
 			bool hasGrindables = grindables != null && grindables.Any();
@@ -46,14 +46,14 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				{
 					GrindableEnabled = isOn;
 
-					if (ObjectMovementController.Instance.HighlightedObjectActive && ObjectMovementController.Instance.HighlightedObjectLayerInfo != null)
-					{
-						DisableLayer(ObjectMovementController.Instance.HighlightedObjectLayerInfo, "Grindable", isOn);
-					}
-					else if (ObjectMovementController.Instance.SelectedObjectActive && ObjectMovementController.Instance.SelectedObjectLayerInfo != null)
-					{
-						DisableLayer(ObjectMovementController.Instance.SelectedObjectLayerInfo, "Grindable", isOn);
-					}
+					//if (ObjectMovementController.Instance.HighlightedObjectActive && ObjectMovementController.Instance.HighlightedObjectLayerInfo != null)
+					//{
+					//	DisableLayer(ObjectMovementController.Instance.HighlightedObjectLayerInfo, "Grindable", isOn);
+					//}
+					//else if (ObjectMovementController.Instance.SelectedObjectActive && ObjectMovementController.Instance.SelectedObjectLayerInfo != null)
+					//{
+					//	DisableLayer(ObjectMovementController.Instance.SelectedObjectLayerInfo, "Grindable", isOn);
+					//}
 				});
 			}
 
@@ -68,14 +68,14 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				{
 					CopingEnabled = isOn;
 
-					if (ObjectMovementController.Instance.HighlightedObjectActive && ObjectMovementController.Instance.HighlightedObjectLayerInfo != null)
-					{
-						DisableLayer(ObjectMovementController.Instance.HighlightedObjectLayerInfo, "Coping", isOn);
-					}
-					else if (ObjectMovementController.Instance.SelectedObjectActive && ObjectMovementController.Instance.SelectedObjectLayerInfo != null)
-					{
-						DisableLayer(ObjectMovementController.Instance.SelectedObjectLayerInfo, "Coping", isOn);
-					}
+					//if (ObjectMovementController.Instance.HighlightedObjectActive && ObjectMovementController.Instance.HighlightedObjectLayerInfo != null)
+					//{
+					//	DisableLayer(ObjectMovementController.Instance.HighlightedObjectLayerInfo, "Coping", isOn);
+					//}
+					//else if (ObjectMovementController.Instance.SelectedObjectActive && ObjectMovementController.Instance.SelectedObjectLayerInfo != null)
+					//{
+					//	DisableLayer(ObjectMovementController.Instance.SelectedObjectLayerInfo, "Coping", isOn);
+					//}
 				});
 			}
 		}
@@ -84,7 +84,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 		{
 			if (layerInfo.Layer == LayerMask.NameToLayer(layerName))
 			{
-				ObjectMovementController.Instance.SelectedObjectLayerInfo.Enabled = isEnabled;
+				//ObjectMovementController.Instance.SelectedObjectLayerInfo.Enabled = isEnabled;
 			}
 
 			foreach (var child in layerInfo.Children)
