@@ -526,7 +526,7 @@ namespace XLObjectDropper.Controllers
 
 			if (disablePreview)
 			{
-				SelectedObject.SetActive(false);
+				DestroySelectedObject();
 				UserInterfaceHelper.CustomPassVolume.enabled = false;
 			}
 		}
@@ -618,6 +618,7 @@ namespace XLObjectDropper.Controllers
 		{
 			if (SelectedObjectActive)
 			{
+				SelectedObject.SetActive(false);
 				DestroyImmediate(SelectedObject);
 				SelectedObject = null;
 			}
