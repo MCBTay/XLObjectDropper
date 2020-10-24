@@ -566,6 +566,12 @@ namespace XLObjectDropper.Controllers
 			var objDeletedEvent = new ObjectDeletedEvent(HighlightedObject.GetPrefab(), HighlightedObject);
 			objDeletedEvent.AddToUndoStack();
 
+			var spawnable = HighlightedObject.GetSpawnableFromSpawned();
+			if (spawnable != null)
+			{
+				SpawnableManager.SpawnedObjects.Remove(spawnable);
+			}
+
 			UISounds.Instance?.PlayOneShotSelectMajor();
 			DestroyImmediate(HighlightedObject);
 		}
