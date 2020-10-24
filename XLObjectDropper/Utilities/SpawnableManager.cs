@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.SpawnableScripts;
 
 namespace XLObjectDropper.Utilities
@@ -94,7 +95,22 @@ namespace XLObjectDropper.Utilities
 		public static Spawnable GetSpawnable(this GameObject gameObject)
 		{
 			var name = gameObject.name.Replace("(Clone)", string.Empty);
-			return Prefabs.FirstOrDefault(x => name.Equals(x.Prefab.name));
+
+			foreach (var spawnable in Prefabs)
+			{
+				if (name.Equals(spawnable.Prefab.name))
+				{
+					return spawnable;
+				}
+
+				var styleSettings = spawnable.Settings.FirstOrDefault(x => x is EditStyleController) as EditStyleController;
+				var style = styleSettings?.Styles.FirstOrDefault(x => name.Equals(x.Prefab.name));
+
+				if (style != null) 
+					return style;
+			}
+
+			return null;
 		}
 
 		public static Spawnable GetSpawnableFromSpawned(this GameObject gameObject)
