@@ -16,38 +16,11 @@ namespace XLObjectDropper.Controllers
 		public static ObjectMovementController Instance { get; set; }
 		public static ObjectPlacementUI MovementUI { get; set; }
 
-		private GameObject _selectedObject;
-		public GameObject SelectedObject
-		{
-			get => _selectedObject;
-			set
-			{
-				_selectedObject = value;
-
-				if (value != null)
-				{
-					var spawnable = _selectedObject.GetSpawnable();
-					if (spawnable != null)
-					{
-						SelectedObjectSpawnable = spawnable;
-						SelectedObjectLayerInfo = spawnable.Prefab.transform.GetObjectLayers();
-					}
-				}
-				else
-				{
-					SelectedObjectSpawnable = null;
-					SelectedObjectLayerInfo = null;
-				}
-			}
-		}
-
-		private Spawnable SelectedObjectSpawnable;
+		public GameObject SelectedObject;
 		public bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
-		public LayerInfo SelectedObjectLayerInfo;
 
 		public GameObject HighlightedObject;
-		public bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
-		public LayerInfo HighlightedObjectLayerInfo;
+		private bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
 
 		private float defaultHeight = 2.5f; // originally 1.8 in pin dropper
 		public float minHeight = 0.0f;
@@ -62,8 +35,8 @@ namespace XLObjectDropper.Controllers
 
 		private float HorizontalAcceleration = 10f;
 		private float MaxCameraAcceleration = 20f;
-		public float heightChangeSpeed = 2f;
-		public float VerticalAcceleration = 20f;
+		private float heightChangeSpeed = 2f;
+		private float VerticalAcceleration = 20f;
 		private float CameraRotateSpeed = 100f;
 		private float MoveSpeed = 10f;
 		private float lastVerticalVelocity;
@@ -71,13 +44,13 @@ namespace XLObjectDropper.Controllers
 		public float currentMoveSpeed;
 		private float zoomSpeed = 10f;
 
-		public AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.0f, 0.5f, 15f, 3f);
-		public AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
+		private readonly AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.0f, 0.5f, 15f, 3f);
+		private readonly AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
 
 		private Camera mainCam;
 		public Transform cameraPivot;
-		public Transform cameraNode;
-		public Transform originalCameraNodeParent;
+		private Transform cameraNode;
+		private Transform originalCameraNodeParent;
 		private float currentCameraDist;
 		private float defaultDistance = 5.0f;
 		private float minDistance = 2.5f;
@@ -192,8 +165,6 @@ namespace XLObjectDropper.Controllers
 	        {
 		        SelectedObject.SetActive(false);
 		        DestroyImmediate(SelectedObject);
-
-		        SelectedObjectLayerInfo = null;
 	        }
 
 	        if (GridOverlay != null)
@@ -203,8 +174,7 @@ namespace XLObjectDropper.Controllers
 
 	        if (HighlightedObject != null)
 	        {
-		        HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
-		        HighlightedObjectLayerInfo = null;
+		        HighlightedObject.transform.ChangeLayersRecursively(HighlightedObject.GetSpawnableFromSpawned().PrefabLayerInfo);
 		        HighlightedObject = null;
 	        }
 
@@ -505,9 +475,9 @@ namespace XLObjectDropper.Controllers
 			var newObject = Instantiate(SelectedObject, SelectedObject.transform.position, SelectedObject.transform.rotation);
 			newObject.SetActive(true);
 
-			newObject.transform.ChangeLayersRecursively(SelectedObjectLayerInfo);
-
-			SpawnableManager.SpawnedObjects.Add(new Spawnable(SelectedObjectSpawnable, newObject));
+			var spawnable = SelectedObject.GetSpawnable();
+			newObject.transform.ChangeLayersRecursively(spawnable.PrefabLayerInfo);
+			SpawnableManager.SpawnedObjects.Add(new Spawnable(spawnable, newObject));
 
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
@@ -592,10 +562,7 @@ namespace XLObjectDropper.Controllers
 		private void SelectObject()
 		{
 			UISounds.Instance?.PlayOneShotSelectMajor();
-
 			SelectedObject = HighlightedObject;
-			SelectedObjectLayerInfo = HighlightedObjectLayerInfo;
-
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 		}
 
@@ -603,7 +570,12 @@ namespace XLObjectDropper.Controllers
 		{
 			if (HighlightedObject != null)
 			{
-				HighlightedObject.transform.ChangeLayersRecursively(HighlightedObjectLayerInfo);
+				var spawnable = HighlightedObject.GetSpawnableFromSpawned();
+
+				if (spawnable != null)
+				{
+					HighlightedObject.transform.ChangeLayersRecursively(spawnable.PrefabLayerInfo);
+				}
 				HighlightedObject = null;
 			}
 
@@ -616,7 +588,6 @@ namespace XLObjectDropper.Controllers
 					if (hit.collider != null && parent != null)
 					{
 						HighlightedObject = parent.gameObject;
-						HighlightedObjectLayerInfo = parent.GetObjectLayers();
 
 						HighlightedObject.transform.ChangeLayersRecursively("Ignore Raycast");
 						UserInterfaceHelper.CustomPassVolume.enabled = true;
@@ -631,8 +602,6 @@ namespace XLObjectDropper.Controllers
 			{
 				DestroyImmediate(SelectedObject);
 				SelectedObject = null;
-				SelectedObjectLayerInfo = null;
-				SelectedObjectSpawnable = null;
 			}
 		}
 
