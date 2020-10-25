@@ -40,7 +40,12 @@ namespace XLObjectDropper
 		public static void ChangeLayersRecursively(this Transform trans, LayerInfo layerInfo)
 		{
 			trans.gameObject.layer = layerInfo.Layer;
-			trans.gameObject.SetActive(layerInfo.Enabled);
+
+			if (!layerInfo.Enabled)
+			{
+				//TODO: Add an enum to prevent hardcoding this layer (0)
+				trans.gameObject.layer = 0;
+			}
 
 			for (int i = trans.childCount - 1; i >= 0; i--)
 			{
