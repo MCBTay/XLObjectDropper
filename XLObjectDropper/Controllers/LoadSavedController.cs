@@ -7,6 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.UI;
+using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
 using XLObjectDropper.Utilities.Save;
@@ -107,14 +108,27 @@ namespace XLObjectDropper.Controllers
 
 				Spawnable spawnable = null;
 
-				spawnable = SpawnableManager.Prefabs.FirstOrDefault(x => savedGameObject.Id.StartsWith(x.Prefab.name));
-
-				if (spawnable == null)
+				foreach (var spawnablePrefab in SpawnableManager.Prefabs)
 				{
-					// check to see if it's an alternate style.
-					 
-					continue;
+					var savedObjName = savedGameObject.Id.Replace("(Clone)", string.Empty).Trim();
+
+					if (savedObjName.Equals(spawnablePrefab.Prefab.name))
+					{
+						spawnable = spawnablePrefab;
+						break;
+					}
+
+					var styleSettings = spawnablePrefab.Settings.FirstOrDefault(x => x is EditStyleController) as EditStyleController;
+					var style = styleSettings?.Styles.FirstOrDefault(x => savedObjName.Equals(x.Prefab.name));
+
+					if (style != null)
+					{
+						spawnable = style;
+						break;
+					}
 				}
+
+				if (spawnable == null) continue;
 
 				var newGameObject = Instantiate(spawnable.Prefab, position, rotation);
 				newGameObject.SetActive(true);
