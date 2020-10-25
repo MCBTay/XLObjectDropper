@@ -35,47 +35,29 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			var spawnable = SelectedObject.GetSpawnableFromSpawned() ?? SelectedObject.GetSpawnable();
 			if (spawnable == null) return;
 
-			if (!hasGrindables)
+			expandable.GrindablesToggle.Toggle.interactable = hasGrindables;
+			if (hasGrindables)
 			{
-				expandable.GrindablesToggle.Toggle.interactable = false;
-			}
-			else
-			{
+				expandable.GrindablesToggle.Toggle.isOn = GrindableEnabled;
+
 				expandable.GrindablesToggle.Toggle.interactable = true;
 				expandable.GrindablesToggle.Toggle.onValueChanged.AddListener((isOn) =>
 				{
 					GrindableEnabled = isOn;
-
-					//if (ObjectMovementController.Instance.HighlightedObjectActive && ObjectMovementController.Instance.HighlightedObjectLayerInfo != null)
-					//{
-					//	DisableLayer(ObjectMovementController.Instance.HighlightedObjectLayerInfo, "Grindable", isOn);
-					//}
-					//else if (ObjectMovementController.Instance.SelectedObjectActive && ObjectMovementController.Instance.SelectedObjectLayerInfo != null)
-					//{
-					//	DisableLayer(ObjectMovementController.Instance.SelectedObjectLayerInfo, "Grindable", isOn);
-					//}
+					DisableLayer(spawnable.PrefabLayerInfo, "Grindable", isOn);
 				});
 			}
 
-			if (!hasCoping)
+			expandable.CopingToggle.Toggle.interactable = hasCoping;
+			if (hasCoping)
 			{
-				expandable.CopingToggle.Toggle.interactable = false;
-			}
-			else
-			{
+				expandable.CopingToggle.Toggle.isOn = CopingEnabled;
+
 				expandable.CopingToggle.Toggle.interactable = true;
 				expandable.CopingToggle.Toggle.onValueChanged.AddListener((isOn) =>
 				{
 					CopingEnabled = isOn;
-
-					//if (ObjectMovementController.Instance.HighlightedObjectActive && ObjectMovementController.Instance.HighlightedObjectLayerInfo != null)
-					//{
-					//	DisableLayer(ObjectMovementController.Instance.HighlightedObjectLayerInfo, "Coping", isOn);
-					//}
-					//else if (ObjectMovementController.Instance.SelectedObjectActive && ObjectMovementController.Instance.SelectedObjectLayerInfo != null)
-					//{
-					//	DisableLayer(ObjectMovementController.Instance.SelectedObjectLayerInfo, "Coping", isOn);
-					//}
+					DisableLayer(spawnable.PrefabLayerInfo, "Coping", isOn);
 				});
 			}
 		}
@@ -84,7 +66,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 		{
 			if (layerInfo.Layer == LayerMask.NameToLayer(layerName))
 			{
-				//ObjectMovementController.Instance.SelectedObjectLayerInfo.Enabled = isEnabled;
+				layerInfo.Enabled = isEnabled;
 			}
 
 			foreach (var child in layerInfo.Children)
@@ -114,7 +96,11 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			GrindableEnabled = grindableSetting.grindablesEnabled;
 			CopingEnabled = grindableSetting.copingEnabled;
 
-			// TODO: Come back to this once I've actually implemented a way to do this.
+			var spawnable = selectedObject.GetSpawnableFromSpawned() ?? selectedObject.GetSpawnable();
+			if (spawnable == null) return;
+
+			DisableLayer(spawnable.PrefabLayerInfo, "Grindable", GrindableEnabled);
+			DisableLayer(spawnable.PrefabLayerInfo, "Coping", CopingEnabled);
 		}
 	}
 }

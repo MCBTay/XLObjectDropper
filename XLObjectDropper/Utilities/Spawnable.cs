@@ -84,7 +84,7 @@ namespace XLObjectDropper.Utilities
 
 			if (Prefab.GetChildrenOnLayer("Grindable").Any() || Prefab.GetChildrenOnLayer("Coping").Any())
 			{
-				Settings.Add(new EditGrindablesController());
+				Settings.Add(new EditGrindablesController { GrindableEnabled = true, CopingEnabled = true });
 			}
 
 			if (Prefab.GetComponentsInChildren<Light>(true).Any())

@@ -40,6 +40,7 @@ namespace XLObjectDropper
 		public static void ChangeLayersRecursively(this Transform trans, LayerInfo layerInfo)
 		{
 			trans.gameObject.layer = layerInfo.Layer;
+			trans.gameObject.SetActive(layerInfo.Enabled);
 
 			for (int i = trans.childCount - 1; i >= 0; i--)
 			{
@@ -74,7 +75,7 @@ namespace XLObjectDropper
 			{
 				GameObjectName = transform.name, 
 				Layer = transform.gameObject.layer, 
-				Enabled = transform.gameObject.activeInHierarchy, 
+				Enabled = transform.gameObject.activeSelf, 
 				Parent = parent
 			};
 
