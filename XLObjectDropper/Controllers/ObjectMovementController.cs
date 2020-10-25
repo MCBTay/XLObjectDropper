@@ -104,7 +104,10 @@ namespace XLObjectDropper.Controllers
 			UpdateGroundLevel();
 
 			if (hasGround)
+			{
 				vector3_1.y = groundLevel + targetHeight;
+				targetHeight = Settings.Instance.GroundTracking ? defaultHeight : vector3_1.y;
+			}
 
 			transform.position = vector3_1;
 			MoveCamera(true);
@@ -386,7 +389,8 @@ namespace XLObjectDropper.Controllers
 	        Settings.Instance.Save();
 
 	        currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
-		}
+	        targetHeight = currentHeight;
+        }
 
         private void ResetCamera()
         {
@@ -412,7 +416,7 @@ namespace XLObjectDropper.Controllers
 		public void MoveObjectOnYAxis()
 		{
 			currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
-			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed* HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
+			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
 			currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
 
 			float num = (targetHeight - currentHeight) / 0.25f;
