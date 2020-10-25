@@ -252,6 +252,7 @@ namespace XLObjectDropper.Controllers
 
 				if (player.GetButtonDown("X")) EditObject();
 				if (player.GetButtonDown("Y")) DeleteObject();
+				if (player.GetButtonDown("B")) GameStateMachine.Instance.RequestPauseState();
 			}
 			else
 			{
