@@ -134,7 +134,7 @@ namespace XLObjectDropper.Controllers
 			characterController.detectCollisions = true;
 			characterController.enableOverlapRecovery = true;
 			characterController.height = 0.01f;
-			characterController.minMoveDistance = 0.001f;
+			characterController.minMoveDistance = 0.00001f;
 			characterController.radius = 0.25f;
 			characterController.skinWidth = 0.001f;
 			characterController.slopeLimit = 80f;
@@ -417,10 +417,10 @@ namespace XLObjectDropper.Controllers
 			float num = (targetHeight - currentHeight) / 0.25f;
 
 			var speed =
-				(Mathf.Approximately(lastVerticalVelocity, 0.0f) || (double) Mathf.Sign(num) == (double) Mathf.Sign(lastVerticalVelocity) ? 
-					((double) Mathf.Abs(num) <= (double) Mathf.Abs(lastVerticalVelocity)
+				(Mathf.Approximately(lastVerticalVelocity, 0.0f) || (double)Mathf.Sign(num) == (double)Mathf.Sign(lastVerticalVelocity) ?
+					((double)Mathf.Abs(num) <= (double)Mathf.Abs(lastVerticalVelocity)
 						? num
-						: Mathf.MoveTowards(lastVerticalVelocity, num, VerticalAcceleration * Time.deltaTime))
+						: Mathf.MoveTowards(lastVerticalVelocity, num, VerticalAcceleration * Time.fixedDeltaTime))
 					: 0.0f);
 
 			var motion = speed * Time.deltaTime * Vector3.up;
