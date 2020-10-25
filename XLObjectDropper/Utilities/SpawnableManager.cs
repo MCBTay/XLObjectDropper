@@ -8,25 +8,17 @@ namespace XLObjectDropper.Utilities
 {
 	public static class SpawnableManager
 	{
-		public static List<Spawnable> LegacyPrefabs;
 		public static List<Spawnable> Prefabs;
 		public static List<Spawnable> SpawnedObjects;
 
 		static SpawnableManager()
 		{
-			LegacyPrefabs = new List<Spawnable>();
 			Prefabs = new List<Spawnable>();
 			SpawnedObjects = new List<Spawnable>();
 		}
 
-		public static void AddPrefab(GameObject asset, AssetBundle bundle, bool isLegacy)
+		public static void AddPrefab(GameObject asset, AssetBundle bundle)
 		{
-			if (isLegacy)
-			{
-				LegacyPrefabs.Add(new Spawnable(Enumerations.SpawnableType.Other, asset, bundle.name, string.Empty));
-				return;
-			}
-
 			var type = Enumerations.SpawnableType.Other;
 			var menuText = string.Empty;
 

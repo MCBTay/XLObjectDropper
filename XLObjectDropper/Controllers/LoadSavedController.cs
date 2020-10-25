@@ -107,11 +107,14 @@ namespace XLObjectDropper.Controllers
 
 				Spawnable spawnable = null;
 
-				spawnable = levelSave.isLegacy ? 
-					SpawnableManager.LegacyPrefabs.FirstOrDefault(x => savedGameObject.Id.StartsWith(x.Prefab.name)) : 
-					SpawnableManager.Prefabs.FirstOrDefault(x => savedGameObject.Id.StartsWith(x.Prefab.name));
+				spawnable = SpawnableManager.Prefabs.FirstOrDefault(x => savedGameObject.Id.StartsWith(x.Prefab.name));
 
-				if (spawnable == null) continue;
+				if (spawnable == null)
+				{
+					// check to see if it's an alternate style.
+					 
+					continue;
+				}
 
 				var newGameObject = Instantiate(spawnable.Prefab, position, rotation);
 				newGameObject.SetActive(true);

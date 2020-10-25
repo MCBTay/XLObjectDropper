@@ -49,7 +49,7 @@ namespace XLObjectDropper.Utilities
 			}
 		}
 
-		static IEnumerator LoadBundleAsync(string name, bool isEmbedded = false, bool isLegacy = false)
+		static IEnumerator LoadBundleAsync(string name, bool isEmbedded = false)
 		{
 			AssetBundleCreateRequest abCreateRequest;
 
@@ -75,7 +75,7 @@ namespace XLObjectDropper.Utilities
 
 			foreach (GameObject asset in assets)
 			{
-				SpawnableManager.AddPrefab(asset, bundle, isLegacy);
+				SpawnableManager.AddPrefab(asset, bundle);
 			}
 
 			SelfieCamera.enabled = false;
