@@ -105,6 +105,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				ObjectMovementController.Instance.enabled = true;
 
 				ObjectMovementController.Instance.InstantiateSelectedObject(spawnable);
+				SelectedObject = ObjectMovementController.Instance.SelectedObject;
 				ObjectMovementController.Instance.SelectedObject.transform.position = pos;
 				ObjectMovementController.Instance.SelectedObject.transform.rotation = rot;
 
@@ -128,6 +129,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 
 				SpawnableManager.SpawnedObjects.Add(new Spawnable(spawnable, ObjectMovementController.Instance.HighlightedObject));
 
+				SelectedObject = ObjectMovementController.Instance.HighlightedObject;
 				//UserInterfaceHelper.CustomPassVolume.enabled = true;
 
 				ObjectMovementController.Instance.enabled = false;
