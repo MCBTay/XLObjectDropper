@@ -18,6 +18,18 @@ ModelImporter:
   - first:
       74: 6720901693076368096
     second: Armature|FilmingStanding
+  - first:
+      74: 2207024644690087358
+    second: Armature|FilmingStand
+  - first:
+      74: 466419387828968049
+    second: Armature|FilmingKneel
+  - first:
+      74: 4062936295760712648
+    second: Armature|FilmingKneel (1)
+  - first:
+      74: -8876553449045215641
+    second: Armature|IdleCrouch
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -31,7 +43,9 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Bone length in configuration
+      does not match position in animation file:\n\t'mixamorig:LeftUpLeg' : position
+      error = 36.163216 mm\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -76,11 +90,69 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|FilmingStanding
-      takeName: Armature|FilmingStanding
+      name: Armature|FilmingStand
+      takeName: Armature|FilmingStand
       internalID: 0
       firstFrame: 0
       lastFrame: 64
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|FilmingKneel
+      takeName: Armature|FilmingKneel
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 51
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|IdleCrouch
+      takeName: Armature|IdleCrouch
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 201
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
