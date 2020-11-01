@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 126012280
+CRC: 2126655666
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c083112ff1d7a8c9aaf906ca7c10eb06
+    Hash: b88c15261b35d8a5da459dda5439feb0
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ef76e3e3c01f1358080d9b85669b5484
+    Hash: b2a7691414bf4d1a630de4ac21ff29be
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -36,9 +36,9 @@ ClassTypes:
 - Class: 95
   Script: {instanceID: 0}
 - Class: 114
-  Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
-- Class: 114
   Script: {fileID: 98598976, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
+  Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
 - Class: 114
   Script: {fileID: 965078968, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
 - Class: 115
@@ -52,5 +52,8 @@ ClassTypes:
 Assets:
 - Assets/SDT - Animated Chars/Prefabs/Filmer_Fleep.prefab
 - Assets/SDT - Animated Chars/Prefabs/Filmer_Yukari.prefab
+- Assets/SDT - Animated Chars/Prefabs/Cameraman_Carl.prefab
 - Assets/SDT - Animated Chars/Prefabs/SGC/SGC_Filmer.prefab
-Dependencies: []
+Dependencies:
+- C:/Users/squee/Documents/GitHub/XLObjectDropper/XLObjectDropper.Spawnables/AssetBundles/StandaloneWindows/dryden
+  - prop pack
