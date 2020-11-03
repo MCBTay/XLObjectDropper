@@ -35,7 +35,7 @@ namespace XLObjectDropper.Controllers
 
 		private float HorizontalAcceleration = 15f;
 		private float MaxCameraAcceleration = 20f;
-		private float heightChangeSpeed = 2f;
+		private float HeightChangeSpeed = 10f;
 		private float VerticalAcceleration = 20f;
 		private float CameraRotateSpeed = 100f;
 		private float MoveSpeed = 15f;
@@ -43,8 +43,6 @@ namespace XLObjectDropper.Controllers
 		private float lastCameraVelocity;
 		public float currentMoveSpeed;
 		private float zoomSpeed = 10f;
-
-		private readonly AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
 
 		private Camera mainCam;
 		public Transform cameraPivot;
@@ -296,15 +294,19 @@ namespace XLObjectDropper.Controllers
 			if (!LockCameraMovement)
 			{
 				Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
-				rotationAngleX += rightStick.x * Time.deltaTime * CameraRotateSpeed;
+
+				//var maxRotateSpeed = Settings.Instance.Sensitivity == 0.0f? 1.0f : CameraRotateSpeed * Settings.Instance.Sensitivity;
+				var maxRotateSpeed = CameraRotateSpeed;
+
+				rotationAngleX += rightStick.x * Time.deltaTime * maxRotateSpeed;
 
 				if (Settings.Instance.InvertCamControl)
 				{
-					rotationAngleY -= rightStick.y * Time.deltaTime * CameraRotateSpeed;
+					rotationAngleY -= rightStick.y * Time.deltaTime * maxRotateSpeed;
 				}
 				else
 				{
-					rotationAngleY += rightStick.y * Time.deltaTime * CameraRotateSpeed;
+					rotationAngleY += rightStick.y * Time.deltaTime * maxRotateSpeed;
 				}
 			}
 
@@ -408,7 +410,9 @@ namespace XLObjectDropper.Controllers
 		public void HandleDPadHeightAdjustment(Player player)
 		{
 			float dpad = player.GetAxis("DPadY");
-			targetHeight = targetHeight + (dpad * Time.deltaTime * heightChangeSpeed * HeightToHeightChangeSpeedCurve.Evaluate(targetHeight));
+			
+			var maxMoveSpeed = Settings.Instance.Sensitivity == 0.0f ? 1.0f : HeightChangeSpeed * Settings.Instance.Sensitivity;
+			targetHeight = targetHeight + (dpad * Time.deltaTime * maxMoveSpeed);
 
 			MoveObjectOnYAxis();
 
