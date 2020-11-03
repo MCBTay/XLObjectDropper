@@ -33,18 +33,17 @@ namespace XLObjectDropper.Controllers
 		public Vector3 groundNormal;
 		private bool hasGround;
 
-		private float HorizontalAcceleration = 10f;
+		private float HorizontalAcceleration = 15f;
 		private float MaxCameraAcceleration = 20f;
 		private float heightChangeSpeed = 2f;
 		private float VerticalAcceleration = 20f;
 		private float CameraRotateSpeed = 100f;
-		private float MoveSpeed = 10f;
+		private float MoveSpeed = 15f;
 		private float lastVerticalVelocity;
 		private float lastCameraVelocity;
 		public float currentMoveSpeed;
 		private float zoomSpeed = 10f;
 
-		private readonly AnimationCurve HeightToMoveSpeedFactorCurve = AnimationCurve.Linear(0.0f, 0.5f, 15f, 3f);
 		private readonly AnimationCurve HeightToHeightChangeSpeedCurve = AnimationCurve.Linear(1f, 1f, 15f, 15f);
 
 		private Camera mainCam;
@@ -281,7 +280,10 @@ namespace XLObjectDropper.Controllers
         {
 	        var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-	        var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
+	        var maxMoveSpeed = Settings.Instance.Sensitivity == 0.0f ? 1.0f : MoveSpeed * Settings.Instance.Sensitivity;
+
+			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, maxMoveSpeed, HorizontalAcceleration * Time.deltaTime);
+			var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
 			collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
         }
 
@@ -415,8 +417,6 @@ namespace XLObjectDropper.Controllers
 
 		public void MoveObjectOnYAxis()
 		{
-			currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
-			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, MoveSpeed * HeightToMoveSpeedFactorCurve.Evaluate(targetHeight), HorizontalAcceleration * Time.deltaTime);
 			currentHeight = transform.position.y - (Settings.Instance.GroundTracking ? groundLevel : 0.0f);
 
 			float num = (targetHeight - currentHeight) / 0.25f;
