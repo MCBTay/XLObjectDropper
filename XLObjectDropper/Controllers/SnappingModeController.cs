@@ -61,6 +61,9 @@ namespace XLObjectDropper.Controllers
 					direction = new Vector3(0.0f, 0.0f, Mathf.Sign(leftStick.y));
 				}
 
+				var maxMoveSpeed = Settings.Instance.Sensitivity == 0.0f ? 1.0f : ObjectMovementController.Instance.MoveSpeed * Settings.Instance.Sensitivity;
+				ObjectMovementController.Instance.currentMoveSpeed = Mathf.MoveTowards(ObjectMovementController.Instance.currentMoveSpeed, maxMoveSpeed, ObjectMovementController.Instance.HorizontalAcceleration * Time.deltaTime);
+
 				var motion = direction * ObjectMovementController.Instance.currentMoveSpeed * Time.deltaTime;
 				ObjectMovementController.Instance.collisionFlags = ObjectMovementController.Instance.characterController.Move(new Vector3(motion.x, 0.0f, motion.z));
 			}

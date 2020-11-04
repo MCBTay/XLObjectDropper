@@ -33,12 +33,12 @@ namespace XLObjectDropper.Controllers
 		public Vector3 groundNormal;
 		private bool hasGround;
 
-		private float HorizontalAcceleration = 15f;
+		public float HorizontalAcceleration = 15f;
 		private float MaxCameraAcceleration = 20f;
 		private float HeightChangeSpeed = 10f;
 		private float VerticalAcceleration = 20f;
 		private float CameraRotateSpeed = 100f;
-		private float MoveSpeed = 15f;
+		public float MoveSpeed = 15f;
 		private float lastVerticalVelocity;
 		private float lastCameraVelocity;
 		public float currentMoveSpeed;
