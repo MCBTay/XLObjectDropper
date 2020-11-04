@@ -62,19 +62,19 @@ MonoBehaviour:
         clearFlags: 3
         passFoldout: 0
         m_Version: 0
-        filterFoldout: 0
+        filterFoldout: 1
         rendererFoldout: 1
         renderQueueType: 10
         passNames:
         - Forward
         layerMask:
           serializedVersion: 2
-          m_Bits: 4
+          m_Bits: 268435456
         sortingCriteria: 59
         overrideMaterial: {fileID: 2100000, guid: cb568402720c2634a9c9f711b0ee8e8c,
           type: 2}
         overrideMaterialPassIndex: 0
-        overrideMaterialPassName: 
+        overrideMaterialPassName: FirstPass
         overrideDepthState: 0
         depthCompareFunction: 4
         depthWrite: 1
@@ -93,5 +93,5 @@ MonoBehaviour:
         fullscreenPassMaterial: {fileID: 2100000, guid: 45e37799e2550df4e981379d9c5832fa,
           type: 2}
         materialPassIndex: 0
-        materialPassName: 
+        materialPassName: Custom Pass 0
         fetchColorBuffer: 0

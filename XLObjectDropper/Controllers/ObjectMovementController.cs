@@ -470,7 +470,7 @@ namespace XLObjectDropper.Controllers
 			SelectedObject = Instantiate(spawnable.Prefab);
 			SelectedObject.name = spawnable.Prefab.name;
 
-			SelectedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+			SelectedObject.transform.ChangeLayersRecursively(28);
 
 			SelectedObject.transform.position = transform.position;
 			SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
@@ -616,7 +616,7 @@ namespace XLObjectDropper.Controllers
 					{
 						HighlightedObject = parent.gameObject;
 
-						HighlightedObject.transform.ChangeLayersRecursively("Ignore Raycast");
+						HighlightedObject.transform.ChangeLayersRecursively(28);
 						UserInterfaceHelper.CustomPassVolume.enabled = true;
 					}
 				}
