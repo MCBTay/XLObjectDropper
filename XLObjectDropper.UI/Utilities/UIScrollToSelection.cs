@@ -10,7 +10,7 @@ using UnityEngine.EventSystems;
 
 namespace UnityEngine.UI.Extensions
 {
-    [RequireComponent(typeof(ScrollRect))]
+	[RequireComponent(typeof(ScrollRect))]
     [AddComponentMenu("UI/Extensions/UIScrollToSelection")]
     public class UIScrollToSelection : MonoBehaviour
     {
@@ -30,45 +30,24 @@ namespace UnityEngine.UI.Extensions
 
         //*** PROPERTIES ***//
         // REFERENCES
-        protected RectTransform LayoutListGroup
-        {
-            get { return TargetScrollRect != null ? TargetScrollRect.content : null; }
-        }
+        protected RectTransform LayoutListGroup => TargetScrollRect != null ? TargetScrollRect.content : null;
 
         // SETTINGS
-        protected ScrollType ScrollDirection
-        {
-            get { return scrollDirection; }
-        }
-        protected float ScrollSpeed
-        {
-            get { return scrollSpeed; }
-        }
+        protected ScrollType ScrollDirection => scrollDirection;
+        protected float ScrollSpeed => scrollSpeed;
 
         // INPUT
-        protected bool CancelScrollOnInput
-        {
-            get { return cancelScrollOnInput; }
-        }
-        protected List<KeyCode> CancelScrollKeycodes
-        {
-            get { return cancelScrollKeycodes; }
-        }
+        protected bool CancelScrollOnInput => cancelScrollOnInput;
+        protected List<KeyCode> CancelScrollKeycodes => cancelScrollKeycodes;
 
         // CACHED REFERENCES
         protected RectTransform ScrollWindow { get; set; }
         protected ScrollRect TargetScrollRect { get; set; }
 
         // SCROLLING
-        protected EventSystem CurrentEventSystem
-        {
-            get { return EventSystem.current; }
-        }
+        protected EventSystem CurrentEventSystem => EventSystem.current;
         protected GameObject LastCheckedGameObject { get; set; }
-        protected GameObject CurrentSelectedGameObject
-        {
-            get { return EventSystem.current.currentSelectedGameObject; }
-        }
+        protected GameObject CurrentSelectedGameObject => EventSystem.current.currentSelectedGameObject;
         protected RectTransform CurrentTargetRectTransform { get; set; }
         protected bool IsManualScrollingAvailable { get; set; }
 
@@ -117,38 +96,39 @@ namespace UnityEngine.UI.Extensions
 
         private void CheckIfScrollingShouldBeLocked()
         {
-            if (CancelScrollOnInput == false || IsManualScrollingAvailable == true)
-            {
-                return;
-            }
+	        if (!CancelScrollOnInput || IsManualScrollingAvailable) return;
 
-            for (int i = 0; i < CancelScrollKeycodes.Count; i++)
-            {
-                if (Input.GetKeyDown(CancelScrollKeycodes[i]) == true)
-                {
-                    IsManualScrollingAvailable = true;
-
-                    break;
-                }
-            }
+	        foreach (var t in CancelScrollKeycodes)
+	        {
+		        if (Input.GetKeyDown(t))
+		        {
+			        IsManualScrollingAvailable = true;
+			        break;
+		        }
+	        }
         }
+
+        //private bool objectEdit = false;
 
         private void ScrollRectToLevelSelection()
         {
             // check main references
             bool referencesAreIncorrect = (TargetScrollRect == null || LayoutListGroup == null || ScrollWindow == null);
 
-            if (referencesAreIncorrect == true || IsManualScrollingAvailable == true)
-            {
-                return;
-            }
+            if (referencesAreIncorrect || IsManualScrollingAvailable) return;
 
             RectTransform selection = CurrentTargetRectTransform;
 
             // check if scrolling is possible
             if (selection == null || selection.transform.parent != LayoutListGroup.transform)
             {
-                return;
+	            // XLOD: customized for Object Edit where selectables aren't direct children
+                //if (selection.transform.parent?.parent?.parent != LayoutListGroup.transform && selection.transform.parent?.parent?.parent?.parent != LayoutListGroup.transform)
+	            //{
+		           // objectEdit = true;
+	            //}
+
+	            return;
             }
 
             // depending on selected scroll direction move the scroll rect to selection
@@ -203,13 +183,13 @@ namespace UnityEngine.UI.Extensions
 
         private float GetScrollOffset(float position, float listAnchorPosition, float targetLength, float maskLength)
         {
-            if (position < listAnchorPosition + (targetLength / 2))
+	        if (position < listAnchorPosition + (targetLength / 2))
             {
-                return (listAnchorPosition + maskLength) - (position - targetLength);
+	            return (listAnchorPosition + maskLength) - (position - targetLength);
             }
             else if (position + targetLength > listAnchorPosition + maskLength)
             {
-                return (listAnchorPosition + maskLength) - (position + targetLength);
+	            return (listAnchorPosition + maskLength) - (position + targetLength);
             }
 
             return 0;
