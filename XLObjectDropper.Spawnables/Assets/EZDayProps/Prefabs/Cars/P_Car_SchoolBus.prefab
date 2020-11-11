@@ -224,6 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6383827340164700489}
   - component: {fileID: 5828915428306161549}
+  - component: {fileID: 6923381938020901818}
   m_Layer: 0
   m_Name: P_Car_SchoolBus
   m_TagString: Untagged
@@ -238,7 +239,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7983950837852891994}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -281,6 +282,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1098951089903343569}
   m_Enabled: 1
+--- !u!114 &6923381938020901818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983950837852891994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuText: Schoolbus
+  Type: 3
 --- !u!1 &9026808031363852209
 GameObject:
   m_ObjectHideFlags: 0

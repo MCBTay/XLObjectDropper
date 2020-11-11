@@ -1,29 +1,7 @@
 ManifestFileVersion: 0
-CRC: 755575993
+CRC: 2140011751
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: sdt - modular
+      Name: default-pack
       Dependencies: {}
-    Info_1:
-      Name: ezday - cars
-      Dependencies: {}
-    Info_2:
-      Name: dryden - xlod
-      Dependencies: {}
-    Info_3:
-      Name: sdt - aus props
-      Dependencies: {}
-    Info_4:
-      Name: dryden - prop pack
-      Dependencies: {}
-    Info_5:
-      Name: sdt - soldino props
-      Dependencies: {}
-    Info_6:
-      Name: sdt - soldino rigibody
-      Dependencies: {}
-    Info_7:
-      Name: sdt - animated chars
-      Dependencies:
-        Dependency_0: dryden - prop pack

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5090205714201359512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1602878511988661706}
+  - component: {fileID: 4876060596044060126}
+  m_Layer: 0
+  m_Name: SGC_SoldinoLitter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1602878511988661706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090205714201359512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.052147746, y: 0.17677511, z: 0.029468298}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4876060596044060126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090205714201359512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 98598976, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Objects:
+  - {fileID: 2281720681473129326, guid: 65abec077b955264b984f24775f75129, type: 3}
+  - {fileID: 171853673772155107, guid: d60ce1b6614ab4e4ba8fb8607768f879, type: 3}
+  - {fileID: 8384210368010815136, guid: 208ecc4c673ec71478e40bed0b8684ac, type: 3}
+  - {fileID: 524662218101417788, guid: 146db58b326c3d241b29fc47913801ca, type: 3}
+  - {fileID: 5122872945686165553, guid: b4a388ada751f7c42b0b395d5dd6083d, type: 3}
+  - {fileID: 2236063522935589199, guid: 3af6900d5b071e2438383bb883cb6cc8, type: 3}
