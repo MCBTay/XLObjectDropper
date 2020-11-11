@@ -12,7 +12,7 @@ namespace XLObjectDropper.Controllers
 		public GameObject SelectedObject;
 		public Transform cameraPivot;
 
-		private float ObjectRotateSpeed = 5f;
+		private float ObjectRotateSpeed = 10f;
 
 		private void Awake()
 		{
@@ -98,11 +98,13 @@ namespace XLObjectDropper.Controllers
 		{
 			Vector2 leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-			SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, leftStick.y * ObjectRotateSpeed);
+			var maxRotateSpeed = Settings.Instance.Sensitivity == 0.0f ? 1.0f : ObjectRotateSpeed * Settings.Instance.Sensitivity;
+
+			SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.right, leftStick.y * maxRotateSpeed);
 
 			//TODO: In the future, we'll have a toggle for local/global rotation axis
-			//SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, leftStick.x * ObjectRotateSpeed); //global
-			SelectedObject.transform.Rotate(0, leftStick.x * ObjectRotateSpeed, 0); //local
+			//SelectedObject.transform.RotateAround(SelectedObject.transform.position, cameraPivot.up, leftStick.x * maxRotateSpeed); //global
+			SelectedObject.transform.Rotate(0, leftStick.x * maxRotateSpeed, 0); //local
 		}
 
 		private void HandleDPadRotation(Player player)
@@ -160,10 +162,7 @@ namespace XLObjectDropper.Controllers
 
 		private void HandleScaling(Player player)
 		{
-			var scaleSpeed = 15f;
-			//   if (!Mathf.Approximately(Settings.Instance.Sensitivity, 1)) scaleFactor *= Settings.Instance.Sensitivity;
-			//else scaleFactor = 1;
-
+			var scaleSpeed = 50f;
 			var increment = GetScaleSnappingIncrement();
 
 			float scaleFactor = 0.0f;
@@ -171,7 +170,10 @@ namespace XLObjectDropper.Controllers
 			if (Mathf.Approximately(increment, 0))
 			{
 				Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
-				scaleFactor = rightStick.y / scaleSpeed;
+				
+				var maxScaleSpeed = 1 - Settings.Instance.Sensitivity == 0.0f ? 1.0f : scaleSpeed * (1 - Settings.Instance.Sensitivity);
+				if (maxScaleSpeed != 0)
+					scaleFactor = rightStick.y / maxScaleSpeed;
 			}
 			else
 			{
