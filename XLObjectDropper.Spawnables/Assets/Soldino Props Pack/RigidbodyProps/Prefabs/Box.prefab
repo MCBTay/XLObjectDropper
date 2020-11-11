@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8428570112548342630}
   - component: {fileID: 3592109993038713503}
   - component: {fileID: 289809580819312389}
+  - component: {fileID: 5042518002526485780}
+  - component: {fileID: 7688427898024064915}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -84,10 +86,39 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 02d88c66f6cef3541850d57492833e19, type: 3}
+--- !u!114 &5042518002526485780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2281720681473129326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuText: Litter
+  Type: 3
+--- !u!114 &7688427898024064915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2281720681473129326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 965078968, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowInObjectSelection: 1
+  Style: Box
+  SubStyle: 
 --- !u!1 &5038174851349255492
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +173,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -153,6 +185,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -219,6 +252,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -230,6 +264,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
