@@ -1,0 +1,199 @@
+ManifestFileVersion: 0
+CRC: 708209880
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 3c8e5c87007c0d2778c9e801bf2e42e6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5fbebdfa679e69b54f3867bd742083b6
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 98598976, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
+  Script: {fileID: 910482087, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
+  Script: {fileID: 965078968, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c6c2871f720b2af4e9210febdac74517, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 136
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+- Class: 205
+  Script: {instanceID: 0}
+- Class: 895512359
+  Script: {instanceID: 0}
+Assets:
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Street.prefab
+- Assets/Dryden - XLOD/Prefabs/DIY Ramp Prefabs/DIY_MiniRamp.prefab
+- Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Street.Asphalt.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/FireHydrant.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Powerpole_2.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_White.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_Red.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BankCurb.prefab
+- Assets/SDT - AusBundle/AusPrefabs/SGC/SGC_AusSigns.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BarrierDamaged.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoPlywood.prefab
+- Assets/Soldino Props Pack/Lights/Prefabs/Street_Lamp.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoBarrier.prefab
+- Assets/Soldino Props Pack/Lights/Prefabs/SphereLamp.prefab
+- Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Grungy.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/WorklightSmall.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BenchHatchet.prefab
+- Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Medium Cinder Block Ledge.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/ParkingGate.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/MagazineBox_YZ_Orange.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/RecyclingBin.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/WorklightGenerator.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_SchoolBus.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BenchFloating.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/Dumpster.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/StopLight1.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/PlywoodSmall.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/Plywood.prefab
+- Assets/Dryden - XLOD/Prefabs/SGC/SGC_Cinderblock_Ledges.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Trashbin.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_LightPole.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/Barrier.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/MagazineBox_YZ_White.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Hubba_low_.5x1.5.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Square.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BusStop.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/JerseyBarrier.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/KickerWood.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/CopCar.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_HubbaLow.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Trashbag.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/SGC/SGC_SoldinoLitter.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_1x1.prefab
+- Assets/Dryden - XLOD/Prefabs/DIY Ramp Prefabs/DIY_Spine.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/BoxSmall.prefab
+- Assets/SDT - Modular/Prefabs/Rails/Polejam_Small.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_Stair5Cap.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Box.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/DIYRamp.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Roundabout.prefab
+- Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Short Cinder Block Ledge.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/TrashbinBagged.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/MagazineBox_240p.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Trashcan.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.25x4.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/KickerPlastic.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Ped.prefab
+- Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Block.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/CopCar_NoLights.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.5x2.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Speed.prefab
+- Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Clean.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/TrashbagSmall.prefab
+- Assets/SDT - Modular/Prefabs/Stairs/Stair_3_1_x5.Brick.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/Cinderblock.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_2x4.prefab
+- Assets/Dryden - XLOD/Prefabs/DIY Ramp Prefabs/DIY_Box.prefab
+- Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Street.Asphalt.prefab
+- Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Wood.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/StopLight2.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_Cop.prefab
+- Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Clean.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Powerpole_1.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_PadLow.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_Taxi.prefab
+- Assets/SDT - Modular/Prefabs/Rails/Rail_Down_x1.5.Capped.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/RainbowRail.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/ConstructionBarrier.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/PlasticBarrier.prefab
+- Assets/Soldino Props Pack/Lights/Prefabs/ArtSpotLight.prefab
+- Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Park.Grungy.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Bench.prefab
+- Assets/Soldino Props Pack/Lights/Prefabs/DoubleLamp.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.25x2.prefab
+- Assets/Dryden - XLOD/Prefabs/SGC/SGC_Pylon.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/QPWood.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/ParkingBlock.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Coffeecup2.prefab
+- Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Wood.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_1x4.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Round Bent.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BarrierEnd.prefab
+- Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Block.Left.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoMagazineBox.prefab
+- Assets/SDT - AusBundle/AusPrefabs/SGC/SGC_AusPowerPole.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Coffeecup1.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_LedgeLow.prefab
+- Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Clean.Left.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_2x2.prefab
+- Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Clean.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Hubba_Low_.25x1.5.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Waterbottle.prefab
+- Assets/Soldino Props Pack/Lights/Prefabs/Ceiling_Lamp.prefab
+- Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Brick.Left.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_StreetLight.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Square Bent.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/TakeoutBox.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_Stair5.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.5x4.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Street_2.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Bikerack.prefab
+- Assets/Soldino Props Pack/Lights/Prefabs/Wall_Lamp.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_2x2.prefab
+- Assets/SDT - AusBundle/AusPrefabs/p_Sign_Parking.prefab
+- Assets/SDT - Animated Chars/Prefabs/Cameraman_Carl.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/ElectricBox.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoCopCar.prefab
+- Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Round.prefab
+- Assets/Soldino Props Pack/Lights/Prefabs/SGC/SGC_SoldinoStreetLights.prefab
+- Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Long Cinder Block Ledge.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BarrierWorn.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/BenchConcrete.prefab
+- Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_1x2.prefab
+- Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Grungy.prefab
+- Assets/EZDayProps/Prefabs/Cars/P_Car_Van.prefab
+- Assets/Soldino Props Pack/RigidbodyProps/Prefabs/SGC/SGC_SoldinoTrash.prefab
+- Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Grungy.Left.prefab
+- Assets/Soldino Props Pack/Props/Prefabs/FlatRail.prefab
+Dependencies: []
