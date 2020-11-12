@@ -10,20 +10,17 @@ namespace XLObjectDropper.Utilities
 {
 	public static class AssetBundleHelper
 	{
-		public static string ImagesPath;
+		public static string ImagesPath => Path.Combine(Main.ModPath, "Images");
 		public static string AssetPacksPath;
 
 		public static IEnumerator LoadDefaultBundles()
 		{
-			ImagesPath = Path.Combine(Main.ModPath, "Images");
-
 			if (!Directory.Exists(ImagesPath))
 			{
 				Directory.CreateDirectory(ImagesPath);
 			}
 
-			yield return PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.object_testbundle", true));
-			yield return PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.sdt - modular", true));
+			yield return PlayerController.Instance.StartCoroutine(LoadBundleAsync("XLObjectDropper.Assets.default-pack", true));
 		}
 
 		public static IEnumerator LoadUserBundles()
