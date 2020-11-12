@@ -670,7 +670,6 @@ GameObject:
   - component: {fileID: 3114800584874630055}
   - component: {fileID: 9068510726835683805}
   - component: {fileID: 3220997170037041776}
-  - component: {fileID: 3220997170037041778}
   m_Layer: 0
   m_Name: Cameraman_Carl
   m_TagString: Untagged
@@ -728,21 +727,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuText: Filmer
   Type: 3
---- !u!114 &3220997170037041778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2337981792563347741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 965078968, guid: 1caa19d0b0ff5d945a7fe872bf62e321, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowInObjectSelection: 1
-  Style: Carl
-  SubStyle: 
 --- !u!1 &2343957128291469421
 GameObject:
   m_ObjectHideFlags: 0
