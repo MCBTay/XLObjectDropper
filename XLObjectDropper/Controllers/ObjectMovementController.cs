@@ -148,8 +148,6 @@ namespace XLObjectDropper.Controllers
 
 		private void OnEnable()
         {
-	        LockCameraMovement = false;
-
 	        MovementUI.GroundTracking = Settings.Instance.GroundTracking;
 
 	        MovementUI.RotateAndScaleModeUI.GetComponent<RotationAndScaleUI>().ScalingMode = Settings.Instance.ScalingMode;
