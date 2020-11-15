@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3989572894870826701}
   m_Layer: 0
-  m_Name: DIY_Box
+  m_Name: DIY_Box_Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

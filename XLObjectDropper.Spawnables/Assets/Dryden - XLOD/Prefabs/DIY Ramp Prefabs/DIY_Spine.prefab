@@ -412,7 +412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1422932513128866004}
   m_Layer: 0
-  m_Name: DIY_Spine
+  m_Name: DIY_Spine_Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
