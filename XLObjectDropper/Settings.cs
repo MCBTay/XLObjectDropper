@@ -9,7 +9,7 @@ namespace XLObjectDropper
 	{
 		public static UnityModManager.ModEntry ModEntry;
 
-		public float Sensitivity { get; set; }
+		public float Sensitivity { get; set; } = 0.5f;
 		public bool InvertCamControl { get; set; }
 		public bool ShowGrid { get; set; }
 
