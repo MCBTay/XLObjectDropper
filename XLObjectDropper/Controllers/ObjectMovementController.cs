@@ -2,6 +2,7 @@
 using Rewired;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityModManagerNet;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
@@ -58,7 +59,6 @@ namespace XLObjectDropper.Controllers
 		public CollisionFlags collisionFlags;
 
 		private LayerMask layerMask = new LayerMask { value = 1118209 };
-
 		private float targetDistance;
 		private float rotationAngleX;
 		private float rotationAngleY;
@@ -75,7 +75,11 @@ namespace XLObjectDropper.Controllers
 		{
 			Instance = this;
 
+			Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Ignore Raycast"), 28, true);
 			gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+
+			// add our highlight layer to this layermask
+			layerMask |= (1 << 28);
 
 			mainCam = Camera.main;
 
@@ -131,7 +135,7 @@ namespace XLObjectDropper.Controllers
 		{
 			characterController = gameObject.AddComponent<CharacterController>();
 			characterController.center = transform.position;
-			characterController.detectCollisions = true;
+			characterController.detectCollisions = false;
 			characterController.enableOverlapRecovery = true;
 			characterController.height = 0.01f;
 			characterController.minMoveDistance = 0.00001f;
@@ -278,9 +282,9 @@ namespace XLObjectDropper.Controllers
         {
 	        var leftStick = player.GetAxis2D("LeftStickX", "LeftStickY");
 
-	        var maxMoveSpeed = Settings.Instance.Sensitivity == 0.0f ? 1.0f : MoveSpeed * Settings.Instance.Sensitivity;
-
+			var maxMoveSpeed = Settings.Instance.Sensitivity == 0.0f ? 1.0f : MoveSpeed * Settings.Instance.Sensitivity;
 			currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, maxMoveSpeed, HorizontalAcceleration * Time.deltaTime);
+
 			var direction = cameraPivot.transform.rotation * new Vector3(leftStick.x, 0.0f, leftStick.y) * currentMoveSpeed * Time.deltaTime;
 			collisionFlags = characterController.Move(new Vector3(direction.x, 0.0f, direction.z));
         }
@@ -410,10 +414,10 @@ namespace XLObjectDropper.Controllers
 		public void HandleDPadHeightAdjustment(Player player)
 		{
 			float dpad = player.GetAxis("DPadY");
-			
+
 			var maxMoveSpeed = Settings.Instance.Sensitivity == 0.0f ? 1.0f : HeightChangeSpeed * Settings.Instance.Sensitivity;
 			targetHeight = targetHeight + (dpad * Time.deltaTime * maxMoveSpeed);
-
+			
 			MoveObjectOnYAxis();
 
 			UpdateSelectedObjectPosition();
@@ -447,8 +451,8 @@ namespace XLObjectDropper.Controllers
 			bool flag = false;
 			RaycastHit raycastHit = new RaycastHit();
 			ref RaycastHit local = ref raycastHit;
-			int layermask = (int)this.layerMask;
-			if (Physics.Raycast(ray1, out local, 10000f, layermask))
+
+			if (Physics.Raycast(ray1, out local, 10000f, layerMask))
 			{
 				groundLevel = raycastHit.point.y;
 				groundNormal = raycastHit.normal;
@@ -615,7 +619,6 @@ namespace XLObjectDropper.Controllers
 					if (hit.collider != null && parent != null)
 					{
 						HighlightedObject = parent.gameObject;
-
 						HighlightedObject.transform.ChangeLayersRecursively(28);
 						UserInterfaceHelper.CustomPassVolume.enabled = true;
 					}
