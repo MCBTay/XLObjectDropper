@@ -81,7 +81,7 @@ namespace XLObjectDropper.Controllers
 			}
 			else
 			{
-				if (player.GetButtonDown("Select"))
+				if (player.GetButtonDown("Select") && !ObjectSelectionOpen && !ObjectEditOpen)
 				{
 					if (OptionsMenuOpen)
 					{
@@ -96,13 +96,15 @@ namespace XLObjectDropper.Controllers
 					}
 				}
 
-				if (player.GetButtonDown("X") && (ObjectMovementController.SelectedObject != null || ObjectMovementController.HighlightedObject != null))
+				if (player.GetButtonDown("X") && 
+				    (ObjectMovementController.SelectedObject != null || ObjectMovementController.HighlightedObject != null) &&
+				    !OptionsMenuOpen && !ObjectSelectionOpen)
 				{
 					if (ObjectEditOpen) DestroyObjectEdit();
 					else CreateObjectEdit(ObjectMovementController.HighlightedObject ?? ObjectMovementController.SelectedObject);
 				}
 
-				if (player.GetButtonTimedPressUp("Start", 0.0f, 0.7f)) // tap
+				if (player.GetButtonTimedPressUp("Start", 0.0f, 0.7f) && !ObjectEditOpen && !OptionsMenuOpen) // tap
 				{
 					if (QuickMenuOpen)
 					{
@@ -114,7 +116,7 @@ namespace XLObjectDropper.Controllers
 						else CreateObjectSelection();
 					}
 				}
-				else if (player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionOpen) //press
+				else if (player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionOpen && !ObjectEditOpen) //press
 				{
 					if (QuickMenuOpen) DestroyQuickMenu();
 					else CreateQuickMenu();

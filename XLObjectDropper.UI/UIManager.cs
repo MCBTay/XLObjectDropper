@@ -13,11 +13,20 @@ namespace XLObjectDropper.UI
 
 		[Header("Master Elements")]
         public GameObject ObjectPlacementUI;
+        
         public GameObject ObjectSelectionUI;
-        public GameObject OptionsMenuUI;
-        public GameObject QuickMenuUI;
-        public GameObject UnsavedChangesDialogUI;
+        private bool ObjectSelectionActive => ObjectSelectionUI != null && ObjectSelectionUI.activeInHierarchy;
+
+		public GameObject OptionsMenuUI;
+		private bool OptionsMenuActive => OptionsMenuUI != null && OptionsMenuUI.activeInHierarchy;
+
+		public GameObject QuickMenuUI;
+		private bool QuickMenuActive => QuickMenuUI != null && QuickMenuUI.activeInHierarchy;
+
+		public GameObject UnsavedChangesDialogUI;
+
         public GameObject ObjectEditUI;
+        private bool ObjectEditActive => ObjectEditUI != null && ObjectEditUI.activeInHierarchy;
 
         public static UIManager Instance { get; private set; }
 
@@ -85,7 +94,7 @@ namespace XLObjectDropper.UI
 				}
 			}
 
-			if (Player.GetButtonDown("Select"))
+			if (Player.GetButtonDown("Select") && !ObjectEditActive && !ObjectSelectionActive && !QuickMenuActive)
 			{
 				if (!OptionsMenuUI.activeInHierarchy)
 				{
@@ -98,7 +107,7 @@ namespace XLObjectDropper.UI
 				}
 			}
 
-	        if (Player.GetButtonTimedPressUp("Start", 0.0f, 0.7f)) // tap
+	        if (Player.GetButtonTimedPressUp("Start", 0.0f, 0.7f) && !ObjectEditActive && !OptionsMenuActive) // tap
 			{
 				if (QuickMenuUI.activeInHierarchy)
 				{
@@ -117,7 +126,7 @@ namespace XLObjectDropper.UI
 					}
 				}
 			}
-			else if (Player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionUI.activeInHierarchy) //press
+			else if (Player.GetButtonTimedPressDown("Start", 0.7f) && !ObjectSelectionActive && !OptionsMenuActive && !ObjectEditActive) //press
 			{
 				if (!QuickMenuUI.activeInHierarchy)
 				{
