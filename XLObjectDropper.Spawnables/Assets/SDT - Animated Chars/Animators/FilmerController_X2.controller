@@ -92,7 +92,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature|FilmingKneel
+  m_Name: Armature|TPose
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -105,7 +105,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 466419387828968049, guid: b2a6372c027f56f45be45f10b26a0529, type: 3}
+  m_Motion: {fileID: 5152524018116331999, guid: b2a6372c027f56f45be45f10b26a0529,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -140,7 +141,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Armature|TPose
+  m_Name: Armature|FilmingKneel
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -153,8 +154,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 5152524018116331999, guid: b2a6372c027f56f45be45f10b26a0529,
-    type: 3}
+  m_Motion: {fileID: 466419387828968049, guid: b2a6372c027f56f45be45f10b26a0529, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
