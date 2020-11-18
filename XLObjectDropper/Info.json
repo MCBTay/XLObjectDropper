@@ -8,5 +8,5 @@
   "AssemblyName": "XLObjectDropper.dll",
   "EntryMethod": "XLObjectDropper.Main.Load",
   "HomePage": "https://github.com/SqueegeeDino/XLObjectDropper",
-  "Repository": "https://github.com/SqueegeeDino/XLObjectDropper/master/repository.json"
+  "Repository": "https://raw.githubusercontent.com/SqueegeeDino/XLObjectDropper/master/repository.json",
 }
