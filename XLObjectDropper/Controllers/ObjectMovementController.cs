@@ -504,6 +504,22 @@ namespace XLObjectDropper.Controllers
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
 
+			var animator = SelectedObject.GetComponentInChildren<Animator>(true);
+			if (animator != null)
+			{
+				var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+				if (clipInfo.Length >= 1)
+				{
+					var animation = clipInfo[0].clip.name;
+
+					var newAnimator = newObject.GetComponentInChildren<Animator>(true);
+					if (newAnimator != null)
+					{
+						newAnimator.Play(animation);
+					}
+				}
+			}
+
 			var aimConstraint = newObject.GetComponentInChildren<AimConstraint>(true);
 			var aimTarget = newObject.transform.Find("Target");
 			if (aimConstraint != null && aimTarget != null)
