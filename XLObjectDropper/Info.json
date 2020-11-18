@@ -2,7 +2,7 @@
   "Id": "XLObjectDropper",
   "DisplayName": "XL Object Dropper",
   "Author": "mcbtay and SDT",
-  "Version": "0.4.1",
+  "Version": "1.0.0",
   "ManagerVersion": "0.22.5.0",
   "Requirements": [],
   "AssemblyName": "XLObjectDropper.dll",
