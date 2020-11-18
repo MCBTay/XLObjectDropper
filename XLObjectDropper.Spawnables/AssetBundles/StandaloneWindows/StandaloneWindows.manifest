@@ -1,7 +1,10 @@
 ManifestFileVersion: 0
-CRC: 85975902
+CRC: 3898640249
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
       Name: default-pack
+      Dependencies: {}
+    Info_1:
+      Name: fleepfilmers
       Dependencies: {}
