@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 4769370306279913551}
   - component: {fileID: 6192907605736596686}
   - component: {fileID: 6192907605736596681}
+  - component: {fileID: 1095180690192876608}
+  - component: {fileID: 235177916}
   m_Layer: 16
   m_Name: CopingSpline_4m_Round_Concrete
   m_TagString: Grind_Concrete
@@ -27,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6426858177080564122}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -110,3 +112,125 @@ MonoBehaviour:
   ShowInObjectSelection: 0
   Style: Concrete
   SubStyle: Round
+--- !u!136 &1095180690192876608
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426858177080564122}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.045493513
+  m_Height: 4
+  m_Direction: 2
+  m_Center: {x: 0.00000053830445, y: 0.000000067055225, z: 4.2351647e-22}
+--- !u!114 &235177916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6426858177080564122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598e68924c9f6324bbfd049d3bae754c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editorPathColor: {r: 1, g: 1, b: 1, a: 1}
+  alwaysDraw: 0
+  drawThinckness: 0
+  billboardThickness: 1
+  isNewlyCreated: 0
+  multithreaded: 0
+  rebuildOnAwake: 0
+  updateMode: 0
+  triggerGroups: []
+  spline:
+    points:
+    - _type: 0
+      position: {x: 0.0035355445, y: 0.045356076, z: -1.9379978}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: -0.00000016292068}
+      size: 1
+      tangent: {x: 0.0035355445, y: 0.045356076, z: -1.9379978}
+      tangent2: {x: 0.0035355445, y: 0.045356076, z: -1.9379978}
+    - _type: 0
+      position: {x: 0.00170223, y: 0.045461554, z: 1.9450049}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      normal: {x: 0, y: 1, z: -0.00000016292068}
+      size: 1
+      tangent: {x: 0.00170223, y: 0.045461554, z: 1.9450049}
+      tangent2: {x: 0.00170223, y: 0.045461554, z: 1.9450049}
+    closed: 0
+    type: 3
+    linearAverageDirection: 1
+    customValueInterpolation:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    customNormalInterpolation:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    sampleRate: 10
+  _rawSamples:
+  - position: {x: 0.0035355445, y: 0.045356076, z: -1.9379978}
+    up: {x: 0, y: 1, z: -0.00000016292068}
+    forward: {x: -0.0004721383, y: 0.000027163993, z: 0.9999999}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: 0.00170223, y: 0.045461554, z: 1.9450049}
+    up: {x: 0, y: 1, z: -0.00000016292068}
+    forward: {x: -0.0004721383, y: 0.000027163993, z: 0.9999999}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  _transformedSamples:
+  - position: {x: 0.0035355445, y: 0.045356393, z: -1.9379978}
+    up: {x: 0, y: 1, z: 0}
+    forward: {x: -0.0004721383, y: 0.000027001071, z: 0.9999999}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: 0.00170223, y: 0.045461237, z: 1.9450049}
+    up: {x: 0, y: 1, z: 0}
+    forward: {x: -0.0004721383, y: 0.000027001071, z: 0.9999999}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  sampleCollection:
+    samples:
+    - position: {x: 0.0035355445, y: 0.045356393, z: -1.9379978}
+      up: {x: 0, y: 1, z: 0}
+      forward: {x: -0.0004721383, y: 0.000027001071, z: 0.9999999}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      size: 1
+      percent: 0
+    - position: {x: 0.00170223, y: 0.045461237, z: 1.9450049}
+      up: {x: 0, y: 1, z: 0}
+      forward: {x: -0.0004721383, y: 0.000027001071, z: 0.9999999}
+      color: {r: 1, g: 1, b: 1, a: 1}
+      size: 1
+      percent: 1
+    optimizedIndices: 
+    sampleMode: 0
+    clipFrom: 0
+    clipTo: 1
+    loopSamples: 0
+  originalSamplePercents: []
+  _sampleCount: 2
+  _is2D: 0
+  hasSamples: 1
+  pointsDirty: 0000
+  _optimizeAngleThreshold: 0.5
+  _space: 1
+  _sampleMode: 0
+  _subscribers: []
+  nodes: []
