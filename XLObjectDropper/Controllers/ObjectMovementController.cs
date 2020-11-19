@@ -1,16 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using GameManagement;
+﻿using GameManagement;
 using Rewired;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations;
-using UnityModManagerNet;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
-using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Controllers
 {
@@ -490,11 +487,11 @@ namespace XLObjectDropper.Controllers
 			var instantiatedSpawnable = objectBeingDuplicated.GetSpawnableFromSpawned();
 			var spawnableToUpdate = SelectedObject.GetSpawnable();
 
-			var settingsTest = instantiatedSpawnable.Settings;
-			var saveSettings = settingsTest.Select(x => x.ConvertToSaveSettings()).ToList();
-			foreach (var settings in spawnableToUpdate.Settings)
+			var settings = instantiatedSpawnable.Settings;
+			var saveSettings = settings.Select(x => x.ConvertToSaveSettings()).ToList();
+			foreach (var setting in spawnableToUpdate.Settings)
 			{
-				settings?.ApplySaveSettings(SelectedObject, saveSettings);
+				setting?.ApplySaveSettings(SelectedObject, saveSettings);
 			}
 		}
 
