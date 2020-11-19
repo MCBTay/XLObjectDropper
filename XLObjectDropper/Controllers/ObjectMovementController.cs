@@ -1,4 +1,6 @@
-﻿using GameManagement;
+﻿using System.Collections.Generic;
+using System.Linq;
+using GameManagement;
 using Rewired;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -8,6 +10,7 @@ using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
 using XLObjectDropper.UserInterface;
 using XLObjectDropper.Utilities;
+using XLObjectDropper.Utilities.Save.Settings;
 
 namespace XLObjectDropper.Controllers
 {
@@ -465,7 +468,7 @@ namespace XLObjectDropper.Controllers
 		}
 
 		#region Object creation, deletion, duplication, highlight methods
-		public void InstantiateSelectedObject(Spawnable spawnable)
+		public void InstantiateSelectedObject(Spawnable spawnable, GameObject objectBeingDuplicated = null)
 		{
 			DestroySelectedObject();
 
@@ -478,6 +481,21 @@ namespace XLObjectDropper.Controllers
 			SelectedObject.transform.rotation = spawnable.Prefab.transform.rotation;
 
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
+
+			if (objectBeingDuplicated == null) return;
+
+			SelectedObject.transform.localScale = objectBeingDuplicated.transform.localScale;
+			SelectedObject.transform.rotation = objectBeingDuplicated.transform.rotation;
+
+			var instantiatedSpawnable = objectBeingDuplicated.GetSpawnableFromSpawned();
+			var spawnableToUpdate = SelectedObject.GetSpawnable();
+
+			var settingsTest = instantiatedSpawnable.Settings;
+			var saveSettings = settingsTest.Select(x => x.ConvertToSaveSettings()).ToList();
+			foreach (var settings in spawnableToUpdate.Settings)
+			{
+				settings?.ApplySaveSettings(SelectedObject, saveSettings);
+			}
 		}
 
 		private void PlaceObject(bool disablePreview = true)
@@ -567,7 +585,7 @@ namespace XLObjectDropper.Controllers
 			var spawnable = HighlightedObject.GetSpawnable();
 			if (spawnable != null)
 			{
-				InstantiateSelectedObject(spawnable);
+				InstantiateSelectedObject(spawnable, HighlightedObject);
 			}
 		}
 
