@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3497548286
+CRC: 3502248920
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 945f3e427d5ff059f467d4b785d369e5
+    Hash: 77dee71134d918cbdeba9f30337e557c
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5fbebdfa679e69b54f3867bd742083b6
@@ -68,6 +68,7 @@ ClassTypes:
 - Class: 895512359
   Script: {instanceID: 0}
 Assets:
+- Assets/SDT - Modular/Prefabs/Splines/CopingSpline_4m_Flat_Metal.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_Sign_Street.prefab
 - Assets/Dryden - XLOD/Prefabs/DIY Ramp Prefabs/DIY_MiniRamp.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Street.Asphalt.prefab
@@ -80,6 +81,7 @@ Assets:
 - Assets/Soldino Props Pack/Props/Prefabs/BarrierDamaged.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoPlywood.prefab
 - Assets/Soldino Props Pack/Lights/Prefabs/Street_Lamp.prefab
+- Assets/SDT - Modular/Prefabs/Splines/GrindSpline_4m_Round_Concrete.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoBarrier.prefab
 - Assets/Soldino Props Pack/Lights/Prefabs/SphereLamp.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Grungy.prefab
@@ -98,9 +100,11 @@ Assets:
 - Assets/Soldino Props Pack/Props/Prefabs/Plywood.prefab
 - Assets/Dryden - XLOD/Prefabs/SGC/SGC_Cinderblock_Ledges.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Trashbin.prefab
+- Assets/SDT - Modular/Prefabs/Splines/CopingSpline_4m_Flat_Concrete.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_LightPole.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/Barrier.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/MagazineBox_YZ_White.prefab
+- Assets/SDT - Modular/Prefabs/Splines/CopingSpline_4m_Round_Concrete.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Hubba_low_.5x1.5.prefab
 - Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Square.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/BusStop.prefab
@@ -109,11 +113,13 @@ Assets:
 - Assets/Soldino Props Pack/Props/Prefabs/CopCar.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_HubbaLow.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Trashbag.prefab
+- Assets/SDT - Modular/Prefabs/Splines/GrindSpline_4m_Flat_Concrete.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/SGC/SGC_SoldinoLitter.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_1x1.prefab
 - Assets/Dryden - XLOD/Prefabs/DIY Ramp Prefabs/DIY_Spine.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/BoxSmall.prefab
 - Assets/SDT - Modular/Prefabs/Rails/Polejam_Small.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_GrindSpline_4m.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Stair5Cap.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Box.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/DIYRamp.prefab
@@ -130,6 +136,7 @@ Assets:
 - Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.5x2.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_Sign_Speed.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Clean.prefab
+- Assets/Soldino Props Pack/Lights/Prefabs/Construction Light.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/TrashbagSmall.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3_1_x5.Brick.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/Cinderblock.prefab
@@ -152,6 +159,7 @@ Assets:
 - Assets/SDT - AusBundle/AusPrefabs/p_Bench.prefab
 - Assets/Soldino Props Pack/Lights/Prefabs/DoubleLamp.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.25x2.prefab
+- Assets/SDT - Modular/Prefabs/SGC/SGC_CopingSpline_4m.prefab
 - Assets/Dryden - XLOD/Prefabs/SGC/SGC_Pylon.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/QPWood.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/ParkingBlock.prefab
@@ -167,8 +175,10 @@ Assets:
 - Assets/SDT - Modular/Prefabs/SGC/SGC_LedgeLow.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Clean.Left.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_2x2.prefab
+- Assets/SDT - Modular/Prefabs/Splines/GrindSpline_4m_Flat_Metal.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_1x1.Park.Clean.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Hubba_Low_.25x1.5.prefab
+- Assets/SDT - Modular/Prefabs/Splines/CopingSpline_4m_Round_Metal.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Waterbottle.prefab
 - Assets/Soldino Props Pack/Lights/Prefabs/Ceiling_Lamp.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Brick.Left.prefab
@@ -182,6 +192,7 @@ Assets:
 - Assets/Soldino Props Pack/Lights/Prefabs/Wall_Lamp.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_2x2.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_Sign_Parking.prefab
+- Assets/SDT - Modular/Prefabs/Splines/GrindSpline_4m_Round_Metal.prefab
 - Assets/SDT - Animated Chars/Prefabs/Cameraman_Carl.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/ElectricBox.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoCopCar.prefab
