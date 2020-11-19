@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3502248920
+CRC: 2778394242
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 77dee71134d918cbdeba9f30337e557c
+    Hash: 7c2601e4b683261db6ba4543cb0ba2fe
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5fbebdfa679e69b54f3867bd742083b6
@@ -79,13 +79,16 @@ Assets:
 - Assets/Soldino Props Pack/Props/Prefabs/BankCurb.prefab
 - Assets/SDT - AusBundle/AusPrefabs/SGC/SGC_AusSigns.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/BarrierDamaged.prefab
+- Assets/Dryden - XLOD/Prefabs/Rail Pack/A Frame.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoPlywood.prefab
 - Assets/Soldino Props Pack/Lights/Prefabs/Street_Lamp.prefab
+- Assets/Dryden - XLOD/Prefabs/Rail Pack/Flat Up Flat.prefab
 - Assets/SDT - Modular/Prefabs/Splines/GrindSpline_4m_Round_Concrete.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoBarrier.prefab
 - Assets/Soldino Props Pack/Lights/Prefabs/SphereLamp.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Grungy.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/WorklightSmall.prefab
+- Assets/Dryden - XLOD/Prefabs/Ramps/Ramp.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/BenchHatchet.prefab
 - Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Medium Cinder Block Ledge.prefab
 - Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/ParkingGate.prefab
@@ -94,10 +97,13 @@ Assets:
 - Assets/Soldino Props Pack/Props/Prefabs/WorklightGenerator.prefab
 - Assets/EZDayProps/Prefabs/Cars/P_Car_SchoolBus.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/BenchFloating.prefab
+- Assets/Dryden - XLOD/Prefabs/Ramps/Corner.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/Dumpster.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/StopLight1.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/PlywoodSmall.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/Plywood.prefab
+- Assets/Dryden - XLOD/Prefabs/Ramps/Launch.prefab
+- Assets/Dryden - XLOD/Prefabs/Ramps/Flat .prefab
 - Assets/Dryden - XLOD/Prefabs/SGC/SGC_Cinderblock_Ledges.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Trashbin.prefab
 - Assets/SDT - Modular/Prefabs/Splines/CopingSpline_4m_Flat_Concrete.prefab
@@ -111,6 +117,7 @@ Assets:
 - Assets/Soldino Props Pack/Props/Prefabs/JerseyBarrier.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/KickerWood.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/CopCar.prefab
+- Assets/Dryden - XLOD/Prefabs/Ramps/Roll.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_HubbaLow.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Trashbag.prefab
 - Assets/SDT - Modular/Prefabs/Splines/GrindSpline_4m_Flat_Concrete.prefab
@@ -125,6 +132,7 @@ Assets:
 - Assets/Soldino Props Pack/Props/Prefabs/DIYRamp.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_Sign_Roundabout.prefab
 - Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Short Cinder Block Ledge.prefab
+- Assets/Dryden - XLOD/Prefabs/Rail Pack/Flat Down Flat.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/TrashbinBagged.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/MagazineBox_240p.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_Trashcan.prefab
@@ -188,10 +196,12 @@ Assets:
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Stair5.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Ledge_Low_.5x4.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_Sign_Street_2.prefab
+- Assets/Dryden - XLOD/Prefabs/Rail Pack/Flat Bar.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_Bikerack.prefab
 - Assets/Soldino Props Pack/Lights/Prefabs/Wall_Lamp.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_Plane_2x2.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_Sign_Parking.prefab
+- Assets/Dryden - XLOD/Prefabs/Ramps/Outer Corner.prefab
 - Assets/SDT - Modular/Prefabs/Splines/GrindSpline_4m_Round_Metal.prefab
 - Assets/SDT - Animated Chars/Prefabs/Cameraman_Carl.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/ElectricBox.prefab
