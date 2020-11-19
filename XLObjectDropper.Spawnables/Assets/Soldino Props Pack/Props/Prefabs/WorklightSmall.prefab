@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5035083404476204249}
   - component: {fileID: 5035083404477302297}
   - component: {fileID: 1408787592}
+  - component: {fileID: 5154850902751746005}
   m_Layer: 0
   m_Name: WorklightSmall
   m_TagString: Untagged
@@ -95,6 +96,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MenuText: Worklight Small
   Type: 3
+--- !u!65 &5154850902751746005
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5035083404479502553}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45810014, y: 0.43665648, z: 0.4110139}
+  m_Center: {x: 0.011770688, y: 0.20411053, z: -0.011820711}
 --- !u!1 &9191675310381388756
 GameObject:
   m_ObjectHideFlags: 0
