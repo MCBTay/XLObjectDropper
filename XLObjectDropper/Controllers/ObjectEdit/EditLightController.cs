@@ -56,12 +56,15 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 				});
 
 				#region Intensity slider
+				hdrpLight.lightUnit = LightUnit.Ev100;
 				float currentIntensity = Mathf.Clamp(hdrpLight.intensity, ev100Min, ev100Max);
 				float sliderValue = ((currentIntensity - ev100Min) / (ev100Max - ev100Min)) * numSteps;
 				Intensity = sliderValue;
 				Unit = LightUnit.Ev100;
 				expandable.IntensitySlider.Slider.value = sliderValue;
-				expandable.IntensitySlider.Value.SetText(sliderValue.ToString("N"));
+
+				float labelText = ev100Min + ((sliderValue / numSteps) * (ev100Max - ev100Min));
+				expandable.IntensitySlider.Value.SetText(labelText.ToString("N"));
 
 				expandable.IntensitySlider.Slider.onValueChanged.AddListener((intensity) =>
 				{
