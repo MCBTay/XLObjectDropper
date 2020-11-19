@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuText: Aus Powerpole
-  Type: 0
+  Type: 3
 --- !u!114 &7031067915572902692
 MonoBehaviour:
   m_ObjectHideFlags: 0
