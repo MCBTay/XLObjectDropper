@@ -555,7 +555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7136684663452107150}
   m_Layer: 0
-  m_Name: Construction Light(Clone)
+  m_Name: Construction Light Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
