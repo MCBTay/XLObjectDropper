@@ -18,3 +18,7 @@
 /XLObjectDropper.SpawnableScripts/bin/Debug
 /XLObjectDropper.SpawnableScripts/obj/Release
 /XLObjectDropper.SpawnableScripts/bin/Release
+/XLObjectDropper.Multiplayer.Client/obj/Debug
+/XLObjectDropper.Multiplayer.Server/obj/Debug
+/XLObjectDropper.Multiplayer.Client/bin/Debug
+/XLObjectDropper.Multiplayer.Server/bin/Debug
