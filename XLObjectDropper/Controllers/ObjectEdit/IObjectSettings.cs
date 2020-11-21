@@ -7,7 +7,7 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 {
 	public interface IObjectSettings
 	{
-		void AddOptions(GameObject selectedObject, ObjectEditUI objectEdit);
+		void AddOptions(GameObject SelectedObject, ObjectEditUI objectEdit);
 		ISettingsSaveData ConvertToSaveSettings();
 		void ApplySaveSettings(GameObject selectedObject, List<ISettingsSaveData> settings);
 	}

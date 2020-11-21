@@ -82,6 +82,11 @@ namespace XLObjectDropper.Utilities
 
 			Settings.Add(new EditGeneralController());
 
+			if (Prefab.GetComponentInChildren<Rigidbody>(true) != null)
+			{
+				Settings.Add(new EditRigidbodiesController{ EnablePhysics = true, EnableRespawnRecall = false, RecallPosition = Vector3.zero });
+			}
+
 			if (Prefab.GetChildrenOnLayer("Grindable").Any() || Prefab.GetChildrenOnLayer("Coping").Any())
 			{
 				Settings.Add(new EditGrindablesController { GrindableEnabled = true, CopingEnabled = true });

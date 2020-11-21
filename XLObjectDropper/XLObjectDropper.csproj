@@ -177,6 +177,7 @@
     <Compile Include="Controllers\ObjectEdit\EditGeneralController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditGrindablesController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditLightController.cs" />
+    <Compile Include="Controllers\ObjectEdit\EditRigidbodiesController.cs" />
     <Compile Include="Controllers\ObjectEdit\EditStyleController.cs" />
     <Compile Include="Controllers\ObjectEdit\IObjectSettings.cs" />
     <Compile Include="Controllers\QuickMenuController.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="EventStack\Events\BatchObjectDeletedEvent.cs" />
     <Compile Include="Patches\GameManagement\ReplayStatePatch.cs" />
     <Compile Include="Patches\LevelManagerPatch.cs" />
+    <Compile Include="Patches\RespawnPatch.cs" />
     <Compile Include="Utilities\AssetBundleHelper.cs" />
     <Compile Include="Controllers\OptionsMenuController.cs" />
     <Compile Include="EventStack\EventStack.cs" />
@@ -210,6 +212,7 @@
     <Compile Include="Utilities\Save\SerializableQuaternion.cs" />
     <Compile Include="Utilities\Save\SerializableVector3.cs" />
     <Compile Include="Utilities\Save\Settings\ISettingsSaveData.cs" />
+    <Compile Include="Utilities\Save\Settings\RigidbodySaveData.cs" />
     <Compile Include="Utilities\Spawnable.cs" />
     <Compile Include="UserInterface\ControllerButtonHelper.cs" />
     <Compile Include="Main.cs" />

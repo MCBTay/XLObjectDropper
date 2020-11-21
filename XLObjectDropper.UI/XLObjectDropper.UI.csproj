@@ -121,6 +121,7 @@
     <Compile Include="Controls\Expandables\LightSettingsExpandable.cs" />
     <Compile Include="Controls\ControllerButtons\DirectionalPadController.cs" />
     <Compile Include="Controls\Expandables\Expandable.cs" />
+    <Compile Include="Controls\Expandables\RigidbodySettingsExpandable.cs" />
     <Compile Include="Controls\ListItems\AnimationClipListItem.cs" />
     <Compile Include="Controls\ListItems\LoadSavedListItem.cs" />
     <Compile Include="Controls\SelectableControl.cs" />

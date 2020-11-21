@@ -24,11 +24,11 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			Styles = new List<Spawnable>();
 		}
 
-		public void AddOptions(GameObject selectedObject, ObjectEditUI ObjectEdit)
+		public void AddOptions(GameObject SelectedObject, ObjectEditUI ObjectEdit)
 		{
-			SelectedObject = selectedObject;
+			this.SelectedObject = SelectedObject;
 
-			var spawnable = selectedObject.GetSpawnable();
+			var spawnable = SelectedObject.GetSpawnable();
 
 			var editStyleController = spawnable.Settings.FirstOrDefault(x => x is EditStyleController) as EditStyleController;
 			if (editStyleController?.Styles == null || !editStyleController.Styles.Any()) return;

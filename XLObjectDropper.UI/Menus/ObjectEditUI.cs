@@ -17,6 +17,7 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject GeneralSettingsPrefab;
 		public GameObject AvatarAnimatorSettingsPrefab;
 		public GameObject ColorTintSettingsPrefab;
+		public GameObject RigidbodySettingsPrefab;
 
 		public Animator Animator;
 
@@ -53,6 +54,11 @@ namespace XLObjectDropper.UI.Menus
 		public GameObject AddColorTintSettings(UnityAction objectClicked = null, UnityAction objectSelected = null)
 		{
 			return AddSettings(ColorTintSettingsPrefab, objectClicked, objectSelected);
+		}
+
+		public GameObject AddRigidbodySettings(UnityAction objectClicked = null, UnityAction objectSelected = null)
+		{
+			return AddSettings(RigidbodySettingsPrefab, objectClicked, objectSelected);
 		}
 
 		public GameObject AddSettings(GameObject prefab, UnityAction objectClicked = null, UnityAction objectSelected = null)

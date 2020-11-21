@@ -6124,6 +6124,8 @@ MonoBehaviour:
     type: 3}
   ColorTintSettingsPrefab: {fileID: 2044955304966962863, guid: e698f7bfa982d24488aaa8c86fca83c4,
     type: 3}
+  RigidbodySettingsPrefab: {fileID: 1153993375389316306, guid: 008081756b8ed754d8026876ee560ee6,
+    type: 3}
   Animator: {fileID: 351055828040717266}
 --- !u!95 &351055828040717266
 Animator:
