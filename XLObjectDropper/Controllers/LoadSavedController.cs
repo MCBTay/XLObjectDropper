@@ -94,7 +94,7 @@ namespace XLObjectDropper.Controllers
 			}
 		}
 
-		private void LoadSave(LevelSaveData levelSave)
+		public void LoadSave(LevelSaveData levelSave)
 		{
 			if (string.IsNullOrEmpty(levelSave.filePath) || !File.Exists(levelSave.filePath)) return;
 			if (levelSave.gameObjects == null || !levelSave.gameObjects.Any()) return;
@@ -103,42 +103,7 @@ namespace XLObjectDropper.Controllers
 
 			foreach (var savedGameObject in levelSave.gameObjects)
 			{
-				var position = new Vector3(savedGameObject.position.x, savedGameObject.position.y, savedGameObject.position.z);
-				var rotation = new Quaternion(savedGameObject.rotation.x, savedGameObject.rotation.y, savedGameObject.rotation.z, savedGameObject.rotation.w);
-
-				Spawnable spawnable = null;
-
-				foreach (var spawnablePrefab in SpawnableManager.Prefabs)
-				{
-					var savedObjName = savedGameObject.Id.Replace("(Clone)", string.Empty).Trim();
-
-					if (savedObjName.Equals(spawnablePrefab.Prefab.name))
-					{
-						spawnable = spawnablePrefab;
-						break;
-					}
-
-					var styleSettings = spawnablePrefab.Settings.FirstOrDefault(x => x is EditStyleController) as EditStyleController;
-					var style = styleSettings?.Styles.FirstOrDefault(x => savedObjName.Equals(x.Prefab.name));
-
-					if (style != null)
-					{
-						spawnable = style;
-						break;
-					}
-				}
-
-				if (spawnable == null) continue;
-
-				var newGameObject = Instantiate(spawnable.Prefab, position, rotation);
-				newGameObject.SetActive(true);
-
-				foreach (var settings in spawnable.Settings)
-				{
-					settings.ApplySaveSettings(newGameObject, savedGameObject.settings);
-				}
-
-				SpawnableManager.SpawnedObjects.Add(new Spawnable(spawnable, newGameObject));
+				savedGameObject.Instantiate();
 			}
 
 			SaveLoaded?.Invoke();
