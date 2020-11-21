@@ -457,6 +457,7 @@ GameObject:
   - component: {fileID: 8052887162032951846}
   - component: {fileID: 8052887162035851782}
   - component: {fileID: 8052887162034720966}
+  - component: {fileID: 2693601555450525985}
   m_Layer: 0
   m_Name: LightPole_LOD0
   m_TagString: Untagged
@@ -532,6 +533,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2693601555450525985
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052887162032524806}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 326716df715eda5439d5d455101bb366, type: 3}
 --- !u!1 &8052887162032524814
 GameObject:
   m_ObjectHideFlags: 0
