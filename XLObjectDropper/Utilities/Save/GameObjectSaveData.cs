@@ -58,12 +58,13 @@ namespace XLObjectDropper.Utilities.Save
 			var newGameObject = GameObject.Instantiate(spawnable.Prefab, position, rotation);
 			newGameObject.SetActive(true);
 
-			foreach (var settings in spawnable.Settings)
+			var newSpawnable = new Spawnable(spawnable, newGameObject);
+			SpawnableManager.SpawnedObjects.Add(newSpawnable);
+
+			foreach (var settings in newSpawnable.Settings)
 			{
 				settings.ApplySaveSettings(newGameObject, savedGameObject.settings);
 			}
-
-			SpawnableManager.SpawnedObjects.Add(new Spawnable(spawnable, newGameObject));
 		}
 	}
 }
