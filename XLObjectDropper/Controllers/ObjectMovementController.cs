@@ -479,6 +479,8 @@ namespace XLObjectDropper.Controllers
 
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 
+			ToggleRigidBodies(SelectedObject, false);
+
 			if (objectBeingDuplicated == null) return;
 
 			SelectedObject.transform.localScale = objectBeingDuplicated.transform.localScale;
@@ -492,6 +494,18 @@ namespace XLObjectDropper.Controllers
 			foreach (var setting in spawnableToUpdate.Settings)
 			{
 				setting?.ApplySaveSettings(SelectedObject, saveSettings);
+			}
+		}
+
+		private void ToggleRigidBodies(GameObject gameObject, bool toggle)
+		{
+			var rigidBodies = gameObject.GetComponentsInChildren<Rigidbody>(true);
+			if (rigidBodies == null || !rigidBodies.Any()) return;
+
+			foreach (var rigidBody in rigidBodies)
+			{
+				rigidBody.isKinematic = !toggle;
+				rigidBody.detectCollisions = toggle;
 			}
 		}
 
@@ -566,6 +580,8 @@ namespace XLObjectDropper.Controllers
 			//	ReplayEditorController.Instance.playbackController.playbackTransforms.Add(newObject.transform);
 			//}
 
+			ToggleRigidBodies(newObject, true);
+
 			if (disablePreview)
 			{
 				DestroySelectedObject();
@@ -624,6 +640,8 @@ namespace XLObjectDropper.Controllers
 			SelectedObject = HighlightedObject;
 			existingObject = true;
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
+
+			ToggleRigidBodies(SelectedObject, false);
 		}
 
 		private void HandleObjectHighlight()
