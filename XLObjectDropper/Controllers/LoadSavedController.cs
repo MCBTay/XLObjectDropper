@@ -5,14 +5,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.UI;
-using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.UI.Menus;
 using XLObjectDropper.Utilities;
 using XLObjectDropper.Utilities.Save;
-using XLObjectDropper.Utilities.Save.Settings;
-using Object = UnityEngine.Object;
 
 namespace XLObjectDropper.Controllers
 {
