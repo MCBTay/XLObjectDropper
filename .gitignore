@@ -22,3 +22,7 @@
 /XLObjectDropper.Multiplayer.Server/obj/Debug
 /XLObjectDropper.Multiplayer.Client/bin/Debug
 /XLObjectDropper.Multiplayer.Server/bin/Debug
+/XLObjectDropper.Multiplayer.Client/bin/Release
+/XLObjectDropper.Multiplayer.Client/obj/Release
+/XLObjectDropper.Multiplayer.Server/bin/Release
+/XLObjectDropper.Multiplayer.Server/obj/Release
