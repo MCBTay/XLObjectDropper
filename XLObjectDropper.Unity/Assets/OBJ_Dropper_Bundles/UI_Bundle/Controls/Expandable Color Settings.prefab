@@ -41,12 +41,12 @@ MonoBehaviour:
   m_Padding:
     m_Left: 2
     m_Right: 2
-    m_Top: 2
+    m_Top: 4
     m_Bottom: 2
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 20, y: 20}
+  m_CellSize: {x: 22.5, y: 22.5}
   m_Spacing: {x: 2, y: 2}
   m_Constraint: 1
   m_ConstraintCount: 10
@@ -4601,6 +4601,11 @@ PrefabInstance:
       propertyPath: m_textInfo.wordCount
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 172577162571321408, guid: 903752381408a634886881c69f1086ef,
+        type: 3}
+      propertyPath: m_margin.y
+      value: 30.92002
+      objectReference: {fileID: 0}
     - target: {fileID: 2873522928200485819, guid: 903752381408a634886881c69f1086ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4761,10 +4766,20 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5822187149473936664, guid: 903752381408a634886881c69f1086ef,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 30.8833
+      objectReference: {fileID: 0}
     - target: {fileID: 7235667919741098943, guid: 903752381408a634886881c69f1086ef,
         type: 3}
       propertyPath: m_VerticalFit
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627682089615938292, guid: 903752381408a634886881c69f1086ef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3463377449151722636, guid: 903752381408a634886881c69f1086ef, type: 3}
