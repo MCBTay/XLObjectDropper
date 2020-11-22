@@ -154,6 +154,7 @@ namespace XLObjectDropper.Controllers
 			if (ObjectMovementController == null)
 			{
 				ObjectMovementController = ObjectMovementGameObject.AddComponent<ObjectMovementController>();
+				ObjectMovementController.EnteringObjectDropper = true;
 			}
 			
 			ObjectMovementGameObject.SetActive(true);

@@ -69,6 +69,7 @@ namespace XLObjectDropper.Controllers
 		private bool LockCameraMovement { get; set; }
 
 		public bool SelectingObjectFromMenu;
+		public bool EnteringObjectDropper;
 		private bool existingObject;
 		#endregion
 
@@ -246,6 +247,12 @@ namespace XLObjectDropper.Controllers
 			{
 				if (player.GetButtonTimedPressUp("A", 0.0f, 0.7f)) // tap
 				{
+					if (EnteringObjectDropper)
+					{
+						EnteringObjectDropper = false;
+						return;
+					}
+
 					SelectObject();
 				}
 				else if (player.GetButtonTimedPressDown("A", 0.7f)) //press
