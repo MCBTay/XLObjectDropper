@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using HarmonyLib;
 using System.Linq;
 using UnityEngine;
 using XLObjectDropper.Controllers.ObjectEdit;
@@ -15,7 +16,18 @@ namespace XLObjectDropper.Patches
 			{
 				if (tutorial) return;
 
-				var spawnablesWithRBs = SpawnableManager.SpawnedObjects.Where(x => x.SpawnedInstance.GetComponentsInChildren<Rigidbody>(true).Any());
+				var spawnablesWithRBs = new List<Spawnable>();
+				foreach (var spawnable in SpawnableManager.SpawnedObjects)
+				{
+					if (spawnable.SpawnedInstance == null) continue;
+
+					var rigidbodies = spawnable.SpawnedInstance.GetComponentsInChildren<Rigidbody>(true);
+
+					if (rigidbodies != null && rigidbodies.Any())
+					{
+						spawnablesWithRBs.Add(spawnable);
+					}
+				}
 
 				foreach (var spawnable in spawnablesWithRBs)
 				{
