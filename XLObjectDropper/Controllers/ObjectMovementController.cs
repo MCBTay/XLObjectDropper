@@ -684,6 +684,7 @@ namespace XLObjectDropper.Controllers
 			JumpToObject(HighlightedObject.transform);
 
 			SelectedObject = HighlightedObject;
+			HighlightedObject = null;
 			existingObject = true;
 
 			SelectedObject.transform.ChangeLayersRecursively(28);
