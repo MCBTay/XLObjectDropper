@@ -498,6 +498,50 @@ namespace XLObjectDropper.Controllers
 			}
 		}
 
+		private void UpdateAvatarAnimator(GameObject source, GameObject destination)
+		{
+			var animator = source.GetComponentInChildren<Animator>(true);
+			if (animator != null)
+			{
+				var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+				if (clipInfo.Length >= 1)
+				{
+					var animation = clipInfo[0].clip.name;
+
+					var newAnimator = destination.GetComponentInChildren<Animator>(true);
+					if (newAnimator != null)
+					{
+						newAnimator.Play(animation);
+					}
+				}
+			}
+		}
+
+		private void UpdateAimConstraint(GameObject gameObject)
+		{
+			var aimConstraint = gameObject.GetComponentInChildren<AimConstraint>(true);
+			var aimTarget = gameObject.transform.Find("Target");
+			if (aimConstraint != null && aimTarget != null)
+			{
+				aimTarget.gameObject.AddComponent<AimConstraintTargetController>();
+			}
+		}
+
+		private void UpdateRigidbodySettings(Spawnable spawnable, GameObject newObject)
+		{
+			var rigidbodySettings = spawnable.Settings.FirstOrDefault(x => x is EditRigidbodiesController) as EditRigidbodiesController;
+			if (rigidbodySettings != null && rigidbodySettings.EnableRespawnRecall)
+			{
+				var newSpawnable = newObject.GetSpawnableFromSpawned();
+				var newRigidBodySettings = newSpawnable.Settings.FirstOrDefault(x => x is EditRigidbodiesController) as EditRigidbodiesController;
+
+				newRigidBodySettings.EnableRespawnRecall = rigidbodySettings.EnableRespawnRecall;
+				newRigidBodySettings.RecallPosition = newObject.transform.position;
+				newRigidBodySettings.RecallRotation = newObject.transform.rotation;
+				rigidbodySettings.EnableRespawnRecall = false;
+			}
+		}
+
 		private void ToggleRigidBodies(GameObject gameObject, bool toggle)
 		{
 			var rigidBodies = gameObject.GetComponentsInChildren<Rigidbody>(true);
@@ -534,40 +578,15 @@ namespace XLObjectDropper.Controllers
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
 
-			var rigidbodySettings = spawnable.Settings.FirstOrDefault(x => x is EditRigidbodiesController) as EditRigidbodiesController;
-			if (rigidbodySettings != null && rigidbodySettings.EnableRespawnRecall)
-			{
-				var newSpawnable = newObject.GetSpawnableFromSpawned();
-				var newRigidBodySettings = newSpawnable.Settings.FirstOrDefault(x => x is EditRigidbodiesController) as EditRigidbodiesController;
+			
 
-				newRigidBodySettings.EnableRespawnRecall = rigidbodySettings.EnableRespawnRecall;
-				newRigidBodySettings.RecallPosition = newObject.transform.position;
-				newRigidBodySettings.RecallRotation = newObject.transform.rotation;
-				rigidbodySettings.EnableRespawnRecall = false;
-			}
+			
 
-			var animator = SelectedObject.GetComponentInChildren<Animator>(true);
-			if (animator != null)
-			{
-				var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
-				if (clipInfo.Length >= 1)
-				{
-					var animation = clipInfo[0].clip.name;
+			UpdateAvatarAnimator(SelectedObject, newObject);
+			UpdateAimConstraint(newObject);
 
-					var newAnimator = newObject.GetComponentInChildren<Animator>(true);
-					if (newAnimator != null)
-					{
-						newAnimator.Play(animation);
-					}
-				}
-			}
-
-			var aimConstraint = newObject.GetComponentInChildren<AimConstraint>(true);
-			var aimTarget = newObject.transform.Find("Target");
-			if (aimConstraint != null && aimTarget != null)
-			{
-				aimTarget.gameObject.AddComponent<AimConstraintTargetController>();
-			}
+			UpdateRigidbodySettings(spawnable, newObject);
+			ToggleRigidBodies(newObject, true);
 
 			//TODO: Come back to this!!
 			//if (newObject.GetComponentInChildren<Rigidbody>(true) != null)
@@ -592,8 +611,6 @@ namespace XLObjectDropper.Controllers
 
 			//	ReplayEditorController.Instance.playbackController.playbackTransforms.Add(newObject.transform);
 			//}
-
-			ToggleRigidBodies(newObject, true);
 
 			if (disablePreview)
 			{
