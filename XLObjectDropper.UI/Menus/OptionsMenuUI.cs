@@ -13,6 +13,7 @@ namespace XLObjectDropper.UI.Menus
 		[Space(10)]
 		public Slider Sensitivity;
 		public Toggle InvertCamControl;
+		public Toggle InvertCamControlXAxis;
 		public Toggle ShowGrid;
 
 		[Space(10)]
@@ -84,6 +85,7 @@ namespace XLObjectDropper.UI.Menus
 
 			SetDefaultState(Sensitivity, isEnabled);
 			SetDefaultState(InvertCamControl, isEnabled);
+			SetDefaultState(InvertCamControlXAxis, isEnabled);
 			SetDefaultState(ShowGrid, isEnabled);
 			SetDefaultState(UndoButton, isEnabled);
 			SetDefaultState(RedoButton, isEnabled);

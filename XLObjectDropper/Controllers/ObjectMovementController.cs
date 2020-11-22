@@ -308,7 +308,16 @@ namespace XLObjectDropper.Controllers
 				//var maxRotateSpeed = Settings.Instance.Sensitivity == 0.0f? 1.0f : CameraRotateSpeed * Settings.Instance.Sensitivity;
 				var maxRotateSpeed = CameraRotateSpeed;
 
-				rotationAngleX += rightStick.x * Time.deltaTime * maxRotateSpeed;
+
+				if (Settings.Instance.InvertCamControlXAxis)
+				{
+					rotationAngleX -= rightStick.x * Time.deltaTime * maxRotateSpeed;
+				}
+				else
+				{
+					rotationAngleX += rightStick.x * Time.deltaTime * maxRotateSpeed;
+				}
+				
 
 				if (Settings.Instance.InvertCamControl)
 				{

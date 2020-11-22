@@ -30,6 +30,7 @@ namespace XLObjectDropper.Controllers
 		{
 			OptionsMenu.Sensitivity.value = Settings.Instance.Sensitivity;
 			OptionsMenu.InvertCamControl.isOn = Settings.Instance.InvertCamControl;
+			OptionsMenu.InvertCamControlXAxis.isOn = Settings.Instance.InvertCamControlXAxis;
 			OptionsMenu.ShowGrid.isOn = Settings.Instance.ShowGrid;
 		}
 
@@ -37,6 +38,7 @@ namespace XLObjectDropper.Controllers
 		{
 			OptionsMenu.Sensitivity.value = Settings.Instance.Sensitivity;
 			OptionsMenu.InvertCamControl.isOn = Settings.Instance.InvertCamControl;
+			OptionsMenu.InvertCamControlXAxis.isOn = Settings.Instance.InvertCamControlXAxis;
 			OptionsMenu.ShowGrid.isOn = Settings.Instance.ShowGrid;
 
 			AddListeners();
@@ -71,6 +73,7 @@ namespace XLObjectDropper.Controllers
 
 			OptionsMenu.Sensitivity.onValueChanged.AddListener(SensitivityValueChanged);
 			OptionsMenu.InvertCamControl.onValueChanged.AddListener(InvertCamControlValueChanged);
+			OptionsMenu.InvertCamControlXAxis.onValueChanged.AddListener(InvertCamControlXAxisValueChanged);
 			OptionsMenu.ShowGrid.onValueChanged.AddListener(ShowGridValueChanged);
 			OptionsMenu.UndoButton.onClick.AddListener(UndoClicked);
 			OptionsMenu.RedoButton.onClick.AddListener(RedoClicked);
@@ -80,6 +83,7 @@ namespace XLObjectDropper.Controllers
 
 			OptionsMenu.Sensitivity.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
 			OptionsMenu.InvertCamControl.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
+			OptionsMenu.InvertCamControlXAxis.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
 			OptionsMenu.ShowGrid.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
 			OptionsMenu.UndoButton.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
 			OptionsMenu.RedoButton.gameObject.GetComponent<SelectableControl>().onSelect += Selected;
@@ -97,6 +101,7 @@ namespace XLObjectDropper.Controllers
 		{
 			OptionsMenu.Sensitivity.onValueChanged.RemoveListener(SensitivityValueChanged);
 			OptionsMenu.InvertCamControl.onValueChanged.RemoveListener(InvertCamControlValueChanged);
+			OptionsMenu.InvertCamControlXAxis.onValueChanged.RemoveListener(InvertCamControlXAxisValueChanged);
 			OptionsMenu.ShowGrid.onValueChanged.RemoveListener(ShowGridValueChanged);
 			OptionsMenu.UndoButton.onClick.RemoveListener(UndoClicked);
 			OptionsMenu.RedoButton.onClick.RemoveListener(RedoClicked);
@@ -106,6 +111,7 @@ namespace XLObjectDropper.Controllers
 
 			OptionsMenu.Sensitivity.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
 			OptionsMenu.InvertCamControl.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
+			OptionsMenu.InvertCamControlXAxis.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
 			OptionsMenu.ShowGrid.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
 			OptionsMenu.UndoButton.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
 			OptionsMenu.RedoButton.gameObject.GetComponent<SelectableControl>().onSelect -= Selected;
@@ -132,6 +138,14 @@ namespace XLObjectDropper.Controllers
 			UISounds.Instance?.PlayOneShotSelectionChange();
 
 			Settings.Instance.InvertCamControl = value;
+			Settings.Instance.Save();
+		}
+
+		private static void InvertCamControlXAxisValueChanged(bool value)
+		{
+			UISounds.Instance?.PlayOneShotSelectionChange();
+
+			Settings.Instance.InvertCamControlXAxis = value;
 			Settings.Instance.Save();
 		}
 
