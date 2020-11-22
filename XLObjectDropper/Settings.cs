@@ -11,6 +11,7 @@ namespace XLObjectDropper
 
 		public float Sensitivity { get; set; } = 0.5f;
 		public bool InvertCamControl { get; set; }
+		public bool InvertCamControlXAxis { get; set; }
 		public bool ShowGrid { get; set; }
 
 		public ScalingMode ScalingMode { get; set; }
