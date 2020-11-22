@@ -3,6 +3,7 @@ using Rewired;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations;
+using XLObjectDropper.Controllers.ObjectEdit;
 using XLObjectDropper.EventStack.Events;
 using XLObjectDropper.GameManagement;
 using XLObjectDropper.UI;
@@ -532,6 +533,18 @@ namespace XLObjectDropper.Controllers
 
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
+
+			var rigidbodySettings = spawnable.Settings.FirstOrDefault(x => x is EditRigidbodiesController) as EditRigidbodiesController;
+			if (rigidbodySettings != null && rigidbodySettings.EnableRespawnRecall)
+			{
+				var newSpawnable = newObject.GetSpawnableFromSpawned();
+				var newRigidBodySettings = newSpawnable.Settings.FirstOrDefault(x => x is EditRigidbodiesController) as EditRigidbodiesController;
+
+				newRigidBodySettings.EnableRespawnRecall = rigidbodySettings.EnableRespawnRecall;
+				newRigidBodySettings.RecallPosition = newObject.transform.position;
+				newRigidBodySettings.RecallRotation = newObject.transform.rotation;
+				rigidbodySettings.EnableRespawnRecall = false;
+			}
 
 			var animator = SelectedObject.GetComponentInChildren<Animator>(true);
 			if (animator != null)
