@@ -683,11 +683,37 @@ namespace XLObjectDropper.Controllers
 		private void SelectObject()
 		{
 			UISounds.Instance?.PlayOneShotSelectMajor();
+
+			JumpToObject(HighlightedObject.transform);
+
 			SelectedObject = HighlightedObject;
 			existingObject = true;
+
+			SelectedObject.transform.ChangeLayersRecursively(28);
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
 
 			ToggleRigidBodies(SelectedObject, false);
+		}
+
+		private void JumpToObject(Transform target)
+		{
+			targetHeight = target.position.y;
+
+			//var cc = GetComponent<CharacterController>();
+			var offset = target.position - transform.position;
+			//Get the difference.
+			while (offset.magnitude > .1f)
+			{
+				//If we're further away than .1 unit, move towards the target.
+				//The minimum allowable tolerance varies with the speed of the object and the framerate. 
+				// 2 * tolerance must be >= moveSpeed / framerate or the object will jump right over the stop.
+				offset = offset.normalized * 10;
+				//normalize it and account for movement speed.
+				characterController.Move(offset * Time.deltaTime);
+				//actually move the character.
+
+				offset = target.position - transform.position;
+			}
 		}
 
 		private void HandleObjectHighlight()
