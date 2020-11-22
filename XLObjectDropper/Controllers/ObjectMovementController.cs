@@ -157,6 +157,8 @@ namespace XLObjectDropper.Controllers
 			MovementUI.RotateAndScaleModeUI.GetComponent<RotationAndScaleUI>().RotationSnappingMode = Settings.Instance.RotationSnappingMode;
 
 			MovementUI.SnappingModeUI.GetComponent<SnappingModeUI>().MovementSnappingMode = Settings.Instance.MovementSnappingMode;
+
+			EnteringObjectDropper = false;
         }
 
         private void OnDisable()
@@ -594,13 +596,8 @@ namespace XLObjectDropper.Controllers
 			var objPlaceEvent = new ObjectPlacedEvent(SelectedObject, newObject);
 			objPlaceEvent.AddToUndoStack();
 
-			
-
-			
-
 			UpdateAvatarAnimator(SelectedObject, newObject);
 			UpdateAimConstraint(newObject);
-
 			UpdateRigidbodySettings(spawnable, newObject);
 			ToggleRigidBodies(newObject, true);
 
