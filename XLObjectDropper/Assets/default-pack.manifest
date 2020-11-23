@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2908366359
+CRC: 3177976064
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 990a3b6cf6360452e6895962b013dafc
+    Hash: d845e54ff5ae05e129f41c6c88b30f25
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5fbebdfa679e69b54f3867bd742083b6
@@ -89,7 +89,6 @@ Assets:
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3-1_x5.Grungy.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/WorklightSmall.prefab
 - Assets/Dryden - XLOD/Prefabs/Ramps/Ramp.prefab
-- Assets/Tait - Buildings/Prefabs/PREFABBUILDING1-4.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/BenchHatchet.prefab
 - Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Medium Cinder Block Ledge.prefab
 - Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/ParkingGate.prefab
@@ -112,10 +111,8 @@ Assets:
 - Assets/Soldino Props Pack/Props/Prefabs/Barrier.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/MagazineBox_YZ_White.prefab
 - Assets/SDT - Modular/Prefabs/Splines/CopingSpline_4m_Round_Concrete.prefab
-- Assets/Tait - Buildings/Prefabs/PREFABBUILDING1-5.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Hubba_low_.5x1.5.prefab
 - Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Square.prefab
-- Assets/Tait - Buildings/Prefabs/PREFABBUILDING1-2.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/BusStop.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/JerseyBarrier.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/KickerWood.prefab
@@ -151,7 +148,6 @@ Assets:
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/TrashbagSmall.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/Stair_3_1_x5.Brick.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/Cinderblock.prefab
-- Assets/Tait - Buildings/Prefabs/PREFABBUILDING1-3.prefab
 - Assets/SDT - Modular/Prefabs/Ledges/Pad_Low_2x4.prefab
 - Assets/Dryden - XLOD/Prefabs/DIY Ramp Prefabs/DIY_Box.prefab
 - Assets/SDT - Modular/Prefabs/Planes/Plane_2x2.Street.Asphalt.prefab
@@ -182,6 +178,7 @@ Assets:
 - Assets/Soldino Props Pack/Props/Prefabs/BarrierEnd.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Block.Left.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoMagazineBox.prefab
+- Assets/Dryden - XLOD/Prefabs/Picnic Table/Picnic Table.prefab
 - Assets/SDT - AusBundle/AusPrefabs/SGC/SGC_AusPowerPole.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Coffeecup1.prefab
 - Assets/SDT - Modular/Prefabs/SGC/SGC_LedgeLow.prefab
@@ -193,7 +190,6 @@ Assets:
 - Assets/SDT - Modular/Prefabs/Splines/CopingSpline_4m_Round_Metal.prefab
 - Assets/Soldino Props Pack/RigidbodyProps/Prefabs/Waterbottle.prefab
 - Assets/Soldino Props Pack/Lights/Prefabs/Ceiling_Lamp.prefab
-- Assets/Tait - Buildings/Prefabs/PREFABBUILDING1-1.prefab
 - Assets/SDT - Modular/Prefabs/Stairs/StairCap_3-1_x5.Brick.Left.prefab
 - Assets/SDT - AusBundle/AusPrefabs/p_StreetLight.prefab
 - Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Square Bent.prefab
@@ -211,7 +207,6 @@ Assets:
 - Assets/SDT - Animated Chars/Prefabs/Cameraman_Carl.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/ElectricBox.prefab
 - Assets/Soldino Props Pack/Props/Prefabs/SGC/SGC_SoldinoCopCar.prefab
-- Assets/Tait - Buildings/Prefabs/PREFABBUILDING1-6.prefab
 - Assets/Dryden - XLOD/Prefabs/Yellow Post Prefabs/Pylon Round.prefab
 - Assets/Soldino Props Pack/Lights/Prefabs/SGC/SGC_SoldinoStreetLights.prefab
 - Assets/Dryden - XLOD/Prefabs/Cinder Block Ledges/Long Cinder Block Ledge.prefab
