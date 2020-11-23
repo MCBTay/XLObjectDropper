@@ -58,6 +58,8 @@ namespace XLObjectDropper.Utilities.Save
 			var newGameObject = GameObject.Instantiate(spawnable.Prefab, position, rotation);
 			newGameObject.SetActive(true);
 
+			newGameObject.transform.localScale = new Vector3(savedGameObject.localScale.x, savedGameObject.localScale.y, savedGameObject.localScale.z); ;
+
 			var newSpawnable = new Spawnable(spawnable, newGameObject);
 			SpawnableManager.SpawnedObjects.Add(newSpawnable);
 
