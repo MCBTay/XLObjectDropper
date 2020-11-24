@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 861165891}
   m_Layer: 12
   m_Name: GrindSpline_4m_Round_Metal
-  m_TagString: Grind_Concrete
+  m_TagString: Grind_Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,29 +193,29 @@ MonoBehaviour:
     size: 1
     percent: 1
   _transformedSamples:
-  - position: {x: 0.32860386, y: 0.045489818, z: -1.9473599}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.00018410682, y: 0.0000011277448, z: 1}
+  - position: {x: 0.32860386, y: 0.0454895, z: -1.9473599}
+    up: {x: 0, y: 1, z: -0.00000016292068}
+    forward: {x: -0.00018410682, y: 0.0000012906655, z: 1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: 0.3278886, y: 0.0454942, z: 1.9376442}
-    up: {x: 0, y: 1, z: 0}
-    forward: {x: -0.00018410682, y: 0.0000011277448, z: 1}
+  - position: {x: 0.3278886, y: 0.045494515, z: 1.9376442}
+    up: {x: 0, y: 1, z: -0.00000016292068}
+    forward: {x: -0.00018410682, y: 0.0000012906655, z: 1}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 1
   sampleCollection:
     samples:
-    - position: {x: 0.32860386, y: 0.045489818, z: -1.9473599}
-      up: {x: 0, y: 1, z: 0}
-      forward: {x: -0.00018410682, y: 0.0000011277448, z: 1}
+    - position: {x: 0.32860386, y: 0.0454895, z: -1.9473599}
+      up: {x: 0, y: 1, z: -0.00000016292068}
+      forward: {x: -0.00018410682, y: 0.0000012906655, z: 1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 0
-    - position: {x: 0.3278886, y: 0.0454942, z: 1.9376442}
-      up: {x: 0, y: 1, z: 0}
-      forward: {x: -0.00018410682, y: 0.0000011277448, z: 1}
+    - position: {x: 0.3278886, y: 0.045494515, z: 1.9376442}
+      up: {x: 0, y: 1, z: -0.00000016292068}
+      forward: {x: -0.00018410682, y: 0.0000012906655, z: 1}
       color: {r: 1, g: 1, b: 1, a: 1}
       size: 1
       percent: 1
