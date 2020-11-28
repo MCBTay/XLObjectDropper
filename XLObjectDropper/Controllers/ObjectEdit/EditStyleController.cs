@@ -104,6 +104,13 @@ namespace XLObjectDropper.Controllers.ObjectEdit
 			{
 				ObjectMovementController.Instance.enabled = true;
 
+				var spawnedObject = ObjectMovementController.Instance.SelectedObject.GetSpawnableFromSpawned();
+				if (spawnedObject != null)
+				{
+					SpawnableManager.SpawnedObjects.Remove(spawnedObject);
+					ObjectMovementController.Instance.ExistingObject = false;
+				}
+
 				ObjectMovementController.Instance.InstantiateSelectedObject(spawnable);
 				SelectedObject = ObjectMovementController.Instance.SelectedObject;
 				ObjectMovementController.Instance.SelectedObject.transform.position = pos;

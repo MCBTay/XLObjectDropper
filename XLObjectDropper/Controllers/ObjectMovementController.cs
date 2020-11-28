@@ -70,7 +70,7 @@ namespace XLObjectDropper.Controllers
 
 		public bool SelectingObjectFromMenu;
 		public bool EnteringObjectDropper;
-		private bool existingObject;
+		public bool ExistingObject;
 		#endregion
 
 		private void Awake()
@@ -582,9 +582,9 @@ namespace XLObjectDropper.Controllers
 			var spawnable = SelectedObject.GetSpawnable();
 			newObject.transform.ChangeLayersRecursively(spawnable.PrefabLayerInfo);
 
-			if (existingObject)
+			if (ExistingObject)
 			{
-				existingObject = false;
+				ExistingObject = false;
 				spawnable = SelectedObject.GetSpawnableFromSpawned();
 				spawnable.SpawnedInstance = newObject;
 			}
@@ -685,7 +685,7 @@ namespace XLObjectDropper.Controllers
 
 			SelectedObject = HighlightedObject;
 			HighlightedObject = null;
-			existingObject = true;
+			ExistingObject = true;
 
 			SelectedObject.transform.ChangeLayersRecursively(28);
 			UserInterfaceHelper.CustomPassVolume.enabled = true;
