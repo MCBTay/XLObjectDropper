@@ -26,52 +26,60 @@ namespace XLObjectDropper.Utilities
 
 		public void SaveCurrentSpawnables(string fileName)
 		{
-			var levelConfigToSave = new LevelSaveData
-			{ 
-				levelHash = LevelManager.Instance.currentLevel.hash, 
-				levelName = LevelManager.Instance.currentLevel.name,
-				dateModified = DateTime.Now,
-			};
-
-			var spawnedItems = SpawnableManager.SpawnedObjects;
-
-			if (spawnedItems == null || !spawnedItems.Any()) return;
-
-			foreach (var spawnable in spawnedItems)
+			try
 			{
-				var instance = spawnable.SpawnedInstance;
-
-				var objectSaveData = new GameObjectSaveData
+				var levelConfigToSave = new LevelSaveData
 				{
-					Id = instance.name,
-					bundleName = spawnable.BundleName,
-					position = new SerializableVector3(instance.transform.position),
-					rotation = new SerializableQuaternion(instance.transform.rotation),
-					localScale = new SerializableVector3(instance.transform.localScale)
+					levelHash = LevelManager.Instance.currentLevel.hash,
+					levelName = LevelManager.Instance.currentLevel.name,
+					dateModified = DateTime.Now,
 				};
 
-				foreach (var settings in spawnable.Settings)
+				var spawnedItems = SpawnableManager.SpawnedObjects;
+
+				if (spawnedItems == null || !spawnedItems.Any()) return;
+
+				foreach (var spawnable in spawnedItems)
 				{
-					var settingsSaveData = settings.ConvertToSaveSettings();
-					if (settingsSaveData != null)
+					var instance = spawnable.SpawnedInstance;
+
+					var objectSaveData = new GameObjectSaveData
 					{
-						objectSaveData.settings.Add(settingsSaveData);
+						Id = instance.name,
+						bundleName = spawnable.BundleName,
+						position = new SerializableVector3(instance.transform.position),
+						rotation = new SerializableQuaternion(instance.transform.rotation),
+						localScale = new SerializableVector3(instance.transform.localScale)
+					};
+
+					foreach (var settings in spawnable.Settings)
+					{
+						var settingsSaveData = settings.ConvertToSaveSettings();
+						if (settingsSaveData != null)
+						{
+							objectSaveData.settings.Add(settingsSaveData);
+						}
 					}
+
+					levelConfigToSave.gameObjects.Add(objectSaveData);
 				}
 
-				levelConfigToSave.gameObjects.Add(objectSaveData);
+				string json = JsonConvert.SerializeObject(levelConfigToSave, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+
+				var currentSaveDir = Path.Combine(SaveDir, levelConfigToSave.levelName);
+
+				if (!Directory.Exists(currentSaveDir))
+				{
+					Directory.CreateDirectory(currentSaveDir);
+				}
+
+				File.WriteAllText(Path.Combine(currentSaveDir, $"{fileName}.json"), json);
 			}
-
-			string json = JsonConvert.SerializeObject(levelConfigToSave, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
-
-			var currentSaveDir = Path.Combine(SaveDir, levelConfigToSave.levelName);
-
-			if (!Directory.Exists(currentSaveDir))
+			catch (Exception e)
 			{
-				Directory.CreateDirectory(currentSaveDir);
+				UnityModManager.Logger.Log("XLObjectDropper.  Error occurred while saving: " + e.Message);
+				throw;
 			}
-
-			File.WriteAllText(Path.Combine(currentSaveDir, $"{fileName}.json"), json);
 		}
 
 		public void LoadAllSaves()
