@@ -20,6 +20,8 @@ namespace XLObjectDropper.Controllers
 
 		public GameObject SelectedObject;
 		public bool SelectedObjectActive => SelectedObject != null && SelectedObject.activeInHierarchy;
+		private Vector3 SelectedObjectOriginalPosition;
+		private Quaternion SelectedObjectOriginalRotation;
 
 		public GameObject HighlightedObject;
 		private bool HighlightedObjectActive => HighlightedObject != null && HighlightedObject.activeInHierarchy;
@@ -242,7 +244,7 @@ namespace XLObjectDropper.Controllers
 				}
 
 				if (player.GetButtonDown("X")) EditObject();
-				if (player.GetButtonDown("B")) Destroy(SelectedObject);
+				if (player.GetButtonDown("B")) Cancel();
 				if (player.GetButtonDown("Left Stick Button")) ResetObject();
 			}
 			else if (HighlightedObject != null)
@@ -302,7 +304,7 @@ namespace XLObjectDropper.Controllers
 		/// </summary>
 		private void HandleRightStick(Player player)
         {
-			//TODO: Something about this new rotation method fucks up the default angle of the object dropper
+	        //TODO: Something about this new rotation method fucks up the default angle of the object dropper
 			if (!LockCameraMovement)
 			{
 				Vector2 rightStick = player.GetAxis2D("RightStickX", "RightStickY");
@@ -572,11 +574,11 @@ namespace XLObjectDropper.Controllers
 			}
 		}
 
-		private void PlaceObject(bool disablePreview = true)
+		private void PlaceObject(bool disablePreview = true, Vector3? position = null, Quaternion? rotation = null)
 		{
 			UISounds.Instance?.PlayOneShotSelectMajor();
 
-			var newObject = Instantiate(SelectedObject, SelectedObject.transform.position, SelectedObject.transform.rotation);
+			var newObject = Instantiate(SelectedObject, position ?? SelectedObject.transform.position, rotation ?? SelectedObject.transform.rotation);
 			newObject.SetActive(true);
 
 			var spawnable = SelectedObject.GetSpawnable();
@@ -683,6 +685,9 @@ namespace XLObjectDropper.Controllers
 
 			JumpToObject(HighlightedObject.transform);
 
+			SelectedObjectOriginalPosition = HighlightedObject.transform.position;
+			SelectedObjectOriginalRotation = HighlightedObject.transform.rotation;
+
 			SelectedObject = HighlightedObject;
 			HighlightedObject = null;
 			ExistingObject = true;
@@ -709,7 +714,6 @@ namespace XLObjectDropper.Controllers
 				//normalize it and account for movement speed.
 				characterController.Move(offset * Time.deltaTime);
 				//actually move the character.
-
 				offset = target.position - transform.position;
 			}
 		}
@@ -756,6 +760,21 @@ namespace XLObjectDropper.Controllers
 		private void EditObject()
 		{
 			UISounds.Instance?.PlayOneShotSelectMajor();
+		}
+
+		private void Cancel()
+		{
+			if (ExistingObject)
+			{
+				PlaceObject(position: SelectedObjectOriginalPosition, rotation: SelectedObjectOriginalRotation);
+
+				SelectedObjectOriginalPosition = Vector3.zero;
+				SelectedObjectOriginalRotation = Quaternion.identity;
+			}
+			else
+			{
+				Destroy(SelectedObject);
+			}
 		}
 		#endregion
 	}
