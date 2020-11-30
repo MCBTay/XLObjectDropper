@@ -161,7 +161,9 @@ namespace XLObjectDropper.Controllers
 			MovementUI.SnappingModeUI.GetComponent<SnappingModeUI>().MovementSnappingMode = Settings.Instance.MovementSnappingMode;
 
 			EnteringObjectDropper = false;
-        }
+
+			ToggleGrindSplineMeshRenderers(true);
+		}
 
         private void OnDisable()
         {
@@ -188,7 +190,30 @@ namespace XLObjectDropper.Controllers
 	        }
 
 	        cameraNode.SetParent(originalCameraNodeParent, false);
-		}
+
+	        ToggleGrindSplineMeshRenderers(false);
+        }
+
+        private void ToggleGrindSplineMeshRenderers(bool renderersEnabled)
+        {
+	        if (SpawnableManager.SpawnedObjects == null) return;
+	        if (!SpawnableManager.SpawnedObjects.Any()) return;
+
+	        foreach (var spawnable in SpawnableManager.SpawnedObjects)
+	        {
+		        var meshRenderer = spawnable.SpawnedInstance.GetComponent<MeshRenderer>();
+
+		        bool hasChildren = spawnable.SpawnedInstance.transform.childCount > 0;
+				bool isOnCorrectLayer = spawnable.SpawnedInstance.layer == LayerMask.NameToLayer("Grindable") || spawnable.SpawnedInstance.layer == LayerMask.NameToLayer("Coping");
+				bool hasMeshRenderer = meshRenderer != null;
+				bool hasCollider = spawnable.SpawnedInstance.GetComponent<Collider>() != null;
+
+				if (!hasChildren && isOnCorrectLayer && hasMeshRenderer && hasCollider)
+				{
+					meshRenderer.enabled = renderersEnabled;
+				}
+	        }
+        }
 
         private ObjectScaleAndRotateEvent ScaleAndRotateEvent;
 
