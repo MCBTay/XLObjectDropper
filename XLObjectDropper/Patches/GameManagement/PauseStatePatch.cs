@@ -12,19 +12,9 @@ namespace XLObjectDropper.Patches.GameManagement
 		{
 			static void Postfix(PauseState __instance)
 			{
-				Traverse.Create(__instance).Field<Type[]>("availableTransitions").Value = new Type[10]
-				{
-					typeof(PlayState),
-					typeof(GearSelectionState),
-					typeof(TutorialReplayState),
-					typeof(TutorialMenuState),
-					typeof(FeetControlTutorialState),
-					typeof(LevelSelectionState),
-					typeof(ChallengeSelectionState),
-					typeof(SettingsState),
-					typeof(ReplayMenuState),
-					typeof(ObjectDropperState)
-				};
+				var availableTransitions = Traverse.Create(__instance).Field<Type[]>("availableTransitions").Value;
+				Array.Resize(ref availableTransitions, availableTransitions.Length + 1);
+				availableTransitions[availableTransitions.Length - 1] = typeof(ObjectDropperState);
 			}
 		}
 	}
