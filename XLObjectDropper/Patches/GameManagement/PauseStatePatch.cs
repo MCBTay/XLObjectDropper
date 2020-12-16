@@ -15,6 +15,8 @@ namespace XLObjectDropper.Patches.GameManagement
 				var availableTransitions = Traverse.Create(__instance).Field<Type[]>("availableTransitions").Value;
 				Array.Resize(ref availableTransitions, availableTransitions.Length + 1);
 				availableTransitions[availableTransitions.Length - 1] = typeof(ObjectDropperState);
+
+				Traverse.Create(__instance).Field<Type[]>("availableTransitions").Value = availableTransitions;
 			}
 		}
 	}
