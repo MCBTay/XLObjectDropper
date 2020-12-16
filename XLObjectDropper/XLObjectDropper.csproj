@@ -264,7 +264,7 @@ copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "$(TargetDir)XLObjectDropper\XLObje
 copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
 copy /Y "$(TargetDir)Info.json" "$(TargetDir)XLObjectDropper\Info.json"
 
-powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-1-0-2.zip' -Force
+powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-1-0-3.zip' -Force
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>
