@@ -14,11 +14,6 @@ namespace XLObjectDropper.GameManagement
 		public ObjectDropperState()
 		{
 			Instance = this;
-
-			availableTransitions = new[]
-			{
-				typeof(PauseState)
-			};
 		}
 
 		private bool XLGraphicsWasEnabled = false;

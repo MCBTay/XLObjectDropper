@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLObjectDropper.UI", "XLObj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLObjectDropper.SpawnableScripts", "XLObjectDropper.SpawnableScripts\XLObjectDropper.SpawnableScripts.csproj", "{D2673308-8E7B-4A23-81F7-2EB178D8FB9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLObjectDropper.Multiplayer.Client", "XLObjectDropper.Multiplayer.Client\XLObjectDropper.Multiplayer.Client.csproj", "{A04DEE99-F9B0-4DA4-B70B-C283C4734381}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLObjectDropper.Multiplayer.Server", "XLObjectDropper.Multiplayer.Server\XLObjectDropper.Multiplayer.Server.csproj", "{51DC3479-7859-44B6-9D71-944C4B144498}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,14 +27,6 @@ Global
 		{D2673308-8E7B-4A23-81F7-2EB178D8FB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2673308-8E7B-4A23-81F7-2EB178D8FB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2673308-8E7B-4A23-81F7-2EB178D8FB9A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A04DEE99-F9B0-4DA4-B70B-C283C4734381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A04DEE99-F9B0-4DA4-B70B-C283C4734381}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A04DEE99-F9B0-4DA4-B70B-C283C4734381}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A04DEE99-F9B0-4DA4-B70B-C283C4734381}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51DC3479-7859-44B6-9D71-944C4B144498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51DC3479-7859-44B6-9D71-944C4B144498}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51DC3479-7859-44B6-9D71-944C4B144498}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51DC3479-7859-44B6-9D71-944C4B144498}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

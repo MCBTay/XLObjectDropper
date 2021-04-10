@@ -9,13 +9,16 @@ namespace XLObjectDropper.Patches
 {
 	public class RespawnPatch
 	{
-		[HarmonyPatch(typeof(Respawn), "GetSpawnPos")]
-		public static class GetSpawnPosPatch
+		[HarmonyPatch(typeof(Respawn), "Start")]
+		public static class StartPatch
 		{
-			static void Postfix(bool tutorial)
+			static void Postfix(Respawn __instance)
 			{
-				if (tutorial) return;
+				__instance.OnRespawn += HandleRespawn;
+			}
 
+			private static void HandleRespawn()
+			{
 				var spawnablesWithRBs = new List<Spawnable>();
 				foreach (var spawnable in SpawnableManager.SpawnedObjects)
 				{
