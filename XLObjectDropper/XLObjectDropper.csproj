@@ -51,6 +51,9 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>..\..\..\MCBTay\XLMenuMod\XLMenuMod\References\Photon3Unity3D.dll</HintPath>
+    </Reference>
     <Reference Include="Rewired_Core">
       <HintPath>References\Rewired_Core.dll</HintPath>
       <Private>False</Private>
@@ -165,6 +168,12 @@
       <HintPath>References\UnityModManager.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="ZeroFormatter">
+      <HintPath>..\..\..\MCBTay\XLMenuMod\XLMenuMod\References\ZeroFormatter.dll</HintPath>
+    </Reference>
+    <Reference Include="ZeroFormatter.Interfaces">
+      <HintPath>..\..\..\MCBTay\XLMenuMod\XLMenuMod\References\ZeroFormatter.Interfaces.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\GridOverlayController.cs" />
@@ -219,7 +228,6 @@
     <Compile Include="GameManagement\ObjectDropperState.cs" />
     <Compile Include="Controllers\ObjectMovementController.cs" />
     <Compile Include="Controllers\ObjectSelectionController.cs" />
-    <Compile Include="Patches\GameManagement\PauseStatePatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInterface\UserInterfaceHelper.cs" />
     <Compile Include="Utilities\SpawnableManager.cs" />
