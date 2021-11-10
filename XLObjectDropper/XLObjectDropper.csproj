@@ -52,7 +52,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>..\..\..\MCBTay\XLMenuMod\XLMenuMod\References\Photon3Unity3D.dll</HintPath>
+      <HintPath>References\Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="Rewired_Core">
       <HintPath>References\Rewired_Core.dll</HintPath>
@@ -169,10 +169,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ZeroFormatter">
-      <HintPath>..\..\..\MCBTay\XLMenuMod\XLMenuMod\References\ZeroFormatter.dll</HintPath>
+      <HintPath>References\ZeroFormatter.dll</HintPath>
     </Reference>
     <Reference Include="ZeroFormatter.Interfaces">
-      <HintPath>..\..\..\MCBTay\XLMenuMod\XLMenuMod\References\ZeroFormatter.Interfaces.dll</HintPath>
+      <HintPath>References\ZeroFormatter.Interfaces.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
