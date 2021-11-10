@@ -1,4 +1,0 @@
-﻿{
-  "AssemblyName": "XLObjectDropper.Multiplayer.Client.dll",
-  "StartupMethod": "XLObjectDropper.Multiplayer.Client.Main:Load"
-}

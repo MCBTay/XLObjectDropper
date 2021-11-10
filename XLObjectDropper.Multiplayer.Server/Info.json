@@ -1,7 +1,0 @@
-﻿{
-  "Name": "XL Object Dropper Server Plugin",
-  "AssemblyName": "XLObjectDropper.Multiplayer.Server.dll",
-  "StartupMethod": "XLObjectDropper.Multiplayer.Server.Main:Load",
-  "ServerVersion": "0.11.1",
-  "DependencyZIP": "XLObjectDropper.Multiplayer.Client.zip"
-}
