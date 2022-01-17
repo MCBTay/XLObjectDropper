@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XLObjectDropper.UI</RootNamespace>
     <AssemblyName>XLObjectDropper.UI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,7 +37,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Rewired_Core">
-      <HintPath>..\XLObjectDropper\References\Rewired_Core.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Rewired_Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -47,63 +48,63 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>..\XLObjectDropper\References\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>..\XLObjectDropper\References\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
-      <HintPath>..\XLObjectDropper\References\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\XLObjectDropper\References\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.InputModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.InputModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextCoreModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.TextCoreModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.TextCoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.UI.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\XLObjectDropper\References\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

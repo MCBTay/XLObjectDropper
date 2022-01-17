@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XLObjectDropper</RootNamespace>
     <AssemblyName>XLObjectDropper</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -40,22 +40,25 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>References\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>References\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="BFSUtilities">
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\BFSUtilities.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Photon3Unity3D">
-      <HintPath>References\Photon3Unity3D.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Photon3Unity3D.dll</HintPath>
     </Reference>
     <Reference Include="Rewired_Core">
-      <HintPath>References\Rewired_Core.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Rewired_Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -83,85 +86,85 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>References\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>References\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\Unity.TextMeshPro.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\Unity.TextMeshPro.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\UnityEngine.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>References\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>References\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.ImageConversionModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>References\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
-      <HintPath>References\UnityEngine.InputModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.InputModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>References\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>References\UnityEngine.TerrainModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.TerrainModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TerrainPhysicsModule">
-      <HintPath>References\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.TerrainPhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextCoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\UnityEngine.TextCoreModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.TextCoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\UnityEngine.UI.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>References\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityModManager">
@@ -169,10 +172,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ZeroFormatter">
-      <HintPath>References\ZeroFormatter.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\ZeroFormatter.dll</HintPath>
     </Reference>
     <Reference Include="ZeroFormatter.Interfaces">
-      <HintPath>References\ZeroFormatter.Interfaces.dll</HintPath>
+      <HintPath>..\packages\SkaterXL.Assemblies.1.2.3.11\ZeroFormatter.Interfaces.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -255,24 +258,14 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)"=="Debug" ( 
-del /Q /F "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\"
-copy /Y "$(TargetDir)XLObjectDropper.dll" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.dll"
-copy /Y "$(TargetDir)XLObjectDropper.pdb" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.pdb"
-copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.dll"
-copy /Y "$(TargetDir)XLObjectDropper.UI.pdb" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.pdb"
-copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.dll" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
-copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.pdb" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.pdb"
-copy /Y "$(TargetDir)Info.json" "F:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\Info.json"
-)
-
-if "$(ConfigurationName)"=="Release" (
-mkdir $(TargetDir)XLObjectDropper
-copy /Y "$(TargetDir)XLObjectDropper.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.dll"
-copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.UI.dll"
-copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.dll" "$(TargetDir)XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
-copy /Y "$(TargetDir)Info.json" "$(TargetDir)XLObjectDropper\Info.json"
-
-powershell Compress-Archive -Path '$(TargetDir)XLObjectDropper' -DestinationPath '$(TargetDir)XLObjectDropper-1-0-4.zip' -Force
+del /Q /F "G:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\"
+copy /Y "$(TargetDir)XLObjectDropper.dll" "G:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.dll"
+copy /Y "$(TargetDir)XLObjectDropper.pdb" "G:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.pdb"
+copy /Y "$(TargetDir)XLObjectDropper.UI.dll" "G:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.dll"
+copy /Y "$(TargetDir)XLObjectDropper.UI.pdb" "G:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.UI.pdb"
+copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.dll" "G:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.dll"
+copy /Y "$(TargetDir)XLObjectDropper.SpawnableScripts.pdb" "G:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\XLObjectDropper.SpawnableScripts.pdb"
+copy /Y "$(TargetDir)Info.json" "G:\Steam\steamapps\common\Skater XL\Mods\XLObjectDropper\Info.json"
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>
