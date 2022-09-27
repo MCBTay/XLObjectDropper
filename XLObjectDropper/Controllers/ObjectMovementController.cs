@@ -1,4 +1,5 @@
-﻿using GameManagement;
+﻿using Cinemachine;
+using GameManagement;
 using Rewired;
 using System.Linq;
 using UnityEngine;
@@ -48,7 +49,7 @@ namespace XLObjectDropper.Controllers
 		public float currentMoveSpeed;
 		private float zoomSpeed = 10f;
 
-		private Camera mainCam;
+		private CinemachineVirtualCamera mainCam;
 		public Transform cameraPivot;
 		private Transform cameraNode;
 		private Transform originalCameraNodeParent;
@@ -85,7 +86,7 @@ namespace XLObjectDropper.Controllers
 			// add our highlight layer to this layermask
 			layerMask |= (1 << 28);
 
-			mainCam = Camera.main;
+			mainCam = PlayerController.Instance.cameraController._actualCam.GetComponent<CinemachineVirtualCamera>();
 
 			cameraPivot = transform;
 			cameraNode = mainCam.transform;
@@ -98,8 +99,8 @@ namespace XLObjectDropper.Controllers
 			
 			LockCameraMovement = false;
 
-			originalNearClipDist = mainCam.nearClipPlane;
-			mainCam.nearClipPlane = 0.01f;
+			originalNearClipDist = mainCam.m_Lens.NearClipPlane;
+			mainCam.m_Lens.NearClipPlane = 0.01f;
 			targetHeight = defaultHeight;
 
 			Vector3 vector3_1 = PlayerController.Instance.skaterController.skaterRigidbody.position;
@@ -167,7 +168,7 @@ namespace XLObjectDropper.Controllers
 
         private void OnDisable()
         {
-	        mainCam.nearClipPlane = originalNearClipDist;
+			mainCam.m_Lens.NearClipPlane = originalNearClipDist;
         }
 
         public void CleanUp()
