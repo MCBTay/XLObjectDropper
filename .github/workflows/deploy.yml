@@ -110,7 +110,7 @@ jobs:
       with:
         token: ${{ secrets.MODIO_TOKEN }}
         game: 629 # skaterxl
-        mod: 135638 # xlmenumod
+        mod: 176938 # xlobjectdropper
         path: ${{ env.ARCHIVE_NAME }}
         version: ${{ github.event.release.tag_name }}
         changelog: ${{ github.event.release.body }}
