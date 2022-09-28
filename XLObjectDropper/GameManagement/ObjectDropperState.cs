@@ -19,7 +19,7 @@ namespace XLObjectDropper.GameManagement
 		private bool XLGraphicsWasEnabled = false;
 		private bool XXLGraphicUtilsWasEnabled = false;
 
-		public override void OnEnter()
+		public override void OnEnter(GameState lastState)
 		{
 			ObjectDropperControllerGameObject = new GameObject();
 			ObjectDropperController = ObjectDropperControllerGameObject.AddComponent<ObjectDropperController>();
@@ -34,7 +34,7 @@ namespace XLObjectDropper.GameManagement
 			GameStateMachine.Instance.SemiTransparentLayer.SetActive(false);
 		}
 
-		public override void OnExit()
+		public override void OnExit(GameState nextState)
 		{
 			Time.timeScale = 0.0f;
 			GameStateMachine.Instance.PauseObject.SetActive(true);
