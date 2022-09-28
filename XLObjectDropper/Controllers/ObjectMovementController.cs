@@ -13,7 +13,7 @@ using XLObjectDropper.Utilities;
 
 namespace XLObjectDropper.Controllers
 {
-	public class ObjectMovementController : MonoBehaviour
+    public class ObjectMovementController : MonoBehaviour
 	{
 		#region Fields
 		public static ObjectMovementController Instance { get; set; }
@@ -99,8 +99,8 @@ namespace XLObjectDropper.Controllers
 			
 			LockCameraMovement = false;
 
-			originalNearClipDist = mainCam.m_Lens.NearClipPlane;
-			mainCam.m_Lens.NearClipPlane = 0.01f;
+            originalNearClipDist = mainCam.m_Lens.NearClipPlane;
+            mainCam.m_Lens.NearClipPlane = 0.01f;
 			targetHeight = defaultHeight;
 
 			Vector3 vector3_1 = PlayerController.Instance.skaterController.skaterRigidbody.position;
@@ -169,7 +169,7 @@ namespace XLObjectDropper.Controllers
         private void OnDisable()
         {
 			mainCam.m_Lens.NearClipPlane = originalNearClipDist;
-        }
+		}
 
         public void CleanUp()
         {
