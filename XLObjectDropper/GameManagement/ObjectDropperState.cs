@@ -34,7 +34,7 @@ namespace XLObjectDropper.GameManagement
 			GameStateMachine.Instance.SemiTransparentLayer.SetActive(false);
 		}
 
-		public override void OnExit(GameState lastState)
+		public override void OnExit(GameState nextState)
 		{
 			Time.timeScale = 0.0f;
 			GameStateMachine.Instance.PauseObject.SetActive(true);
